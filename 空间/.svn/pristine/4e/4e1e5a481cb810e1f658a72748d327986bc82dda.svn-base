@@ -1,0 +1,50 @@
+<div>
+	<div class="wd_newCtrl"> 
+		<div class="main" ng-if="variablePacket.noMessage==false">
+			<div class="modular" ng-repeat="m in variablePacket.messageArray">
+				<div class="clearfix">
+					<div class="fl one">
+						<p ng-if="m.userFace==''" ng-class="{active:m.sex=='女'}">{{m.surname}}</p>
+						<img ng-src="{{m.userFace}}" ng-if="m.userFace!=''"/>
+					</div>
+					<div class="two fl">
+						<ul>
+							<li>
+								<span ng-bind="m.name"></span> 
+								<i class="iconfont icon-nan" ng-if="m.sex=='男'"></i>
+								<i class="iconfont icon-nv" ng-if="m.sex=='女'"></i>
+							</li>
+							<li><span ng-bind="m.date"></span></li>
+							<li class="neirong">
+								<i class="iconfont icon-ceshi" ng-if="m.type=='作业'"></i>
+								<i class="iconfont icon-mokuai" ng-if="m.type=='资源'"></i>
+								<i class="iconfont icon-jiaoshi_beike" ng-if="m.type=='课堂记录'"></i>
+								<i class="iconfont icon-jiaoyan" ng-if="m.type=='教研'"></i>
+								<i class="iconfont icon-jiankang" ng-if="m.type=='体质健康'"></i>
+								<i class="iconfont icon-fenxi" ng-if="m.type=='学情分析'"></i>
+								<i class="iconfont icon-pingjia" ng-if="m.type=='评价'"></i>
+								<span ng-bind="m.message"></span>
+							</li>
+							<li ng-if="m.type=='作业'">
+								<p>
+									<i class="iconfont icon-lishi"></i> 
+									完成时间：<span ng-bind="m.dateTime"></span>
+								</p>
+							</li>
+						</ul>
+					</div>
+					<div class="three fr">
+						<p ng-bind="m.type"></p >
+					</div>
+				</div>
+				<p ng-if="m.classList.length>0"><span ng-repeat="c in m.classList">{{c.name}}</span>
+				</p>
+			</div>
+		</div>
+		<paging page="totalPageNumber" callback="variablePacket.pageNo" ng-if="variablePacket.noMessage==false"></paging>
+		<div class="noNews" ng-if="variablePacket.noMessage">
+			<img src="img/xiaoxi.png"/>
+			<p>暂无消息</p>
+		</div>
+	</div>
+</div>

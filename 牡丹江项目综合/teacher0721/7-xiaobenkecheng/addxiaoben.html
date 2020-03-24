@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta name="renderer" content="webkit">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+		<meta name="format-detection" content="telephone=no" />
+
+		<title>社团详情</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/shetuan.css">
+		<link rel="stylesheet" href="../css/section.css">
+		<link rel="stylesheet" type="text/css" href="../common/sortable/app.css" />
+
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/sortable/Sortable.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/shetuan.js"></script>
+		<script src="../js/getTimes.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			.wx_title_xbkc {
+				padding: 10px 20px;
+				color: #f97046;
+				font-size: 16px;
+			}
+			
+			.wx_kcname {
+				padding-left: 20px;
+				cursor: pointer;
+				font-size: 18px;
+			}
+			
+			.wx_ztree_height {
+				min-height: 300px;
+				border: 1px solid #cdd0d2;
+				width: 97%;
+				margin: 0 auto;
+				border-radius: 10px;
+				padding-top: 16px;
+			}
+			
+			.wx_active_tree {
+				vertical-align: middle;
+				margin-right: 10px;
+			}
+			.mystjs{padding-bottom:10px;}
+			.wx_addli_input{padding: 10px 0 10px 50px;}
+			.wx_addli_input>input{width:152px;height:30px;border:1px solid #ccc;margin-right:10px ;}
+			.wx_addli_input>button{width:54px;height:32px;border:0;margin:0 5px;outline: none;cursor: pointer;}
+			.wx_addli_input>button.wx_sure_btn{background:#399fdf;color:#fff;}
+			.wx_addli_input>button.wx_cancel_btn{background:#f1f2f3;color:#666;}
+		</style>
+	</head>
+
+	<body>
+		<!--头部开始-->
+		<div class="header clearfix"></div>
+
+		<div class="shetuan">
+			<!--列表切换-->
+			<div class="shetuanul">
+				<ul>
+					<li>
+						<a href="./shetuanxiangqing.html">校本课程详情</a>
+					</li>
+					<li>
+						<a href="#">校本课程成员</a>
+					</li>
+					<li class="active">
+						<a href="./addxiaoben.html">校本课程教材</a>
+					</li>
+					<li>
+						<a href="./curriculumEvaluation.html">课程评价</a>
+					</li>
+				</ul>
+			</div>
+			<!--社团详情  -->
+			<div class="stxiangqing">
+				<!-- 左侧树结构-->
+				<div class="myshetuan">
+					<div class="sttreeheader">我的校本课程</div>
+					<div class="stlist">
+						<ul class="shetuanname">
+							<li class="xuanzhong">花鸟字画社团</li>
+							<li>书法社团</li>
+							<li>剪纸社团</li>
+							<li>武术社团</li>
+							<li>合唱社团</li>
+							<li>唢呐社团</li>
+							<li>京剧社团</li>
+							<li>表演社团</li>
+						</ul>
+					</div>
+				</div>
+				<!--右侧详情介绍-->
+				<div class="mystjs stdata" style="display:block">
+					<p class="wx_title_xbkc"> 直接拖动可排序</p>
+					<div class="wx_ztree_height">
+						<p class="wx_kcname"><img class="wx_active_tree" src="../img/wx_jian.png" /><span>花鸟字画社团</span> <span class="addUser"><img src="../img/wx_addli.png"/>添加教材</span></p>
+						<ul id="editable">
+							<li>
+								<em>地球仪的蓝色的意义</em><i class="addUser"><img src="../img/wx_addli.png"/>添加</i><i class="wx_bianji"><img src="../img/wx_bianji.png"/>编辑</i><i class="js-remove"><img src="../img/wx_delet.png" alt="" />删除</i>
+							</li>
+							<li>
+								<em>你会画画吗？</em><i class="addUser"><img src="../img/wx_addli.png"/>添加</i><i class="wx_bianji"><img src="../img/wx_bianji.png"/>编辑</i><i class="js-remove"><img src="../img/wx_delet.png" alt="" />删除</i>
+							</li>
+							<li>
+								<em>花鸟字画的含义</em><i class="addUser"><img src="../img/wx_addli.png"/>添加</i><i class="wx_bianji"><img src="../img/wx_bianji.png"/>编辑</i><i class="js-remove"><img src="../img/wx_delet.png" alt="" />删除</i>
+							</li>
+						</ul>
+						<p class="wx_addli_input" style="display: none;">
+							<input class="wx_inputname" type="text"/>
+							<button class="wx_sure_btn">确定</button>
+							<button class="wx_cancel_btn">取消</button>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+	<script type="text/javascript">
+		if($("#editable>li").length<=0){
+			$(".wx_active_tree").hide();
+		}
+		var el = document.getElementById('editable');
+
+		var byId = function(id) {
+			return document.getElementById(id)
+		};
+		
+		var editableList = Sortable.create(byId('editable'), {
+			animation: 150,
+			filter: '.js-remove,.addUser,.wx_bianji',
+			onChoose: function(evt) {
+				$(evt.item).find("em").attr("contenteditable", "false").css({
+					"border": "1px solid #fff",
+					"padding": "0"
+				});
+			},
+			onStart: function(evt) { // 拖拽开始
+				var itemEl = evt.item;
+				itemEl.style.background = '#f9f9f9';
+			},
+
+			onEnd: function(evt) { // 拖拽结束
+				var itemEl = evt.item;
+				itemEl.style.background = '#fff';
+			},
+			onFilter: function(evt) {
+				if(evt.target.getAttribute("class") == "js-remove") {
+					evt.item.parentNode.removeChild(evt.item);
+					if($("#editable>li").length==0){
+						$(".wx_active_tree").hide();
+					}
+				} else if(evt.target.getAttribute("class") == "wx_bianji") {
+					console.log(evt.item)
+					$(evt.item).find("em").attr("contenteditable", "true").css({
+						"border": "1px solid #ccc",
+						"padding": "2px 10px"
+					});
+				}
+			}
+
+		});
+
+		$(document).on("click", ".addUser", function() {
+			$(".wx_addli_input").show();
+		})
+		
+		$(".wx_sure_btn").on("click",function(){
+				var inputname=$(".wx_inputname").val();
+				$("#editable").append('<li>'+'<em>'+inputname+'</em>'+'<i class="addUser"><img src="../img/wx_addli.png"/>添加</i><i class="wx_bianji"><img src="../img/wx_bianji.png"/>编辑</i><i class="js-remove"><img src="../img/wx_delet.png" alt="" />删除</i>'+'</li>')
+				$(".wx_inputname").val("");
+				$(".wx_addli_input").hide();
+		})
+		
+		$(".wx_cancel_btn").on("click",function(){
+			$(".wx_addli_input").hide();
+		})
+	</script>
+
+</html>

@@ -1,0 +1,11 @@
+<div>
+	<div class="wd_paging">
+		<span ng-click="page('首页')">首页</span>
+		<span ng-click="nextPage('减')" ng-if="index!=1"><i class="iconfont icon-icon_arrow_left"></i>上一页</span>
+		<span ng-if="index>3 && ww.length>5">···</span>
+		<span ng-repeat="(i,e) in ww" ng-class="{active:index == e}" ng-click="pageChange(e)"  ng-if="(index>e-3 &&  index<e+3)  || (index<3 && e <6)  || (index>ww.length-3 && e>ww.length-5)">{{e}}</span>
+		<span ng-if="index<ww.length-2 && ww.length>5">···</span>
+		<span ng-click="nextPage('加')" ng-if="index!=totalPageNumber">下一页<i class="iconfont icon-icon_arrow_right"></i></span>
+		<span ng-click="page('尾页')">尾页</span>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div>
+	<div class="zyx_greenbox zyx_classHeadTeacher">
+		<div class="zyx_whitebox">
+			<div class="zyx_title">
+				<span>班主任介绍</span>
+				<div class="zyx_edit "  ng-if="!variable.editFlag" ui-sref='wrap.classSpace.classHeadTeacher.classHeadTeacherEdit({id:id})'>
+					<i class="iconfont icon-bianji2" 
+						></i>
+					<b > 编辑</b>
+				</div>
+			</div>
+			<div class="zyx_article_shows">
+				<!--<img src="./img/teacherShow.jpg" alt="" align="left" width="208" hspace="0" vspace="0"/>-->
+				<img ng-src="{{imagePath}}" alt="" align="left" width="208" hspace="0" vspace="0"/>
+				<p  ng-bind-html="content | trustHtml"  > </p>
+			</div>
+		</div>
+	</div>
+</div>

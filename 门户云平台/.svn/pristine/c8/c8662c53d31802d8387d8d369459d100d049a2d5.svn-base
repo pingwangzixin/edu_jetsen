@@ -1,0 +1,896 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div>
+	<div class="main_width">
+		<div class="zy_my_bank_type">
+			<ul class="clearfix">
+				<li ng-repeat="i in variablePacket.myQuestionType" ng-bind="i.name" ng-class="{active:variablePacket.myQuestionTypeIndex==$index}" ng-click="myQuestionTypeTab($index,0)"></li>
+			</ul>
+		</div>		
+		
+		<div class="zy_question_main clearfix">
+			<div class="zy_question_tree fl">
+				<!--选择教材版本-->
+				<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+				<!--树结构-->
+				<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>	
+			</div>
+			<div class="zy_question_library fr">
+				<div class="zy_question_library_tit">
+					<span ng-class="{'active':variablePacket.exercisesAndtest==0}" ng-click="exercisesAndtestTab(0)">习题</span>
+					<span ng-class="{'active':variablePacket.exercisesAndtest==1}" ng-click="exercisesAndtestTab(1)">试卷</span>
+				</div>
+				<div class="zy_question_type_wrap" ng-switch="variablePacket.exercisesAndtest">
+					<div class="zy_exercises clearfix toggle" ng-switch-when="0">
+						<ul class="zy_question_type_list clearfix">
+							<li ng-repeat="i in variablePacket.questionType" ng-class="{'active':variablePacket.questionTypeIndex==$index}" ng-bind="i.name" ng-click="questionTypeIndexTab($index,i.id)">i.name</li>
+						</ul>
+						<div class="zy_count_box">共<span ng-bind="variablePacket.exercisesNum"></span>试题</div>
+						<div class="zy_question_bank_switch" ng-switch="variablePacket.questionTypeIndex">
+							<!--单选题-->
+							<ul class="zy_question_type_details zy_type_single toggle" ng-switch-when="0">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.single">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index + 1">1</b>
+											<span>单选题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1" ng-click="editQuestion($index,'single',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon" ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'single',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<!--<div class="zy_small_question_sub" ng-bind-html="i.body.question">-->
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}" ng-click="checkAnswer($index,i.showAnswer,'single')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trustHtml"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trustHtml"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>答案<i class="star">*</i></p>
+												<ul class="zy_option_election clearfix">
+													<li>
+														<input type="radio" id="single_a" name="single" ng-checked="model.answer=='A'" ng-model="model.answer" value="A" />
+														<label for="single_a">A</label>
+													</li>
+													<li>
+														<input type="radio" id="single_b" name="single" ng-checked="model.answer=='B'" ng-model="model.answer" value="B" />
+														<label for="single_b">B</label>
+													</li>
+													<li>
+														<input type="radio" id="single_c" name="single" ng-checked="model.answer=='C'" ng-model="model.answer" value="C" />
+														<label for="single_c">C</label>
+													</li>
+													<li>
+														<input type="radio" id="single_d" name="single" ng-checked="model.answer=='D'" ng-model="model.answer" value="D" />
+														<label for="single_d">D</label>
+													</li>
+												</ul>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--单选题-->
+							
+							<!--多选题-->
+							<ul class="zy_question_type_details zy_type_many toggle" ng-switch-when="1">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}"  ng-repeat="i in questionBank.many">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>多选题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1" ng-show="i.jurisdiction" ng-click="editQuestion($index,'many',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'many',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'many')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trustHtml"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trustHtml"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>答案<i class="star">*</i></p>
+												<ul class="zy_option_election clearfix" >
+													<li ng-repeat="values in quzvalue">
+														<input type="checkbox" name="{{'many'+i.id}}" id="{{values.id}}" value="{{values.id}}" ng-checked="values.valueState" />
+														<label for="{{values.id}}">{{values.id}}</label>
+													</li>
+													<!--<li>
+														<input type="checkbox" name="many" id="many_b" value="B" ng-checked="isSelected(values)"/>
+														<label for="many_b">B</label>
+													</li>
+													<li>
+														<input type="checkbox" name="many" id="many_c" value="C" ng-checked="isSelected(values)"/>
+														<label for="many_c">C</label>
+													</li>
+													<li>
+														<input type="checkbox" name="many" id="many_d" value="D" ng-checked="isSelected(values)"/>
+														<label for="many_d">D</label>
+													</li>-->
+												</ul>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--多选题-->
+							
+							<!--判断题-->
+							<ul class="zy_question_type_details zy_type_judge toggle" ng-switch-when="2">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.judge">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>判断题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1"  ng-click="editQuestion($index,'judge',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'judge',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'judge')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind-html="i.answer|answerFilter"></div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis"></div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>答案<i class="star">*</i></p>
+												<ul class="zy_option_election clearfix">
+													<li>
+														<input type="radio" name="judge" id="pp" value="T" ng-checked="model.answer=='T'" ng-model="model.answer"/>
+														<label for="pp">对</label>
+													</li>
+													<li>
+														<input type="radio" name="judge" id="oo" value="F" ng-checked="model.answer=='F'" ng-model="model.answer"/>
+														<label for="oo">错</label>
+													</li>
+												</ul>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--判断题-->
+							
+							<!--填空题-->
+							<ul class="zy_question_type_details zy_type_fill toggle" ng-switch-when="3">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.fill">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>填空题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1" ng-click="editQuestion($index,'fill',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'fill',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'fill')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind-html="i.answer"></div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis"></div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<span ng-click="insertBlanks()">插入填空</span>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<span ng-click="insertLine()">插入分割线</span>
+													<b>(多个答案之间请点击插入分割线按钮)</b>
+												</p>
+												<input type="text" name="" id="" value="" ng-model="model.answer" />
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>	
+							<!--填空题-->
+							
+							<!--材料题-->
+							<ul class="zy_question_type_details zy_type_material toggle" ng-switch-when="4">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.material">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1">1</b>
+											<span>材料题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1"  ng-click="editQuestion($index,'material',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'material',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':questionBank.material[$index].showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'material')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind-html="i.answer"></div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis"></div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>答案<i class="star">*</i></p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.answer'></div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--材料题-->
+							
+							<!--简答题-->
+							<ul class="zy_question_type_details zy_type_answer toggle" ng-switch-when="5">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.answer">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>简答题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1"  ng-click="editQuestion($index,'answer',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'answer',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'answer')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind-html="i.answer"></div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis"></div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>答案<i class="star">*</i></p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.answer'></div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--简答题-->
+							
+							<!--完形填空-->
+							<ul class="zy_question_type_details zy_type_gestalt toggle" ng-switch-when="6">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.gestalt">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>完形填空</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1"  ng-click="editQuestion($index,'gestalt',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'gestalt',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'gestalt')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind-html="i.answer"></div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis"></div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<span ng-click="addOption($index,'gestalt')">增加选项<i class="iconfont icon-tianjia"></i></span>
+													<span ng-click="deleteOption($index,'gestalt')">减少选项<i class="iconfont icon-jianshao"></i></span>
+												</p>
+												<div class="zy_gestalt_answer_edit_wrap">
+													<div class="zy_gestalt_answer_strip clearfix" ng-repeat="j in i.list">
+														<b class="fl">(1)</b>
+														<ul class="fl zy_option_election clearfix">
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'pp'+i.$parent.id+$index}}" ng-model="j.option" value="A" />
+																<label ng-attr-for="{{'pp'+i.$parent.id+$index}}">A</label>
+															</li>
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'oo'+i.$parent.id+$index}}" ng-model="j.option" value="B" />
+																<label ng-attr-for="{{'oo'+i.$parent.id+$index}}">B</label>
+															</li>
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'ii'+i.$parent.id+$index}}" ng-model="j.option" value="C" />
+																<label ng-attr-for="{{'ii'+i.$parent.id+$index}}">C</label>
+															</li>
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'uu'+i.$parent.id+$index}}" ng-model="j.option" value="D" />
+																<label ng-attr-for="{{'uu'+i.$parent.id+$index}}">D</label>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i,$index)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--完形填空-->
+						
+							<!--阅读理解-->
+							<ul class="zy_question_type_details zy_type_read toggle" ng-switch-when="7">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.read">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>阅读理解</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="edit_icon" ng-if="i.sourceType == 1"  ng-click="editQuestion($index,'read',i.id)"><i class="iconfont icon-bianji"></i>修改</li>
+											<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+											<!--<li class="load_icon"  ng-click="downQuzAndExam(i,1)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+											<li class="delete_icon" ng-click="deleteQuestion($index,'read',i)"><i class="iconfont icon-shanchu"></i>删除</li>
+											<li class="cancel_icon" ng-if="i.state==1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">取消公开</li>
+											<li class="cancel_icon" ng-if="i.state!=1 && i.sourceType == 1" ng-show="i.jurisdiction" ng-click="openStateTab(i)">公开试题</li>
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trustHtml"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'read')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind-html="i.answer"></div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis"></div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle" ng-if="i.edit">
+										<div class="zy_small_question_stem_edit">
+											<p>题干<i class="star">*</i></p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='model.body'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<span ng-click="addOption($index,'read')">增加选项<i class="iconfont icon-tianjia"></i></span>
+													<span ng-click="deleteOption($index,'read')">减少选项<i class="iconfont icon-jianshao"></i></span>
+												</p>
+												<div class="zy_gestalt_answer_edit_wrap">
+													<div class="zy_gestalt_answer_strip clearfix" ng-repeat="j in i.list">
+														<b class="fl">(1)</b>
+														<ul class="fl zy_option_election clearfix">
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'pp'+i.$parent.id+$index}}" ng-model="j.option" value="A" />
+																<label ng-attr-for="{{'pp'+i.$parent.id+$index}}">A</label>
+															</li>
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'oo'+i.$parent.id+$index}}" ng-model="j.option" value="B" />
+																<label ng-attr-for="{{'oo'+i.$parent.id+$index}}">B</label>
+															</li>
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'ii'+i.$parent.id+$index}}" ng-model="j.option" value="C" />
+																<label ng-attr-for="{{'ii'+i.$parent.id+$index}}">C</label>
+															</li>
+															<li>
+																<input type="radio" ng-attr-name="{{'single'+i.$parent.id+$index}}" ng-attr-id="{{'uu'+i.$parent.id+$index}}" ng-model="j.option" value="D" />
+																<label ng-attr-for="{{'uu'+i.$parent.id+$index}}">D</label>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='model.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-model="selectedSubject" ng-change="clearxiugai()" ng-cilck="selectSubject(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+												<option value="请选择科目">请选择科目</option>
+											</select>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>章节<i class="star">*</i></p>
+											<div class="zy_chapter_catalog">
+												<!--选择教材版本-->
+    											<choice-version tree-show-situation="variablePacket.subjectTreeShow" zjtree="selectedSubject" title-bar="showSubjName"></choice-version>
+											</div>
+										</div>
+										<div class="zy_small_question_edit_btn">
+											<button ng-click="updateQuz(model,i,$index)">确认</button>
+											<button ng-click="i.edit=false">取消</button>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow" class="zyx_loadMore" ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--阅读理解-->
+						</div>
+					</div>
+					<div class="zy_testpaper toggle" ng-switch-when="1">
+						<div class="zy_count_box">共<span ng-bind="variablePacket.testPaperNum"></span>试卷</div>
+						<ul class="zy_test_paper_list_box">
+							<li ng-repeat="i in exams">
+								<ul class="zy_operation_list fr toggle">
+									<li ui-sref="secondNav.paperLibrary({state:'revise',testId:i.id})" class="edit_icon" ng-if="i.module == 1 && i.type==0"><i class="iconfont icon-bianji"></i>修改</li>
+									<li ui-sref="secondNav.answerCard({state:'edit',testId:i.id})" class="edit_icon" ng-if="i.module == 1 && i.type==1"><i class="iconfont icon-bianji"></i>修改</li>
+									<li class="share_icon" ng-click="showQuz(i)"><i class="iconfont icon-fenxiang"></i>分享</li>
+									<!--<li class="load_icon"  ng-click="downQuzAndExam(i,2)"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+									<li class="delete_icon" ng-click="deleteExam($index,i.id)"><i class="iconfont icon-shanchu"></i>删除</li>
+								</ul>
+								<div class="zy_test_paper_show clearfix">
+									<img src="./img/test_paper_list.png" class="fl" />
+									<!--<div class="zy_test_paper_con fl"  ui-sref="secondNav.testAssembly({testId:i.id}):secondNav.answerCard({state:'edit',testId:i.id})">-->
+									<div class="zy_test_paper_con fl" ng-if="i.type == 0" ui-sref="secondNav.testAssembly({testId:i.id})">
+										<p ng-bind="i.name">2017年中考真题 数学（全国卷）</p>
+										<ul class="zy_operation_list toggle clearfix">
+											<li ng-bind="i.createUser">刘敏</li>
+											<li><i class="iconfont icon-lishi"></i><span ng-bind="i.createDate|timeFilter">2017-08-20</span></li>
+											<!--<li><i class="iconfont icon-daxiao"></i><span>1049.02k</span></li>-->
+											<li>来源：<span ng-bind="i.module|moduleFilter">上传</span></li>
+										</ul>
+									</div>
+									<div class="zy_test_paper_con fl" ng-if="i.type == 1" ui-sref="secondNav.answerCard({state:'see',testId:i.id})">
+										<p ng-bind="i.name">2017年中考真题 数学（全国卷）</p>
+										<ul class="zy_operation_list toggle clearfix">
+											<li ng-bind="i.createUser">刘敏</li>
+											<li><i class="iconfont icon-lishi"></i><span ng-bind="i.createDate|timeFilter">2017-08-20</span></li>
+											<!--<li><i class="iconfont icon-daxiao"></i><span>1049.02k</span></li>-->
+											<li>来源：<span ng-bind="i.module|moduleFilter">上传</span></li>
+										</ul>
+									</div>
+									
+									<span ng-if="i.state==0 && i.module == 1" ng-click="openStateExam(i)">公开至校库</span>
+									<span ng-if="i.state==1 && i.module == 1" ng-click="openStateExam(i)">取消公开</span>
+								</div>
+							</li>
+							<li  class="zyx_loadMore" ng-if="!variablePacket.loadShow" ></li>
+							<li  class="zyx_loadMore" ng-if="variablePacket.loadShow" ng-click="findQuzPage(0)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--分享框-->
+	<share-box variable-packet="variablePacket" share-show="shareShow" wran-show="wranShow"></share-box>
+	
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	
+</div>

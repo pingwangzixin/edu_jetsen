@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班牌首页</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/banpai.css">
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/banpai.js"></script>
+</head>
+<body onload="showLeftTime()">
+    <div class="header">
+        <div class="logo">
+            <img src="./images/logo.png" alt="">
+            <div class="classbtn dw1" onclick="andJump()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>云空间</span>
+            </div>
+            <div class="classbtn dw2" onclick="andJump2()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>教育网</span>
+            </div>
+        </div>
+        <div class="weather">
+
+           <iframe class="tianqi" src="http://www.seniverse.com/weather/weather.aspx?uid=UEC970B676&cid=CHBJ000000&l=&p=SMART&a=0&u=C&s=1&m=0&x=1&d=0&fc=FFFFFF&bgc=&bc=&ti=0&in=0&li=" frameborder="0" scrolling="no" width="200" height="90" allowTransparency="true"></iframe>
+           
+           <p class="tqzhezhao"></p>
+            
+            <label id="show"></label>
+            <div class="selctclass">
+                <div class="classbtn dw3">
+                    <span>四年级(3)班</span><img src="./images/classbtnxiala.png" alt="">
+                </div>
+                <div class="strlist" style="display:none">
+                    <ul>
+<!--
+                        <li><span class="nameactive"><a href="./wodexiangqing.html">孔甜诺</a></span></li>
+                        <li><span><a href="./wodexiangqing2.html">殷越</a></span></li>
+                        <li><span><a href="./wodexiangqing3.html">王楚宁</a></span></li>
+-->
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="leftmenu">
+            <ul>
+                <a href="./index.html"><li><img src="./images/banji.png" alt=""></li></a>
+                <a href="./xuexiao.html"><li><img src="./images/xuexiao.png" alt=""></li></a>
+                <a href="./shetuan.html"><li><img src="./images/shetuan.png" alt=""></li></a>
+                <a href="./wode.html?name=孔甜诺"><li><img src="./images/wodeactive.png" alt=""></li></a>
+            </ul>
+        </div>
+        <div class="rightcon">
+           <div class="wode">
+               <img src="./images/wodeqiqiu.png">
+               <img src="./images/wodegezi.png"  style="position:absolute;left:0;top:120px;">
+               <img src="./images/wodegezi2.png" >
+               <img src="./images/wodeqiqiu2.png"  style="position:absolute;right:0;top:0;">
+               <div class="wodename"><span>王楚宁</span></div>
+               <a href="./wodexiangqing3.html"><img src="./images/wodetouxiang3.png" style="position:absolute;left:75px;top:350px;"></a>
+               <p style="position:absolute;left:75px;top:480px;">心情美丽。好好学习</p>
+               <div class="wodecondetail">
+                   <ul>
+                       <li class="wodebushu">
+                           <em class="bscolor">步数/心率</em>
+                           <div class="xinlvcon">
+                               <div class="fl mt100">
+                                   <img src="./images/jiaoyin.png" alt="">
+                                   <p>
+                                       <span style="color:#5be1da;font-size:22px;">3208</span><br>
+                                       <span>今日平均步数</span>
+                                   </p>
+                               </div>
+                               <div class="fl mt100 ml50">
+                                   <img src="./images/wodexinlv.png" alt="">
+                                   <p>
+                                       <span><b style="font-size:16px;">106</b>（次每分钟）</span><br>
+                                       <span>心率过缓(&lt;59)</span><br>
+                                       <span>心率过缓(&gt;140)</span>
+                                   </p>
+                               </div>
+                           </div>
+                           
+                           
+                       </li>
+                       <li class="wodehuodong">
+                           <em class="hdcolor">我的活动</em>
+                           <div class="fl mt100">
+                               <img src="./images/wodehuodong.png" alt="" style="float:left;margin-left:20px">
+                               <p style="font-size: 16px;width: 145px;margin-left: 135px;">
+                                   立新实验小学第十一届校园读书节之“明星小讲师”微视频评选活动
+                               </p>
+                           </div>
+                       </li>
+                       <li class="ketangzhuangtai">
+                           <em class="ktztcolor">课堂状态</em>
+                           <div class="fl mt100 ktzt">
+                               <ul>
+                                   <li>
+                                       <p>课堂活跃度</p>
+                                       <span class="kthybg">96</span>
+                                   </li>
+                                   <li>
+                                       <p>课堂参与度</p>
+                                       <span class="canyubg">96%</span>
+                                   </li>
+                                   <li>
+                                       <p>举手次数</p>
+                                       <span class="jushoubg">8</span>
+                                   </li>
+                               </ul>
+                           </div>
+                       </li>
+                       <li class="jinriyingyangcan">
+                           <em class="jryycolor">今日营养餐</em>
+                           <div class="diancan">
+                               <img src="./images/wodediancan.png" alt="">
+                               <span style="font-size:16px;float:left">木须肉  鱼香肉丝 玉米饭或花卷</span>
+                           </div>
+                       </li>
+                       <li class="xiaoxi">
+                           <em class="xxcolor">消息</em>
+                           <div class="xiaoxiul">
+                               <ul>
+                                   <li>[班级]老师下发了最新的数师下发了最新。</li>
+                                   <li>[学校]老师下发了最师下发了最新。</li>
+                                   <li>[班级]老师下发了最新的数学资发了最新。</li>
+                                   <li>[学校]老师下发了最新的数学资源！新。</li>
+                                   <li>[班级]老师下发了最新的数学资源！老师下发了最新。</li>
+                                   <li>[学校]老师下发了最新的数学资源！老师下。</li>
+                               </ul>
+                           </div>
+                       </li>
+                       <li class="jiazhangjiaoliu">
+                           <img src="./images/jiazhanggoutong3.jpg" style="position:absolute;top:10px;">
+                           <div class="inputgoutong">
+                               <input type="text"><button>发送</button>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+           </div>
+        </div>
+    </div>
+    <div class="footer"></div>
+</body>
+
+<!-- Swiper 初始化-->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    paginationClickable: true,
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay:2000,
+    autoplayDisableOnInteraction: false
+});
+</script>
+
+<script>
+    $(function(){
+        $(".dw3").on("click",function(){
+            $(".strlist").toggle(300)
+        })
+        
+        $(".strlist ul li span").on("click",function(){
+            $(this).addClass("nameactive").parent().siblings().children("span").removeClass("nameactive")
+        })
+    })
+    
+    function andJump(){
+        window.android.AndJump();
+    }
+
+    function andJump2(){
+        window.android.AndJump2();
+    }
+</script>
+
+</html>

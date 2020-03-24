@@ -1,0 +1,6 @@
+<div class="wx_up_nav">
+	<ul class="wx_upnav_ul">
+		<li ng-repeat="i in guidannavlist" ng-click="addCls(i.name)" ng-class="{'wx_active':variablePacket.activeid==i.id}">{{i.name}}</li>
+	</ul>
+	
+</div>

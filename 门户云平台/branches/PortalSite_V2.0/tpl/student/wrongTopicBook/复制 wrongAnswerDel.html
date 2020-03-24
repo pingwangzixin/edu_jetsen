@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<div class="main_width">
+	<div class="zy_wrongBook_tit">
+		<ul class="clearfix">
+			<li ng-repeat="i in variablePacket.subjectArr" ng-bind="i.name" ng-class="{'active':$index==variablePacket.subjectActive}" ng-click="subjectTab($index)"></li>
+		</ul>
+	</div>
+	
+	<div class="zy_wrongBook_main">
+		<div class="zy_question_tree fl">
+			<!--选择教材版本-->
+			<choice-version></choice-version>
+			<!--树结构-->
+			<choice-tree></choice-tree>
+		</div>
+		<div class="zy_question_library fr">
+			<div class="zy_question_library_tit">
+				<span ui-sref="secondNav.wrongAnswerDel.wrongAnswer" ui-sref-active="active">答错的题</span>
+				<span ui-sref="secondNav.wrongAnswerDel.uploadQuestion" ui-sref-active="active">上传的题</span>
+			</div>
+			
+			<div ui-view></div>
+		</div>
+	</div>
+	
+</div>

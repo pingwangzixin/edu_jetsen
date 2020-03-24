@@ -1,0 +1,772 @@
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div>
+	<div class="main_width">
+		<div class="zy_my_bank_type zy_upload_type clearfix">
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59 fl" ui-sref="secondNav.questionBankType"></i>
+			<ul class="fl">
+				<li>上传习题</li>
+			</ul>
+		</div>		
+		
+		<div class="zy_question_main">
+			<div class="zy_question_library zy_upload_library">
+				<div class="zy_question_type_wrap">
+					<div class="zy_exercises">
+						<ul class="zy_question_type_list clearfix">
+							<li ng-repeat="i in variablePacket.questionType" ng-class="{'active':variablePacket.questionTypeIndex==$index}" id= "i.id" ng-bind="i.name" ng-click="questionTypeIndexTab($index)">单选题</li>
+						</ul>
+						<div class="zy_question_bank_switch" ng-switch="variablePacket.questionTypeIndex">
+							<!--单选题-->
+							<ul class="zy_question_type_details zy_type_single" ng-switch-when="0">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<b ng-if="variablePacket.answerWarn" >
+														<i class="iconfont icon-gantanhao"></i>
+														<span>请选择答案</span>
+													</b>
+												</p>
+												<ul class="zy_option_election clearfix">
+													<li>
+														<input type="radio" name="single" id="single_a" value="A" ng-model="example.answer"/>
+														<label for="single_a">A</label>
+													</li>
+													<li>
+														<input type="radio" name="single" id="single_b" value="B" ng-model="example.answer"/>
+														<label for="single_b">B</label>
+													</li>
+													<li>
+														<input type="radio" name="single" id="single_c" value="C" ng-model="example.answer"/>
+														<label for="single_c">C</label>
+													</li>
+													<li>
+														<input type="radio" name="single" id="single_d" value="D" ng-model="example.answer"/>
+														<label for="single_d">D</label>
+													</li>
+												</ul>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">
+												学科<i class="star">*</i>
+											</p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--单选题-->
+							
+							<!--多选题-->
+							<ul class="zy_question_type_details zy_type_many" ng-switch-when="1">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<b ng-if="variablePacket.answerWarn" >
+														<i class="iconfont icon-gantanhao"></i>
+														<span>请选择答案</span>
+													</b>
+												</p>
+												<ul class="zy_option_election clearfix">
+													<li>
+														<input type="checkbox" name="multi" id="multi_a" value="A" />
+														<label for="multi_a">A</label>
+													</li>
+													<li>
+														<input type="checkbox" name="multi" id="multi_b" value="B" />
+														<label for="multi_b">B</label>
+													</li>
+													<li>
+														<input type="checkbox" name="multi" id="multi_c" value="C" />
+														<label for="multi_c">C</label>
+													</li>
+													<li>
+														<input type="checkbox" name="multi" id="multi_d" value="D" />
+														<label for="multi_d">D</label>
+													</li>
+												</ul>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--多选题-->
+							
+							<!--判断题-->
+							<ul class="zy_question_type_details zy_type_judge" ng-switch-when="2">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<b ng-if="variablePacket.answerWarn" >
+														<i class="iconfont icon-gantanhao"></i>
+														<span>请输入答案</span>
+													</b>
+												</p>
+												<ul class="zy_option_election clearfix">
+													<li>
+														<input type="radio" name="judge" id="judge_true" value="T" ng-model="example.answer"/>
+														<label for="judge_true">对</label>
+													</li>
+													<li>
+														<input type="radio" name="judge" id="judge_false" value="F" ng-model="example.answer"/>
+														<label for="judge_false">错</label>
+													</li>
+												</ul>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--判断题-->
+							
+							<!--填空题-->
+							<ul class="zy_question_type_details zy_type_fill" ng-switch-when="3">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<span ng-click="insertBlanks()">插入填空</span>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<span ng-click="insertLine()">插入分割线</span>
+													<b>(多个答案之间请点击插入分割线按钮)</b>
+													<b ng-if="variablePacket.answerWarn" >
+														<i class="iconfont icon-gantanhao"></i>
+														<span>请输入答案</span>
+													</b>
+												</p>
+												<input type="text" name="" id="" value="" ng-model="example.answer" />
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--填空题-->
+							
+							<!--材料题-->
+							<ul class="zy_question_type_details zy_type_material" ng-switch-when="4">
+								<li class="zy_question_examples toggl">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入章节</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<b ng-if="variablePacket.answerWarn" >
+														<i class="iconfont icon-gantanhao"></i>
+														<span>请输入答案</span>
+													</b>
+												</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.answer'></div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--材料题-->
+							
+							<!--简答题-->
+							<ul class="zy_question_type_details zy_type_answer" ng-switch-when="5">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													答案<i class="star">*</i>
+													<b ng-if="variablePacket.answerWarn" >
+														<i class="iconfont icon-gantanhao"></i>
+														<span>请输入答案</span>
+													</b>
+												</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.answer'></div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--简答题-->
+							
+							<!--完形填空-->
+							<ul class="zy_question_type_details zy_type_gestalt" ng-switch-when="6">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													<p>
+														答案<i class="star">*</i>
+														<b ng-if="variablePacket.answerWarn" >
+															<i class="iconfont icon-gantanhao"></i>
+															<span>请选择答案</span>
+														</b>
+													</p>
+													<span ng-click="addOption()">增加选项<i class="iconfont icon-tianjia"></i></span>
+													<span ng-click="deleteOption()">减少选项<i class="iconfont icon-jianshao"></i></span>
+												</p>
+												<div class="zy_gestalt_answer_edit_wrap">
+													<div class="zy_gestalt_answer_strip clearfix" ng-repeat="j in variablePacket.gestalt">
+														<b class="fl" ng-bind="'('+($index+1)+')'"></b>
+														<ul class="fl zy_option_election clearfix">
+															<li>
+																<input type="radio" name="{{'cloze'+$index}}" ng-attr-name="{{'cloze'+$index}}" ng-attr-id="{{'a'+$index}}" ng-model="j.option" value="A" />
+																<label ng-attr-for="{{'a'+$index}}">A</label>
+															</li>
+															<li>
+																<input type="radio" name="{{'cloze'+$index}}" ng-attr-name="{{'cloze'+$index}}" ng-attr-id="{{'b'+$index}}" ng-model="j.option" value="B" />
+																<label ng-attr-for="{{'b'+$index}}">B</label>
+															</li>
+															<li>
+																<input type="radio"  name="{{'cloze'+$index}}" ng-attr-name="{{'cloze'+$index}}" ng-attr-id="{{'c'+$index}}" ng-model="j.option" value="C" />
+																<label ng-attr-for="{{'c'+$index}}">C</label>
+															</li>
+															<li>
+																<input type="radio"  name="{{'cloze'+$index}}" ng-attr-name="{{'cloze'+$index}}" ng-attr-id="{{'d'+$index}}" ng-model="j.option" value="D" />
+																<label ng-attr-for="{{'d'+$index}}">D</label>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--完形填空-->
+							
+							<!--阅读理解-->
+							<ul class="zy_question_type_details zy_type_read" ng-switch-when="7">
+								<li class="zy_question_examples toggle">
+									<!--可编辑部分-->
+									<div class="zy_small_question_main_edit toggle">
+										<div class="zy_small_question_stem_edit">
+											<p>
+												题干<i class="star">*</i>
+												<b ng-if="variablePacket.stemWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请输入题干</span>
+												</b>
+											</p>
+											<div class="zyx_setHeight">
+												<div class="ueditor" ng-model='example.stem'></div>
+											</div>
+										</div>
+										<div class="zy_small_question_answer_edit">
+											<div class="zy_small_question_answer_box_edit">
+												<p>
+													<p>
+														答案<i class="star">*</i>
+														<b ng-if="variablePacket.answerWarn" >
+															<i class="iconfont icon-gantanhao"></i>
+															<span>请输入答案</span>
+														</b>
+													</p>
+													<span ng-click="addOption()">增加选项<i class="iconfont icon-tianjia"></i></span>
+													<span ng-click="deleteOption()">减少选项<i class="iconfont icon-jianshao"></i></span>
+												</p>
+												<div class="zy_gestalt_answer_edit_wrap">
+													<div class="zy_gestalt_answer_strip clearfix" ng-repeat="j in variablePacket.gestalt">
+														<b class="fl" ng-bind="'('+($index+1)+')'"></b>
+														<ul class="fl zy_option_election clearfix">
+															<li>
+																<input type="radio" name="{{'read'+$index}}" ng-attr-name="{{'read'+$index}}" ng-attr-id="{{'reada'+$index}}" ng-model="j.option" value="A" />
+																<label ng-attr-for="{{'reada'+$index}}">A</label>
+															</li>
+															<li>
+																<input type="radio" name="{{'read'+$index}}" ng-attr-name="{{'read'+$index}}" ng-attr-id="{{'readb'+$index}}" ng-model="j.option" value="B" />
+																<label ng-attr-for="{{'readb'+$index}}">B</label>
+															</li>
+															<li>
+																<input type="radio"  name="{{'read'+$index}}" ng-attr-name="{{'read'+$index}}" ng-attr-id="{{'readc'+$index}}" ng-model="j.option" value="C" />
+																<label ng-attr-for="{{'readc'+$index}}">C</label>
+															</li>
+															<li>
+																<input type="radio"  name="{{'read'+$index}}" ng-attr-name="{{'read'+$index}}" ng-attr-id="{{'readd'+$index}}" ng-model="j.option" value="D" />
+																<label ng-attr-for="{{'readd'+$index}}">D</label>
+															</li>
+														</ul>
+													</div>
+												</div>
+												<!--<div class="zy_read_answer_edit_wrap">
+													<div class="zy_read_answer_strip">
+														<b>(1)</b>
+														<div class="zyx_setHeight">
+															<div class="ueditor" ng-model='read1.question'></div>
+														</div>
+														<ul class="zy_option_election clearfix">
+															<li>
+																<input type="radio" name="read1" id="read1_a" value="A" ng-model="read1.answer"/>
+																<label for="read1_a">A</label>
+															</li>
+															<li>
+																<input type="radio" name="read1" id="read1_b" value="B" ng-model="read1.answer"/>
+																<label for="read1_b">B</label>
+															</li>
+															<li>
+																<input type="radio" name="read1" id="read1_c" value="C" ng-model="read1.answer"/>
+																<label for="read1_c">C</label>
+															</li>
+															<li>
+																<input type="radio" name="read1" id="read1_d" value="D" ng-model="read1.answer"/>
+																<label for="read1_d">D</label>
+															</li>
+														</ul>
+													</div>
+													<div class="zy_read_answer_strip">
+														<b>(2)</b>
+														<div class="zyx_setHeight">
+															<div class="ueditor" ng-model='read2.question'></div>
+														</div>
+														<ul class="zy_option_election clearfix">
+															<li>
+																<input type="radio" name="read2" id="read2_a" value="A" ng-model="read2.answer"/>
+																<label for="read2_a">A</label>
+															</li>
+															<li>
+																<input type="radio" name="read2" id="read2_b" value="B" ng-model="read2.answer"/>
+																<label for="read2_b">B</label>
+															</li>
+															<li>
+																<input type="radio" name="read2" id="read2_c" value="C" ng-model="read2.answer"/>
+																<label for="read2_c">C</label>
+															</li>
+															<li>
+																<input type="radio" name="read2" id="read2_d" value="D" ng-model="read2.answer"/>
+																<label for="read2_d">D</label>
+															</li>
+														</ul>
+													</div>
+													<div class="zy_read_answer_strip">
+														<b>(3)</b>
+														<div class="zyx_setHeight">
+															<div class="ueditor" ng-model='read3.question'></div>
+														</div>
+														<ul class="zy_option_election clearfix">
+															<li>
+																<input type="radio" name="read3" id="read3_a" value="A" ng-model="read3.answer"/>
+																<label for="read3_a">A</label>
+															</li>
+															<li>
+																<input type="radio" name="read3" id="read3_b" value="B" ng-model="read3.answer"/>
+																<label for="read3_b">B</label>
+															</li>
+															<li>
+																<input type="radio" name="read3" id="read3_c" value="C" ng-model="read3.answer"/>
+																<label for="read3_c">C</label>
+															</li>
+															<li>
+																<input type="radio" name="read3" id="read3_d" value="D" ng-model="read3.answer"/>
+																<label for="read3_d">D</label>
+															</li>
+														</ul>
+													</div>
+													<div class="zy_read_answer_strip">
+														<b>(4)</b>
+														<div class="zyx_setHeight">
+															<div class="ueditor" ng-model='read4.question'></div>
+														</div>
+														<ul class="zy_option_election clearfix">
+															<li>
+																<input type="radio" name="read4" id="read4_a" value="A" ng-model="read4.answer"/>
+																<label for="read4_a">A</label>
+															</li>
+															<li>
+																<input type="radio" name="read4" id="read4_b" value="B" ng-model="read4.answer"/>
+																<label for="read4_b">B</label>
+															</li>
+															<li>
+																<input type="radio" name="read4" id="read4_c" value="C" ng-model="read4.answer"/>
+																<label for="read4_c">C</label>
+															</li>
+															<li>
+																<input type="radio" name="read4" id="read4_d" value="D" ng-model="read4.answer"/>
+																<label for="read4_d">D</label>
+															</li>
+														</ul>
+													</div>
+													<div class="zy_read_answer_strip">
+														<b>(5)</b>
+														<div class="zyx_setHeight">
+															<div class="ueditor" ng-model='read5.question'></div>
+														</div>
+														<ul class="zy_option_election clearfix">
+															<li>
+																<input type="radio" name="read5" id="read5_a" value="A" ng-model="read5.answer"/>
+																<label for="read5_a">A</label>
+															</li>
+															<li>
+																<input type="radio" name="read5" id="read5_b" value="B" ng-model="read5.answer"/>
+																<label for="read5_b">B</label>
+															</li>
+															<li>
+																<input type="radio" name="read5" id="read5_c" value="C" ng-model="read5.answer"/>
+																<label for="read5_c">C</label>
+															</li>
+															<li>
+																<input type="radio" name="read5" id="read5_d" value="D" ng-model="read5.answer"/>
+																<label for="read5_d">D</label>
+															</li>
+														</ul>
+													</div>
+												</div>-->
+											</div>
+											<div class="zy_small_question_analysis_box_edit">
+												<p>解析</p>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='example.analysis'></div>
+												</div>
+											</div>
+										</div>
+										<div class="zy_required_subject clearfix">
+											<p class="fl">学科<i class="star">*</i></p>
+											<select class="fl" ng-change="changeSubject(variablePacket.selectedSubject)" ng-options="i.id as i.name for i in variablePacket.selectSubject" ng-model="variablePacket.selectedSubject">
+												<option value="">请选择科目</option>
+											</select>
+											<p class="fl">
+												<b ng-if="variablePacket.subjectWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择学科</span>
+												</b>
+											</p>
+										</div>
+										<div class="zy_chapter_wrap">
+											<p>
+												章节<i class="star">*</i>
+												<b ng-if="variablePacket.chapterWarn" >
+													<i class="iconfont icon-gantanhao"></i>
+													<span>请选择章节</span>
+												</b>
+											</p>
+											<!--选择教材版本-->
+											<choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="variablePacket.treeSubject"></choice-version>
+										</div>
+									</div>
+									<!--可编辑部分-->
+								</li>
+							</ul>
+							<!--阅读理解-->
+						</div>
+					</div>
+					<div class="zy_upload_ex_btn">
+						<button class="zy_upload_sure" ng-click="saveQuz()">确认</button>
+						<button class="zy_upload_cancle" ng-click="initExample()">清空</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	
+</div>

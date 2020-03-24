@@ -1,0 +1,115 @@
+<div>
+	<div class="zy_bg">
+		<div class="zy_central_content zy_space_index clearfix">
+			<div class="zy_space_left_box fl">
+				<div class="zy_top_switch_box">
+					<ul class="zy_personal_space fl">
+						<!--<li ui-sref-active="active" ui-sref="secondNav.space">我的空间</li>-->
+						<!--<li ui-sref-active="active" ui-sref="wrapSpace.homePage">我的应用</li>-->
+						<li ui-sref-active="active" ui-sref="secondNav.homePage">我的主页</li>
+					</ul>
+				</div>
+				<div class="zy_top_switch_box zy_teach_role">
+					<ul class="clearfix">
+						<li class="active">最新任务</li>
+					</ul>
+				</div>
+				<div>
+					<div class="zy_scroll_notice">
+						<ul>
+							<li ng-repeat="notice in noticeData track by $index" seamless-rolling>
+								<div class="zy_notice_tit_box zy_notice_tit_boy clearfix">
+									<span class="fl">李</span>
+									<div class="zy_notice_relevant fl">
+										<p class="zy_notice_role">
+											<span ng-bind="notice.name">张二伟</span>
+											<b>老师</b>
+										</p>
+										<p class="zy_notice_time">2017-07-07 15:58:39</p>
+									</div>
+								</div>
+								<div class="zy_notice_content_box" ng-bind="notice.cont">2017-10月5日-11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="zy_space_right_box fr">
+				<div class="zy_personal_student">
+					<div class="zy_personal_student_top clearfix">
+						<img src="./img/ad_1.jpg" class="fl" />
+						<ul class="fl">
+							<li>
+								<span>55</span>
+								<p>上传</p>
+							</li>
+							<li>
+								<span>55</span>
+								<p>上传</p>
+							</li>
+							<li>
+								<span>55555</span>
+								<p>上传</p>
+							</li>
+						</ul>
+					</div>
+					<div class="zy_personal_student_bottom">
+						<ul class="zy_module_enter clearfix">
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课备课备课备课备课备课备课备课备课备课备课</span>
+							</li>
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课</span>
+							</li>
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课</span>
+							</li>
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课</span>
+							</li>
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课</span>
+							</li>
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课</span>
+							</li>
+							<li>
+								<img src="./img/ActivityCenter.png" alt="" />
+								<span>备课</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="zy_vault">
+					<div class="zy_left_border_title">
+						<span>捷成片库</span>
+					</div>
+					<ul class="clearfix">
+						<li>
+							<img src="./img/newsImg.jpg"/>
+							<p>烟花艳艳</p>
+						</li>
+						<li>
+							<img src="./img/newsImg.jpg"/>
+							<p>烟花艳艳</p>
+						</li>
+						<li>
+							<img src="./img/newsImg.jpg"/>
+							<p>烟花艳艳</p>
+						</li>
+						<li>
+							<img src="./img/newsImg.jpg"/>
+							<p>烟花艳艳</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

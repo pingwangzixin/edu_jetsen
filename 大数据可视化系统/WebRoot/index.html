@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ECharts">
+    <title>捷成智慧教育大数据可视化平台</title>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/echarts-all.js"></script>
+    <script src="js/num.js"></script>
+    <script src="server/config.js"></script>
+    <script src="js/config.js"></script>
+	
+	<style type="text/css">
+		.con_body2{height:860px;}
+        .main_title a{color: #b5f2f8;}
+        .main_title a:hover{color: #b5f2f8;text-decoration:none;}
+        .main_title a:link{color: #b5f2f8;text-decoration:none;}
+        .main_title a:active{color: #b5f2f8;text-decoration:none;}
+        .main_title a:visited{color:#b5f2f8;text-decoration:none;}
+        a:hover {color: red; text-decoration:underline;} 
+     
+	</style>
+</head>
+<body>
+    <button class="blackBtn" id='blackBtn'>返回上一步</button>
+    <div class="main_title nt">
+        <a href="index.html">捷成智慧教育大数据可视化平台</a>
+    </div>
+    <div class="con_body">
+        <!--左侧资源 -->
+        <div class="con_left">
+            <div class="con_top" style="height:305px;">
+                <div class="title"><em class="areaId"></em>基础教育概况</div>
+                <div class="wx_renyuantotle">
+                    <div class="over">
+                    	<span class="ren fl renLeft">总人数</span><span class="ren fr renRight">人</span>
+                   		<ul class="numul fr" id="totuser"></ul>
+                    </div>
+                    <div class="over">
+                    	<span class="ren fl renLeft">城市</span><span class="ren fr renRight">个</span>
+                   		<ul class="numul fr" id="totarea"><!-- <li>3</li><li>7</li> --></ul>
+                    </div>
+                    <div class="over">
+                     	<span class="ren fl renLeft">学校</span> <span class="ren fr renRight">所</span>
+                   		<ul class="numul fr" id="totschool"><!-- <li>6</li><li>5</li><li>2</li><li>9</li> --></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="con_top"  style="height:347px;">
+                <div class="title"><em class="areaId"></em>教师、学生、家长用户比例</div>
+                <div class="wx_bg_fff">
+                    <div id="leixing" class="zongshutu"></div>
+                </div>
+            </div>
+            <!-- <div class="con_top">
+                <div class="title"><em class="areaId"></em>教师、学生、家长性别比例</div>
+                <div class="wx_bg_fff">
+                    <div id="sexpercent" class="zongshutu"></div>
+                </div>
+            </div> -->
+        </div>
+        <!--中间地图--> 	
+        <div class="con_middle">
+            <!-- 标题 -->
+            <div class="big_data_tab_tri_1">
+                <div class="tps">
+                    <div class="teacher">
+                        <p class="tpsnum">
+                            <i id="count-number"></i>
+                            <span>人</span></p>
+                        <p class="wx_toumingtiao"><em class="areaId"></em>教师活跃总人数</p>
+                    </div>
+                    <div class="student">
+                        <p class="tpsnum">
+                            <i id="count-number2"></i>
+                            <span>人</span></p>
+                        <p class="wx_toumingtiao"><em class="areaId"></em>学生活跃总人数</p>
+                    </div>
+                    <div class="parent">
+                        <p class="tpsnum">
+                            <i id="count-number3"></i>
+                            <span>人</span>
+                        </p>
+                        <p class="wx_toumingtiao"><em class="areaId"></em>家长活跃总人数</p>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 地图 -->
+            <div class="container-fluid  zyx_map">
+                <div class="title"><em class="areaId"></em>地区</div>
+                <div class="wx_areabiaoshi">
+                    <p><span class="wx_hongse"></span> 已落地</p>
+                    <p><span class="wx_lanse"></span> 未落地</p>
+                </div>
+                <!--中国地图 -->
+                <div class="row-fluid example">
+                    <div id="graphic">
+                        <!--   地图数据绑定到mainMap   -->
+                        <div id="mainMap" class="main" style="height: 500px;width:100%;"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- 县级下的学校列表 -->
+            <div class="container-fluid zyx_schoolList">
+                <div class="titleWrapper">
+                    <span class="title"><i class=" icon-monitor-fire setup1"></i>智慧校园</span>
+                </div>
+                <div class="divider"></div>
+                <div style="margin-top: 2%; margin-bottom: 2%; position: relative; height: 8%;">
+                    <input class="inputPlace" placeholder="请输入要搜索的学校名字">
+                    <button class="searchBtn">
+                        查询
+                    </button>
+                </div>
+                <div class="schoolChoice">
+                    <span href="#" data-name="primary" class="active listTitle_one">小学(0所)</span>
+                    <span href="#" data-name="juniorMiddle" class="listTitle_one">初中(0所)</span>
+                    <span href="#" data-name="high" class="listTitle_one">高中(0所)</span>
+                </div>
+                <div class="searchResultWrapper">
+                    <ul style="display: block;" data-name="primary">
+                       	<!-- <li>
+                            <span id="office_f8dd9a752a3b458ea94ee83f503625df">长宁县第一实验小学校1111</span>
+                            <span>长宁县第一实验小学校</span>
+                            <span>长宁县第一实验小学校</span>
+                        </li> -->
+                    </ul>
+                    <ul data-name="juniorMiddle">
+                        <!-- <li>
+                            <span id="office_f8dd9a752a3b458ea94ee83f503625df">长宁县初级中学</span>
+                            <span>长宁县第一实验小学校</span>
+                            <span>长宁县第一实验小学校</span>
+                        </li> -->
+                    </ul>
+                    <ul data-name="high">
+                        <!-- <li>
+                            <span>长宁县高级中学</span>
+                            <span>长宁县第一实验小学校</span>
+                            <span>长宁县第一实验小学校</span>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+         <!--右侧资源 -->
+        <div class="con_right">
+            <!-- 资源类型统计 -->
+            <div class="con_top">
+                <div class="title"><em class="areaId"></em>资源类型比</div>
+                <div style="margin-top:40px;height:252px;">
+                    <div id="resouceclass" style="width:100%;height:250px;"></div>
+                </div>
+            </div>
+            <!-- 资源总数 -->
+            <div class="con_top" style="padding-left: 15px;">
+                <div class="title"><em class="areaId"></em>资源建设总量</div>
+                <div class="big_data_tab_tri">
+                    <ul class="numul" id="totrece"></ul>
+                    <span class="ren">个</span>
+                    <div id="resouce" style="width:100%;height:196px;"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计图图表 -->
+        <ul class="chartBox">
+            <li class="clearfix">
+                <div id="chart1" class="fl"></div>
+                <div id="chart2" class="fr"></div>
+            </li>
+            <li class="clearfix">
+                <div id="chart3" class="fl"></div>
+                <div id="chart4" class="fr"></div>
+            </li>
+        </ul>
+    </div>
+    <!-- 下面4栏 -->
+    <div class="con_body2">
+        <div class="con_left">
+            <div class="con_top">
+                <div class="title"><em class="areaId"></em>试题统计</div>
+                <div style="margin-top:40px;">
+                    <p class="wx_lan_titi"><em class="areaId"></em>试题类型比</p>
+                    <p class="wx_yuan_middle">试题建设总量<br>
+                       <span class="wx_lanzi_midd" id="questionSum">0</span>个
+                   </p>
+                    <div id="shitibingtu" style="height:300px"></div>
+                </div>
+                <div style="margin-top:40px;">
+                   <p class="wx_lan_titi"><em class="areaId"></em>试题建设总量</p>
+                    <div id="shitizhutu" style="height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="con_middle">
+            <div class="con_top">
+                <div class="title"><em class="areaId"></em>作业统计</div>
+                <div style="margin-top:40px;">
+                   <p class="wx_lan_titi"><em class="areaId"></em>作业类型比</p>
+                   <p class="wx_yuan_middle">作业建设总量<br>
+                       <span class="wx_lanzi_midd" id="homeworkSum">0</span>个
+                   </p>
+                    <div id="zuoyebingtu" style="height:300px"></div>
+                </div>
+                <div style="margin-top:40px;">
+                   <p class="wx_lan_titi"><em class="areaId"></em>作业建设总量</p>
+                    <div id="zuoyezhutu" style="height:300px"></div>
+                </div>
+            </div>
+        </div>
+        <div class="con_right">
+            <div class="con_top">
+                <div class="title"><em class="areaId"></em>教研统计</div>
+                <div style="margin-top:40px;">
+                   <p class="wx_lan_titi"><em class="areaId"></em>教研类型比</p>
+                   <p class="wx_yuan_middle">教研建设总量<br>
+                       <span class="teaching_lanzi_midd">0</span>个
+                       <input type="hidden" id="teach_type" value="">
+                   </p>
+                    <div id="jiaoyanbingtu" style="height:300px;"></div>
+                </div>
+                <div style="margin-top:40px;">
+                   <p class="wx_lan_titi"><em class="areaId"></em>教研建设总量</p>
+                    <div id="jiaoyanzhutu" style="height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="con_right">
+            <div class="con_top">
+                <div class="title"><em class="areaId"></em>课堂统计</div>
+                <div style="margin-top:40px;">
+                    <p class="wx_lan_titi"><em class="areaId"></em>试题类型比</p>
+                    <p class="wx_yuan_middle">课堂建设总量<br>
+                       <span class="lesson_lanzi_midd">0</span>个
+                   </p>
+                   <input type="hidden" id="lesson_type" value="">
+                    <div id="lessonbingtu" style="height:300px"></div>
+                </div>
+                <div style="margin-top:40px;">
+                   <p class="wx_lan_titi"><em class="areaId"></em>课堂建设总量</p>
+                    <div id="lessonzhutu" style="height:300px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</body>
+<script src="js/head.js"></script>
+<script src="js/highcharts.js"></script>
+<script src="js/chart.js"></script>
+<script src="js/chartdata.js"></script>
+<script>
+    $(function(){
+        // 学校列表title切换
+        $('.zyx_schoolList .listTitle_one').on('click',function(){
+        	$(this).addClass('active').siblings().removeClass('active');
+            var schoolAttr = $(this).attr('data-name');
+            $('.searchResultWrapper ul').hide();
+            $('.searchResultWrapper ul[data-name = '+ schoolAttr +']').show();
+        })
+
+        // 点击学校名字进入统计表
+        $(document).on("click",".zyx_schoolList .searchResultWrapper ul li span",function () {
+        	$('.con_left,.zyx_schoolList,.con_right,.con_body2').hide();
+            $('.con_body .con_middle').css({
+                'height':'auto',
+                'margin-left':'390px'
+            });
+            $('.chartBox').show();
+            /* chart_column('#chart1', '试题统计图', ['数学','语文','英语','历史','地理','音乐','美术','道德','政治','化学'], [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5]);
+            chart_column('#chart2', '试题统计图', ['数学','语文','英语','历史','地理','音乐','美术','道德','政治','化学'], [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5]);
+            chart_column('#chart3', '试题统计图', ['数学','语文','英语','历史','地理','音乐','美术','道德','政治','化学'], [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5]);
+            chart_column('#chart4', '试题统计图', ['数学','语文','英语','历史','地理','音乐','美术','道德','政治','化学'], [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5]);
+            */
+            //加载数据
+            if(importType){
+            	importSchoolCount($(this).attr('id'), $(this).text());
+            }else{
+           		showSchoolCount($(this).attr('id'), $(this).text());
+            }
+            
+            $('#chart1').highcharts().reflow();
+            $('#chart2').highcharts().reflow();
+            $('#chart3').highcharts().reflow();
+            $('#chart4').highcharts().reflow();
+            
+        })
+
+    })
+    
+    // 统计图封装函数
+    /* 
+    target:对象
+    title:标题
+    categories:X轴数据
+    data:数据
+    */
+    function chart_column(target, title, categories, data, color){
+        var chart = $(target).highcharts({
+            chart: {
+                backgroundColor: '#022D80',
+                type: 'column'
+            },
+            title: {
+                text: title,
+                style: {
+                    color: '#fff',
+                    fontSize:'15px',
+                    fontFamily:'微软雅黑'
+                }
+            },
+            credits: {
+                enabled:false
+            },
+            xAxis: {
+                categories: categories,
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'14px',
+                        fontFamily:'微软雅黑'
+                    }
+                },
+                crosshair: false
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '数量',
+                    style: {
+                        color: '#fff',
+                        fontSize:'14px',
+                        fontFamily:'微软雅黑'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'14px',
+                        fontFamily:'微软雅黑'
+                    }
+                },
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                enabled: false,
+            },
+            plotOptions: {
+                column: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            fontSize: '14px',
+                            color: '#fff'
+                        }
+                    }
+                }
+            },
+            series: [{
+                color: color,
+                data: data
+            }]
+        });
+        return chart;
+    }
+</script>
+</html>

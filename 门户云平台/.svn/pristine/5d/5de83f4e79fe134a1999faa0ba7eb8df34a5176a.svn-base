@@ -1,0 +1,455 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div>
+	<div class="main_width">
+		
+		<div class="zy_question_main clearfix">
+			<div class="zy_question_tree fl">
+				<!--选择教材版本-->
+				<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+				<!--树结构-->
+				<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+			</div>
+			<div class="zy_question_library fr">
+				<div class="zy_question_library_tit">
+					<span ng-class="{'active':variablePacket.exercisesAndtest==0}" ng-click="exercisesAndtestTab(0)">习题</span>
+					<span ng-class="{'active':variablePacket.exercisesAndtest==1}" ng-click="exercisesAndtestTab(1)">试卷</span>
+				</div>
+				<div class="zy_question_type_wrap" ng-switch="variablePacket.exercisesAndtest">
+					<div class="zy_exercises clearfix toggle" ng-switch-when="0">
+						<ul class="zy_question_type_list clearfix">
+							<li ng-repeat="i in variablePacket.questionType" ng-class="{'active':variablePacket.questionTypeIndex==$index}" ng-bind="i.name" ng-click="questionTypeIndexTab($index,i.id)">单选题</li>
+						</ul>
+						<div class="zy_count_box">共<span ng-bind="variablePacket.exercisesNum"></span>试题</div>
+						<div class="zy_question_bank_switch" ng-switch="variablePacket.questionTypeIndex">
+							<!--单选题-->
+							<ul class="zy_question_type_details zy_type_single toggle" ng-switch-when="0">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.single">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index + 1">1</b>
+											<span>单选题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'single')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--单选题-->
+							
+							<!--多选题-->
+							<ul class="zy_question_type_details zy_type_many toggle" ng-switch-when="1">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}"  ng-repeat="i in questionBank.many">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>多选题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'many')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--多选题-->
+							
+							<!--判断题-->
+							<ul class="zy_question_type_details zy_type_judge toggle" ng-switch-when="2">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.judge">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>判断题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'judge')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|judgeFormat"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--判断题-->
+							
+							<!--填空题-->
+							<ul class="zy_question_type_details zy_type_fill toggle" ng-switch-when="3">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.fill">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>填空题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'fill')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>	
+							<!--填空题-->
+							
+							<!--材料题-->
+							<ul class="zy_question_type_details zy_type_material toggle" ng-switch-when="4">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.material">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1">1</b>
+											<span>材料题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':questionBank.material[$index].showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'material')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--材料题-->
+							
+							<!--简答题-->
+							<ul class="zy_question_type_details zy_type_answer toggle" ng-switch-when="5">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.answer">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>简答题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'answer')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--简答题-->
+							
+							<!--完形填空-->
+							<ul class="zy_question_type_details zy_type_gestalt toggle" ng-switch-when="6">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.gestalt">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>完形填空</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'gestalt')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.answer|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--完形填空-->
+						
+							<!--阅读理解-->
+							<ul class="zy_question_type_details zy_type_read toggle" ng-switch-when="7">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.read">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>阅读理解</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="!i.edit">
+											<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="adddelQuzFav(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+											<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="adddelQuzFav(i)">><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+											<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+										</ul>
+									</div>
+									<!--不可编辑部分-->
+									<div class="zy_small_question_main toggle" ng-if="!i.edit">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub">
+												<small ng-bind-html="i.body|trust2Html"></small>
+											</div>
+											<div class="zy_view_answer">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'read')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="">
+													<small ng-bind-html="i.analysis|trust2Html"></small>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--不可编辑部分-->
+								</li>
+								<li ng-if="variablePacket.loadShow"ng-click="findQuzPage(1)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+							</ul>
+							<!--阅读理解-->
+						</div>
+					</div>
+					<div class="zy_testpaper toggle" ng-switch-when="1">
+						<div class="zy_count_box">共<span ng-bind="variablePacket.testPaperNum"></span>试卷</div>
+						<ul class="zy_test_paper_list_box">
+							<li ng-repeat="i in exams">
+								<ul class="zy_operation_list fr toggle">
+									<li class="collect_icon" ng-if="i.showFav && i.collect"  ng-click="insertModel(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>
+									<li class="collect_icon" ng-if="i.showFav && !i.collect" ng-click="insertModel(i)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+									<!--<li class="load_icon"><i class="iconfont icon-xiazai4"></i>下载</li>-->
+								</ul>
+								<div class="zy_test_paper_show clearfix">
+									<img src="./img/test_paper_list.png" class="fl" />
+									<div class="zy_test_paper_con fl">
+										<p ng-bind="i.name">2017年中考真题 数学（全国卷）</p>
+										<ul class="zy_operation_list toggle clearfix">
+											<li ng-bind="i.createUser">刘敏</li>
+											<li><i class="iconfont icon-lishi"></i><span ng-bind="i.createDate|timeFilter">2017-08-20</span></li>
+											<!--<li><i class="iconfont icon-daxiao"></i><span>1049.02k</span></li>-->
+											<li>来源：<span ng-bind="i.module|moduleFilter">上传</span></li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li  class="zyx_loadMore" ng-if="!variablePacket.loadShow" ></li>
+							<li ng-if="variablePacket.loadShow" ng-click="findQuzPage(0)"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	
+</div>

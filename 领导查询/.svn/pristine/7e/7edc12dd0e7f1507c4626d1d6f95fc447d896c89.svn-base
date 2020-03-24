@@ -1,0 +1,3 @@
+<div class="mlh_timetable">
+	<iframe src="http://111.207.13.88:8892/JetsenCourse/scheduleController/toScheduleList.do" width='100%' height='100%' frameborder="no"></iframe>
+</div>

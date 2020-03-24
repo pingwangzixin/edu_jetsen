@@ -1,0 +1,28 @@
+<div class="main_width">
+	
+	<div ng-if="variablePacket.topShow">
+		<div class="zy_guide_tit">
+			<div class="clearfix">
+				<p class="fl">
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.guideList"></i>
+					<span ng-bind="variablePacket.guidanceSituation.guidanceLearn.name"></span>
+				</p>
+				<p class="fr">
+					<span ng-bind="variablePacket.className"></span>    
+					<i class="iconfont icon-lishi"></i>
+					<span ng-bind="variablePacket.guidanceSituation.guidanceLearn.createDate"></span>
+				</p>
+			</div>
+			<div  ng-bind="variablePacket.guidanceSituation.guidanceLearn.descriprion"></div>
+		</div>
+		
+		<div class="zy_guide_bar">
+			<ul class="clearfix">
+				<li class="fl" ng-repeat="i in variablePacket.barArr" ng-bind="i.name" ui-sref="{{i.href}}" ui-sref-active="active"></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div ui-view></div>
+	
+</div>

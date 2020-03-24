@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<?xml version="1.0" encoding="UTF-8"?>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta name="page-view-size" content = "1280*720">
+<title>Ö±²¥Á÷²âÊÔ</title>
+
+
+
+</head>
+<body>
+<div class="player">
+<div id="view_media_player" ></div>
+</div>
+<script type='text/javascript' src="polyfills.base64.js"></script>
+<script type="text/javascript" src="jwplayer.js"></script>
+<script type="text/javascript" src="polyfills.promise.js"></script>
+<script type="text/javascript" src="polyfills.vttrenderer.js"></script>
+<script type="text/javascript" src="provider.cast.js"></script>
+<script type="text/javascript" src="provider.caterpillar.js"></script>
+<script type="text/javascript" src="provider.flash.js"></script>
+<script type="text/javascript" src="provider.html5.js"></script>
+<script type="text/javascript" src="provider.shaka.js"></script>
+<script type="text/javascript" src="provider.youtube.js"></script>
+<script type='text/javascript' src="vttparser.js"></script>
+<script>jwplayer.key="iP+vLYU9H5KyhZeGt5eVuJJIoULUjltoaMeHXg==";</script>
+<!--<script type='text/javascript' src="jwplayer.key.js"></script>-->
+<script type='text/javascript'>
+¡¡  	jwplayer('view_media_player').setup({
+			'autostart': 'true',
+			playlist: [{
+        image: "/assets/myPoster.jpg",
+        sources: [{ 
+            file: "http://111.207.13.88:1935/vod4/mp4:000bd587-dce6-4ea2-a403-1ce82c0e3c1a/2016-10-10T15_33_34_005(163131916).mp4/playlist.m3u8"
+		   
+        },{
+            file: "rtmp://111.207.13.88:1935/vod4/mp4:000bd587-dce6-4ea2-a403-1ce82c0e3c1a/2016-10-10T15_33_34_005(163131916).mp4"
+        }]
+    }],
+	androidhls:"true"
+	
+		});
+</script> 
+
+
+</body>
+
+
+
+</html>

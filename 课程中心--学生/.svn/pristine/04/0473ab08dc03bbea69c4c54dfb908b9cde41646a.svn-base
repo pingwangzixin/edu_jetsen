@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+	    
+		<title>学生实践</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/public.css"/>
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--我的引用-->
+		<link rel="stylesheet" href="../css/tsakCenter.css" charset="utf-8"/>
+		<link rel="stylesheet" href="../css/classRecord.css" charset="utf-8"/>
+		<script type="text/javascript" src="../common/My97DatePicker/WdatePicker.js"></script>
+	</head>
+	<body class="classRecord">
+		<div class="header clearfix"></div>
+		<div class="main clearfix">
+			 <div class="main_right">
+					<ul class="list_tit clearfix">
+						<li><a href="classRecord.html">云课堂</a></li>
+						<li><a href="classRecorded.html" >课堂录播</a></li>
+						<li><a href="JavaScript:;" class="list_tit_active">学生实践</a></li>
+						<li class="back"><a href="studentPractice.html"><img src="../img/back.png"/></a></li>
+				    </ul>
+				    <div class="r_border">
+				    	<div class="r_border_m_b studentpractice_content">
+				    		<div class="studentpractice_title">
+						   	     正在播放 : <span>植物的光合作用</span><span>五年级</span>
+				           </div>
+				            <div class="studentpractice_details">
+						       <div class="studentpractice_left">
+						       	     <div class="studentpractice_playvideo">
+						       	     	
+						       	     </div>
+						       	     <p class="recordedvideo_count">观看次数 : <span>2312</span></p>
+						       	     <div class="studentpractice_comment">
+						       	     	  <p class="studentpractice_commentfigure">老师点评</p>
+						       	     	  <div class="studentpractice_commentcase">
+							       	     	  	 <ul class="studentpractice_commentlist">
+							       	     	  	  <li>
+							       	     	  	  	 <p><span>2017-03-06</span><span> 12:32</span></p>
+							       	     	  	     <div>
+							       	     	  	     	   <span>张老师 :</span>
+							       	     	  	     	   <span>你很棒，但是还有继续加油努力哦。</span>
+							       	     	  	     </div>
+							       	     	  	  </li>
+							       	     	  	  <li>
+							       	     	  	  	 <p><span>2017-03-06</span><span> 12:32</span></p>
+							       	     	  	     <div>
+							       	     	  	     	   <span>张老师 :</span>
+							       	     	  	     	   <span>你很棒，但是还有继续加油努力哦。</span>
+							       	     	  	     </div>
+							       	     	  	  </li>
+							       	     	   </ul>
+				
+						       	     	  </div>
+						       	     	 
+						       	     </div>
+						       </div> 	   
+						   	   <div class="studentpractice_right">
+						       	     <div class="studentpractice_videogroup">
+						       	     	  <p class="studentpractice_groupname active">小组一</p>
+						       	     	  <div class="studentpractice_bigvideo active"></div>
+						       	     	  <div class="studentpractice_videogather">
+						       	     	  	    <div></div>
+						       	     	  	    <div></div>
+						       	     	  	    <div></div>
+						       	     	  </div>
+						       	     </div>
+						       	     <div class="studentpractice_videogroup">
+						       	     	  <p class="studentpractice_groupname">小组二</p>
+						       	     	  <div class="studentpractice_bigvideo"></div>
+						       	     	  <div class="studentpractice_videogather">
+						       	     	  	    <div></div>
+						       	     	  	    <div></div>
+						       	     	  	    <div></div>
+						       	     	  </div>
+						       	     </div>
+						       	     <div class="studentpractice_videogroup">
+						       	     	  <p class="studentpractice_groupname">小组三</p>
+						       	     	  <div class="studentpractice_bigvideo"></div>
+						       	     	  <div class="studentpractice_videogather">
+						       	     	  	    <div></div>
+						       	     	  	    <div></div>
+						       	     	  	    <div></div>
+						       	     	  </div>
+						       	     </div>
+						       </div> 
+						   	   
+				   </div>
+				    	</div>
+				    </div>
+					
+		</div>
+		
+	</body>
+</html>

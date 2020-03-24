@@ -1,0 +1,1026 @@
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #2465b5;
+}
+
+.strlist {
+    display: none;
+    
+}
+
+.header {
+    width: 1920px;
+    height: 130px;
+    overflow: hidden;
+}
+
+.logo {
+    float: left;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.content .leftmenu {
+    margin-top: 180px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.content .leftmenu ul li {
+    margin-bottom: 30px;
+}
+
+.content .rightcon {
+    width: 1600px;
+    height: 745px;
+    display: inline-block;
+    margin-left: 100px;
+    position: relative;
+}
+
+.flash {
+    width: 1600px;
+    height: 745px;
+    background: url(../images/flash.png);
+    position: absolute;
+    z-index: 20
+}
+
+/*底部导航*/
+
+.footer {
+    width: 1920px;
+    height: 186px;
+    background: url(../images/yunbottom.png)no-repeat;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer ul {
+    width: 1920px;
+    display: table;
+    margin: 0 auto;
+}
+
+.footer ul li {
+    display: table-cell;
+    text-align: center;
+    line-height: 186px;
+}
+
+.footer ul li img {
+    vertical-align: top;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.footer ul li img.ftbtnactive {
+    box-shadow: 0px 0px 55px 8px #d8ac0c;
+}
+
+
+/*天气和时间*/
+
+.weather {
+    float: right;
+    margin-top: 30px;
+    margin-right: 400px;
+}
+
+.tqzhezhao{
+    width:200px;
+    height:90px;
+    position: absolute;
+    top: 30px;
+    right: 400px;
+}
+
+#show {
+    position: absolute;
+    width: 146px;
+    height: 51px;
+    background: rgba(0, 0, 0, .2);
+    right: 250px;
+    top: 50px;
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+    line-height: 51px;
+}
+
+.classbtn {
+    width: 181px;
+    height: 57px;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 28px;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    line-height: 51px;
+    cursor: pointer;
+}
+.dw1 a,.dw2 a{
+    color:#fff;
+    width: 181px;
+    height: 57px;
+    display: inline-block;
+}
+.dw1 {
+    position: absolute;
+    left: 600px;
+    top: 46px;
+}
+
+.dw2 {
+    position: absolute;
+    left: 850px;
+    top: 46px;
+}
+
+.dw3 {
+    position: absolute;
+    right: 50px;
+    top: 46px;
+}
+
+.logo .classbtn img {
+    vertical-align: sub;
+    margin-right: 10px;
+}
+
+.weather .classbtn img {
+    vertical-align: middle;
+    margin-left: 20px;
+}
+
+
+/*学生下拉列表*/
+
+.weather .selctclass .strlist {
+    background: url(../images/strlistbg.png)no-repeat;
+    width: 515px;
+    height: 540px;
+    z-index: 30;
+    position: absolute;
+    right: 20px;
+    top: 110px;
+    overflow-y: hidden;
+    z-index: 1200;
+}
+
+.weather .selctclass .strlist ul {
+    width: 90%;
+    height: 490px;
+    margin: 0 auto;
+    margin-top: 17px;
+    overflow-y: auto;
+}
+
+.weather .selctclass .strlist ul li {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    min-width: 78px;
+    margin-left: -4px;
+    text-align: center;
+    border-bottom: 1px solid #666666;
+}
+
+.weather .selctclass .strlist ul li span {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    min-width: 70px;
+    border-right: 1px solid #666666;
+    font-size: 16px;
+    color: #666;
+    cursor: pointer;
+}
+
+.weather .selctclass .strlist ul li span.nameactive {
+    color: #55a3da;
+}
+
+.bwgsxqtit{
+    height: 40px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 2px dashed #edb02d;
+    color:#edb02d;
+}
+.bwxiangqing{
+    padding-top:20px;
+    font-size: 16px;
+    line-height: 30px;
+}
+/*班级风采*/
+
+.rightcon .banjifengcai {
+    width: 1537px;
+    margin: 0 auto;
+    height: 745px;
+    background: url(../images/bjfcbg.png)no-repeat;
+}
+
+.banjifengcai ul {
+    width: 600px;
+    display: table;
+    text-align: center;
+    position: absolute;
+    top: 150px;
+    left: 200px;
+}
+
+.banjifengcai ul li {
+    display: table-cell;
+}
+
+.banjifengcai ul li a p{
+    font-size: 14px;
+}
+/*班风*/
+
+.rightcon .banfeng {
+    width: 1390px;
+    margin: 0 auto;
+    height: 745px;
+    background: url(../images/banfengbj.png)no-repeat;
+}
+
+.rightcon .banfeng .bfstr {
+    position: absolute;
+    left: 260px;
+    top: 153px;
+}
+
+.rightcon .banfeng .bffont {
+    position: absolute;
+    top: 203px;
+    left: 685px;
+}
+
+
+/*特色活动*/
+
+.rightcon .tesehuodong {
+    width: 1443px;
+    height: 745px;
+    margin: 0 auto;
+    background: url(../images/tshdbg.png)no-repeat;
+}
+
+.tshdcon {
+    width: 1100px;
+    height: 605px;
+    position: absolute;
+    left: 400px;
+    top: 120px;
+}
+
+.tshdcon ul li {
+    width: 168px;
+    height: 160px;
+    margin: 20px 28px;
+    border: 2px solid #6a9fd5;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.tshdcon ul li img{
+    width:168px;
+    height:125px;
+    display: inline-block;
+}
+
+.tshdcon ul li p {
+    font-weight: bold;
+}
+
+
+/*明星学生*/
+
+.rightcon .mingxingxuesheng {
+    width: 1479px;
+    height: 745px;
+    margin: 0 auto;
+    background: url(../images/mingxingxueshengbg.png)no-repeat;
+}
+
+.mxxstouxiang {
+    position: absolute;
+    left: 200px;
+    top: 160px;
+}
+
+.mxxsdetail {
+    border-top: 2px dashed #fff;
+    width: 463px;
+    height: 310px;
+    overflow-y: auto;
+    position: absolute;
+    right: 200px;
+    top: 204px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px 2px #666;
+    -webkit-text-stroke: 0.1px #666;
+    font-weight: bold;
+    text-indent: 36px;
+    line-height: 30px;
+}
+
+
+/*班级介绍*/
+
+.rightcon .banjijieshao {
+    width: 1408px;
+    height: 745px;
+    margin: 0 auto;
+    background: url(../images/bjjsback.png)no-repeat;
+}
+
+.bjjsstr {
+    position: absolute;
+    left: 400px;
+    top: 150px;
+}
+
+.bjjsdetail {
+    width: 463px;
+    height: 310px;
+    overflow-y: auto;
+    position: absolute;
+    right: 180px;
+    top: 204px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px 2px #666;
+    -webkit-text-stroke: 0.1px #666;
+    font-weight: bold;
+    text-indent: 36px;
+    line-height: 30px;
+}
+
+.bjjstit {
+    position: absolute;
+    right: 350px;
+    top: 140px;
+}
+
+
+/*社团*/
+
+.rightcon .shetuan {
+    width: 1380px;
+    height: 745px;
+    background: url(../images/stbg.png)no-repeat;
+    margin: 0 auto;
+}
+
+.rightcon .shetuan ul {
+    width: 1024px;
+    height: 580px;
+    position: absolute;
+    left: 334px;
+    top: 100px;
+}
+
+.rightcon .shetuan ul li {
+    width: 190px;
+    height: 240px;
+    border: 3px solid #6a9fd5;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+    background: #fff;
+    margin: 10px;
+}
+
+.rightcon .shetuan ul li a img {
+    border: 1px solid #ccc;
+    width: 172px;
+    height: 172px;
+}
+
+.rightcon .shetuan ul li a p {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.shrtuantit {
+    color: #2678b1;
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    position: absolute;
+    top: 88px;
+    left: 45%;
+}
+
+.shetuandetail {
+    width: 1029px;
+    font-size: 16px;
+    position: absolute;
+    left: 18%;
+    top: 150px;
+    font-weight: bold;
+    line-height: 30px;
+    text-indent: 32px;
+    border-top: 2px dashed #2678b1;
+    padding-top: 20px;
+}
+
+
+/*校训*/
+
+.rightcon .xiaoxun {
+    width: 1236px;
+    height: 745px;
+    background: url(../images/xiaoxunbg.png)no-repeat;
+    margin: 0 auto;
+}
+
+
+/*学校简介*/
+
+.rightcon .xuexiaojianjie {
+    width: 1531px;
+    height: 745px;
+    background: url(../images/xuexiaojianjiebg.png)no-repeat;
+    margin: 0 auto;
+}
+
+
+/*学校活动*/
+
+.rightcon .xuexiaohuodong {
+    width: 1438px;
+    height: 745px;
+    background: url(../images/xxhdbg.png)no-repeat;
+    margin: 0 auto;
+}
+
+
+/*班务公示*/
+
+.rightcon .banwugongshi {
+    width: 1408px;
+    height: 745px;
+    background: url(../images/bwgsbg.png)no-repeat;
+    margin: 0 auto;
+}
+
+.banwugongshi .qianbishu {
+    position: absolute;
+    top: 430px;
+    left: -44px;
+}
+
+.banwugongshi .bwqianbi {
+    position: absolute;
+    top: 0px;
+    right: 40px;
+}
+
+.banwugongshi .bwgscon {
+    width: 1180px;
+    height: 516px;
+    position: absolute;
+    left: 260px;
+    top: 135px;
+}
+
+.banwugongshi .bwgscon .seache {
+    height: 39px;
+}
+
+.banwugongshi .bwgscon .bwgsinput {
+    width: 267px;
+    height: 39px;
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.kecbsou {
+    width: 92px;
+    height: 37px;
+    border: 1px solid #ff9933;
+    background: #fff;
+    border-radius: 5px;
+    margin-left: 10px;
+    color: #ff9933;
+    outline: none;
+    cursor: pointer;
+    font-size:14px;
+}
+
+.kecbsou:hover {
+    box-shadow: 0 0 10px 2px #ff6666;
+}
+
+.kcullist {
+    height: 500px;
+    overflow-y: auto;
+}
+
+.kcullist li {
+    width: 268px;
+    height: 122px;
+    display: inline-block;
+    border: 2px solid #ff9933;
+    margin-right: 100px;
+    margin-top: 20px;
+    border-radius: 10px;
+    position: relative;
+    padding:5px;
+}
+.kcullist li img.verti{
+    width:133px;
+    height:122px;
+    display: inline-block;
+}
+.detail {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-weight: bold;
+}
+
+.detail a {
+    color: #edb02d;
+}
+
+.kcullist li .jianjie {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.verti {
+    vertical-align: middle;
+}
+
+li .jianjie span:nth-child(1) {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.hoticon {
+    position: absolute;
+    right:5px;
+    top:0px;
+}
+
+.bwkcb {
+    width: 604px;
+    height: 406px;
+    background: #fff;
+    border: 3px solid #ffcc5f;
+    border-radius: 10px;
+    position: absolute;
+    left: 260px;
+    padding: 20px;
+}
+
+.guanbibtn {
+    position: absolute;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #ff6666;
+}
+
+.bwkcb .kcbtit {
+    height: 80px;
+    line-height: 80px;
+    border-bottom: 2px dashed #ffcc5f;
+    text-align: center;
+    color: #ffcc5f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.bwkcb .shangwu,
+.xiawu {
+    width: 45%;
+    margin: 2%
+}
+
+.shuxian {
+    height: 334px;
+    width: 2px;
+    background: #ffcc5f;
+}
+
+.kcbul ul li {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    border-bottom: 2px dashed #ffcc5f;
+    color: #ffcc5f;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/*班主任介绍*/
+
+.rightcon .banzhurenjieshao {
+    width: 1360px;
+    height: 745px;
+    background: url(../images/bzrjsbg.png)no-repeat;
+    margin: 0 auto;
+    position: relative;
+}
+
+.banzhurenicon {
+    position: absolute;
+    left: 238px;
+    top: 130px;
+}
+
+.banzhurendetail {
+    width: 463px;
+    height: 310px;
+    overflow-y: auto;
+    position: absolute;
+    right: 116px;
+    top: 204px;
+    color: #fff;
+    font-size: 18px;
+    text-shadow: 2px 2px 2px #666;
+    -webkit-text-stroke: 0.1px #666;
+    font-weight: bold;
+    text-indent: 36px;
+    line-height: 30px;
+}
+
+
+/*我的*/
+
+.rightcon .wode {
+    width: 1660px;
+    height: 815px;
+    background: url(../images/wodebg.png)no-repeat;
+}
+
+.wodecondetail {
+    width: 1162px;
+    height: 610px;
+    position: absolute;
+    top: 80px;
+    left: 300px;
+}
+
+.wodecondetail ul li {
+    width: 349px;
+    height: 289px;
+    background: url(../images/wodelibg.png)no-repeat;
+    display: inline-block;
+    margin: 10px 15px;
+    position: relative;
+}
+
+.wodecondetail ul li em {
+    display: inline-block;
+    width: 160px;
+    height: 35px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+    font-style: normal;
+    font-size: 16px;
+}
+
+.ktzt ul {
+    display: table;
+    width: 100%;
+    height: 148px;
+    text-align: center;
+}
+
+.ktzt ul li {
+    display: table-cell;
+    background: none;
+}
+
+.ktzt p {
+    font-size: 16px;
+}
+
+.ktzt ul li span {
+    display: inline-block;
+    height: 76px;
+    width: 76px;
+    line-height: 76px;
+    text-align: center;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.kthybg {
+    background: url(../images/wodekthy.png)no-repeat top center;
+}
+
+.canyubg {
+    background: url(../images/wodecanyu.png)no-repeat top center;
+}
+
+.jushoubg {
+    background: url(../images/wodejushou.png)no-repeat top center;
+}
+
+.bscolor {
+    background: #5bdfd6;
+}
+
+.hdcolor {
+    background: #2fc562;
+}
+
+.ktztcolor {
+    background: #5492dc;
+}
+
+.jryycolor {
+    background: #fd9f00;
+}
+
+.xxcolor {
+    background: #5492dc;
+}
+
+.wodedwimg {
+    position: absolute;
+    left: 20px;
+    top: 100px;
+}
+
+.mt100 {
+    margin-top: 100px;
+}
+
+.ml50 {
+    margin-left: 50px
+}
+
+.xinlvcon {
+    width: 235px;
+    height: 188px;
+    margin: 0 auto;
+}
+
+.xinlvcon img{
+    height:78px;
+}
+
+.xiaoxiul {
+    position: absolute;
+    top: 60px;
+    left: 0;
+}
+
+.xiaoxiul ul {
+    width: 85%;
+    height:215px;
+    overflow-y: auto;
+    margin-top:10px;
+}
+
+.xiaoxiul ul li {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;
+    background: none;
+    width: 88%;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.diancan {
+    position: absolute;
+    left: 20px;
+    top: 80px;
+}
+.diancan img{
+    width:120px;
+    height:85px;
+    display: inline-block;
+    float:left;
+}
+.inputgoutong {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+}
+
+.inputgoutong input {
+    width: 212px;
+    height: 41px;
+    background: #eee;
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+.inputgoutong button {
+    width: 75px;
+    height: 42px;
+    background: #2e7ed5;
+    border: 1px solid #2e7ed5;
+    color: #fff;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+/*幻灯片*/
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    position: relative;
+}
+
+.swiper-slide div img {
+    background-size: contain;
+    z-index: 30
+}
+
+.swiper-slide span {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    background: rgba(0, 0, 0, .5);
+    color: #fff;
+    bottom: 0;
+    text-align: left;
+    line-height: 40px;
+}
+
+.fanhuianniu {
+    width: 134px;
+    height: 51px;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    bottom: 160px;
+    right: 60px;
+    border-radius: 30px;
+    text-align: center;
+    color: #fff;
+    line-height: 51px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 40
+}
+
+.fanhuianniu img {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.wodename {
+    width: 150px;
+    height: 75px;
+    background: url(../images/wodename.png)no-repeat;
+    position: absolute;
+    left: 50px;
+    top: 250px;
+    line-height: 85px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.wodename span {
+    margin: 5px;
+    display: inline-block;
+}
+
+
+/*我的介绍页*/
+
+.wodejieshao {
+    width: 1660px;
+    height: 815px;
+    background: url(../images/wodebg.png)no-repeat;
+}
+
+.gerenziliao {
+    width: 1230px;
+    margin: 0 auto;
+}
+
+.gerenziliao .ziliaotitle {
+    text-align: center;
+    color: #ffba6f;
+    font-size: 18px;
+    height: 50px;
+    border-bottom: 2px dashed #ffba6f;
+    font-weight: bold;
+}
+
+.ziliaoxiangqing {
+    margin-top: 20px;
+    font-size: 16px;
+    text-indent: 32px;
+    line-height: 32px;
+}
+
+.xuexiaohuodong{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.xyhdlist{
+    width:1058px;
+    height:378px;
+    overflow-y: auto;
+    
+}
+
+.xyhdlist li{
+    height:60px;
+    line-height: 60px;
+    border-bottom: 2px dashed #2465b5;
+    clear: both;
+}
+
+.xyhdlist li b{
+    font-size: 18px;
+}
+
+.xyhdlist li span{
+    font-size: 16px;
+    color:#999;
+}
+
+.xuexiaohuodongxiangqing{
+    width: 1438px;
+    height: 745px;
+    background: url(../images/xxhdxqbg.png)no-repeat;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.xyhdxqtit{
+    height:75px;
+    width:1058px;
+    position: absolute;
+    top:100px;
+    left:260px;
+    border-bottom:2px dashed #2465b5;
+}
+
+.hdxqcon{
+    width:1058px;
+    height:372px;
+    overflow-y: auto;
+}
+
+.hdxqcon li{
+    font-size: 18px;
+}
+
+.xyhdlist li a{
+    cursor: pointer;
+}

@@ -1,0 +1,210 @@
+<div class="wx_right_cont wx_fl">
+	<!--右侧内容部分切换-->
+	<div class="wx_up_nav">
+		<ul class="wx_upnav_ul">
+			<li ui-sref="secondNav.leftTree.userStatistics">注册用户统计</li>
+			<li ui-sref="secondNav.leftTree.userAnalysis" class="wx_active">用户行为分析</li>
+		</ul>
+	</div>
+	<!--面包屑导航-->
+	<div class="wx_bread_nav">
+		<img src="./img/wx_bread_nav.png" class="wx_bread_icon">
+		<span ng-if="false" ng-click="breadNav(0)">全国</span>
+		<span ng-if="variablePacket.provincenav" ng-click="breadNav(1)" ng-bind="variablePacket.provincename"></span>
+		<span ng-if="variablePacket.citynav"     ng-click="breadNav(2)" ng-bind="variablePacket.cityname"></span>
+		<span ng-if="variablePacket.countynav"   ng-click="breadNav(3)" ng-bind="variablePacket.countyname"></span>
+		<span ng-if="variablePacket.schoolnav"   ng-click="breadNav(4)" ng-bind="variablePacket.schoolname"></span>
+	</div>
+	<!--人均在线时长环形图-->
+	<div class="wx_user_timer">
+		<div class="wx_echart_tit">
+			<span class="wx_fl">人均在线时长环形图</span>
+			<div class="wx_fr">
+				<select ng-model="selectedItem" ng-change="changeStuYear()" name="" class="wx_studyyear">
+					<option ng-repeat="x in stuYearList" value="{{x.startTime}}|{{x.endTime}}">{{x.name}}</option>
+				</select>
+<!--				<input type="text" ng-model="variablePacket.studyYear" class="timer wx_datapinkrange" />
+-->			</div>
+		</div>
+		<div class="wx_type_btn useranalysis">
+			<button class="wx_btn_hui" ng-click="changestate(0)" ng-class="{'wx_active':variablePacket.statesType==0}">教师行为分析</button>
+			<button class="wx_btn_hui" ng-click="changestate(1)" ng-class="{'wx_active':variablePacket.statesType==1}">学生行为分析</button>
+			<button class="wx_btn_hui" ng-click="changestate(2)" ng-class="{'wx_active':variablePacket.statesType==2}">家长行为分析</button>
+		</div>
+		<!--教师饼状图-->
+		<div ng-if="variablePacket.statesType==0" class="clearfix">
+			<!--<div class="zyx_pie fl">
+				<div class="chart_pie_teacher"></div>
+			</div>-->
+			<div class="wx_hover_tb wx_teacher_hover_analy gudingkuan fl">
+				<table>
+					<thead>
+						<tr>
+							<th>模块</th>
+							<th>PC端(h)</th>
+							<th>移动端(h)</th>
+							<th>人均时长(h)</th>
+							<th>比例(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.teacheranaly1">
+							<td><i></i>{{i.name}}</td>
+							<td>{{i.pcduan}}</td>
+							<td>{{i.yidongduan}}</td>
+							<td>{{i.times}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="wx_hover_tb wx_teacher_hover_analy gudingkuan fr">
+				<table>
+					<thead>
+						<tr>
+							<th>模块</th>
+							<th>PC端(h)</th>
+							<th>移动端(h)</th>
+							<th>人均时长(h)</th>
+							<th>比例(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.teacheranaly2">
+							<td><i></i>{{i.name}}</td>
+							<td>{{i.pcduan}}</td>
+							<td>{{i.yidongduan}}</td>
+							<td>{{i.times}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--学生饼状图-->
+		<div ng-if="variablePacket.statesType==1" class="clearfix">
+			<!--<div class="zyx_pie  fl">
+				<div class="chart_pie_student"></div>
+			</div>-->
+			<div class="wx_hover_tb wx_teacher_hover_analy gudingkuan fl">
+				<table>
+					<thead>
+						<tr>
+							<th>模块</th>
+							<th>PC端(h)</th>
+							<th>移动端(h)</th>
+							<th>人均时长(h)</th>
+							<th>比例(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.studentanaly1">
+							<td><i></i>{{i.name}}</td>
+							<td>{{i.pcduan}}</td>
+							<td>{{i.yidongduan}}</td>
+							<td>{{i.times}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="wx_hover_tb wx_teacher_hover_analy gudingkuan fr">
+				<table>
+					<thead>
+						<tr>
+							<th>模块</th>
+							<th>PC端(h)</th>
+							<th>移动端(h)</th>
+							<th>人均时长(h)</th>
+							<th>比例(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.studentanaly2">
+							<td><i></i>{{i.name}}</td>
+							<td>{{i.pcduan}}</td>
+							<td>{{i.yidongduan}}</td>
+							<td>{{i.times}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--家长饼状图-->
+		<div ng-if="variablePacket.statesType==2" class="clearfix">
+			<!--<div class="zyx_pie  fl">
+				<div class="chart_pie_parent"></div>
+			</div>-->
+			<div class="wx_hover_tb wx_teacher_hover_analy gudingkuan fl">
+				<table>
+					<thead>
+						<tr>
+							<th>模块</th>
+							<th>PC端(h)</th>
+							<th>移动端(h)</th>
+							<th>人均时长(h)</th>
+							<th>比例(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.parentsanaly1">
+							<td><i></i>{{i.name}}</td>
+							<td>{{i.pcduan}}</td>
+							<td>{{i.yidongduan}}</td>
+							<td>{{i.times}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="wx_hover_tb wx_teacher_hover_analy gudingkuan fr">
+				<table>
+					<thead>
+						<tr>
+							<th>模块</th>
+							<th>PC端(h)</th>
+							<th>移动端(h)</th>
+							<th>人均时长(h)</th>
+							<th>比例(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.parentsanaly2">
+							<td><i></i>{{i.name}}</td>
+							<td>{{i.pcduan}}</td>
+							<td>{{i.yidongduan}}</td>
+							<td>{{i.times}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--人均在线时长表-->
+	<div class="wx_user_timer_table" ng-if="variablePacket.schooldata">
+		<p class="wx_echart_tit">人均在线时长表</p>
+		<div class="wx_table_longtime">
+			<table class="wx_table_longdetai">
+				<thead>
+					<tr>
+						<th class="wx_tdfivewidth">{{variablePacket.tablearea}}</th>
+						<th>教师</th>
+						<th>学生</th>
+						<th>家长</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="i in variablePacket.tabledata.quyu">
+						<td class="wx_lanzi wx_cursor" ng-click="findCityCount(i.id,i.name,variablePacket.tabledata.type)">{{i.name}}</td>
+						<td>{{i.teachtimes}}</td>
+						<td>{{i.stutimes}}</td>
+						<td>{{i.partimes}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="wx_clear"></div>

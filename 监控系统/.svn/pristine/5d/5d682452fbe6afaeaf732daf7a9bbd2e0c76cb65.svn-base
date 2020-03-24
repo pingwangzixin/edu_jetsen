@@ -1,0 +1,38 @@
+.g_header{
+    background: rgba(256,256,256,0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+}
+.g_mainWrapper{
+    background: url("../img/indexbg.png") no-repeat;
+    background-size: cover;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+.g_main{
+    margin:66px auto;
+}
+.g_login{
+    padding-top:80px; 
+    margin: auto;
+    background: url("../img/map.png") no-repeat 0px 167px;
+    background-size: 800px 475px;
+    height: 100%;
+    width: 1330px;
+    position: relative;
+    box-sizing: border-box;
+
+}
+.g_loginWrapper{
+    background: url("../img/bg.jpg");
+}
+.pointer{
+    cursor: pointer;
+}
+.over{
+    overflow: hidden;
+}

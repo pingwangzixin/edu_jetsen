@@ -1,0 +1,36 @@
+命名规则：
+
+1、html、js文件名采用驼峰命名，禁止出现下划线_等， eg ：newList ， topStudentList（首字母小写）
+
+2、路由页面（app.js）跳转名称，采用驼峰命名，禁止出现下划线_等，eg ：wrap.studentPersonal（首字母小写）
+
+3、css类名前面必须加姓名缩写前缀，只能以_下划线连接，禁止出现大写， eg ：zy_main ， zy_top_list_new
+
+4、所有字体图标，标签统一使用i标签，禁止使用其它标签，eg ：<i class="iconfont icon-lishi-copy"></i>
+
+5、img命名采用下划线连接，不使用大写，eg ：icon_top_list.png
+
+
+
+共用部分：（无前缀类名都是公用样式）
+
+1、reset.html为清除默认样式文件，统一引入
+
+2、改变状态样式的类名统一使用“active”，eg ： <li class="active">八年级（1）班</li>
+
+3、select、input等表单元素，以及按钮等，border-radius值设置为5px
+
+
+
+其它：
+
+1、UI图纸中大于10px的块，如若量出基数，统一减一，eg ： 量出19px，代码中就是18px （19-1=18）
+
+
+demo：
+
+弹框.html里 为基本弹框样式，根据UI图纸，新增css类名进行修改，禁止修改共用类名。
+
+
+
+所有开发规则按以上执行，若与规则不符，需修改。后期会陆续补充，请经常查看！

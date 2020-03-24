@@ -1,0 +1,53 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css" />
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<div ng-cloak>
+	<div class="main_width" >
+		<div class="zmj_prepare_header clearfix" ng-cloak>
+			<!--<div class="fl zmj_prepare_chooice">
+	  	  	   	    <p><span ng-bind="variablePacket.subject"></span><i class="iconfont icon-arrow-up"></i></p>
+	  	  	   	    <ul class="zmj_prepare_select">
+	  	  	   	    	<li ng-repeat="i in subjectList" ng-bind="i.name" ng-class={'active':$index==variablePacket.subjectIndex} ng-click="subjectTab(i,$index)"></li>
+	  	  	   	    </ul>
+	  	  	   </div>-->
+			<button class="fr zmj_prepare_creatlesson" ui-sref="secondNav.prepareLessonsContent({state:'new'})">创建备课</button>
+		</div>
+		<div class="zmj_resource_main clearfix">
+			<div class="zmj_resource_mainLeft fl">
+				<!--选择教材版本-->
+				<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+				<!--树结构-->
+				<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+
+			</div>
+
+			<div class="zmj_resource_mainRight fr">
+				<ul class="zmj_resource_testList">
+					<li ng-repeat=" i in variablePacket.filetypeContent" class="clearfix">
+						<div class="zmj_resource_testInfo fl" ng-click="stateSkip(i)">
+							<h4 ng-bind="i.name"></h4>
+							<p><img ng-src="{{i.src}}" alt="" /><span class="uploadName" ng-bind="i.uploader"></span><i class="iconfont icon-lishi"></i><span ng-bind="i.time"></p>
+						</div>
+						<div class="zmj_resource_testOperation fl">
+							<span class="zmj_resource_prepare" ng-if="i.prepare" ng-click="prepareStateTab(i)">备课</span>
+								<span class="zmj_resource_prepare" ng-if="!i.prepare" ng-click="prepareStateTab(i)">取消备课</span>
+						</div>
+						<div class="zmj_resource_operating">
+							<span class="amend" ng-if="i.type=='package'" ui-sref="secondNav.prepareLessonsContent({state:'edit',id:i.id})"><i class="iconfont icon-bianji2"></i>修改</span>
+							<span class="delete" ng-click="Del($index,i.id)"><i class="iconfont icon-shanchu"></i>删除</span>
+						</div>
+
+					</li>
+
+				</ul>
+
+				<div class="zmj_resource_loading" ng-if="variablePacket.jiazai" ng-click="jiazai(variablePacket.pageNo)"><i class="iconfont icon-jiazai"></i>加载更多...</div>
+
+			</div>
+
+			<!--确认框及提示框-->
+			<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+
+		</div>
+	</div>
+
+</div>

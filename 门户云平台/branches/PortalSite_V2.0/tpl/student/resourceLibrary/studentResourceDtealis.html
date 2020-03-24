@@ -1,0 +1,49 @@
+<div>
+	<div class="main_width">
+		<ul class="zmj_resource_testList zmj_resources_details">
+			<li class="clearfix">
+				<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.studentMyResource"></i>
+				<h4 ng-bind="resource.title"></h4>
+				<p><img src="{{resource.type | icon}}"/><span ng-bind="resource.name"></span><i class="iconfont icon-lishi "></i><span ng-bind="resource.time"></span><i class="iconfont icon-daxiao "></i><span ng-bind="resource.size"></span></p>
+				<div class="zmj_resource_operating details">
+					<span class="share"><i class="iconfont icon-fenxiang "></i>分享</span>
+					<span class="down"><i class="down iconfont icon-xiazai4 "></i>下载</span>
+					<span class="delete"><i class="iconfont icon-shanchu "></i>删除</span>
+				</div>
+			</li>
+		</ul>
+		<div class="zmj_resource_viewdetails">
+			<!--<div ng-show="variablePacket.state == '2'" >
+				<div class="bofangqi" >
+					<div class="loadFlashWrap">
+						<p>资源转码失败</p>
+					</div>
+				</div>
+			</div>
+			<div ng-show="variablePacket.state == '0'" >
+				<div class="bofangqi" >
+					<div class="loadFlashWrap">
+						<p>该资源正在转码中</p>
+					</div>
+				</div>
+			</div>
+			<div  ng-show="variablePacket.state == '1'">
+				<iframe id="pdfshow" ng-if="resource.objId == '5'||resource.objId == '6'||resource.objId == '7'" src="" width="1180px" height="690px"></iframe>
+				<img id="images" src="" ng-if="resource.objId == '3'" />
+				<div class="bofangqi" id="showplayer" ng-if="resource.objId == '1'||resource.objId == '8'||resource.objId == '2'" >
+					<div class="loadFlashWrap">
+						<p>您的浏览器还没有安装Flash插件</p>
+						<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+					</div>
+				</div>
+			</div>-->
+
+
+		</div>
+	</div>
+     
+        <!--分享框-->
+	    <share-box variable-packet="variablePacket" share-show="shareShow" wran-show="wranShow"></share-box>
+        <!--确认框及提示框-->
+	    <prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>

@@ -1,0 +1,133 @@
+<div>
+	<div class="zy_bg">
+		<div class="zy_central_content zy_space_index">
+			<div class="zy_top_switch_box clearfix">
+				<ul class="zy_personal_space fl">
+					<!--<li ui-sref-active="active" ui-sref="secondNav.space">我的空间</li>-->
+					<!--<li ui-sref-active="active" ui-sref="wrapSpace.homePage">我的应用</li>-->
+					<li ui-sref-active="active" ui-sref="secondNav.homePage">我的主页</li>
+				</ul>
+				<ul class="zy_public_space fr">
+					<li><i class="iconfont icon-banji"></i>班级空间</li>
+					<li><i class="iconfont icon-xuexiao"></i>学校空间</li>
+				</ul>
+			</div>
+			
+			<div class="zy_space_main clearfix">
+				<div class="zy_space_main_left fl">
+					<div class="zy_vault">
+						<div class="zy_left_border_title">
+							<span>捷成片库</span>
+						</div>
+						<ul class="clearfix">
+							<li>
+								<img src="./img/newsImg.jpg"/>
+								<p>烟花艳艳</p>
+							</li>
+							<li>
+								<img src="./img/newsImg.jpg"/>
+								<p>烟花艳艳</p>
+							</li>
+							<li>
+								<img src="./img/newsImg.jpg"/>
+								<p>烟花艳艳</p>
+							</li>
+							<li>
+								<img src="./img/newsImg.jpg"/>
+								<p>烟花艳艳</p>
+							</li>
+							<li>
+								<img src="./img/newsImg.jpg"/>
+								<p>烟花艳艳</p>
+							</li>
+						</ul>
+					</div>
+					<div class="zy_notice_bulletin">
+						<span>通知公告</span>
+					</div>
+					<div class="zy_scroll_notice">
+						<ul>
+							<li ng-repeat="notice in noticeData track by $index" seamless-rolling>
+								<div class="zy_notice_tit_box zy_notice_tit_boy clearfix">
+									<span class="fl">李</span>
+									<div class="zy_notice_relevant fl">
+										<p class="zy_notice_role">
+											<span ng-bind="notice.name">张二伟</span>
+											<b>老师</b>
+										</p>
+										<p class="zy_notice_time">2017-07-07 15:58:39</p>
+									</div>
+								</div>
+								<div class="zy_notice_content_box" ng-bind="notice.cont">2017-10月5日-11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假11日学校放假</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="zy_space_main_right fr">
+					<div class="zy_teach_role">
+						<ul class="clearfix">
+							<li ng-repeat="role in roleWrap" ng-class="{'active':$index == variable.teachRole}" ng-click="roleSwitch($index)">任课老师</li>
+						</ul>		
+					</div>
+					<div class="zy_teach_module_box">
+						<ul class="zy_teach_module">
+							<li>
+								<div class="zy_left_border_title">
+									<span>教学</span>
+								</div>
+								<ul class="zy_module_enter clearfix">
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课备课备课备课备课备课备课备课备课备课备课</span>
+									</li>
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课</span>
+									</li>
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课</span>
+									</li>
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课</span>
+									</li>
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课</span>
+									</li>
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课</span>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div class="zy_left_border_title">
+									<span>教务</span>
+								</div>
+								<ul class="zy_module_enter clearfix">
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课备课备课备课备课备课备课备课备课备课备课</span>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<div class="zy_left_border_title">
+									<span>教务</span>
+								</div>
+								<ul class="zy_module_enter clearfix">
+									<li>
+										<img src="./img/ActivityCenter.png" alt="" />
+										<span>备课备课备课备课备课备课备课备课备课备课备课</span>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

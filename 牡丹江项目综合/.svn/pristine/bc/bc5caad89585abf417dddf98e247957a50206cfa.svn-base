@@ -1,0 +1,235 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<top-list page="prevPageNo"></top-list>
+		<div class="zy_content">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li class="active" ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="zy_content">
+			<div class="zy_term_box clearfix">
+				<div class="zy_left fl">
+					<span>
+						<strong>七年级(1)班 </strong>
+						中学生综合素质评价 - 
+						<b>下学期</b>
+						<i class="iconfont icon-jiantou2" ng-class="{'active' : chooseTermVariable.horn}" ng-click="chooseTermBtn()"></i>
+					</span>
+					<div class="zy_choose_term" ng-class="{'active' : chooseTermVariable.list}">
+						<span class="active" ng-click="chooseTerm($event)">上学期</span>
+						<span ng-click="chooseTerm($event)">下学期</span>
+					</div>
+				</div>
+				<div class="zy_right fr">
+					<span ui-sref="wrap.evaluationCriterion({'prevPage':'schoolLeaderPersonal'})">评价标准</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="zyx_content  zyx_highcharts">
+			<div class="zyx_tabData">
+				<!--表头切换-->
+				<div class="graph-tabs clearfix">
+					<a href="javascript:;" data-name="1" data-url="" class="active">思想品德和公民素养</a>
+					<a href="javascript:;" data-name="2" data-url="">学业水平和学习素养</a>
+					<a href="javascript:;" data-name="3" data-url="">身体和心理健康水平</a>
+					<a href="javascript:;" data-name="4" data-url="">兴趣特长及审美素养</a>
+					<a href="javascript:;" data-name="5" data-url="">社会实践和动手能力</a>
+				</div>
+				
+				
+				<!--柱状图1 -->
+				<div id="chart-list" class="tabcon" data-name="1">						
+					<div class=" chart-column-line-global">
+						<div class="chart1 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+			    	<!--js-->
+			    	<script>
+			    		var zyx_Data1 = {"title":"年级优良率堆积柱状图1","categories":["(1)\u73ed","(2)\u73ed","(3)\u73ed","(4)\u73ed","(5)\u73ed","(6)\u73ed","(7)\u73ed","(8)\u73ed","(9)\u73ed","(10)\u73ed"],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[{"name":"\u4f18\u79c0","color":"#32ba54","level":1,"data":[{"y":0,"num":0,"count":49,"class_id":52},{"y":15.38,"num":8,"count":52,"class_id":53},{"y":31.37,"num":16,"count":51,"class_id":54},{"y":7.84,"num":4,"count":51,"class_id":55},{"y":16.67,"num":8,"count":48,"class_id":56},{"y":26.53,"num":13,"count":49,"class_id":57},{"y":13.73,"num":7,"count":51,"class_id":58},{"y":16.33,"num":8,"count":49,"class_id":59},{"y":28,"num":14,"count":50,"class_id":60},{"y":3.85,"num":2,"count":52,"class_id":61}]},{"name":"\u826f\u597d","color":"#3598db","level":2,"data":[{"y":14.29,"num":7,"count":49,"class_id":52},{"y":13.46,"num":7,"count":52,"class_id":53},{"y":25.49,"num":13,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":27.08,"num":13,"count":48,"class_id":56},{"y":34.69,"num":17,"count":49,"class_id":57},{"y":45.1,"num":23,"count":51,"class_id":58},{"y":38.78,"num":19,"count":49,"class_id":59},{"y":34,"num":17,"count":50,"class_id":60},{"y":32.69,"num":17,"count":52,"class_id":61}]},{"name":"\u53ca\u683c","color":"#fdbc2a","level":3,"data":[{"y":67.35,"num":33,"count":49,"class_id":52},{"y":30.77,"num":16,"count":52,"class_id":53},{"y":23.53,"num":12,"count":51,"class_id":54},{"y":33.33,"num":17,"count":51,"class_id":55},{"y":45.83,"num":22,"count":48,"class_id":56},{"y":22.45,"num":11,"count":49,"class_id":57},{"y":35.29,"num":18,"count":51,"class_id":58},{"y":32.65,"num":16,"count":49,"class_id":59},{"y":30,"num":15,"count":50,"class_id":60},{"y":38.46,"num":20,"count":52,"class_id":61}]},{"name":"\u4e0d\u53ca\u683c","color":"#fb5252","level":4,"data":[{"y":18.37,"num":9,"count":49,"class_id":52},{"y":40.38,"num":21,"count":52,"class_id":53},{"y":19.61,"num":10,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":10.42,"num":5,"count":48,"class_id":56},{"y":16.33,"num":8,"count":49,"class_id":57},{"y":5.88,"num":3,"count":51,"class_id":58},{"y":12.24,"num":6,"count":49,"class_id":59},{"y":8,"num":4,"count":50,"class_id":60},{"y":25,"num":13,"count":52,"class_id":61}]}]};
+			            chart_column_stack('.chart1', zyx_Data1.title, zyx_Data1.categories, zyx_Data1.ytitle, zyx_Data1.data, zyx_Data1.totalName, zyx_Data1.units, false);
+			
+			            initSingleColumnChart($('.chart1'), zyx_Data1.data);
+			
+			            $('.chart-column-legend > span').on("click",function(){
+			                legendUpdate($(this), $('.chart1'), zyx_Data1.data, true);
+			            });
+			       </script>
+				</div>
+				<!--柱状图2 -->	
+				<div id="chart-list" class="tabcon" data-name="2" >						
+					<div class=" chart-column-line-global">
+						<div class="chart2 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+			    	<!--js-->
+			    	<script>
+			    		var zyx_Data2 = {"title":"年级优良率堆积柱状图2","categories":["(1)\u73ed","(2)\u73ed","(3)\u73ed","(4)\u73ed","(5)\u73ed","(6)\u73ed","(7)\u73ed","(8)\u73ed","(9)\u73ed","(10)\u73ed"],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[{"name":"\u4f18\u79c0","color":"#32ba54","level":1,"data":[{"y":0,"num":0,"count":49,"class_id":52},{"y":15.38,"num":8,"count":52,"class_id":53},{"y":31.37,"num":16,"count":51,"class_id":54},{"y":7.84,"num":4,"count":51,"class_id":55},{"y":16.67,"num":8,"count":48,"class_id":56},{"y":26.53,"num":13,"count":49,"class_id":57},{"y":13.73,"num":7,"count":51,"class_id":58},{"y":16.33,"num":8,"count":49,"class_id":59},{"y":28,"num":14,"count":50,"class_id":60},{"y":3.85,"num":2,"count":52,"class_id":61}]},{"name":"\u826f\u597d","color":"#3598db","level":2,"data":[{"y":14.29,"num":7,"count":49,"class_id":52},{"y":13.46,"num":7,"count":52,"class_id":53},{"y":25.49,"num":13,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":27.08,"num":13,"count":48,"class_id":56},{"y":34.69,"num":17,"count":49,"class_id":57},{"y":45.1,"num":23,"count":51,"class_id":58},{"y":38.78,"num":19,"count":49,"class_id":59},{"y":34,"num":17,"count":50,"class_id":60},{"y":32.69,"num":17,"count":52,"class_id":61}]},{"name":"\u53ca\u683c","color":"#fdbc2a","level":3,"data":[{"y":67.35,"num":33,"count":49,"class_id":52},{"y":30.77,"num":16,"count":52,"class_id":53},{"y":23.53,"num":12,"count":51,"class_id":54},{"y":33.33,"num":17,"count":51,"class_id":55},{"y":45.83,"num":22,"count":48,"class_id":56},{"y":22.45,"num":11,"count":49,"class_id":57},{"y":35.29,"num":18,"count":51,"class_id":58},{"y":32.65,"num":16,"count":49,"class_id":59},{"y":30,"num":15,"count":50,"class_id":60},{"y":38.46,"num":20,"count":52,"class_id":61}]},{"name":"\u4e0d\u53ca\u683c","color":"#fb5252","level":4,"data":[{"y":18.37,"num":9,"count":49,"class_id":52},{"y":40.38,"num":21,"count":52,"class_id":53},{"y":19.61,"num":10,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":10.42,"num":5,"count":48,"class_id":56},{"y":16.33,"num":8,"count":49,"class_id":57},{"y":5.88,"num":3,"count":51,"class_id":58},{"y":12.24,"num":6,"count":49,"class_id":59},{"y":8,"num":4,"count":50,"class_id":60},{"y":25,"num":13,"count":52,"class_id":61}]}]};
+			            chart_column_stack('.chart2', zyx_Data2.title, zyx_Data2.categories, zyx_Data2.ytitle, zyx_Data2.data, zyx_Data2.totalName, zyx_Data2.units, false);
+			
+			            initSingleColumnChart($('.chart2'), zyx_Data2.data);
+			
+			            $('.chart-column-legend > span').on("click",function(){
+			                legendUpdate($(this), $('.chart2'), zyx_Data2.data, true);
+			            });
+			       </script>
+				</div>
+				<!--柱状图3 -->	
+				<div id="chart-list" class="tabcon" data-name="3" >						
+					<div class=" chart-column-line-global">
+						<div class="chart3 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+			    	<!--js-->
+			    	<script>
+			    		var zyx_Data3 = {"title":"年级优良率堆积柱状图3","categories":["(1)\u73ed","(2)\u73ed","(3)\u73ed","(4)\u73ed","(5)\u73ed","(6)\u73ed","(7)\u73ed","(8)\u73ed","(9)\u73ed","(10)\u73ed"],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[{"name":"\u4f18\u79c0","color":"#32ba54","level":1,"data":[{"y":0,"num":0,"count":49,"class_id":52},{"y":15.38,"num":8,"count":52,"class_id":53},{"y":31.37,"num":16,"count":51,"class_id":54},{"y":7.84,"num":4,"count":51,"class_id":55},{"y":16.67,"num":8,"count":48,"class_id":56},{"y":26.53,"num":13,"count":49,"class_id":57},{"y":13.73,"num":7,"count":51,"class_id":58},{"y":16.33,"num":8,"count":49,"class_id":59},{"y":28,"num":14,"count":50,"class_id":60},{"y":3.85,"num":2,"count":52,"class_id":61}]},{"name":"\u826f\u597d","color":"#3598db","level":2,"data":[{"y":14.29,"num":7,"count":49,"class_id":52},{"y":13.46,"num":7,"count":52,"class_id":53},{"y":25.49,"num":13,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":27.08,"num":13,"count":48,"class_id":56},{"y":34.69,"num":17,"count":49,"class_id":57},{"y":45.1,"num":23,"count":51,"class_id":58},{"y":38.78,"num":19,"count":49,"class_id":59},{"y":34,"num":17,"count":50,"class_id":60},{"y":32.69,"num":17,"count":52,"class_id":61}]},{"name":"\u53ca\u683c","color":"#fdbc2a","level":3,"data":[{"y":67.35,"num":33,"count":49,"class_id":52},{"y":30.77,"num":16,"count":52,"class_id":53},{"y":23.53,"num":12,"count":51,"class_id":54},{"y":33.33,"num":17,"count":51,"class_id":55},{"y":45.83,"num":22,"count":48,"class_id":56},{"y":22.45,"num":11,"count":49,"class_id":57},{"y":35.29,"num":18,"count":51,"class_id":58},{"y":32.65,"num":16,"count":49,"class_id":59},{"y":30,"num":15,"count":50,"class_id":60},{"y":38.46,"num":20,"count":52,"class_id":61}]},{"name":"\u4e0d\u53ca\u683c","color":"#fb5252","level":4,"data":[{"y":18.37,"num":9,"count":49,"class_id":52},{"y":40.38,"num":21,"count":52,"class_id":53},{"y":19.61,"num":10,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":10.42,"num":5,"count":48,"class_id":56},{"y":16.33,"num":8,"count":49,"class_id":57},{"y":5.88,"num":3,"count":51,"class_id":58},{"y":12.24,"num":6,"count":49,"class_id":59},{"y":8,"num":4,"count":50,"class_id":60},{"y":25,"num":13,"count":52,"class_id":61}]}]};
+			            chart_column_stack('.chart3', zyx_Data3.title, zyx_Data3.categories, zyx_Data3.ytitle, zyx_Data3.data, zyx_Data3.totalName, zyx_Data3.units, false);
+			
+			            initSingleColumnChart($('.chart3'), zyx_Data3.data);
+			
+			            $('.chart-column-legend > span').on("click",function(){
+			                legendUpdate($(this), $('.chart3'), zyx_Data3.data, true);
+			            });
+			       </script>
+				</div>
+				<!--柱状图4 -->
+				<div id="chart-list" class="tabcon" data-name="4" >						
+					<div class=" chart-column-line-global">
+						<div class="chart4 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+			    	<!--js-->
+			    	<script>
+			    		var zyx_Data4 = {"title":"年级优良率堆积柱状图4","categories":["(1)\u73ed","(2)\u73ed","(3)\u73ed","(4)\u73ed","(5)\u73ed","(6)\u73ed","(7)\u73ed","(8)\u73ed","(9)\u73ed","(10)\u73ed"],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[{"name":"\u4f18\u79c0","color":"#32ba54","level":1,"data":[{"y":0,"num":0,"count":49,"class_id":52},{"y":15.38,"num":8,"count":52,"class_id":53},{"y":31.37,"num":16,"count":51,"class_id":54},{"y":7.84,"num":4,"count":51,"class_id":55},{"y":16.67,"num":8,"count":48,"class_id":56},{"y":26.53,"num":13,"count":49,"class_id":57},{"y":13.73,"num":7,"count":51,"class_id":58},{"y":16.33,"num":8,"count":49,"class_id":59},{"y":28,"num":14,"count":50,"class_id":60},{"y":3.85,"num":2,"count":52,"class_id":61}]},{"name":"\u826f\u597d","color":"#3598db","level":2,"data":[{"y":14.29,"num":7,"count":49,"class_id":52},{"y":13.46,"num":7,"count":52,"class_id":53},{"y":25.49,"num":13,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":27.08,"num":13,"count":48,"class_id":56},{"y":34.69,"num":17,"count":49,"class_id":57},{"y":45.1,"num":23,"count":51,"class_id":58},{"y":38.78,"num":19,"count":49,"class_id":59},{"y":34,"num":17,"count":50,"class_id":60},{"y":32.69,"num":17,"count":52,"class_id":61}]},{"name":"\u53ca\u683c","color":"#fdbc2a","level":3,"data":[{"y":67.35,"num":33,"count":49,"class_id":52},{"y":30.77,"num":16,"count":52,"class_id":53},{"y":23.53,"num":12,"count":51,"class_id":54},{"y":33.33,"num":17,"count":51,"class_id":55},{"y":45.83,"num":22,"count":48,"class_id":56},{"y":22.45,"num":11,"count":49,"class_id":57},{"y":35.29,"num":18,"count":51,"class_id":58},{"y":32.65,"num":16,"count":49,"class_id":59},{"y":30,"num":15,"count":50,"class_id":60},{"y":38.46,"num":20,"count":52,"class_id":61}]},{"name":"\u4e0d\u53ca\u683c","color":"#fb5252","level":4,"data":[{"y":18.37,"num":9,"count":49,"class_id":52},{"y":40.38,"num":21,"count":52,"class_id":53},{"y":19.61,"num":10,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":10.42,"num":5,"count":48,"class_id":56},{"y":16.33,"num":8,"count":49,"class_id":57},{"y":5.88,"num":3,"count":51,"class_id":58},{"y":12.24,"num":6,"count":49,"class_id":59},{"y":8,"num":4,"count":50,"class_id":60},{"y":25,"num":13,"count":52,"class_id":61}]}]};
+			            chart_column_stack('.chart4', zyx_Data4.title, zyx_Data4.categories, zyx_Data4.ytitle, zyx_Data4.data, zyx_Data4.totalName, zyx_Data4.units, false);
+			
+			            initSingleColumnChart($('.chart4'), zyx_Data4.data);
+			
+			            $('.chart-column-legend > span').on("click",function(){
+			                legendUpdate($(this), $('.chart4'), zyx_Data4.data, true);
+			            });
+			       </script>
+				</div>
+				<!--柱状图5 -->
+				<div id="chart-list" class="tabcon" data-name="5" >						
+					<div class=" chart-column-line-global">
+						<div class="chart5 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+			    	<!--js-->
+			    	<script>
+			    		var zyx_Data5 = {"title":"年级优良率堆积柱状图5","categories":["(1)\u73ed","(2)\u73ed","(3)\u73ed","(4)\u73ed","(5)\u73ed","(6)\u73ed","(7)\u73ed","(8)\u73ed","(9)\u73ed","(10)\u73ed"],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[{"name":"\u4f18\u79c0","color":"#32ba54","level":1,"data":[{"y":0,"num":0,"count":49,"class_id":52},{"y":15.38,"num":8,"count":52,"class_id":53},{"y":31.37,"num":16,"count":51,"class_id":54},{"y":7.84,"num":4,"count":51,"class_id":55},{"y":16.67,"num":8,"count":48,"class_id":56},{"y":26.53,"num":13,"count":49,"class_id":57},{"y":13.73,"num":7,"count":51,"class_id":58},{"y":16.33,"num":8,"count":49,"class_id":59},{"y":28,"num":14,"count":50,"class_id":60},{"y":3.85,"num":2,"count":52,"class_id":61}]},{"name":"\u826f\u597d","color":"#3598db","level":2,"data":[{"y":14.29,"num":7,"count":49,"class_id":52},{"y":13.46,"num":7,"count":52,"class_id":53},{"y":25.49,"num":13,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":27.08,"num":13,"count":48,"class_id":56},{"y":34.69,"num":17,"count":49,"class_id":57},{"y":45.1,"num":23,"count":51,"class_id":58},{"y":38.78,"num":19,"count":49,"class_id":59},{"y":34,"num":17,"count":50,"class_id":60},{"y":32.69,"num":17,"count":52,"class_id":61}]},{"name":"\u53ca\u683c","color":"#fdbc2a","level":3,"data":[{"y":67.35,"num":33,"count":49,"class_id":52},{"y":30.77,"num":16,"count":52,"class_id":53},{"y":23.53,"num":12,"count":51,"class_id":54},{"y":33.33,"num":17,"count":51,"class_id":55},{"y":45.83,"num":22,"count":48,"class_id":56},{"y":22.45,"num":11,"count":49,"class_id":57},{"y":35.29,"num":18,"count":51,"class_id":58},{"y":32.65,"num":16,"count":49,"class_id":59},{"y":30,"num":15,"count":50,"class_id":60},{"y":38.46,"num":20,"count":52,"class_id":61}]},{"name":"\u4e0d\u53ca\u683c","color":"#fb5252","level":4,"data":[{"y":18.37,"num":9,"count":49,"class_id":52},{"y":40.38,"num":21,"count":52,"class_id":53},{"y":19.61,"num":10,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55},{"y":10.42,"num":5,"count":48,"class_id":56},{"y":16.33,"num":8,"count":49,"class_id":57},{"y":5.88,"num":3,"count":51,"class_id":58},{"y":12.24,"num":6,"count":49,"class_id":59},{"y":8,"num":4,"count":50,"class_id":60},{"y":25,"num":13,"count":52,"class_id":61}]}]};
+			            chart_column_stack('.chart5', zyx_Data5.title, zyx_Data5.categories, zyx_Data5.ytitle, zyx_Data5.data, zyx_Data5.totalName, zyx_Data5.units, false);
+			
+			            initSingleColumnChart($('.chart5'), zyx_Data5.data);
+			
+			            $('.chart-column-legend > span').on("click",function(){
+			                legendUpdate($(this), $('.chart5'), zyx_Data5.data, true);
+			            });
+			       </script>
+				</div>
+				
+				<script type="text/javascript">
+					$('.graph-tabs > a').click(function (){
+		                var obj = $(this),
+		                    showid = obj.attr("data-name"),
+		                    p = obj.closest('.zyx_tabData');
+		
+		                obj.addClass('active').siblings().removeClass('active');
+		                $('.tabcon[data-name]').hide();
+						$('.tabcon[data-name="'+showid+'"]').show();
+		                doReflow(p);
+		            });
+		            
+		            $(function () {
+		                $('.graph-tabs > a:first').trigger('click');
+		            });
+				</script>					
+			</div>
+		</div>
+		
+		<div class="zyx_content">
+			<div class="zyx_Table">
+				<h3>年级优良率统计</h3>
+				<table class="zyx_border" ng-repeat='ListOne in gradeData'>
+					<thead>
+						<tr>
+    						<th rowspan="2" style="width: 20%;" ng-bind="ListOne.tit"></th>
+                            <th colspan="2" style="width: 20%;">A（优秀）</th>
+                            <th colspan="2" style="width: 20%;">B（良好）</th>
+                            <th colspan="2" style="width: 20%;">C（合格）</th>
+                            <th colspan="2" style="width: 20%;">D（有待改进）</th>
+                        </tr>
+						<tr>
+                        	<th style="width: 10%;">人数</th>
+    						<th style="width: 10%;">占比(%)</th>
+                    		<th style="width: 10%;">人数</th>
+    						<th style="width: 10%;">占比(%)</th>
+                    		<th style="width: 10%;">人数</th>
+    						<th style="width: 10%;">占比(%)</th>
+                    		<th style="width: 10%;">人数</th>
+    						<th style="width: 10%;">占比(%)</th>
+                        </tr>
+			        </thead>
+			        <tbody>
+			        	<tr ng-repeat='ListTwo in ListOne.grad'>
+			        		<td ng-bind='ListTwo.tit'></td>
+			        		<td ng-bind='ListTwo.peopleNumA'></td>
+			        		<td ng-bind='ListTwo.proportionA'></td>
+			        		<td ng-bind='ListTwo.peopleNumB'></td>
+			        		<td ng-bind='ListTwo.proportionB'></td>
+			        		<td ng-bind='ListTwo.peopleNumC'></td>
+			        		<td ng-bind='ListTwo.proportionC'></td>
+			        		<td ng-bind='ListTwo.peopleNumD'></td>
+			        		<td ng-bind='ListTwo.proportionD'></td>
+			        	</tr>
+			        </tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

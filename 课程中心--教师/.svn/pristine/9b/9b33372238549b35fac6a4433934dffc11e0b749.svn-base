@@ -1,0 +1,400 @@
+
+		<style type="text/css">
+			html{font: normal normal 62.5% "Microsoft YaHei";}/*加上是--1rem等于10px*/
+			.header{height: 96px;}
+			.head{
+				width: 100%;
+				min-width: 1200px;
+				background-color:#fff;
+				box-shadow: 0 0 8px #c7c9ce;
+				-webkit-box-shadow: 0 0 8px #c7c9ce;
+			    -moz-box-shadow: 0 0 8px #c7c9ce;
+			    -ms-box-shadow: 0 0 8px #c7c9ce;
+				position: fixed;
+				top:0;
+				z-index: 1001;
+			}
+			.head .logo{
+				width: 330px;
+				height: auto;
+				margin: 22px 4px 10px 16px;
+			}
+			.head .list{
+				width: 56%;
+				min-width: 640px;
+				padding-left: 1%;
+			}
+			.head .list li{
+				float: left;
+			    width: 13%;
+			    font-size: 1.8rem;
+			    line-height: 96px;
+			}
+			.head .list li:nth-child(1),.head .list li:nth-child(3){width: 17.5%;}
+			.head .list li a{
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+				height: 18px;
+				line-height: 18px;
+				/*border-right:1px solid #e5e5e5;*/
+			}
+			.head .list li.active{border-bottom: 4px solid #5093E1;}
+			/*.head .list li:first-of-type a{border-left:1px solid #e5e5e5;}*/
+			
+			
+			.head .btn .login{font-size: 1.2rem;font-style: normal;}
+			/*.head .btn strong {
+		    	font-weight: normal;
+		    	position: relative;
+		    }*/
+		    /*.head .btn>div>span{display: inline-block; width: 30px; height: 30px; border-radius: 50%; overflow: hidden; background: royalblue; margin-bottom: -8px;}*/
+		    .head .btn strong img.xiala{
+		    	margin-top: 22px;
+		    	margin-right: 14px;
+		    }
+		    .head .btn strong img.tuichu{
+		    	margin-top: 4px;
+		    }
+		    .head .btn strong span{color:#5093e1;}
+		    .head .btn .personal{
+		    	width: 93px;
+			    height: 28px;
+			    position: absolute;
+			    top: 49px;
+			    right: 7px;
+			    z-index: 1111;
+			    border-radius: 3px;
+			    display: none; 
+			    background: url(../img/tuichu_bg.png) no-repeat;
+		    }
+		    .head .btn .personal li{
+		    	width:98px;
+			    height: 24px;
+			    line-height: 24px;
+			    text-align: center;
+			    font-size: 1.2rem;
+		    }
+		    .head .btn .personal li span{color:#222;}
+		    .head .btn strong:hover .personal{display: block;}
+		    
+		    .remind {
+			    position: relative;
+			    margin-top: 5px;
+			    padding: 32px 7px 14px;
+			}
+			
+		    .reminder_bell{cursor: pointer;}
+		    .remind span>em{
+		    	font-style: normal;
+		    	position: absolute;
+		    	top: 30px;
+		    	left: 22px;
+		    	border-radius: 10px;
+		    	background: #f64040;
+		    	color: #fff;
+		    	font-size: 12px;
+		    	min-width: 8px;
+			    height: 13px;
+			    line-height: 13px;
+	    	    cursor: pointer;
+			    padding: 0 2px;
+			    text-align:center;
+		    }
+		    .remind_list{
+		    	/*display: none !important;*/
+		    	transition: all .5s ease;
+		    	max-height: 0;
+		    	position: absolute;
+		    	top: 64px;
+		    	left: -160px;
+		    	width: 278px; 
+    			height: 180px; 
+    			/*overflow-y: auto;*/
+    			overflow: hidden;
+    			border: 0 solid #e5e5e5; 
+    			border-radius: 5px;
+    			box-shadow: 0 0 5px #e5e5e5;
+			    background: #fff;
+			}
+			.remind_list i{
+				display: none;
+				font-style: normal; 
+				display: inline-block;
+				width: 100%; 
+				height: 30px; 
+				line-height: 30px;
+				font-size: 14px;
+				text-align: center;
+			}
+			.remind_list ul{font-size: 14px;}
+			.remind_list ul li{
+				height: 30px;
+				line-height: 30px;
+				padding: 0 10px;
+				background: #fff;
+				cursor: pointer;
+				color: #739bd0;
+			    width: 92%;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			}
+			.remind_list ul li a{
+				color: #739bd0; 
+				display: inline-block; 
+				width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			.remind_list ul li:hover{background: #d9e7f8;}
+            .numaction{position:absolute;right:50px;bottom:-50px;font-size:20px;}
+            .numjia{color:#f00}
+            .numjian{color:#2ab528}
+            
+            /**/
+            .zy_users{position: relative; font-size: 15px; height: 96px; margin-right: 68px;}
+			/*.zy_users span{cursor: pointer; display: inline-block; padding: 0 20px; text-align: center; height: 40px; line-height: 40px; background: #1479bf; border-radius: 20px; color: #fff;}*/
+			/*.zy_users span:hover{background: #0b5d96;}*/
+			.zy_users>span{width: 25px; height: 25px; display: inline-block; cursor: pointer; margin: 36px 20px 0; border-radius: 50%; overflow: hidden;}
+			.zy_users>span>img{width: 100%; height: 100%;}
+			.zy_users:hover ul{max-height: 223px;}
+			.zy_users>ul{transition: all .5s ease; max-height: 0; overflow: hidden;position: absolute;top: 70px;left: -110px;box-sizing: border-box;width: 200px;border-radius: 5px;box-shadow: 0 0 2px 0 #ccc; background: #fff; z-index: 1;}
+			.zy_users>ul li {padding: 0 10px; cursor: pointer;}
+			.zy_users>ul li p{padding: 0 5px; line-height: 36px; }
+			.zy_users>ul li:not(:last-of-type) p{border-bottom: 1px solid #f1f2f3;}
+			.zy_users>ul li:not(:last-of-type):hover{background: #F9F9F9;}
+			.zy_login_out{background: url(../img/loginOut.png) 75px center no-repeat #F1F2F3; text-align: center;}
+			.zy_login_out>p{padding-left: 26px !important;}
+		</style>
+
+		<div class="head clearfix">
+        
+		    <p class="numaction numjia">+5</p>
+		    
+			<img class="logo fl" src="../img/logo.png" alt="" />
+			<ul class="list fl">
+				<li class="active"><a href="../1-gerenziyuan/myziyuan.html">个人资源中心</a></li>
+				<li><a href="../2-jiaoyanzhongxin/wx_jiaoyanhuodong.html">教研中心</a></li>
+				<li><a href="../3-gonggongziyuan/common_center.html">公共资源中心</a></li>
+				<li><a href="../4-zuoyezhongxin/taskCenter_list.html">任务中心</a></li>
+				<li><a href="../5-ketangjilu/classRoom.html">课堂记录</a></li>
+				<li><a href="../6-zonghepingjia/zonghepingjia.html">综合评价</a></li>
+				<li><a href="../7-xiaobenkecheng/shetuanxiangqing.html">校本课程</a></li>
+				<!--<li><a href="">活动活动</a></li>-->
+			</ul>
+			<div class="zy_users btn fr clearfix">
+        		<span>
+        			<img src="../img/userPhoto.png"/>
+        		</span>
+            	<ul>
+            		<li><p>姓名：<span></span></p></li>
+            		<li><p>学校：<span></span></p></li>
+            		<li><p>班级：<span></span></p></li>
+            		<li class="zy_login_out"><p>退出</p></li>
+            	</ul>
+			</div>
+			<div class="remind fr">
+				<span>
+					<img src="../img/bell.png" class="reminder_bell" alt="" />
+					<em>99</em>
+				  
+                   
+				</span>
+				<div class="remind_list">
+					<i>空</i>
+					<ul class="">
+						<!--<li><a href="javascript:;">学生上传资源学生上传资源学生上传资源学生上传资源</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>
+						<li><a href="javascript:;">1学生上传资源《三角函数》</a></li>-->
+						<li>学生上传资源学生上传资源学生上传资源学生上传资源</li>
+						<li>1学生上传资源《三角函数》</li>
+						<li>1学生上传资源《三角函数》</li>
+						<li>1学生上传资源《三角函数》</li>
+						<li>1学生上传资源《三角函数》</li>
+						<li>1学生上传资源《三角函数》</li>
+						<li>1学生上传资源《三角函数》</li>
+						<li>1学生上传资源《三角函数》</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		// JavaScript Document
+		(function($){
+			$.fn.myScroll = function(options){
+			//默认配置
+			var defaults = {
+				speed:40,  //滚动速度,值越大速度越慢
+				rowHeight:24 //每行的高度
+			};
+			
+			var opts = $.extend({}, defaults, options),intId = [];
+			
+			function marquee(obj, step){
+			
+				obj.find("ul").animate({
+					marginTop: '-=1'
+				},0,function(){
+						var s = Math.abs(parseInt($(this).css("margin-top")));
+						if(s >= step){
+							$(this).find("li").slice(0, 1).appendTo($(this));
+							$(this).css("margin-top", 0);
+						}
+					});
+				}
+				
+				this.each(function(i){
+					var sh = opts["rowHeight"],speed = opts["speed"],_this = $(this);
+					intId[i] = setInterval(function(){
+						if(_this.find("ul").height()<=_this.height()){
+							clearInterval(intId[i]);
+						}else{
+							marquee(_this, sh);
+						}
+					}, speed);
+		
+					_this.hover(function(){
+						clearInterval(intId[i]);
+					},function(){
+						intId[i] = setInterval(function(){
+							if(_this.find("ul").height()<=_this.height()){
+								clearInterval(intId[i]);
+							}else{
+								marquee(_this, sh);
+							}
+						}, speed);
+					});
+				
+				});
+		
+			}
+		
+		})(jQuery);
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.head .list li').on('click',function(){
+				$(this).find('a').addClass('active').parent('li').siblings('li').find('a').removeClass('active');
+			});
+		});
+		
+		//移入显示消息列表
+		/*var timer = null;
+		var objF = $('.remind_list ul');
+		$('.remind').on('mouseover',function (){
+			clearTimeout(timer);
+			$('.remind_list').show();
+			! objF.children().length ? $('.remind_list>i').show() : $('.remind_list>i').hide();
+		}).on('mouseout',function (){
+			timer=setTimeout(function (){
+				$('.remind_list').hide();
+			},300);
+		});*/
+		
+		//打开页面判断是否有消息展示列表
+		var objF = $('.remind_list ul');
+		/*if(! objF.children().length){
+			$('.remind_list>i').show();
+			$('.remind_list').hide();
+		}else{
+			$('.remind_list>i').hide();
+			$('.remind_list').show();
+		}*/
+		
+		! objF.children().length ? $('.remind_list').hide().find('i').show() : $('.remind_list').show().find('i').hide();
+		//! objF.children().length ? $('.remind_list>i').show() : $('.remind_list>i').hide();
+
+		/*$('.remind').on('click',function (){
+			$(this).find('.remind_list').toggle();
+		});*/
+		
+		/*var zyx = true;
+		$('.remind').on('click',function (){
+			if(zyx){
+				$(this).find('.remind_list').hide();
+				zyx = false;
+			}else{
+				$(this).find('.remind_list').show();
+				zyx = true;
+			}
+		});*/
+		
+		//点击铃铛列表隐藏显示
+		$('.remind').on('click',function (){
+			$('.remind_list ul').css({'margin-top' : 0});
+			if($(this).find('.remind_list').css('max-height')=='0px'){
+				$(this).find('.remind_list').css({'max-height':'180px','border-width':'1px'});
+			}else{
+				$(this).find('.remind_list').css({'max-height':'0px','border-width':'0px'});
+			}
+		});
+/*		$('.remind').on('click',function (){
+			if($(this).find('.remind_list').css('display')=='block'){
+				$(this).find('.remind_list').hide();
+			}else{
+				$(this).find('.remind_list').show();
+			}
+		});*/
+
+		//文字无缝上下滚动
+		$(function() {
+			$("div.remind_list").myScroll({
+				speed: 40, //数值越大越慢
+				rowHeight: 30//li的告诉
+			});
+		});
+		
+		//列表高度归位
+		$('.remind_list ul').on('click',function (){
+			$(this).css({'margin-top' : 0});
+		});
+
+		
+		//点击列表隐藏列表
+		/*$(document).on('click','.remind_list ul li',function (){
+			$('.remind_list').hide();
+		});*/
+		
+		
+		//消息列表移入显示详情
+		$(document).on('mouseover','.remind ul li',function (){
+			$(this).attr({'title':$(this).text()});
+		});
+		
+		//消息列表点击删除
+		/*$(document).on('click','.remind_list ul li',function (){
+			$(this).remove();
+			$('.remind_list').hide();
+		});*/
+        
+        
+        function numAction(){
+            $('.numaction').show();
+			$('.numaction').animate({
+		    	opacity:'0',
+		    	fontSize:'10px',
+				right: '112px',
+				top: '-30px',
+                zIndex:100000,
+				display:'none'
+		    },1500,function(){
+		    	$(this).css({
+		    		opacity:'1',
+		    		position:'absolute',
+		    		fontSize:'20px',
+					right:'50px',
+					top:'80px',
+                    zIndex:100000,
+					display:'none'
+		    	});
+		    });
+		}
+        numAction();
+	</script>

@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>校领导-体检统计表</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css"/>
+	<link rel="stylesheet" href="../common/mCustomScrollbar/jquery.mCustomScrollbar.css" />
+	<link rel="stylesheet" type="text/css"  href="../css/index.css"/>
+	<script src="../js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/datatables.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../common/jquery.nicescroll.min.js"></script>
+	<script src="../common/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<style>
+		body{
+			background: #ececec;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="mlh_bg">
+		<!--头部开始-->
+		<div class="perHead"></div>
+		<!--头部结束-->
+		
+		<!--内容开始-->
+		<div class="perWrap mlh_wrap">
+			<!--学期选择 start-->
+			<div class="mlh_cont clearfix">
+				<div class="semester_left">
+					<div class="semester_tc">
+						<p><span>2016 - 2017学年  上学期</span><i></i></p>
+						<ul>
+						   	<li>2016 - 2017学年  上学期</li>
+						   	<li>2016 - 2017学年  下学期</li>  
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--学期选择 end-->
+			<!--年级与班级选择 start-->
+			<div class="mlh_cont">
+				<div class="grade">
+					<span>年级：</span>
+					<a href="#" class="mlh_white_btn active">一年级</a>
+					<a href="#" class="mlh_white_btn">一年级</a>
+					<a href="#" class="mlh_white_btn">一年级</a>
+					<a href="#" class="mlh_white_btn">一年级</a>
+				</div>
+				<div class="grade">
+					<span>班级：</span>
+					<a href="#" class="mlh_white_btn active">全部</a>
+					<a href="#" class="mlh_white_btn">（1）班</a>
+					<a href="#" class="mlh_white_btn">（1）班</a>
+					<a href="#" class="mlh_white_btn">（1）班</a>
+				</div>
+			</div>
+			<!--年级与班级选择 end-->
+			<!--学生体检信息 start-->
+			<div class="mlh_cont mlh_bottom">
+				<div class="title clearfix">
+					<span>学生体检信息</span>
+					<a href="#">导出体检表格</a>
+				</div>
+				<div class="data">
+					<!--学生体检信息表格 start-->
+					<div class="perHealthDeltail" id="boxscroll" data-mcs-theme="dark">
+						<table class="statistics_table" id="fraction_table">
+						<thead>
+							<tr>
+								<th>学籍号</th>
+									<th>姓名</th>
+									<th>性别</th>
+									<th>生源</th>
+									<th>年龄</th>
+									<th>身高</th>
+									<th>体重</th>
+									<th>肺活量</th>
+									<th>握力</th>
+									<th>右眼<br>视力</th>
+									<th>左眼<br>视力</th>
+									<th>右眼屈<br>光不正</th>
+									<th>左眼屈<br>光不正</th>
+									<th>结膜炎</th>
+									<th>左眼<br>沙眼</th>
+									<th>右眼<br>沙眼</th>
+									<th>龋齿补<br>总牙数</th>
+									<th>恒龋患</th>
+									<th>恒龋失</th>
+									<th>恒龋补</th>
+									<th>牙周</th>
+									<th>胸部</th>
+									<th>四肢</th>
+									<th>心脏</th>
+									<th>肝</th>
+									<th>脾</th>
+									<th>肺</th>
+									<th>头部</th>
+									<th>颈部</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+							<tr>
+								<td>20150201</td>
+									<td>赵锦松</td>
+									<td>男</td>
+									<td>乌鲁木齐</td>              
+									<td>13</td>
+									<td>168.0</td>              
+									<td>168.0</td>
+									<td>3081</td>
+									<td>32.2</td>
+									<td>5.0 </td>
+									<td>5.0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+									<td>0</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+					<!--学生体检信息表格  end-->
+				</div>
+			</div>
+			<!--学生体检信息 end-->
+		</div>
+		<!--内容结束-->
+	</div>
+</body>
+</html>
+<script>
+		/*头部加载==============================================*/
+		$('.perHead').load('../head.html');
+		/*学期选择 模拟select===================================*/
+		$('.semester_tc').on('click',function(e){
+			$(this).find('ul').toggle();
+		});
+		$('.semester_tc>ul li').on('click',function(){
+			$(this).addClass('active')
+			.siblings().removeClass('active')
+			.parent().siblings('p').children('span').text($(this).text());
+		});
+		/*班级点击切换效果===================================*/
+		$('.grade a').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+		//table
+		$('#fraction_table').DataTable({
+			paging: false, // 不分页
+			info: false, // 不显示info
+			searching: false, // 不显示搜索框
+			language: {
+				emptyTable: "暂无数据"
+			},
+			"columnDefs": [
+                { "type": "natural", targets: [2,4,5,6,7,8,9,10] },
+                { "type": "chinese-string", targets: 1},
+                {"type":"defineNum",targets: 3}
+            ]
+
+		});
+   		//滚动
+	    $("#boxscroll").mCustomScrollbar({
+            axis:"x",
+            scrollButtons:{enable:true},
+            theme:"3d-dark",
+            scrollbarPosition:"outside",
+            callbacks:{ onScroll:function(){
+                
+            } },
+                
+        });
+</script>

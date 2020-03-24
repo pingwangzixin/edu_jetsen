@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>保健医-体检-未录入</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+	<link rel="stylesheet" type="text/css"  href="../css/index.css"/>
+	<script src="../js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<style>
+		body{
+			background: #ececec;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="mlh_bg">
+		<!--头部开始-->
+		<div class="perHead"></div>
+		<!--头部结束-->
+		
+		<!--内容开始-->
+		<div class="perWrap mlh_wrap">
+			<!--学期选择 start-->
+			<div class="mlh_cont clearfix">
+				<div class="semester_left">
+					<div class="semester_tc">
+						<p><span>2016 - 2017学年  上学期</span><i></i></p>
+						<ul>
+						   	<li>2016 - 2017学年  上学期</li>
+						   	<li>2016 - 2017学年  下学期</li>  
+						</ul>
+					</div>
+				</div>
+				<div class="semester_right">
+					<a href="#" class="mlh_blue_btn">录入</a>
+				</div>
+			</div>
+			<!--学期选择 end-->
+			<!--年级与班级选择 start-->
+			<div class="mlh_cont">
+				<div class="grade">
+					<span>年级：</span>
+					<a href="#" class="mlh_white_btn active">一年级</a>
+					<a href="#" class="mlh_white_btn">一年级</a>
+					<a href="#" class="mlh_white_btn">一年级</a>
+					<a href="#" class="mlh_white_btn">一年级</a>
+				</div>
+				<div class="grade">
+					<span>班级：</span>
+					<a href="#" class="mlh_white_btn active">全部</a>
+					<a href="#" class="mlh_white_btn">（1）班</a>
+					<a href="#" class="mlh_white_btn">（1）班</a>
+					<a href="#" class="mlh_white_btn">（1）班</a>
+				</div>
+			</div>
+			<!--年级与班级选择 end-->
+			<!--学生体检信息 start-->
+			<div class="mlh_cont mlh_bottom">
+				<div class="title clearfix">
+					<span>学生体检信息</span>
+					<a href="#">导出成绩表格</a>
+				</div>
+				<div class="nodata">
+					本年度本班级还没有体检数据，请从右上角录入数据
+				</div>
+			</div>
+			<!--学生体检信息 end-->
+		</div>
+		<!--内容结束-->
+	</div>
+</body>
+</html>
+<script>
+		/*头部加载==============================================*/
+		$('.perHead').load('../head.html');
+		/*学期选择 模拟select===================================*/
+		$('.semester_tc').on('click',function(e){
+			$(this).find('ul').toggle();
+		});
+		$('.semester_tc>ul li').on('click',function(){
+			$(this).addClass('active')
+			.siblings().removeClass('active')
+			.parent().siblings('p').children('span').text($(this).text());
+		});
+		/*班级点击切换效果===================================*/
+		$('.grade a').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+</script>

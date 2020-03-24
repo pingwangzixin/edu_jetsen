@@ -1,0 +1,33 @@
+<div class="mlh_right">
+	<div class="title pointer" ui-sref="secondNav.leftTree.indexList">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span ng-bind="variablePacket.data.title"></span>
+	</div>
+	<div class="list details">
+		<div class="table">
+	      <div class="table_tr">
+          <div class="table_td">通知:</div>
+          <div class="table_td" ng-bind="variablePacket.data.notice"></div>
+	      </div>
+	      <div class="table_tr">
+          <div class="table_td">对象：</div>
+          <div class="table_td"><span class="btn_border expert" ng-bind="variablePacket.data.expert"></span><span ng-bind="variablePacket.data.teacher" class="btn_border teacher"></span></div>
+	      </div>
+	      <div class="table_tr">
+          <div class="table_td">机构：</div>
+          <div class="table_td"><span class="institution" ng-bind="variablePacket.data.xiaoxue"></span><span class="institution" ng-bind="variablePacket.data.chuzhong"></span></div>
+	      </div>
+	      <div class="table_tr">
+          <div class="table_td">内容：</div>
+          <div class="table_td" ng-bind="variablePacket.data.content">
+          </div>
+	      </div>
+	      <div class="table_tr">
+          <div class="table_td">附件：</div>
+          <div class="table_td">
+          	<a class="adjunct" href="./img/newPic.jpg" download="唐诗鉴赏.jpg" ng-bind="variablePacket.data.adjunct"></a>
+          </div>
+	      </div>
+		</div>
+	</div>
+</div>

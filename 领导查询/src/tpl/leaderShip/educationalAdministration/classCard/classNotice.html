@@ -1,0 +1,33 @@
+<div class="mlh_classNotice">
+	<!--标题显示 start-->
+	<div class="title"  ng-if='(variablePacket.range=="school"&&variablePacket.nav=="school") || variablePacket.range=="class"'>
+		<a href="javascript:;" ui-sref="secondNav.leftTree.publicEdit({state:'classNotice'})">
+			<i class="iconfont icon-jiahao"></i>
+			创建班务公示
+		</a>
+	</div>
+	<!--标题显示 start-->
+	<!--列表显示 start-->
+	<div class="list" ng-repeat="i in publicityData.publicity">
+		<ul>
+			<li>
+				<div class="gongshi_left">
+					<span class="gongshi">公示</span>
+					<a href="javascript:;" ui-sref="secondNav.leftTree.publicDetails({state:'classNotice',title:i.title})" class="name" ng-bind="i.title"></a>
+				</div>
+				<time class="time" ng-bind="i.time"></time>
+				<div class="operation"  ng-if='(variablePacket.range=="school"&&variablePacket.nav=="school") || variablePacket.range=="class"'>
+					<a href="javascript:;" ng-click="deleteData($index,'publicity',i.title)"><i class="iconfont icon-shanchu"></i>删除</a>
+					<a href="javascript:;" ui-sref="secondNav.leftTree.publicEdit({name:'edit',state:'classNotice'})"><i class="iconfont icon-bianji2"></i>编辑</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!--标题显示 end-->
+	<!--分页-->
+	<div class="wx_paging">
+        <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+    </div>
+    <!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>

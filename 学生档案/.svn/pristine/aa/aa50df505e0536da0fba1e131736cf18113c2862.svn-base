@@ -1,0 +1,129 @@
+/*公用样式*/
+body{background-color: #edeff5;}
+
+iframe{border:0 none;}
+html,body{
+  width: 100%;
+  height: 100%;
+  background-color: #edeff0; 
+  font-size: 14px;
+  }
+/*.main{width: 100%;min-width: 1200px;min-height: 450px;position:relative;}
+	 @media screen and (min-width:1024px) and (max-width:1300px){
+	    .main{top:2px;}
+	 }*/
+.g_main{
+	box-sizing: border-box;
+	width: 1200px;
+  /*height: 100%;*/
+ 
+	padding: 6px 0;
+  margin: 16px auto 150px;
+  
+}
+
+.g_border{
+  border: 1px solid #e0e2e3;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 3px #e5e5e5;
+  background: #fff;
+}
+
+.g_star{font-style: normal; color: red;}
+.g_red_error{font-weight: normal; color: red;}
+
+/* 头部 */
+.g_header{height: 44px; background: #fff; box-shadow: 0 0 4px 0 #ccc;}
+.g_header .nav{box-sizing: border-box; width: 1200px; padding: 0 16px; margin: 0 auto;}
+.g_header .logo_group{line-height: 44px;}
+.g_header .logo_group img{vertical-align: middle; margin-right: 10px;}
+.g_header .nav p{font-size: 16px; line-height: 44px; margin: 0 50px 0 30px;}
+/* .g_header .nav ul{font-size: 16px; border-left: 1px solid #e5e5e5; margin: 17px 0;}
+.g_header .nav ul li{border-right: 1px solid #e5e5e5; padding: 0 22px; cursor: pointer;}
+.g_header .nav ul li.active{color: #5093e1;} */
+.g_header .nav .user_info{line-height: 44px;}
+.g_header .nav .user_info span{position: relative; color: #5093e1; margin-right: 20px;}
+.g_header .nav .user_info span::after{position: absolute; top: 8px; right: -16px; display: block; content: ""; border: 6px solid transparent; border-top-color: #5093e1;}
+.g_header .nav .user_info b{font-weight: normal;}
+
+/* 底部 */
+.g_footer{width: 1200px; margin: 150px auto 0;}
+.g_footer .foot{text-align: center; line-height: 40px; color: #383b3d;}
+.g_footer .foot li span{margin: 0 20px;}
+
+
+/* 弹框类 */
+.prompt_box{
+   text-align: center;
+}
+.prompt_box .hide{
+  position: fixed;
+  z-index: 1003;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  opacity: 0.3;
+  background: rgba(0,0,0,1);
+}
+.prompt_box .con{
+	position: fixed;
+	top:0;
+	left:0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+  z-index:1003;
+  width:328px;
+  height: 180px;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  opacity: 1;
+  -webkit-box-shadow: 0 0 6px #ccc;
+  -moz-box-shadow: 0 0 6px #ccc;
+  box-shadow: 0 0 6px #ccc;
+}
+
+/*弹框框*/
+.public_box{font-size: 14px;}
+.public_box .con{box-sizing: border-box; padding: 0 16px;}
+.public_box .con .tit{height: 34px; text-align: left; border-bottom: 2px solid #e5e5e5;}
+.public_box .con .tit span{display: inline-block; line-height: 33px; font-size: 14px; color: #5093e1; border-bottom: 1px solid #e5e5e5;}
+.prompt_box .main_cont i{font-size: 42px;}
+.btn_group{}
+.btn_group button{outline: none; width: 110px; height: 30px; border: 1px solid transparent; border-radius: 5px; cursor: pointer;}
+.btn_group button.sure{background: #dfecfa; color: #5093e1; margin-right: 20px;} 
+.btn_group button.cancel{background: #fff; border-color: #e5e5e5;} 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {-webkit-appearance: none;}
+input[type=number]{-moz-appearance:textfield; }  
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance: none; margin: 0;} 
+
+.public_box .con .main_cont p input{box-sizing: border-box; width: 180px; padding: 0 10px; height: 30px; border: 1px solid #e5e5e5; border-radius: 5px;}
+.public_box .con .main_cont p.tip{display: none; text-align: center; color: #D63E3E; margin-top: 2px;}
+
+/*确认删除框*/	
+.confirm_box{}
+.confirm_box .con{width: 420px; height: 240px;}
+.confirm_box .con .tit{border: none;}
+.confirm_box .con .tit span{color: inherit; border: none;}
+.confirm_box .main_cont{margin: 20px 0;}
+.confirm_box .main_cont i.warning{color: #F65277;}
+.confirm_box .main_cont p{margin-top: 30px;}
+
+/*回到顶部*/
+.back_top_wrap{float: right;}
+.back_top{position: fixed; bottom: 30px; cursor: pointer;}
+
+/*loading遮罩*/
+.waiting_box{}
+.waiting_box .main_cont{margin-top: 50px;}
+.waiting_box .main_cont p{margin-top: 10px;}
+
+/*定时提示框*/
+.timing_box{}
+.timing_box .main_cont{margin-top: 50px;}
+.timing_box .main_cont i.success{color: #1BBC9B;}
+.timing_box .main_cont i.warning{color: #F65277;}
+.timing_box .main_cont i.fail{color: #F65277}
+.timing_box .main_cont p{margin-top: 10px;}

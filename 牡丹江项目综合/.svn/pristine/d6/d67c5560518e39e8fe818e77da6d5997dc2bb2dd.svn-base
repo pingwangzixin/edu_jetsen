@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>电子秤数据（女生）</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/dateRange.css"/>
+	<link rel="stylesheet" type="text/css"  href="../css/index.css"/>
+	<script src="../js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/datatables.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/highcharts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/highcharts-functions.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/dateRange.js"></script>
+	<script type="text/javascript" src="../js/monthPicker.js"></script>
+</head>
+
+<body>
+	<!--头部开始-->
+	<div class="perHead"></div>
+	<!--头部结束-->
+	
+	<!--内容开始-->
+	<div class="perWrap historyClass">
+		<!--年级班级开始-->
+		<div class="gradBorder">
+			<ul class="gradWrap classTop">
+				<li class="classtit">四年级（3）班</li>
+				<li>历史数据</li>
+				<span class="goback"><a href="health-handle.html">返回</a></span>
+			</ul>
+			
+		</div>
+		<!--年级班级结束-->
+		<div class="perRight">
+			<!--图表标题   选择选项开始 -->
+			<div class="chartWrap clearfix">
+				<!--左边图表开始-->
+				<div class="head_ChartWrap clearfix">
+					<h4>姓名: <span>梁新乐</span>性别: <span>女</span>学校: <span>李欣实验小学</span>班级: <span>四年级（3）版</span>学号: <span>G54654321343354321</span></h4>
+					<div class="historyMain_tabs">
+						<span><a href="braceletDataPerson.html">手环数据</a></span>
+						<span class="active"><a href="balanceDataSlefGirl.html">电子秤数据</a></span>
+					</div>
+				</div>
+				<!--<div class="chartBtn fr">
+						班级历史数据
+					</div>-->
+				<!--左边图表结束-->
+				
+				
+			</div>
+			<!--图表标题   选择选项结束-->
+			<div class="per_center">
+				<div class="per_center_top per_center_bot">
+					<div class="people_sex people_xinlv" style="width: 45%;position: relative;">
+						<h5>身高<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div style="display: flex; width: 100%;">
+							<div id="high_highcharts" class="steps_highcharts" style="width: 100%;margin-top: 10px; height: 200px;">
+								
+							</div>
+						</div>
+						<div class="limithigh" id="boyhigh" onselectstart="return false">
+							--- 身高上下限
+						</div>
+					</div>
+					<script type="text/javascript">
+						
+						var hightcharstBoy = new Highcharts.Chart('high_highcharts', {
+						    title: {
+						        text: '',
+						    },
+						    xAxis: {
+						    	tickPosition: 'inside',
+						        categories: ['05/29','05/29','05/29','05/29','05/29','05/29'],
+						        tickmarkPlacement: 'on'
+						    },
+						    yAxis: {
+						        title: {
+						            text: 'cm',
+						            rotation:'0',
+						            align:'low',
+						            x:10,
+						            y:13
+						        },
+						        gridLineColor:'white',
+						        lineColor: '#ccc',
+		       					lineWidth: 1,
+		       					plotLines: [{
+						            color: '#666',
+						            width: 2,
+						            value: 10,
+						            dashStyle:'ShortDash',
+						            label:{
+						            	text:"平均体重",
+						            	align:'right',
+						            	y:12
+						            },
+						            id:'plotline'
+						        }]
+						    },
+						    tooltip: {
+						        valueSuffix: '°C'
+						    },
+						    legend: {
+						    	enabled:true
+						    },
+						    series: [{
+						        name: '我的身高',
+						        color:'#aa8bff',
+						        data: [7.0, 6.9, 9.5, 14.5, 6.9, 9.5]
+						    },{
+						        name: '女生平均身高',
+						        color:'#ff9ca0',
+						        data: [6.0, 18, 2, 5, 20, 25]
+						    }]
+						});
+						//点击身高标识线
+						$('#boyhigh').on('click',function(){
+							$(this).toggleClass('active');
+							if(!$(this).hasClass('active')){
+								hightcharstBoy.yAxis[0].addPlotLine({
+									color: '#666',
+						            width: 2,
+						            value: 10,
+						            dashStyle:'ShortDash',
+						            label:{
+						            	text:"平均体重",
+						            	align:'right',
+						            	y:12
+						            },
+						            id:'plotline'
+								});
+							}else{
+								hightcharstBoy.yAxis[0].removePlotLine('plotline');
+							}
+						})
+					</script>
+					<div class="people_sex people_xinlv" style="flex: 1;margin-right: 0;position: relative;">
+						<h5>体重<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div style="display: flex; width: 100%;">
+							<div id="weight_highcharts" class="steps_highcharts" style="width: 100%;margin-top: 10px; height: 200px;">
+								
+							</div>
+						</div>
+						<div class="limithigh" id="boyWeight" onselectstart="return false">
+							--- 体重上下限
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					var weightChartBoy = new Highcharts.Chart('weight_highcharts', {
+					    title: {
+					        text: '',
+	//				        x: -20
+					    },
+					    xAxis: {
+					    	tickPosition: 'inside',
+					        categories: ['05/29','05/29','05/29','05/29','05/29','05/29'],
+					        tickmarkPlacement: 'on'
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'kg',
+					            rotation:'0',
+					            align:'low',
+					            x:10,
+					            y:13
+					        },
+					        gridLineColor:'white',
+					        lineColor: '#ccc',
+	       					lineWidth: 1,
+	       					 plotLines: [{
+					            color: '#666',
+					            width: 2,
+					            value: 10,
+					            dashStyle:'ShortDash',
+					            label:{
+					            	text:"平均体重",
+					            	align:'right',
+					            	y:12
+					            },
+					            id:"plotlinew"
+					        }]
+					    },
+					    
+					    tooltip: {
+					        valueSuffix: '°C'
+					    },
+					    legend: {
+					    	enabled:true
+					    },
+					    series: [{
+						        name: '我的体重',
+						        color:'#aa8bff',
+						        data: [7.0, 6.9, 9.5, 14.5, 6.9, 9.5]
+						    },{
+						        name: '女生平均体重',
+						        color:'#ff9ca0',
+						        data: [6.0, 18, 2, 5, 20, 25]
+						    }]
+					});
+					//点击体重标识线
+					$('#boyWeight').on('click',function(){
+						$(this).toggleClass('active');
+						if(!$(this).hasClass('active')){
+							weightChartBoy.yAxis[0].addPlotLine({
+								color: '#666',
+					            width: 2,
+					            value: 10,
+					            dashStyle:'ShortDash',
+					            label:{
+					            	text:"平均体重",
+					            	align:'right',
+					            	y:12
+					            },
+					            id:'plotlinew'
+							});
+						}else{
+							weightChartBoy.yAxis[0].removePlotLine('plotlinew');
+						}
+					})
+				</script>
+				</div>
+			</div>
+			
+			<!--学生健康信息表格开始-->
+			<div class="perHealthDeltail clearfix">
+				<div class="fl chart_sex">
+					<div class="selectItem clearfix">
+						<span class="fl" style="font-size: 16px;">时间段：</span>
+						<div class="fl timeSlot" id="timeSlot">
+						</div>
+					</div>
+					<script type="text/javascript">
+						var dateRange = new pickerDateRange('timeSlot', {
+							aRecent7Days : 'aRecent7DaysDemo3', //最近7天
+							isTodayValid : false,
+							startDate : '2017-04-14',
+							endDate : '2017-06-21',
+							//nff9e9eCompare : true,
+							//isSingleDay : true,
+							//shortOpr : true,
+							defaultText : ' 至 ',
+							inputTrigger : 'input_trigger_demo3',
+							theme : 'ta',
+							success : function(obj) {
+								
+							}
+						});
+					</script>
+					<div class="selectItem timewrap clearfix">
+						<span class="fl" style="font-size: 16px;">关键字：</span>
+						<input type="text" value=""/>
+						<i></i>
+					</div>
+				</div>
+				<table class="statistics_table fl" id="fraction_table1" style="width:100%;margin-top: 20px;">
+						<thead>
+						<tr>
+							<th>时间 </th>
+							<th>身高</th>
+							<th>体重</th>
+							<th>BMI</th>
+							<th>脂肪率</th>
+							<th>肌肉量</th>
+							<th>基础代谢</th>
+							<th>内脏脂肪等级</th>
+							<th>水分率</th>
+							<th>骨量</th>
+							<th>蛋白质</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+						<tr>
+							<td>2017-06-08</td>
+							<td>144</td>
+							<td>45</td>
+							<td>45</td>              
+							<td>45</td>              
+							<td>45kg</td>              
+							<td>1174千卡</td>              
+							<td>55</td>              
+							<td>71.9%</td>  
+							<td>55kg</td>              
+							<td>71.9%</td>  
+						</tr>
+					</tbody>
+				</table>
+					<script type="text/javascript">
+						$('#fraction_table1').DataTable({
+								paging: false, // 不分页
+								info: false, // 不显示info
+								searching: false, // 不显示搜索框
+								language: {
+									emptyTable: "暂无数据"
+								},
+								"columnDefs": [
+					                { "type": "chinese-string", targets: 1},
+					                {"type":"defineNum",targets: 3}
+					            ]
+							});
+					</script>
+
+			</div>
+			<!--学生健康信息表格结束-->
+			
+		</div>
+	</div>
+	<!--内容结束-->
+</body>
+</html>
+<script>
+		/*头部加载==============================================*/
+		$('.perHead').load('../head.html');
+		/*班级点击切换效果===================================*/
+		$('.historyMain_tabs span').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+		
+		/*以下模拟select===================================================*/
+		$('.selection').on('click',function(e){
+			$(this).find('ul').toggle();
+			$(this).parents('li').siblings().find('.opt').hide();
+		})
+		
+		$('.selection>ul li').on('click',function(){
+			$(this).addClass('active')
+			.siblings().removeClass('active')
+			.parent().siblings('p').text($(this).text());
+		})
+		
+		$(document).on('click',function(e) {
+			if(typeof e.target.parentNode.className=='string'){
+				if(e.target.parentNode.className.indexOf('selection')==-1){
+					$('.opt').hide();
+				}
+			}
+		})
+		//步数周年月切换
+		$('.bushu_cycle i').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active')
+		});
+		
+</script>

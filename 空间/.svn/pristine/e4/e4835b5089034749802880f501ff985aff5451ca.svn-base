@@ -1,0 +1,55 @@
+<div>
+	<div class="zyx_greenbox zyx_classNotice">
+		<div class="zyx_whitebox">
+			<div class="zyx_title">
+				<span>班级公告</span>
+				<small>共有{{classNoticeListBtn.totalItems}}条记录</small>
+				<div ng-if="!variable.editFlag" class="zyx_announcements" ui-sref='wrap.classSpace.classNotice.classNoticeEdit({state:0})'>发布公告</div>
+			</div>
+			<div class="zyx_classNotice_list clearfix" ng-repeat='i in classNoticeList'>
+				<div class="fl zyx_name_time">
+					<b ng-bind='i.title' ui-sref="wrap.classSpace.classNotice.classNoticeDetails({noticeId:i.id})"></b>
+					<div>
+						<span ng-bind='i.createDate'></span>
+						<span ng-bind='i.readCount''></span>已读
+					</div>
+				</div>
+				<div class="fr zyx_del_edit">
+					<span  ng-if="!variable.editFlag"  ng-click='classNoticeListDel($index,i.id)'>
+						<i  class="iconfont icon-shanchu"></i>删除
+					</span>
+					<span ng-if="!variable.editFlag" ui-sref='wrap.classSpace.classNotice.classNoticeEdit({state:1,noticeId:i.id})'>
+						<i   class="iconfont icon-bianji2"></i>编辑
+					</span>
+				</div>
+			</div>
+			<div class="zyx_classNoticeList_Btn">
+				<zjy-pagination conf="classNoticeListBtn" onSelectStart="return false"></zjy-pagination>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down zy_if_box" ng-show="variable.deleteBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<p>确认删除吗？</p>
+	    	<div class="zy_if_btn_box">
+	    		<button class="zy_if_btn_sure" ng-click="sureDelete()">确认</button>
+	    		<button class="zy_if_btn_cancel" ng-click="variable.deleteBox=false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示弹框-->
+	<div class="gy_del_down zy_if_box zy_auto_box" ng-show="variable.tipBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-chenggong" ng-if="variable.tipSuccess"></i>
+	    	<i class="iconfont icon-shangchuanshibai" ng-if="!variable.tipSuccess"></i>
+	    	<p ng-bind="variable.tipWord"></p>
+		</div>
+	</div>
+	
+</div>

@@ -1,0 +1,109 @@
+<div class="zy_full">
+	<div class="zy_main zy_evaluation">
+		<top-list page="prevPageNo" role-index="chooseTermVariable.roleState" role-all-name="chooseTermVariable.roleAllName" index="chooseTermVariable.gradeState" term="term"></top-list>
+		
+		<div class="zy_content zy_roles_box">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li ng-repeat="role in roles" ng-class="{active:$index==chooseTermVariable.roleState}" ng-click="roleChange($index)" ng-bind="role.name" ui-sref="{{role.src}}"></li>
+<!--					<li ui-sref="wrap.cityLeaderPersonal">市领导</li>-->
+				</ul>
+			</div>
+		</div>
+		
+		<div class="zy_content zy_history_scroe">
+			<p>
+				<span ng-click="exportFn()">导出数据</span> &nbsp;&nbsp;|&nbsp;&nbsp;<span ng-click="uploadFn()">导入数据</span>
+			</p>
+			<table border="" cellspacing="" cellpadding="" id="tableData">
+				<tr><th width='380px'>名称</th>
+					<th width='219px'>操作时间</th>
+					<th width='180px'>状态</th>
+					<!--<th width='180px'>操作</th>-->
+					<th width='180px'>操作人</th>
+				</tr>
+				
+				<tr ng-repeat="jibie in stuObject">
+					<td ng-bind="jibie.name" ></td>
+					<td ng-bind="jibie.dataStr"></td>
+					<td >						
+						<span class="incomplete" ng-if="jibie.state == 0 && jibie.type == 0">导入正在处理中。。。</span>
+						<span class="incomplete" ng-if="jibie.state == 0 && jibie.type == 1">导出正在处理中。。。</span>
+						<span class="complete" ng-if="jibie.state == 1 && jibie.type == 0">导入已完成</span>
+						<span class="complete" ng-if="jibie.state == 1 && jibie.type == 1">
+							导出已完成，
+							<b>点击</b>
+							<a href="{{locUrl+jibie.path}}" target="_blank" >下载</a>
+						</span>
+						
+					</td>
+					<!--<td ><span ng-if="jibie.type == 0">导入</span><span ng-if="jibie.type == 1">导出</span>&nbsp;&nbsp;&nbsp;<span ng-if="jibie.state == 1 && jibie.type == 1"><a href="{{locUrl+jibie.path}}" target="_blank" >下载</a></span></span></td>-->
+					<td ng-bind="jibie.createName"></td>
+				</tr>
+			</table>
+		</div>
+		
+		<zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+		
+	</div>
+	
+	<!--导出数据弹框-->
+	<div class="gy_del_down zy_export_box" ng-if="chooseTermVariable.exportBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="chooseTermVariable.exportBox = false"></i>
+	    	<div class="zy_upload_tit_box">
+	    		<span>导出数据</span>
+	    	</div>
+	    	<div class="tip_box">
+	    		<p class="tip_text"> <i class="star">*</i> 请确保导出前，所有评价工作已完成，避免学生数据丢失。</p>
+	    		<div class="choose_export">
+	    			<p>选择导出信息：</p>
+	    			<div>
+	    				学年：
+	    				<span class="active">全部</span>
+	    			</div>
+	    		</div>	
+	    	</div>
+	    	<div class="btn_group">
+	    		<button class="sure" ng-click="exportAdd(1)">确定导出</button>
+	    		<button class="cancel" ng-click="chooseTermVariable.exportBox = false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--上传数据弹框-->
+	<div class="gy_del_down zy_upload_box zy_upload_data" ng-if="chooseTermVariable.uploadBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="chooseTermVariable.uploadBox = false"></i>
+	    	<div class="zy_upload_tit_box">
+	    		<span>上传数据</span>
+	    	</div>
+	    	<div class="zy_upload_file_box">
+	    		<iframe src="tpl/publicPage/uploadzip.html" width="100%" id="uploadResource" name="uploadResource"></iframe>
+	    	</div>
+	    	<p class="zy_upload_file_tip">提示：单次最大上传1个文件，上传插件所支持的格式有（zip） 上传资源，即表示您同意云空间上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+	    	
+	    	<div class="btn_group">
+	    		<button class="sure" ng-click="exportAdd(0)">确认</button>
+	    		<button class="cancel" ng-click="chooseTermVariable.uploadBox = false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示框-->
+	<div class="gy_del_down warn_box" ng-show="chooseTermVariable.tipState.tipBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con" style="z-index:9999">
+	    	<div class="tip_box">
+	    		<p class="tip_img">
+	    			<i class="iconfont icon-gantanhao" ng-show="chooseTermVariable.tipState.tipBox.tipRed"></i>
+	    			<i class="iconfont icon-duihao1" ng-show="!chooseTermVariable.tipState.tipBox.tipRed"></i>
+	    		</p>
+	    		<p class="tip_text tip_text_blue" ng-bind="chooseTermVariable.tipState.tipBox.tipsWord"></p>
+	    	</div>
+		</div>
+	</div>
+	
+</div>

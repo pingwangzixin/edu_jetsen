@@ -1,0 +1,70 @@
+[
+		{
+			"name":"学习空间",
+			"data":[{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=1",
+				"icon": "gerenziyuan1",
+         		"name": "个人资源"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=4",
+				"icon": "renwuzhongxin1",
+         		"name": "任务中心"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=3",
+				"icon": "gongognziyuan1",
+         		"name": "公共资源"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=5",
+				"icon": "ketangjilu1",
+         		"name": "课堂记录"
+			},{
+				"href": "",
+				"icon": "ketanglianxi1",
+         		"name": "课堂练习"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=7",
+				"icon": "zonghepingjia1",
+         		"name": "综合评价"
+			},{
+				"href": "",
+				"icon": "ceshifenxi1",
+         		"name": "测试分析"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=86",
+				"icon": "kaoshifenxi1",
+         		"name": "考试分析"
+			}]
+		},
+		{
+			"name":"综合发展",
+			"data":[{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=89",
+				"icon": "deyuhuodong1",
+         		"name": "德育活动"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=881",
+				"icon": "suzhipingjia1",
+         		"name": "素质评价"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=88",
+				"icon": "tizhijiankang1",
+         		"name": "体质健康"
+			}]
+		},
+		{
+			"name":"成长记录",
+			"data":[{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=888",
+				"icon": "chengzhangdangan1",
+         		"name": "成长档案"
+			},{
+				"href": "",
+				"icon": "gexingfazhan1",
+         		"name": "个性发展"
+			},{
+				"href": "http://111.207.13.88:8881/jeuc/api/oauth/toClientUrl?clientId=1",
+				"icon": "xuejika1",
+         		"name": "学籍卡"
+			}]
+		}
+	]

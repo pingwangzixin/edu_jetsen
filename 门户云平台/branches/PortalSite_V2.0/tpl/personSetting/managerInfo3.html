@@ -1,0 +1,105 @@
+<system nav="navShowDet"></system>
+
+<div>
+	
+	<div class="zy_cont_eight">
+		<div class="zy_per_info_head">
+			<ul class="clearfix">
+				<li ng-class="{'active': personalInfoState == 0}" ng-click="personalInfoTab(0)">个人信息</li>
+				<li ng-class="{'active': personalInfoState == 1}" ng-click="personalInfoTab(1)">修改密码</li>
+			</ul>
+		</div>
+		
+		<!--个人信息-->
+		<div class="zy_pre_info_box" ng-show="personalInfoState == 0">
+			<p class="zy_pre_info_tit">管理者</p>
+			<div class="zy_pre_info_cont">
+				<form name="validateForm">
+					<ul class="">
+						<li class="zy_pre_info_line">
+							<p>修改头像</p>
+							<div class="zy_pre_info_photo">
+								<input type="file" name="" id="" value="" />
+								<img src="./img/default_avatar.png"/>
+								<span>更换头像</span>								
+							</div>
+						</li>
+						<li class="zy_pre_info_line">
+							<p>真实姓名 <i class="star">*</i><strong class="error_prompt" ng-if="(validateForm.name.$error.pattern||validateForm.name.$error.required)&&validateForm.name.$touched">（请输入真实姓名）</strong></p>
+							<input type="text" name="name" id="" value="" placeholder="请输入" ng-model="userInfo.userName" required />
+						</li>
+						<li class="zy_pre_info_line">
+							<p>性别 <i class="star">*</i><strong class="error_prompt" ng-if="validateForm.per_sex.$error.required && validateForm.per_sex.$touched">（请选择性别）</strong></p>
+							<div class="zy_pre_info_sex">
+								<input type="radio" name="per_sex" id="per_sex_male" value="男" ng-model="userInfo.userSex" />
+								<label for="per_sex_male">男</label>
+								<input type="radio" name="per_sex" id="per_sex_female" value="女" ng-model="userInfo.userSex" />
+								<label for="per_sex_female">女</label>
+							</div>
+						</li>
+						<li class="zy_pre_info_line">
+							<p>民族 <i class="star">*</i><strong class="error_prompt" ng-if="(validateForm.nation.$error.required || userInfo.userNation == undefined) && validateForm.nation.$touched">（请选择民族）</strong></p>
+							<select name="nation" ng-model="userInfo.userNation" ng-options="nation.id as nation.name for nation in nations" ng-change="selectChange((nations|filter: {id: userInfo.userNation})[0])">
+								<option value="">请选择</option>
+							</select>
+						</li>
+						<li class="zy_pre_info_line">
+							<p>身份证号 <i class="star">*</i><strong class="error_prompt" ng-if="(validateForm.id_card.$error.pattern||validateForm.id_card.$error.required || ! checked(userInfo.userId)) && validateForm.id_card.$touched">（请输入正确的身份证号）</strong></p>
+							<input type="text" name="id_card" id="" value="" placeholder="请输入" ng-model="userInfo.userId" ng-change="checked(userInfo.userId)" required ng-pattern="/^([1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X))$/" />
+						</li>
+						<li class="zy_pre_info_line">
+							<p>手机 <i class="star">*</i><strong class="error_prompt" ng-if="(validateForm.phone.$error.minlength||validateForm.phone.$error.maxlength||validateForm.phone.$error.pattern||validateForm.phone.$error.required) && validateForm.phone.$touched">（请输入正确的手机号）</strong></p>
+							<input type="text" name="phone" id="" value="" placeholder="请输入" ng-minlength="11" ng-maxlength="11" ng-model="userInfo.userMobile" required ng-pattern="/^((13[0-9]|14[0-9]|15[0-9]|18[0-9])\d{8})$/" />
+						</li>
+						<li class="zy_pre_info_line">
+							<p>邮箱 <i class="star">*</i><strong class="error_prompt" ng-if="(validateForm.mail.$error.pattern||validateForm.mail.$error.required)&&validateForm.mail.$touched">（请输入正确的邮箱）</strong></p>
+							<input type="text" name="mail" id="" value="" placeholder="请输入" ng-model="userInfo.userEmail" required ng-pattern="/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/" />
+						</li>
+						<li class="zy_pre_info_line">
+							<p>单位名称 <i class="star">*</i><strong class="error_prompt" ng-if="(validateForm.company.$error.required || userInfo.company == undefined) && validateForm.company.$touched">（请选择单位）</strong></p>
+							<select name="company">
+								<option value="">请选择</option>
+							</select>
+						</li>
+					</ul>
+				</form>
+				<div class="zy_submit_tip" ng-if="errorTip || validateForm.$invalid"><strong class="error_prompt">请正确填写*号项信息</strong></div>
+				<div class="zy_btn_group">
+					<button>保存</button>
+				</div>
+				<div class="zy_btn_group zy_btn_group_register">
+					<button ng-click="submit(validateForm)">马上注册</button>
+				</div>
+			</div>
+		</div>
+		
+		<!--修改密码-->
+		<div class="zy_pre_info_box" ng-show="personalInfoState == 1">
+			<p class="zy_pre_info_tit">修改密码</p>
+			<div class="zy_pre_info_cont">
+				<ul>
+					<li class="zy_pre_info_line">
+						<p>原密码（登录时需要输入的密码） <i class="star">*</i></p>
+						<input type="text" name="" id="" value="" placeholder="请输入" />
+					</li>
+					<li class="zy_pre_info_line">
+						<p>新密码 <i class="star">*</i></p>
+						<input type="text" name="" id="" value="" placeholder="请输入" />
+					</li>
+					<li class="zy_pre_info_line">
+						<p>确认密码 <i class="star">*</i></p>
+						<input type="text" name="" id="" value="" placeholder="请输入" />
+					</li>
+				</ul>
+				<p class="zy_fill_email">为方便您找回密码，修改密码前，请先设置您的邮箱地址。马上去填写 <span ui-sref="managerInfo({status:0})">邮箱地址</span> >></p>
+				<div class="zy_btn_group">
+					<button>保存</button>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+</div>
+
+<z-footer></z-footer>

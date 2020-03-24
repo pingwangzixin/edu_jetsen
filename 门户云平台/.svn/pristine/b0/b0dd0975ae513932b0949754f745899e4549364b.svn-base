@@ -1,0 +1,100 @@
+<system nav="navShowDet"></system>
+
+<div class="zyx_outbox">
+	<div class="zyx_head_top">
+		<span ng-class='{"active":aggregate.join==0}' ng-click='switchContent(0)'>个人信息</span>
+		<span ng-class='{"active":aggregate.join==1}' ng-click='switchContent(1)'>账户管理</span>
+	</div>
+	<div class="zyx_conent" ng-switch='aggregate.join'>
+		<div class='zyx_persona' ng-switch-when='0'>
+			<form name="formPersona" novalidate>
+				<ul>
+					<li class="zyx_line">
+						<label class="head_portrait">头像 ： </label>
+						<b></b>
+						<div class="zyx_file">
+							<input type="file" title=" "/>
+							<p>更换头像</p>
+						</div>
+					</li>
+					<li class="zyx_line">
+						<label>真实姓名 <i class="star">*</i></label>
+						<input id="name" name="name" type="text" placeholder="请输入您的真实姓名" ng-model="name"   pattern="^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$"  required  />
+						<p ng-if="(formPersona.name.$error.pattern||formPersona.name.$error.required)&&formPersona.name.$touched">请输入您的真实姓名</p>
+					</li>
+					<li class="zyx_line">
+						<label>学籍号 <i class="star">*</i></label>
+						<input type="text" name="number" id="number" placeholder="请输入有效的学籍号" ng-model="number" pattern="^\d{2}$" required/>
+						<p ng-if="(formPersona.number.$error.pattern||formPersona.number.$error.required)&&formPersona.number.$touched">请输入有效的学籍号</p>
+					</li>
+					<li class="zyx_line">
+						<label>性别 <i class="star">*</i></label>
+						<div class="zyx_sex">
+							<input type="radio" name="sex" id="men" value="男" ng-model='sex' pattern="" required/><label for="men">男</label>
+							<input type="radio" name="sex" id="girl" value="女" ng-model='sex' pattern="" required/><label for="girl">女</label>
+						</div>
+						<p ng-if="showErrorSex">请选择您性别</p>
+					</li>
+					<li class="zyx_line">
+						<label>民族 <i class="star">*</i></label>
+						<select name='nation'ng-model='nation' pattern="" required>
+							<option value="回族">回族</option>
+							<option value="汉族">汉族</option>
+						</select>
+						<p ng-if="formPersona.nation.$error.required && formPersona.nation.$touched">请选择您的名族</p>
+					</li>
+					<li class="zyx_line">
+						<label>生日 </label>
+						<input type="text" name='birthday' placeholder="请输入您的生日" ng-model='birthday' pattern="((^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(10|12|0?[13578])([-\/\._])(3[01]|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(11|0?[469])([-\/\._])(30|[12][0-9]|0?[1-9])$)|(^((1[8-9]\d{2})|([2-9]\d{3}))([-\/\._])(0?2)([-\/\._])(2[0-8]|1[0-9]|0?[1-9])$)|(^([2468][048]00)([-\/\._])(0?2)([-\/\._])(29)$)|(^([3579][26]00)([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][0][48])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][0][48])([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][2468][048])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][2468][048])([-\/\._])(0?2)([-\/\._])(29)$)|(^([1][89][13579][26])([-\/\._])(0?2)([-\/\._])(29)$)|(^([2-9][0-9][13579][26])([-\/\._])(0?2)([-\/\._])(29)$))" required  />
+						<p ng-if="(formPersona.birthday.$error.required||formPersona.birthday.$error.pattern) && formPersona.birthday.$touched">请输入正确的生日</p>
+					</li>
+					<li class="zyx_line">
+						<label>所在学校 </label>
+						<em>皇姑区第六小学</em>
+					</li>
+				</ul>
+				<span class="zyx_preserve"  ng-class ="{'color':formPersona.$valid}" >保存</span>
+			</form>
+		</div>
+		<div class="zyx_account" ng-switch-when='1'>
+			<form name="formAccount" novalidate>
+				<ul>
+					<li class="zyx_line">
+						<label>真实姓名 <i class="star">*</i></label>
+						<input id="names" name="names" type="text" placeholder="请输入您的真实姓名" ng-model="names"   pattern="^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$"  required  />
+						<p ng-if="(formAccount.names.$error.pattern||formAccount.names.$error.required)&&formAccount.names.$touched">请输入您的真实姓名</p>
+					</li>
+					<li class="zyx_line">
+						<label>学籍号 <i class="star">*</i></label>
+						<input type="text" name="numbers" id="numbers" placeholder="请输入有效的学籍号" ng-model="numbers" pattern="^\d{2}$" required/>
+						<p ng-if="(formAccount.number.$errors.pattern||formAccount.numbers.$error.required)&&formAccount.numbers.$touched">请输入有效的学籍号</p>
+					</li>
+					<li class="zyx_line">
+						<label>民族 <i class="star">*</i></label>
+						<select name='nations'ng-model='nations' pattern="" required>
+							<option value="回族">回族</option>
+							<option value="汉族">汉族</option>
+						</select>
+						<p ng-if="formAccount.nations.$error.required && formAccount.nations.$touched">请选择您的名族</p>
+					</li>
+					<li class="zyx_line">
+						<label>新密码 </label>
+						<input class="zyx_password"  type="password" placeholder="请输入6位数字密码" name='password'ng-model='password' pattern="^\d{6}$" required/>
+						<p ng-if="(formAccount.password.$error.required||formAccount.password.$error.pattern) && formAccount.password.$touched">请选入正确的密码格式</p>
+					</li>
+					<li class="zyx_line">
+						<label>确认密码 </label>
+						<input class="zyx_confirm_password" type="password" placeholder="请再次确认密码" name='confirm'ng-model='confirm' pattern='' required/>
+						<p ng-if="formAccount.password.$valid">
+							<p ng-if="(formAccount.password.$error.required||password!=confirm) && formAccount.password.$touched">两次密码不一致</p>
+						</p>
+					</li>
+				</ul>
+				<span class="zyx_preserve"  ng-class ="{'color':formAccount.$valid}" >保存</span>
+			</form>
+		</div>
+	</div>
+	
+</div>
+
+<z-footer></z-footer>

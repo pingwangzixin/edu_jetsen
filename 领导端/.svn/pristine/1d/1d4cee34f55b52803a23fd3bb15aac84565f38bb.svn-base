@@ -1,0 +1,83 @@
+<div class="mlh_person">
+	<!--个人资源详情 start-->
+	<div class="detail">
+		<!--标题  start-->
+		<div class="title clearfix">
+			<div class="left">
+				<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ng-click="back()" ui-sref='secondNav.leftTree.leaderInquiryNav.teachingStatisticsNav.resourcesStatisticsWrap.resourcesUpload({"tableData":"person"})'></i>
+				个人资源详情
+			</div>
+			<div class="right">
+				<select ng-model="variablePacket.selected" ng-options="year.id as year.name for year in variablePacket.studyYear">
+				</select>
+			</div>
+		</div>
+		<!--标题  end-->
+		<!--表格 start-->
+		<div class="table">
+			<table width="100%" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>第四十五中学</th>
+						<th>角色</th>
+						<th>上传资源</th>
+						<th>下发资源</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="i in variablePacket.PersonalInformation">
+						<td ng-bind="i.name">王立志</td>
+						<td ng-bind="i.role">教师</td>
+						<td ng-bind="i.upload">18</td>
+						<td ng-bind="i.lower">18</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!--表格 end-->
+	</div>
+	<!--个人资源详情 end-->
+	<!--上传下发部分 start-->
+	<div class="detail upload">
+		<!--教师资源两个按钮切换 start-->
+		<div class="button" ng-if="variablePacket.teacherResources=='teacher'">
+			<span ng-click="changestate(0)" ng-class="{'active':variablePacket.statesIndex==0}">上传</span>
+			<span ng-click="changestate(1)" ng-class="{'active':variablePacket.statesIndex==1}">下发</span>
+		</div>
+		<!--教师资源两个按钮切换 end-->
+		<!--学生家长资源两个按钮切换 start-->
+		<div class="button" ng-if="variablePacket.teacherResources=='student'">
+			<span ng-click="changestate(0)" ng-class="{'active':variablePacket.statesIndex==0}">学生</span>
+			<span ng-click="changestate(1)" ng-class="{'active':variablePacket.statesIndex==1}">家长</span>
+		</div>
+		<!--学生家长资源两个按钮切换 end-->
+		<!--列表 start-->
+		<div class="list">
+			<div class="table">  
+		        <div class="table-tr">  
+		            <div class="table-th">资源名称</div>  
+		            <div class="table-th">文件大小</div>  
+		            <div class="table-th">上传时间</div>  
+		        </div>  
+		        <!--每一个列表 start-->
+		        <div class="table-tr table-line" ng-repeat="i in variablePacket.Resources">  
+		            <div class="table-td">
+		            	<img ng-src="{{i.src}}">
+		            	<em ng-bind="i.name">五年级语文期末试卷</em>
+		            	<span ng-if="i.fine">精品</span>
+		            </div>  
+		            <div class="table-td" ng-bind="i.size">1282.02k</div>  
+		            <div class="table-td" ng-bind="i.time">2017-08-20</div>  
+		        </div> 
+		        <!--每一个列表 end-->
+		    </div>  
+		</div>
+		<!--列表 end-->
+		<!--分页 start-->
+		<div class="wx_paging">
+	        <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+	    </div>
+	    <!--分页 end-->
+	</div>
+	<!--上传下发部分 start-->
+</div>

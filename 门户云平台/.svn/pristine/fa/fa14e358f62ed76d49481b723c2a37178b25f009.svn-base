@@ -1,0 +1,59 @@
+<div>
+	<div class="zyx_greenbox zyx_ClassStarStudentList">
+		<div class="zyx_whitebox">
+			<div class="zyx_starhead">
+				<div>
+					<img src="./img/student_star.png"/>
+					<span>明星学生</span>
+				</div>
+				<span ng-hide="variable.editFlag" ui-sref='classSpace.classStarStudent.classStarStudentEdit({state:0})'>
+					<i  class="iconfont icon-jiahao"></i>添加
+				</span>
+			</div>
+			<div class="zyx_StarStudentShow clearfix" ng-repeat='i in classStarStudentList'>
+				<div class="fl zyx_studentImg">
+					<img ng-src="{{i.headImg}}"/>
+				</div>
+				<div class="fr zyx_studentShow" repeat-finish="stuCont()">
+					<div class="clearfix zyx_studentName">
+						<h4 class="fl" ng-bind='i.name'></h4>
+						<div class="fr">
+							<span ng-hide="variable.editFlag"  ui-sref='classSpace.classStarStudent.classStarStudentEdit({state:1,id:i.id})'>
+								<i    class="iconfont icon-bianji2"></i> 编辑
+							</span>
+							<span ng-hide="variable.editFlag" ng-click='classStarStudentDel($index,i.id)'>
+								<i   class="iconfont icon-shanchu"></i> 删除
+							</span>
+						</div>
+					</div>
+					<!--<p ng-bind='i.introduce'></p>-->
+					<p></p>
+				</div>
+				<img ng-src='./img/{{i.SrcImg}}.png' alt="" />
+			</div>
+		</div>
+	</div>
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down zy_if_box" ng-show="variable.deleteBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<p>确认删除吗？</p>
+	    	<div class="zy_if_btn_box">
+	    		<button class="zy_if_btn_sure" ng-click="sureDelete()">确认</button>
+	    		<button class="zy_if_btn_cancel" ng-click="variable.deleteBox=false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示弹框-->
+	<div class="gy_del_down zy_if_box zy_auto_box" ng-show="variable.tipBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-chenggong" ng-if="variable.tipSuccess"></i>
+	    	<i class="iconfont icon-shangchuanshibai" ng-if="!variable.tipSuccess"></i>
+	    	<p ng-bind="variable.tipWord"></p>
+		</div>
+	</div>
+	
+</div>

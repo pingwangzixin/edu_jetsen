@@ -1,0 +1,185 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<link rel="stylesheet" type="text/css" href="common/upload/webuploader.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<!--<script type="text/javascript" src="common/js/jquery-1.11.2.min.js" ></script>-->
+<script type="text/javascript" src="common/upload/md5.js" ></script>
+<script type="text/javascript" src="common/upload/webuploader.js" ></script>
+<div class="mlh_content">
+	<div class="guide clearfix">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59 fl" ui-sref="secondNav.taskList"></i>
+		<!--布置任务  start-->
+		<div class="guide-left decorate" ng-if="variablePacket.state=='new'">布置任务</div>
+		<div class="guide-left decorate" ng-if="variablePacket.state=='edit'">编辑任务</div>
+		<div class="guide-left decorate" ng-if="variablePacket.state=='echo'">复制任务</div>
+		<!--布置任务  end-->
+		<!--发布  start-->
+		<div class="guide-right" ng-click='Verification(myForm.$valid)'>发布</div>
+		<!--发布  end-->
+	</div>
+</div>
+<div class="mlh_content zy_question_library mlh_top">
+	<form name="myForm" novalidate ng-show=" variablePacket.state=='new' || variablePacket.state=='edit' || variablePacket.state=='echo'">
+			<ul class="zyx_case mlh_case zyx_guide_case">
+				<li>
+					<em>任务名称<i class="star">*</i></em>
+					<input type="text"  name="taskName"  ng-keyup='mlh_taskName()'  ng-model="variablePacket.taskName" required />
+					<b 
+						ng-if="(myForm.taskName.$error.required && myForm.taskName.$touched  ) || variablePacket.ProvingTaskname">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请输入任务名称</span>
+					</b>
+					<b 
+						ng-if="variablePacket.Texeam">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>名称重复请更换</span>
+					</b>
+					
+				</li>	
+				<!--<li>
+					<em>选择章节<i class="star">*</i></em>
+					<span ng-click='Chapter()'><choice-version title-bar="variableGlobal.titleBar"><choice-version></span>
+					<b ng-if="variablePacket.ProvingChapter" >
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请选择章节目录</span>
+					</b>
+				</li>-->
+				<li class="mlh_height">
+					<em>作答时间<i class="star">*</i></em> 
+					<input type="text" name="selectDate" value="" placeholder="请选择作答时间" id="time" ng-focus="ChangeDate()" class="timer wx_datapinkrange"  ng-model="variablePacket.selectDate" required/>
+					<b 
+					   ng-if="(myForm.selectDate.$error.required&&myForm.selectDate.$touched) || variablePacket.ProvingDate">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请选择作答时间</span>
+					</b>	
+				</li>
+				<li>
+					<em>发布对象<i class="star">*</i></em>
+					<small ng-repeat='i in variablePacket.className' ng-class={"active":variablePacket.classIndex==$index} ng-bind='i.name' ng-click='classaNameTab($index,i.name,i.classId)'>初一(1)班</small>
+					<b ng-if='variablePacket.ProvingObject'>
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请选择发布对象</span>
+					</b>
+				</li>
+				<li class="clearfix">
+					<em class="fl">任务内容<i class="star">*</i></em>
+					
+					<b 
+					   ng-if="(myForm.taskCont.$error.required&& myForm.taskCont.$touched) || variablePacket.ProvingTaskcont">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请输入任务内容</span>
+					</b><br>
+					<textarea name='taskCont' class="task_cont" ng-model="variablePacket.taskCont" ng-keyup='mlh_taskCont()' required>一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做作业,家长可以定期查看孩子的</textarea>
+				</li>
+				<li class="mlh_line">
+					<!--<strong class="mlh_add" ng-class={"active":variablePacket.UploadFile_show} ><input type="file">-->
+						<div id="uploader" class="zy_enclosure_upload mlh_enclosure_upload" >
+					   		<div id="picker">选择文件</div>
+						</div>
+					<!--</strong>-->
+					<strong class="zyx_add mlh_add" ng-class={"active":variablePacket.AddResources_show} ng-click='addRes()'> 插入资源 </strong>
+				</li>
+			</ul>
+		</form>
+	<!-- 上传附件 start -->
+	<div class="zyx_guide_case mlh_upload" ng-if='variablePacket.UploadFile_show'>
+		<ul class="clearfix">
+			<li ng-repeat="i in variablePacket.uploadFile">
+				<img ng-src = "{{i.objId|icon}}" />
+				<span ng-bind='i.name' ui-sref="secondNav.taskResourcesDetails({'state':i.objId,'resid':i.resourceId,'type':'1'})"></span>
+				<!--<i>5%</i>-->
+				<em ng-click='uploadFile(i.ResourceNum,$index,i.name)'>删除</em>					
+			</li>
+		</ul>					
+	</div>
+	<!--上传附件 end-->
+	<!--资源展示-->
+	<div class="zyx_guide_case mlh_upload" ng-if='variablePacket.AddResources_show'>
+		<ul class="clearfix">
+			<li  ng-repeat='i in resource' ng-if='variablePacket.Echotit==0'>	
+				<img ng-src = "{{i.objId|icon}}" />
+				<span ng-bind='i.ResourceTit' ui-sref="secondNav.taskResourcesDetails({'state':i.objId,'resid':i.id,'type':'0'})"></span>
+				<em class="fr" ng-click='delResLine($index,i.ResourceNum,i.ResourceTit,i.id)'>删除</em>
+			</li>	
+		</ul>
+	</div>
+</div>
+<!--插入资源弹层-->	
+<div class="gy_del_down zyx_insert_choice" ng-cloak ng-if='variablePacket.insertChoiceAll'> 
+    <div class="gy_hide"></div>
+    <div class="gy_con">
+    	<div class="zyx_tit clearfix">
+    		<span class="fl">插入资源</span>
+    		<img class="fr" src="./img/delete.png"  ng-click='closeMask()'/>
+    	</div>
+    	<div class="zyx_threeSwitch">
+    		<span ng-repeat='i in variablePacket.threeSwitch' ng-class={"active":variablePacket.insertChoice_threeType==$index} ng-click='insertChoice_threeSwitch($index,i.id)' ng-bind='i.name'></span>
+    	</div>
+    	<div class="zyx_substance clearfix">
+    		<!--左侧-->
+    		<div class="zyx_leftTree fl">
+    			<!--选择教材版本-->
+	    			<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+	    			<!--树结构-->
+	    			<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+    		</div>
+    		<!--右侧-->
+    		<div class="zyx_rightQuestion fr">
+    			<!--插入资源-->
+    			<div class="zyx_insert">
+    				<div class="zyx_eightTab clearfix">
+	    				类型 ：<span ng-repeat='i in variablePacket.SelectType' ng-class={"active":variablePacket.insertChoice_selectType==$index}  ng-bind='i.name' ng-click='insertChoice_selectTypeTab($index,i.name)'>单选题</span>
+	    				<div class="insert_select fr">
+	    					<input type="text" placeholder="搜索" ng-model="ressele"/>
+	    					<i class="iconfont icon-sousuo" ng-click="selectres(ressele)"></i>
+	    				</div>
+    				</div>
+	    			<p class="number">共 <span ng-bind="variablePacket.numbers"></span>个</p>
+	    			<div class="insertLineAll">
+	    				<div class="insertLine clearfix" ng-repeat='i in insertData'>
+	    					<div class="insertLine_L fl">
+	    						<p ng-bind='i.ResourceTit'>五年级语文期末试卷.ppt</p>
+	    						<div>
+	    							<img ng-src = "{{i.objId|icon}}" />
+	    							<span ng-bind='i.name'>刘敏</span>
+	    							<i class="iconfont icon-lishi"></i><span ng-bind='i.time'>2017-08-20</span>
+	    							<i class="iconfont icon-daxiao"></i><span ng-bind='i.size'>1049.02k</span>
+	    						</div>
+	    					</div>
+	    					<div class="insertLine_R fr">
+	    						<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='insert_Sign($index,i.ResourceNum,i)'></i>
+	    					</div>
+	    				</div>
+	    			</div>
+    			</div>
+    		</div>
+    	</div>
+	</div>
+</div>
+
+<!--确认框及提示框-->
+<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk" mask-zindex='variablePacket.maskZindex'></prompt-box>
+<!-- 双日历代码 start -->
+<script>
+	var time = new Date();
+		var nian = time.getFullYear();
+		var yue  = time.getMonth()+1;
+		var ri  = time.getDate();
+		var times = yue+"/"+ri+"/"+nian
+		console.log(times)
+		//time.toDateString();
+		$(function() {
+			$('.timer').daterangepicker({
+	                    "startDate": times,
+					    "endDate": "12/12/2020",
+					    "minDate": times,
+					    "maxDate": "12/12/2020",//不包括12号
+	                    "format": 'MM/DD/YYYY'
+	                 }, function(start, end, label) {
+	                   $('.timer').val(start.format('YYYY-MM-DD') + '至' + end.format('YYYY-MM-DD'));
+					   $('.timer').focus();
+					   $(".daterangepicker").hide();
+	            });
+		});
+</script>
+<!-- 双日历代码 end -->
+</div>

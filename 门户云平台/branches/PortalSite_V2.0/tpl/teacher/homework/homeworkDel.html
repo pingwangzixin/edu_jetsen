@@ -1,0 +1,32 @@
+<div class="main_width" ng-cloak>
+	<div class="">
+		<div class="zy_guide_tit">
+			<div class="clearfix">
+				<p class="fl">
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.homeworkList"></i>
+					<span ng-bind="variablePacket.examName"><!--初一数学阶段测试考试--></span>
+				</p>
+				<p class="fr">
+					作答对象：
+					<span ng-bind="variablePacket.className"><!--六年级（1）班--></span>    
+					<i class="iconfont icon-lishi"></i>
+					作答时间：
+					<span ng-bind="variablePacket.examTime"><!--2017-08-20至2017-08-20--></span>
+				</p>
+			</div>
+			<div class="zy_test_brief">
+				<p><span>练习说明：</span><b ng-bind="variablePacket.remark"><!--大家认真写作业--></b></p>
+				<!--<p><span>作答对象：</span><b>六年级（1）班</b></p>-->
+			</div>
+		</div>
+		
+		<div class="zy_guide_bar">
+			<ul class="clearfix">
+				<li class="fl" ng-repeat="i in variablePacket.barArr" ng-bind="i.name" ui-sref="{{i.href}}" ui-sref-active="active"></li>
+			</ul>
+		</div>
+	</div>
+
+	<div ui-view></div>
+	
+</div>

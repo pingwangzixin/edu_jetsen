@@ -1,0 +1,132 @@
+<div class="main_width">
+	<div class="zy_guide_tit">
+		<div class="clearfix">
+			<p class="fl">
+				<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.taskList"></i>
+				<span ng-bind="examInfo.name"></span>
+			</p>
+			<!--<p class="fr">
+				<span>六年级（1）班</span>    
+				<i class="iconfont icon-lishi"></i>
+				<span>2017-08-20</span>
+			</p>-->
+		</div>
+		<div class="zy_test_brief">
+			<p><span>作答时间：</span><b ng-bind="examInfo.time"></b></p>
+			<p><span>作答对象：</span><b ng-bind="examInfo.className"></b></p>
+		</div>
+	</div>
+	<div class="zy_student_main_wrap clearfix">
+		<!--左：学生回传-->
+		<div class="zy_student_pass_wrap fl">
+			<!--资源回显-->
+			<div class="zy_student_resource_main">
+				<p ng-if="stuInfo.stuName!=''"><span ng-bind="stuInfo.stuName"></span>的任务</p>
+				<div class="zy_task_cont">
+					<p>任务内容</p>
+					<div class="zy_word_wrap" ng-bind="examInfo.content"></div>
+					<p>任务资源</p>
+					<ul class="clearfix">
+						<li ng-repeat="i in examInfo.resourceList">
+							<img ng-src = "{{i.type|icon}}"/>
+							<span ng-bind="i.name" ng-click='insertResource(i)'>
+							</span>
+						</li>
+					</ul>
+					<p>任务附件</p>
+					<ul class="clearfix">
+						<li ng-repeat="i in examInfo.attachmentList">
+							<img ng-src = "{{i.type|icon}}"/>
+							<span>
+								<a ng-bind="i.name" ng-href="{{i.downUrl}}" ng-click="checkDownUrl(i.downUrl)"></a>
+							</span>
+						</li>
+					</ul>
+					<p ng-if="stuInfo.stuName!=''">{{stuInfo.stuName}}的回答</p>
+					<div class="zy_word_wrap" ng-bind="examInfo.stuContent"></div>
+					<p ng-if="stuInfo.stuName!=''">回答附件</p>
+					<ul ng-if="stuInfo.stuName!=''" class="clearfix">
+						<li ng-repeat="i in examInfo.stuAttachmentList">
+							<img ng-src = "{{i.type|icon}}"/>
+							<span>
+								<a ng-bind="i.name" ng-href="{{i.downUrl}}" ng-click="checkDownUrl(i.downUrl)"></a>
+							</span>
+						</li>
+					</ul>
+					<p ng-if="stuInfo.stuName!=''">老师评语</p>
+					<div ng-if="stuInfo.stuName!=''" class="zy_evaluate_main clearfix">
+						<div class="zy_textarea_box">
+							<textarea name="" rows="" cols="" ng-model="examInfo.comment" ng-change="statisticsWord()"></textarea>
+							<p>
+								<span ng-bind="variablePacket.inputtedWordNum">0</span>/<span ng-bind="variablePacket.limitWordNum">255</span>
+							</p>
+						</div>
+						<button ng-show="stuInfo.stuState=='submission'" class="fr" ng-click="submitFn()">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--右：学生列表-->
+		<div class="zy_student_wrap fr">
+			<p>学生姓名</p>
+			<div class="zy_student_right_main">
+				<div class="zy_student_list">
+					<ul class="clearfix" ng-class="{'active':variablePacket.listBorder}">
+						<li class="zy_not_read" ng-repeat="i in variablePacket.stuList.notRead">
+							<span ng-bind="i.name"></span>
+							<b ng-click="checkStuInfo(i.id, i.name, 'submission')">批阅</b>
+						</li>
+						<li class="zy_already_read" ng-repeat="i in variablePacket.stuList.alreadyRead">
+							<span ng-bind="i.name"></span>
+							<b ng-click="checkStuInfo(i.id, i.name, 'readyOver')">已批阅</b>
+						</li>
+						<li class="zy_no_sub" ng-repeat="i in variablePacket.stuList.noSub">
+							<span ng-bind="i.name"></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--插入资源回显弹层-->
+	<div class="gy_del_down zy_resource_box" ng-if='variablePacket.insertResource'>
+	    <div class="gy_hide"></div>
+	    <div class="gy_con mlh_con">
+	    	<div class="zy_resource_box_tit">
+	    		<b ng-bind="variablePacket.clickResourceName"></b>
+	    		<i class="iconfont icon-guanbi1 fr" ng-click='closeResource()'></i>
+	    	</div>
+	    	<div class="zy_resource_box_main">
+				<div ng-if='variablePacket.backResourceType == "pic"'>
+					<img src="{{variablePacket.imagePath}}"/>
+				</div>
+				<div class="zyx_ResLineVideo bofangqi" id="showplayer">
+					<div ng-if="variablePacket.showplayer" class="loadFlashWrap">
+						<p>您的浏览器还没有安装Flash插件</p>
+						<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+					</div>
+				</div>
+				<div class="zyx_ResLinePDF mlh_pdf" ng-if='variablePacket.backResourceType == "pdf"'>
+					<iframe width="854" height="511" src="{{variablePacket.pdfPath}}"></iframe>
+				</div>
+				<div ng-show="variablePacket.convertState == '2'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>资源转码失败!</p>
+						</div>
+					</div>
+				</div>
+				<div ng-show="variablePacket.convertState == '0'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>该资源正在转码中......</p>
+						</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	
+</div>

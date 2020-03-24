@@ -1,0 +1,21 @@
+<div class="mlh_right">
+    <div class="list">
+    	<!--tab 头部标签 start-->
+        <div class="tab">
+            <ul>
+                <li ng-repeat="(key, value) in variablePacket.data">
+                <span>系统消息</span>
+                <i class="iconfont icon-dian" ng-if="value.isMsg==1"></i>
+                </li>
+            </ul>
+        </div>
+        <!--tab 头部标签 end-->
+        <!--tab 头部标签内容 start-->
+        <div class="tab_cont clearfix">
+            <ul ng-repeat="(k, v) in variablePacket.data" ng-style="{'display':variablePacket.curr==$index?'block':'none'}" class="lists">
+                <li ng-repeat="(m, n) in v.data"><a href="javascript:;" ng-bind="n.title" ng-click="indexList(n)"></a><span ng-bind="n.time"></span></li>
+            </ul>
+        </div>
+        <!--tab 头部标签内容 end-->
+    </div>
+</div>

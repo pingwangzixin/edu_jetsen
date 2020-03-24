@@ -1,0 +1,94 @@
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#editable {margin-top:10px;}
+.addUser{
+	color:#399fdf!important;
+	margin-left:20px;
+	font-size:16px;
+}
+
+.addUser>em{
+	font-style: normal;
+	font-weight: bold;
+}
+
+#editable li {
+	position: relative;
+	height: 40px;
+    line-height: 40px;
+    padding-left:50px;
+    border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	cursor: pointer;
+}
+#editable li>em{
+	font-style: normal;
+}
+#editable li:hover {
+	/*background: #f9f9f9;*/
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+}
+
+#editable i {
+	font-size: 14px!important;
+	-webkit-transition: opacity .2s;
+	transition: opacity .2s;
+	opacity: 0;
+	display: inline-block;
+	cursor: pointer;
+	color: #c00;
+	margin-left:30px;
+	font-style: normal;
+}
+#editable i.wx_addli{
+	font-weight: bold;
+	font-style:normal;
+}
+
+.addUser>img{
+	vertical-align: middle;
+	margin-right:8px;
+}
+
+#editable i.wx_bianji{color:#399fdf;}
+#editable i.js-remove{color:#bc1a3c;}
+#editable i>img{vertical-align: middle;margin-right:8px;}
+#editable li:hover i {
+	opacity: 1;
+}
+
+#filter button {
+	color: #fff;
+	width: 100%;
+	border: none;
+	outline: 0;
+	opacity: .5;
+	margin: 10px 0 0;
+	transition: opacity .1s ease;
+	cursor: pointer;
+	background: #5F9EDF;
+	padding: 10px 0;
+	font-size: 20px;
+}
+
+#filter button:hover {
+	opacity: 1;
+}
+
+#filter .block__list {
+	padding-bottom: 0;
+}
+
+.drag-handle {
+	margin-right: 10px;
+	font: bold 20px Sans-Serif;
+	color: #5F9EDF;
+	display: inline-block;
+	cursor: move;
+	cursor: -webkit-grabbing;
+}

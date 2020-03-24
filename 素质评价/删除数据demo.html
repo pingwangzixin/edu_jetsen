@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="src/common/angular/angular.js"></script>
+		<script src="src/common/js/jquery-1.11.2.min.js"></script>
+	</head>
+	<body ng-app="app">
+		<div ng-controller="con">
+			 <ul>
+			 	<li ng-repeat="d in data" ng-bind="$parent.copyData[$index].name" data-id="{{$parent.copyData[$index].id}}" ng-click="deleteWho($event)"></li>
+			 </ul>
+		</div>
+	</body>
+	<script>
+		angular.module('app',[]).controller('con',['$scope',function($scope){
+			$scope.data = [
+				{name: '二狗子',id:1},
+				{name: '三娃子',id:2},
+				{name: '四痞子',id:3},
+				{name: '五废物',id:4},
+				{name: '六溜溜',id:5}
+			];
+			
+			$scope.copyData = $scope.data;
+			console.log($scope.copyData)
+			
+			console.log($('ul').index())
+			
+			$scope.deleteWho = function (tar){
+//				console.log(angular.element(tar.target).attr('data-id'))
+				$scope.copyData.splice($(tar.target).index(),1);
+				console.log($scope.copyData);
+			};
+			
+		}]);
+	</script>
+</html>

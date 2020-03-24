@@ -1,0 +1,40 @@
+<div>
+	<div class="main_width">
+		<div class="zy_resource_bar clearfix">
+			<ul class="fl">
+				<li ui-sref="secondNav.questionBankType.myQuestionBank" ui-sref-active="active">我的题库</li>
+				<li ui-sref="secondNav.questionBankType.schoolBasedQuestionBank" ui-sref-active="active">校本题库</li>
+				<li ui-sref="secondNav.questionBankType.publicQuestionBank" ui-sref-active="active">公共题库</li>
+			</ul>
+			<div class="zy_resource_bar_btn fr">
+				<button ng-click='variablePacket.foundQuestion=true'>创建试题</button>
+			</div>
+		</div>
+		
+		<div ui-view></div>
+	</div>
+</div>
+<!--弹层-->
+<div class="gy_del_down zyx_foundQuestion" ng-if='variablePacket.foundQuestion'>
+    <div class="gy_hide"></div>
+    <div class="gy_con">
+    	<div class="zyx_tit clearfix">
+    		<span class="fl">请选择创建试题</span>
+    		<img class="fr" src="./img/delete.png" ng-click='variablePacket.foundQuestion=false'/>
+    	</div>
+    	<ul class="zyx_content clearfix">
+    		<li class="fl">
+    			<img src="./img/zyx_Quefile.png"/>
+    			<p ui-sref='secondNav.uploadExercises'>上传习题</p>
+    		</li>
+    		<li class="fl">
+    			<img src="./img/zyx_Quetext.png"/>
+    			<p ui-sref="secondNav.paperLibrary({state:'test'})">题库组卷</p>
+    		</li>
+    		<li class="fl">
+    			<img src="./img/zyx_Quedaoru.png"/>
+    			<p ui-sref='secondNav.answerCard({state:"new"})'>导入试卷</p>
+    		</li>
+    	</ul>
+	</div>
+</div>

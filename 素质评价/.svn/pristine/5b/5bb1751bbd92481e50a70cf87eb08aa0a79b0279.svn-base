@@ -1,0 +1,306 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<top-list page="prevPageNo" best="bestStuId" ng-if="roleShow.student.show && !roleShow.bestStudent.show"></top-list>
+		<!--优秀学生头部返回-->
+		<div class="zy_content zy_return_box clearfix" ng-if="roleShow.bestStudent.show">
+			<div class="zy_left fl">
+				<span ui-sref="{{goodStudentPath}}"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<strong><img src="./img/icon_top_list.png"/>优秀学生</strong>
+				<em ng-bind="user.stuName">赵大艳</em>
+			</div>
+		</div>
+		
+		<!--学生头部返回-->
+		<div class="zy_content zy_return_box clearfix" ng-if="roleShow.teacher.show && !roleShow.bestStudent.show">
+			<div class="zy_left fl">
+				<span ui-sref="{{prevPath}}"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<em ng-bind="user.stuName">赵大艳</em>
+			</div>
+			<div class="zy_right fr" ng-if="roleShow.teacher.show && roleShow.teacher.state=='edit'">
+				<button ng-click="keep()">保存</button>
+			</div>
+
+		</div>
+		<input type="hidden" id="stuId" />
+		<div class="zy_content zy_progress_axis" ng-if="roleShow.student.show">
+			<div class="zy_return_box clearfix">
+				<div class="zy_left fl">
+					学生：<em ng-bind="user.stuName">赵大艳</em>
+					<em ng-bind="userGradeTerm">七年级（下学期）</em>
+				</div>
+				<div class="zy_right fr">
+					<button ng-click="viewReport()">查看报告</button>
+				</div>
+			</div>
+			<div class="zy_progress_box">
+				<div class="zy_progress_show">
+					<b></b>
+					<ul class="clearfix">
+						<li ng-class="{'active' : stuList.zizhi==1}"><p>资质上传</p><i class="iconfont icon-duihao1"></i></li>
+						<li ng-class="{'active' : stuList.dafen==1}"><p>教师评级</p><i class="iconfont icon-duihao1"></i></li>
+						<li ng-class="{'active' : stuList.teaComment==1}"><p>师评</p><i class="iconfont icon-duihao1"></i></li>
+						<li ng-class="{'active' : stuList.selComment==1}"><p>自评</p><i class="iconfont icon-duihao1"></i></li>
+						<li ng-class="{'active' : stuList.homeComment==1}"><p>家评</p><i class="iconfont icon-duihao1"></i></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="zy_evaluate_box">
+			<div class="zy_evaluate_top clearfix" ng-if="!roleShow.bestStudent.show">
+				<p class="fl">
+					<span ng-class="{'active' : evaluateState.comment == 0}" ng-click="switchComment(0)">评价</span>
+					<span ng-class="{'active' : evaluateState.comment == 1}" ng-click="switchComment(1)">评语</span>
+				</p>
+				<p class="fr"><span>学生</span>评价截止时间：<span ng-bind="data">8月30日</span></p>
+			</div>
+			<div class="zy_evaluate_bottom" ng-switch="evaluateState.comment">
+				<!--评价-->
+				<div class="zy_evaluate_con toggle" ng-switch-when="0">
+					<ul class="zy_evaluate_term_tit clearfix">
+						<li ng-class="{'active': $index == weiDuState}" ng-click="swicthType($index,weidu)" ng-repeat="weidu in weiDuList" ng-bind="weidu.content"></li>
+					</ul>
+					<ul class="zy_evaluate_term" ng-switch="weiDuState">
+						<li>
+							<div class="zy_evaluate_term_con">
+								<div class="zy_evaluate_prove">
+									<div class="zy_evaluate_upload zy_student_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">学生/资质</span>
+											<b class="fr" ng-click="upLoad('stu')" ng-if="roleShow.student.show && !roleShow.student.deadline"><i class="iconfont icon-shangchuan"></i>上传资质</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list">
+												<ul class="clearfix">
+													<li class="zy_example_show" ng-repeat="stuProve in user.stuPro" ng-click="check(stuProve)" show-more ng-attr-len="{{fileLength.stu}}">
+														<div class="zy_example_img_box">
+															
+															<img ng-src = "img/tu.png" ng-if="stuProve.state!=0">
+															<img ng-src =  '{{locUrl+stuProve.thumUlr}}' ng-if="stuProve.state==0"/>
+															
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event,stuProve)" ng-if="roleShow.student.show && !roleShow.student.deadline"></i>
+															<p ng-bind="stuProve.zizhiType">证书</p>
+														</div>
+														<span ng-bind="stuProve.zizhiName"></span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+									<div class="zy_evaluate_upload zy_teacher_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">教师/佐证</span>
+											<b class="fr" ng-click="upLoad('tea')" ng-if="roleShow.teacher.show && roleShow.teacher.state=='edit'"><i class="iconfont icon-shangchuan"></i>上传佐证</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list">
+												<ul class="clearfix">
+													<li class="zy_example_show" ng-repeat="teaProve in user.teaPro" ng-click="check(teaProve)" show-more ng-attr-len="{{fileLength.tea}}">
+														<div class="zy_example_img_box">
+															<img ng-src = "img/tu.png" ng-if="teaProve.state!=0">
+															<img ng-src =  '{{locUrl+teaProve.thumUlr}}' ng-if="teaProve.state==0"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event,teaProve)" ng-if="roleShow.teacher.show && roleShow.teacher.state=='edit'"></i>
+															<p ng-bind="teaProve.zizhiType">证书</p>
+														</div>
+														<span ng-bind="teaProve.zizhiName">市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+								</div>
+								<div class="zy_evaluate_grade">
+									<div class="zy_evaluate_grade_tit">
+										<ul class="clearfix">
+											<li class="fl" ng-bind = "weiDuName"></li>
+											<li class="fr">评价老师：<span ng-bind='user.evalAuthorName'></span></li>
+											<li class="fr">评价等级：<span ng-bind="roleShow.teacher.grade"></span></li>
+										</ul>										
+									</div>
+									<table border="" cellspacing="" cellpadding="" id="table">
+										<tr>
+											<th width="170px">评价要素</th>
+											<th width="190px">评价内容</th>
+											<th width="470px">关键表现</th>
+											<th>达成度</th>
+										</tr>
+										<tbody ng-repeat="student in user.userData">
+										<tr ng-repeat="stu in student.children track by $index">
+											<td ng-if="$index ==0" rowspan="{{student.children.length}}" >
+												{{student.column}}
+											</td>
+											<td class="zy_evaluate_cont">
+													<span ng-bind="stu.column"></span>
+											</td>
+											<td class="zy_evaluate_performance"><span ng-repeat="p in stu.column1" ng-bind="p"></span></td>
+											
+											<!--<td>{{student.children.length}}</td>-->
+											<!--<td>{{student.column}}{{student.children.length}}</td>-->
+											<!--<td class="zy_evaluate_cont" ng-repeat="r in student.children" ng-bind="r.column">
+												<tr></tr>
+											</td>-->
+											<!--<td class="zy_evaluate_performance" >
+												<span ng-repeat="col in student.children.children.column" ng-bind="col"></span>
+											</td>-->
+											<td>
+												<p ng-if="roleShow.teacher.show && roleShow.teacher.state=='edit'">
+													<em class="zy_good" ng-class="{'active' : stu.dafen =='a' }" ng-click="resultsTab($event,stu,'a')">优秀</em>
+													<em class="zy_qualified" ng-class="{'active' : stu.dafen =='b'||stu.state == '0' }" ng-click="resultsTab($event,stu,'b')">合格</em>
+													<em class="zy_improved" ng-class="{'active' : stu.dafen =='c' }" ng-click="resultsTab($event,stu,'c')">待提高</em>
+												</p>
+<!--												<p ng-if="roleShow.teacher.state=='see' || roleShow.student.show || roleShow.bestStudent.show">-->
+												<p ng-if="!(roleShow.teacher.show && roleShow.teacher.state=='edit')">
+													<em ng-if="stu.dafen =='a'" class="zy_good active">优秀</em>
+													<em ng-if="stu.dafen =='b'" class="zy_qualified active">合格</em>
+													<em ng-if="stu.dafen =='c'" class="zy_improved active">待提高</em>
+												</p>
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--评语-->
+				<div class="zy_comment_con toggle" ng-switch-when="1">
+					<ul>
+						<li>
+							<p>师评：</p>
+							<textarea maxlength="255" name="" rows="" cols="" ng-disabled="(roleShow.teacher.show && roleShow.teacher.state=='see') || roleShow.student.show" ng-model="user.teaComment"></textarea>
+						</li>
+						<li>
+							<p>自评：</p>
+							<textarea maxlength="255" name="" rows="" cols="" ng-disabled="roleShow.teacher.show||(roleShow.student.show && roleShow.student.deadline)||userInfo.userRole =='parents'" ng-model = "user.selComment"></textarea>
+						</li>
+						<li>
+							<p>家评：</p>
+							<textarea maxlength="255" name="" rows="" cols="" ng-disabled="roleShow.teacher.show||(roleShow.student.show && roleShow.student.deadline)||roleShow.teacher.state=='see'||userInfo.userRole=='stu'" ng-model="user.homeComment"></textarea>
+						</li>
+					</ul>
+					<div class="zy_botton_group" ng-if="roleShow.student.show">
+						<button ng-click="keep()">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down" ng-show="tipState.deleteBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="tipState.deleteBox.ifShow = false"></i>
+	    	<div class="tip_box">
+	    		<p class="tip_img">
+	    			<i class="iconfont icon-gantanhao"></i>
+	    		</p>
+	    		<p class="tip_text tip_text_red">确认要删除吗？</p>
+	    	</div>
+	    	<div class="btn_group">
+	    		<button class="sure" ng-click="deleteSure()">确认</button>
+	    		<button class="cancel" ng-click="tipState.deleteBox.ifShow = false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示框-->
+	<div class="gy_del_down warn_box" ng-show="tipState.tipBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con" style="z-index:9999">
+	    	<div class="tip_box">
+	    		<p class="tip_img">
+	    			<i class="iconfont icon-gantanhao" ng-show="tipState.tipBox.tipRed"></i>
+	    			<i class="iconfont icon-duihao1" ng-show="!tipState.tipBox.tipRed"></i>
+	    		</p>
+	    		<p class="tip_text tip_text_blue" ng-bind="tipState.tipBox.tipsWord"></p>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--上传佐证、资质-->
+	<div class="gy_del_down zy_upload_box" ng-show="tipState.upLoadBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="tipState.upLoadBox.ifShow = false"></i>
+	    	<div class="zy_upload_tit_box">
+	    		<span ng-show="tipState.upLoadBox.role == 'stu'">上传资质</span>
+	    		<span ng-show="tipState.upLoadBox.role == 'tea'">上传佐证</span>
+	    	</div>
+	    	<div class="zy_upload_con_box">
+	    		<div class="zy_upload_strip zy_upload_dimension clearfix">
+	    			<span class="fl">评价维度：</span>
+	    			<ul class="fl">
+	    				<li ng-class="{'active':$index == weiDuState}" ng-repeat="weidu in weiDuList" ng-click="uploadTab($event,weidu)" ng-bind="weidu.content"></li>
+	    				<!--<li ng-click="uploadTab($event)">学业水平和学习素养</li>
+	    				<li ng-click="uploadTab($event)">身体和心理健康水平</li>
+	    				<li ng-click="uploadTab($event)">兴趣特长及审美素养</li>
+	    				<li ng-click="uploadTab($event)">社会实践和动手能力</li>-->
+	    			</ul>
+	    		</div>
+	    		<div class="zy_upload_strip zy_upload_type clearfix">
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'stu'">资质类型：</span>
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'tea'">佐证类型：</span>
+	    			<ul class="fl">
+	    				<li ng-repeat="type in ziZhiType" ng-class="{'active':$index == 0}" ng-click="uploadTypeTab($event,type)" ng-bind="type">活动</li>
+	    				<!--<li ng-click="uploadTab($event)">证书</li>
+	    				<li ng-click="uploadTab($event)">待提高</li>
+	    				<li ng-click="uploadTab($event)">其它</li>-->
+	    			</ul>
+	    		</div>
+	    		<div class="zy_upload_strip zy_upload_name clearfix">
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'stu'">资质名称：</span>
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'tea'">佐证名称：</span>
+	    			<input id="ziZhiName1" type="text" class="fl" ng-model="ziZhiName1"/>
+	    		</div>
+	    	</div>
+	    	<div class="zy_upload_file_box">
+	    		<iframe src="tpl/publicPage/upload.html" width="100%" id="uploadResource" name="uploadResource"></iframe>
+	    	</div>
+	    	<p class="zy_upload_file_tip">提示：单次最大上传1个文件，上传插件所支持的格式有（MP4，png，jpg，doc，xls，xlx，pdf） 上传资源，即表示您同意云空间上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+	    	
+	    	<div class="btn_group">
+	    		<button class="sure" ng-if="flag == true" ng-click="uploadSure()" id="uploadBtn">确认</button>
+	    		<button class="cancel" ng-click="tipState.upLoadBox.ifShow = false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--查看佐证、资质-->
+	<div class="gy_del_down zy_check_box" ng-show="tipState.checkBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="closeCheckBox()"></i>
+	    	<div class="zy_upload_tit_box">
+	    		<span ng-show="tipState.checkBox.role == 'stu'">查看资质</span>
+	    		<span ng-show="tipState.checkBox.role == 'tea'">查看佐证</span>
+	    	</div>
+	    	<div class="zy_upload_con_box">
+	    		<div class="zy_upload_strip zy_upload_name clearfix">
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'stu'">资质名称：</span>
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'tea'">佐证名称：</span>
+	    			<em ng-bind = "ziZhiName">学业水平和学习素养</em>
+	    		</div>
+	    		<div class="zy_upload_strip zy_upload_type clearfix">
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'stu'">资质类型：</span>
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'tea'">佐证类型：</span>
+	    			<em>证书</em>
+	    		</div>
+	    	</div>
+	    	<div class="zy_show_box">
+	    		<video ng-if="!typeState" ng-src='{{locUrl+ziZhiUrl}}' controls="controls"  autoplay="autoplay" width="810px" height="560px"/>
+				
+	    		<img ng-if="typeState&&imgListState" ng-repeat="img in imgList" ng-src ='{{locUrl+ziZhiUrl+img}}' />
+	    		<img ng-if="typeState&&!imgListState"  ng-src ='{{locUrl+ziZhiUrl}}' />
+	    	</div>
+		</div>
+	</div>
+</div>

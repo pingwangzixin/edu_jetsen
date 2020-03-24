@@ -1,0 +1,26 @@
+<!-- <template-set class="toggle" ng-if="showAdmin"></template-set> -->
+<!--<div class="template-set"></div>-->
+<!--<system></system>-->
+<div class="zy_index">
+	<div class="zk_head">
+		<div class="zk_headMain">
+			<img src="./img/zk_spaceLogo.png" class="zk_spaceLogo">
+			<ul class="fl" ng-if="visiterFlag">			
+				<li  ng-click="toSpace(0)" ng-class="{'zk_activeSpaceHead':activeSpace == 0}">我的空间</li>
+				<li ng-if="classSpaceFlag" ng-click="toSpace(1)" ng-class="{'zk_activeSpaceHead':activeSpace == 1}">班级空间</li>
+				<li ng-click="toSpace(2)" ng-class="{'zk_activeSpaceHead':activeSpace == 2}">学校空间</li>
+			</ul>
+			<div class="fr zk_headRight">
+				<span>{{userName}}</span>
+				<img src="./img/zk_spaceToBtm.png" alt="">
+				<span>[已登录]</span>
+				<p ng-click="logout()">
+					<i class="iconfont icon-tuichu"></i>
+					退出登录</p>
+			</div>
+		</div>
+	</div>
+    
+    <div ui-view class="toggle"></div>
+    
+</div>

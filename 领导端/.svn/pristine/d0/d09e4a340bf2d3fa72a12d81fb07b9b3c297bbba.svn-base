@@ -1,0 +1,164 @@
+<div>
+	<div class="zy_leader_top_bar zy_leader_details_top_bar">
+		<p ui-sref="secondNav.leftTree.evaluateManage.evaluateManageList" href="#/secondNav/leftTree/evaluateManage/evaluateManageList">
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+			<span class="ng-binding">下发评价</span>
+		</p>
+	</div>
+	
+	<div class="zy_leader_right">
+		<div class="zy_evaluation_management_box zy_evaluate_box">
+	    	<div class="zy_resource_box_main">
+				<div>
+					<b>年级</b><i class="star">*</i>
+					<div class="zy_choose_tree">
+						<strong ng-click="chooseOptions('grade')">选择</strong>
+						<div class="toggle zy_evaluation_tree" ng-if="variablePacket.evaluate.gradeOptions">
+							<em id="gradeCheckAllTrue"  style="display: block;">全选</em>
+							<em id="gradeCheckAllFalse" style="display: none;">全选</em>
+							<ul id="gradeTree" class="ztree"></ul>
+							<div class="zy_tree_btn">
+								<span ng-click="removeBox('grade')">取消</span>
+								<span ng-click="takeValue('grade')">确认</span>
+							</div>
+						</div>
+						<div class="zy_tree_echo zy_tree_echo_single" ng-if="!variablePacket.evaluate.gradeOptions">
+							<ol class="zy_tree_echo_show clearfix" id="gradeShowTree"  repeat-finish="renderFinish('gradeShow')">
+								<li ng-repeat="gradeCheck in gradeCheckNode" ng-bind="gradeCheck.name"></li>
+							</ol>
+						</div>
+					</div>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.evaluate.verifyGrade">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择年级
+						</span>
+					</p>
+				</div>
+				<div>
+					<b>学科</b><i class="star">*</i>
+					<div class="zy_choose_tree">
+						<strong ng-click="chooseOptions('subject')">选择</strong>
+						<div class="toggle zy_evaluation_tree" ng-if="variablePacket.evaluate.subjectOptions">
+							<em id="subjectCheckAllTrue"  style="display: block;">全选</em>
+							<em id="subjectCheckAllFalse" style="display: none;">全选</em>
+							<ul id="subjectTree" class="ztree"></ul>
+							<div class="zy_tree_btn">
+								<span ng-click="removeBox('subject')">取消</span>
+								<span ng-click="takeValue('subject')">确认</span>
+							</div>
+						</div>
+						<div class="zy_tree_echo zy_tree_echo_double" ng-if="!variablePacket.evaluate.subjectOptions">
+							<ol class="zy_tree_echo_show" id="subjectShowTree">
+								<li class="clearfix" ng-repeat="subjectCheck in subjectCheckNode">
+									<span class="fl" ng-bind="subjectCheck.name">一年级：</span>
+									<ul class="fl">
+										<li class="fl" ng-repeat="subjectObj in subjectCheck.children" ng-bind="subjectObj.name"></li>
+										
+									</ul>
+								</li>
+							</ol>
+						</div>
+					</div>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.evaluate.verifySubject">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择学科
+						</span>
+					</p>
+				</div>
+				<div>
+					<b>学校</b><i class="star">*</i>
+					<div class="zy_choose_tree">
+						<strong ng-click="chooseOptions('school')">选择</strong>
+						<div class="toggle zy_evaluation_tree" ng-if="variablePacket.evaluate.schoolOptions">
+							<em id="schoolCheckAllTrue"  style="display: block;">全选</em>
+							<em id="schoolCheckAllFalse" style="display: none;">全选</em>
+							<ul id="schoolTree" class="ztree"></ul>
+							<div class="zy_tree_btn">
+								<span ng-click="removeBox('school')">取消</span>
+								<span ng-click="takeValue('school')">确认</span>
+							</div>
+						</div>
+						<div class="zy_tree_echo zy_tree_echo_double clearfix" ng-if="!variablePacket.evaluate.schoolOptions">
+							<!--<p class="fl">已选中所有学校</p>-->
+							<ol class="zy_tree_echo_show" id="schoolShowTree">
+								<li class="clearfix" ng-repeat="schoolCheck in schoolCheckNode">
+									<span class="fl" ng-bind="schoolCheck.name">安阳区：</span>
+									<ul class="fl">
+										<li class="fl" ng-repeat="schoolObj in schoolCheck.children" ng-bind="schoolObj.name" repeat-finish="renderFinish('schoolShow')"></li>
+									</ul>
+								</li>
+								
+							</ol>
+						</div>
+					</div>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.evaluate.verifySchool">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择学校
+						</span>
+					</p>
+				</div>
+				<div>
+					<b>评价时间</b><i class="star">*</i>
+					<select name="" ng-model="variablePacket.evaluate.defaultTime" ng-options="i.id as i.name for i in variablePacket.evaluate.arrTime" ng-change="changeTerm()">
+						<option value="">请选择时间</option>
+					</select>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.evaluate.verifyTime">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择时间
+						</span>
+					</p>
+				</div>			
+				<div>
+					<b>评价标准</b><i class="star">*</i>
+					<div class="zy_choose_tree">
+						<strong ng-click="chooseOptions('Standard')">选择</strong>
+						<div class="toggle zy_evaluation_tree" ng-if="variablePacket.evaluate.StandardOptions">
+							<em id="StandardCheckAllTrue"  style="display: block;">全选</em>
+							<em id="StandardCheckAllFalse" style="display: none;">全选</em>
+							<ul id="StandardTree" class="ztree"></ul>
+							<div class="zy_tree_btn">
+								<span ng-click="removeBox('Standard')">取消</span>
+								<span ng-click="takeValue('Standard')">确认</span>
+							</div>
+						</div>
+						<div class="zy_tree_echo zy_tree_echo_double clearfix" ng-if="!variablePacket.evaluate.StandardOptions">
+							<p class="fl">已选中评价标准</p>
+							<ol class="zy_tree_echo_show" id="StandardShowTree">
+								<li class="clearfix"  repeat-finish="renderFinish('StandardShow')" ng-repeat="StandardCheck in StandardCheckNode" ng-bind="StandardCheck.name">
+								</li>
+								
+							</ol>
+						</div>
+					</div>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.evaluate.verifyStandard">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择评价标准
+						</span>
+					</p>
+				</div>
+				<div class="zy_evaluate_times">
+					<b>评价次数</b><i class="star">*</i>
+					<ul class="clearfix">
+						<li class="fl" ng-repeat="i in [1,2,3,4,5,6,7,8]" ng-bind="i" ng-class="{'active':variablePacket.evaluate.defaultTimes==$index+1}" ng-click="evaluationTimesFn($index+1)"></li>
+					</ul>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.evaluate.verifyTimes">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择评价次数
+						</span>
+					</p>
+				</div>
+	    	</div>
+			<div class="zy_btn_group">
+    			<button ng-click="addEvaluateBtn()">下发</button>
+	    	</div>
+		</div>
+	</div>
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>

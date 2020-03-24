@@ -1,0 +1,195 @@
+<!--市级角色 start-->
+<div class="mlh_right" ng-if="variablePacket.isCityLevel">
+	<div class="title resource clearfix">
+		<span>资源管理</span>
+	</div>
+	<div class="title resource">
+		<ul class="mlh_select clearfix">
+			<li class="item fl">
+				<select-address></select-address>
+			</li>
+			<li class="item fl" ng-if="!variablePacket.isCityLevel">
+				<select name="" id="" ng-model="userType.id" ng-options="userType.id as userType.name for userType in userTypeList" ng-change="changeUserType(userType.id)">
+					<option value="">请选择</option>
+				</select>
+			</li>
+			<li class="item fl">
+				<select name="" id="" ng-model="grade" ng-options="grade.gradeName for grade in gradeList" ng-change="changeGrade(grade)">
+					<option value="">请选择</option>
+				</select>
+				<!--<select ng-model="selectedGrade" ng-change="changeGrade()">
+					<option ng-repeat="grade in gradeList"  value="{{grade.gradeId}}" ng-selected="grade.gradeId==selectedGrade">{{grade.gradeName}}</option>
+				</select>-->
+			</li>
+			<li class="item fl">
+				<select name="" id="" ng-model="subject" ng-options="subject.subjectName for subject in subjectList" ng-change="changeSubject(subject)">
+					<option value="">请选择</option>
+				</select>
+			</li>
+		</ul>
+	</div>
+	<div class="title options">
+		<ul>
+			<li>
+				<em>资源：</em>
+				<span ng-repeat="i in variablePacket.resources" ng-bind="i.name" ng-click="resourcesTab($index,i.resourceState,i.value)" ng-class={ "active":variablePacket.resourcesIndex==$index}>
+				</span>
+			</li>
+			<li>
+				<em>格式：</em>
+				<span ng-repeat="i in variablePacket.format" ng-bind="i.name" ng-click="formatTab($index,i.resourceType)" ng-class={ "active":variablePacket.formatIndex==$index}>
+				</span>
+			</li>
+			<li>
+				<em>排序：</em>
+				<span ng-repeat="i in variablePacket.sort" ng-bind="i.name" ng-click="sortTab($index)" ng-class={ "active":variablePacket.sortIndex==$index}>
+				</span>
+			</li>
+		</ul>
+	</div>
+	<div class="list details mlh_res">
+		<ul class="resource_tr">
+			<li class="resource_th">资源名称</li>
+			<li class="resource_th">审核人</li>
+			<li class="resource_th">操作</li>
+		</ul>
+		<div>
+			<ul class="resource_tr" ng-repeat="i in resourceContent.all">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.resourceManageList',fine:i.fine,sort:variablePacket.sortIndex,resources:variablePacket.resourcesIndex,format:variablePacket.formatIndex,resouceId:i.id})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download" ng-click="downloadFile(i.id,i.name)">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th">{{i.uploader}}</li>
+				<li class="resource_th">
+					<a href="javascript:;" ng-click="delDate($index,'all',i.id,i.name)">删除</a>
+				</li>
+			</ul>
+		</div>
+		<div class="wx_paging" ng-if="contentpageConfig.totalItems">
+			<zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+		</div>
+	</div>
+</div>
+<!--市级角色 end-->
+
+<!--校级角色 start-->
+<div class="mlh_right" ng-if="!variablePacket.isCityLevel">
+	<div class="title resource clearfix">
+		<span>资源管理</span>
+		<div class="fineQuality" ui-sref="secondNav.leftTree.resourceManage.examineFine">
+			<i class="iconfont icon-iconfontshenheshibai"></i>审核精品
+			<em>{{shenhejingpin}}</em>
+		</div>
+	</div>
+	<div class="title resource">
+		<ul class="mlh_select">
+			<li class="item">
+				<select name="" id="" ng-model="userType.id" ng-options="userType.id as userType.name for userType in userTypeList" ng-change="changeUserType(userType.id)">
+					<option value="">请选择</option>
+				</select>
+			</li>
+			<li class="item">
+				<select name="" id="" ng-model="grade" ng-change="changeGrade(grade)" ng-options="grade.gradeName for grade in  gradeList">
+					<option value="">请选择</option>
+				</select>
+			</li>
+			<li class="item">
+				<select name="" id="" ng-model="subject" ng-options=" subject.subjectName for subject in  subjectList" ng-change="changeSubject(subject)">
+					<option value="">请选择</option>
+				</select>
+			</li>
+		</ul>
+	</div>
+	<div class="title options">
+		<ul>
+			<li>
+				<em>资源：</em>
+				<span ng-repeat="i in variablePacket.resources" ng-bind="i.name" ng-click="resourcesTab($index,i.resourceState,i.value)" ng-class={ "active":variablePacket.resourcesIndex==$index}>
+				</span>
+			</li>
+			<li>
+				<em>格式：</em>
+				<span ng-repeat="i in variablePacket.format" ng-bind="i.name" ng-click="formatTab($index,i.resourceType)" ng-class={ "active":variablePacket.formatIndex==$index}>
+				</span>
+			</li>
+			<li>
+				<em>排序：</em>
+				<span ng-repeat="i in variablePacket.sort" ng-bind="i.name" ng-click="sortTab($index)" ng-class={ "active":variablePacket.sortIndex==$index}>
+				</span>
+			</li>
+		</ul>
+	</div>
+	<div class="list details mlh_res">
+		<ul class="resource_tr">
+			<li class="resource_th">资源名称</li>
+			<li class="resource_th">审核人</li>
+			<li class="resource_th">操作</li>
+		</ul>
+		<div>
+			<ul class="resource_tr" ng-repeat="i in resourceContent.all">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.resourceManageList',fine:i.fine,sort:variablePacket.sortIndex,resources:variablePacket.resourcesIndex,format:variablePacket.formatIndex,resouceId:i.id})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai" ng-click="downloadFile(i.id,i.name)"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th">{{i.updateBy}}</li>
+				<li class="resource_th">
+					<a href="javascript:;" ng-click="delDate($index,'all',i.id,i.name)">删除</a>
+				</li>
+			</ul>
+		</div>
+		<div class="wx_paging" ng-if="contentpageConfig.totalItems">
+			<zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+		</div>
+	</div>
+</div>
+<!--校级角色 end-->
+<!--确认框及提示框-->
+<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk" mask-zindex='variablePacket.maskZindex'></prompt-box>

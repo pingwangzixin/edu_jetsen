@@ -1,0 +1,132 @@
+
+		<style type="text/css">
+			html{font:normal normal 62.5% "Microsoft YaHei";}
+			.head{
+				width: 100%;
+				min-width: 1200px;
+				background-color:#fff;
+				box-shadow: 0 0 8px #c7c9ce;
+				-webkit-box-shadow: 0 0 8px #c7c9ce;
+			    -moz-box-shadow: 0 0 8px #c7c9ce;
+			    -ms-box-shadow: 0 0 8px #c7c9ce;
+				position: fixed;
+				top:0;
+				z-index: 1001;
+			}
+			.Sub_head{
+				width: 1200px;
+				margin: 0 auto;
+			}
+			.head .logo{
+				width: 203px;
+				height: auto;
+				margin: 9px 4px 10px 0px;
+			}
+			.head .list li{
+				float: left;
+			    font-size: 1.6rem;
+			    padding-top: 15px;
+			    padding-bottom: 14px;
+			    margin-left: 30px;
+			}
+			.head .list li a{
+				display: inline-block;
+				width: 100%;
+				text-align: center;
+				height: 18px;
+				line-height: 18px;
+			}
+			.head .list li.active a{color:#147ec9;}
+			
+			.head .btn{
+				height: 50px;
+			    line-height: 50px;
+			    font-size:1.4rem;
+			    cursor: pointer;
+			    text-align: right;
+			    margin-right: 0px;
+			}
+			.head .btn a{margin-right: 16px;}
+			.head .btn .login{font-size: 1.2rem;font-style: normal;}
+			.head .btn strong {
+		    	font-weight: normal;
+		    	position: relative;
+		    }
+		    .head .btn strong img.xiala{
+		    	margin-top: 22px;
+		    	margin-right: 14px;
+		    }
+		    .head .btn strong img.tuichu{
+		    	margin-top: 4px;
+		    }
+		    .head .btn strong span{color:#5093e1;}
+		    .head .btn .personal{
+		    	width: 93px;
+			    height: 28px;
+			    position: absolute;
+			    top: 18px;
+			    right: 7px;
+			    z-index: 1111;
+			    border-radius: 3px;
+			    display: none; 
+			    background: url("../img/tuichu_bg.png") no-repeat;
+		    }
+		    .head .btn .personal li{
+		    	width:98px;
+			    height: 24px;
+			    line-height: 24px;
+			    text-align: center;
+			    font-size: 1.2rem;
+		    }
+		    .head .btn .personal li span{color:#222;}
+		    .head .btn strong:hover .personal{display: block;}
+		    
+		    
+		</style>
+
+		<div class="head clearfix">
+			<div class="Sub_head clearfix">
+				<a href="../Index/index.html"><img class="logo fl" src="../img/logo.png" alt="" /></a>
+				<ul class="list fl">
+					<li><a href="../Physical/personal-health.html"><i class="iconfont icon-jkgl"></i>云体育</a></li>
+					<li><a href="../Health/health-handle.html"><i class="iconfont icon-tzgl"></i>云体制</a></li>
+					<li><a href="../PhysicalExamination/entered.html"><i class="iconfont icon-tzgl"></i>云体检</a></li>
+				</ul>
+				<div class="btn fr clearfix">
+					<a href="../ResultInput/result.html" class=""><i class="iconfont icon-cjlr"></i>成绩录入</a>
+					<em class="login fr">[已登录]</em>
+					<strong>
+	                	<span>示例教师3</span>
+	                	<img class="xiala" src="../img/xia_blue.png" alt=""/>
+	                	<ul class="personal">
+			                <li>
+			                	<img class="tuichu" src="../img/tuichu.png"/>
+			                	<span>退出登录</span>
+			                </li>
+			            </ul>
+	                </strong>
+				</div>
+			</div>
+		</div>
+	
+	<script type="text/javascript">
+		$(function () {
+	        window.onload = function () {
+	　　　　　　　	var $tDiv = $(".list"),
+	            $links = $tDiv.find("a"),
+	            index = 0,//默认第一个菜单项
+	            urls = location.href.split('?')[0].split('/');//取得"?"以前的所以"/"截止的所有字符串
+	            for (var j = urls.length-1; j > 0; j--) {
+	                if (urls[j]!="index.html") {//判断改字符串是否是"index.html",如果是则返回,如果不是则执行循环
+	                    for (var i =0;i<$links.length; i++) {//循环底部导航栏li里面的a
+	                        if ($links[i].href.toLocaleLowerCase().indexOf(urls[j]) != -1) {
+	                            index = i;
+	                            $tDiv.find("li:eq(" + index + ")").addClass("active");
+	                             return;
+	                        }
+	                    }
+	                }
+	            }
+	        }
+        })
+	</script>

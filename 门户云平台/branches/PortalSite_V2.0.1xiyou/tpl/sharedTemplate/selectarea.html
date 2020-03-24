@@ -1,0 +1,57 @@
+<span class="wx_address areaone">
+	<input class="searchSchool" type="text" placeholder="请选择省市区学校" ng-focus="revealstate()" ng-model="assignments"/>
+	<div class="zmj_chooice" ng-if="directiveState">
+        <ul class="zmj_select clearfix" ng-show="selectState">
+            <li class="zmj_province">
+                <p ng-click="clear.p()" ng-bind="p" style="background:#f6f7fa"></p>
+	            <div class="zmj_vessel" id="zmj_province_mainbox" style="background:#f6f7fa">
+	                <ol id="zmj_province_contentbox" class="clearfix">
+	                    <li style="border-bottom:1px solid #ccc;" ng-repeat="item in province" ng-click="set.p(item)" ng-class="{'active' : p==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="P" ng-bind="item.name"></li>
+	                </ol>
+	            </div>
+            </li>
+            <li class="zmj_city">
+                <p ng-click="clear.c()" ng-bind="c"></p>
+                <div class="zmj_vessel" id="zmj_city_mainbox">
+                    <b ng-show="citylength">暂无数据</b>
+                    <ol id="zmj_city_contentbox" class="clearfix">
+                        <li ng-click="set.c(item)" ng-repeat="item in citys" ng-class="{'active':c==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="C" ng-bind="item.name"></li>
+                    </ol>
+                </div>
+            </li>
+            <li class="zmj_districts">
+                <p ng-click="clear.d()" ng-bind="d"></p>
+                <div class="zmj_vessel" id="zmj_districts_mainbox">
+                   <b ng-show="districtlength">暂无数据</b>
+                    <ol id="zmj_districts_contentbox">
+                        <li ng-repeat="item in districts" ng-class="{'active':d==item.name}" ng-click="set.d(item)" ng-attr-title="{{item.name}}" on-finish-render-filters="D" ng-bind="item.name"></li>
+                    </ol>
+                </div>
+            </li>
+            <li class="zmj_type">
+                <p ng-bind="t"></p>
+                <div class="zmj_vessel">
+                    <b ng-show="typelength">暂无数据</b>
+                    <ol ng-show='typeState' class="clearfix">
+                        <li ng-repeat="item in mechanismType" ng-class="{'active':t==item.name}" ng-click="set.t(item)" ng-attr-title="{{item.name}}" ng-bind="item.name"></li>
+                    </ol>
+                </div>
+            </li>
+        </ul>
+        <div class="schoolbox" ng-show="schoolState">
+            <div class="schoolbox_title clearfix">
+                <p ng-click="clear.schoolprovince()" ng-bind="p"></p>
+                <p ng-click="clear.schooltype()"     ng-bind="t"></p>
+            </div>
+            <div class="zmj_vessel" id="zmj_school_mainbox">
+               <b ng-show="schoollength">暂无数据</b>
+                <ul id="zmj_school_contentbox">
+                    <li class="zmj_schoollist clearfix" ng-repeat="item in school" ng-click="set.school(item)" ng-class="{'active':assignment==item.name}" on-finish-render-filters="S">
+                    	<p ng-bind="item.name"></p>
+                    	<span>{{p}}{{c}}{{d}}</span> 
+                    </li>
+                </ul>
+            </div>
+        </div>
+   </div>
+</span>

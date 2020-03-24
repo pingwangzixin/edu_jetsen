@@ -1,0 +1,48 @@
+
+
+[
+		{
+			"name":"学习空间",
+			"data":[{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=1",
+				"icon": "gerenziyuan1",
+         		"name": "个人资源"
+			},{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=3",
+				"icon": "renwuzhongxin1",
+         		"name": "任务中心"
+			},{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=2",
+				"icon": "gongognziyuan1",
+         		"name": "公共资源"
+			},{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=4",
+				"icon": "ketangjilu1",
+         		"name": "课堂记录"
+			}, {
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=5",
+				"icon": "zonghepingjia1",
+         		"name": "综合评价"
+			},{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=9",
+				"icon": "kaoshifenxi1",
+         		"name": "考试分析"
+			}]
+		},
+		{
+			"name":"综合发展",
+			"data":[{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=11",
+				"icon": "suzhipingjia1",
+         		"name": "素质评价"
+			},{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=10",
+				"icon": "tizhijiankang1",
+         		"name": "体质健康"
+			},{
+				"href": "http://218.9.54.48:8888/ea/api/uc/personSpaceApp?clientId=12",
+				"icon": "chengzhangdangan1",
+         		"name": "学生档案"
+			}]
+		}
+	]

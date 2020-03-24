@@ -1,0 +1,38 @@
+	<style type="text/css">
+		.zy_head{background: #fff; font-size: 18px;}
+		.zy_head>div{width: 1200px; height: 96px; margin: 0 auto;}
+		.zy_head_logo{width: 462px; height: 96px; display: flex; justify-content: center; flex-direction: column;}
+		.zy_head_logo p{font-size: 20px; text-align: center;}
+		.zy_head_logo p img{margin: 0 15px; align-items: center; width: 196px;}
+		
+		
+		/*底部*/
+		footer{height: 200px; text-align: center; font-size: 16px; padding-top: 80px; box-sizing: border-box; background: #f1f2f3;}
+		/*footer.active{background: #fff;}*/
+		footer p{line-height: 40px;}
+		footer p span{display: inline-block; margin-right: 52px;}
+	</style>
+	<script>
+		app.controller('secondIndex',['$scope','$state','$rootScope','$location','$http',function($scope,$state,$rootScope,$location,$http){
+			
+			//返回云空间首页
+			$scope.goBackSpace = backSpace;
+		}]);
+	</script>
+	
+	<!--<header></header>-->
+    <div class="zy_head" ng-controller="secondIndex">
+        <div class="clearfix">
+            <div class="zy_head_logo fl">
+                <p>
+                	<img src="./img/logo_place.png" alt="" />
+                	<img src="./img/jetsen_logo_double.png" alt="" />
+                </p>
+            </div>
+            <a class="zy_back fr" href="{{goBackSpace}}">返回云空间首页<i></i></a>
+        </div>
+    </div>
+	
+	<div ui-view></div>
+
+	<z-footer></z-footer>

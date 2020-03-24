@@ -1,0 +1,30 @@
+<!--<system nav="navShowDet"></system>-->
+<!--<system></system>-->
+<div class="mlh_headwrap">
+	<div class="mlh_wrap clearfix">
+	 	<a href="http://yun.mdjedu.net/Home/Index/main.html" target="_blank">
+	 		<img src="img/mlh_logo.png" alt="" class="mlh_logo"/>
+	 	</a>
+	 	<span class="mlh_module">捷成智慧教育云管理</span>
+	 	<em class="zyx_past" ng-click="jinrujiuban()">进入旧版</em>
+	 	<div class="fr">
+	 	  	<span class="mlh_login_name fl" ng-bind="name"></span>
+	 	  	<ul class="personal">
+				<li>
+					<img class="tuichu" src="./img/mlh_tuichu.png"> 
+					<span ng-click="logOut()">退出登陆</span>
+				</li>
+			</ul>
+	 	  	<span class="mlh_name" >[已登录]</span>
+	 	</div>
+	</div>
+</div>
+<div class="gy_del_down zmj_loginpromptBox" ng-if="variablePacket.promptState">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<div><img src="../src/img/zmj_prompt.png"/></div>
+	            <p>sorry,当前角色权限不够！</p>
+			</div>
+</div>
+<div ui-view class="toggle" style="width: 1200px; margin: 0 auto;"></div>
+<z-footer></z-footer>

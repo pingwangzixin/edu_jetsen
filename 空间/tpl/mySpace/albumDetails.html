@@ -1,0 +1,40 @@
+<div class="">
+	<div class="zy_class_space_index zk_class_space_index">
+		<div class="zy_photo_details_wrap clearfix">
+			<div class="zy_photo_show  zk_photo_show fl">
+				<div class="zy_introduce_tit  zk_detalil_tit clearfix" ng-click="toList()" >
+					<p><b ><</b><span>&nbsp;&nbsp;我的相册</span></p>
+					<p>{{photoName}}</p>
+				</div>
+				<div class="zy_photo_show_details zk_photo_show_details">
+					<p>{{photoDesc}}</p>
+					<div class="zy_album_pic_big zk_album_pic_big">
+						<i class="iconfont icon-zuojiantoubeijing" ng-click="toLeft()"></i>
+						<div class="zy_pic_big_box zk_pic_big_box">
+							<ul class="clearfix">
+								<li>
+									<!-- <img ng-src="{{variable.mainImg}}" err-src="./img/error650.png" /> -->
+									<img src="{{variable.mainImg}}" err-src="./img/error650.png" />
+								</li>
+							</ul>
+						</div>
+						<i class="iconfont icon-youjiantoubeijing" ng-click="toRight()"></i>
+					</div>
+					<div class="zy_album_pic_little zk_album_pic_little">
+						<i class="iconfont icon-icon_arrow_left"  ng-click="toLeft()"></i>
+						<!-- <i class="iconfont icon-icon_arrow_left" ng-show="variable.listToLeft" ng-click="listToLeft($event)"></i> -->
+						<div class="zy_pic_little_box zk_pic_little_box">
+							<ul class="clearfix">
+								<li ng-class="{active:$index==variable.photoState}" ng-repeat="photo in album" ng-click="photoSel($index)" view-album="albumEvent()" >
+									<img ng-src="{{photo.src}}" err-src="./img/error72.png" />
+								</li>
+							</ul>
+						</div>
+						<i class="iconfont icon-icon_arrow_right"  ng-click="toRight($event)"></i>
+						<!-- <i class="iconfont icon-icon_arrow_right" ng-show="variable.listToRight" ng-click="listToRight($event)"></i> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

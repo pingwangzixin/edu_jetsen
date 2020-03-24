@@ -1,0 +1,63 @@
+<div>
+	<div class="zyx_greenbox zyx_classNoticeEdit">
+		<div class="zyx_whitebox">
+			<div class="zyx_title">
+				<span>班级公告</span>
+			</div>
+			<div class="zyx_classSpace_editfile">
+				<div class="zyx_name">
+					<span>公告名称</span>
+					<input type="text" ng-model="title" placeholder="请输入标题" ng-change='noticeNameChange()'/>
+				</div>
+				<div class="zyx_edit clearfix">
+					<span>公告内容</span>
+					<textarea ng-model='ueditor'></textarea>
+				</div>
+			</div>
+			<div class="zyx_classScape_acce">
+				<ul>
+					<li class="clearfix" ng-repeat='i in classNoticeAcce track by $index'>
+						<i class="iconfont fl" ng-class='i.Classname'></i>
+						<span class="fl" ng-bind='i.name'>班级空间我的班级空间班级空间我的班级空间班级空间我的班级空间</span>
+						<small class="fr" ng-click='classNoticeAcceDel($index,i.fileId)'>删除</small>
+					</li>
+				</ul>
+				<i class="iconfont icon-lianjielianlu"></i>
+				<span>添加附件</span>
+				<input type="file"accept="image/*,application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+					 application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+					 application/vnd.openxmlformats-officedocument.presentationml.presentation
+					" onchange="angular.element(this).scope().fileUpload(this)"/>
+			</div>
+			<div class="zyx_classSpace_btn">
+				<span ng-if='state==1' ng-click="save(ueditor)" >保存</span>
+				<span ng-if='state==0' ng-click="publish(ueditor)">发布</span>
+				<span ng-click="cancel()">取消</span>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down zy_if_box" ng-show="variable.deleteBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<p>确认删除吗？</p>
+	    	<div class="zy_if_btn_box">
+	    		<button class="zy_if_btn_sure" ng-click="sureDelete()">确认</button>
+	    		<button class="zy_if_btn_cancel" ng-click="variable.deleteBox=false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示弹框-->
+	<div class="gy_del_down zy_if_box zy_auto_box" ng-show="variable.tipBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-chenggong" ng-if="variable.tipSuccess"></i>
+	    	<i class="iconfont icon-shangchuanshibai" ng-if="!variable.tipSuccess"></i>
+	    	<p ng-bind="variable.tipWord"></p>
+		</div>
+	</div>
+	
+</div>

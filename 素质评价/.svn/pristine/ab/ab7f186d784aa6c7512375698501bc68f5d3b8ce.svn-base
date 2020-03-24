@@ -1,0 +1,162 @@
+	    		<div class="zy_upload_file_bg" id="i_select_files" overflow: hidden; position: relative>
+	    			<!--<div class="zy_upload_file_dashed">
+	    				<input type="file" name="" id="" value="" />
+	    				<span>+</span>
+	    				<p>浏览文件或把文件拖拽到这里</p>
+	    			</div>-->
+	    		</div>
+	    		<input type="hidden" id="uploadJsonStr" name="uploadJsonStr" />
+	    		<div id="i_stream_files_queue">
+    			</div>
+    			
+
+
+<script src="../../js/publicPage/controller/stream-v1.js" type="text/javascript"></script>
+<script src="../../js/publicPage/controller/indexed.js" type="text/javascript"></script>
+<script src="../../common/js/jquery-1.11.2.min.js"></script>
+<script src="../../js/config.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/indexed.css" >
+<link rel="stylesheet" type="text/css" href="../../css/stream-v1.css" >
+<script type="text/javascript">
+	
+	//随机生成6位数
+	var uuid = Math.random().toString(36).substr(2);
+	console.log(uuid)
+	var config = {
+			/** 选择文件的ID, 默认: i_select_files */
+			browseFileId : "i_select_files",
+			/** 显示选择文件的样式, 默认: `<div>请选择文件</div>` */
+			browseFileBtn : "<div><br/></div>",
+			/** 拖拽上传区域，Id（字符类型"i_select_files"）或者DOM对象, 默认: `i_select_files` */
+			dragAndDropArea : "i_select_files",
+			/** 拖拽提示, 默认: `<span>把文件(文件夹)拖拽到这里</span>` */
+			dragAndDropTips : "<span>浏览文件或把文件拖拽到这里</span>",
+			/** 文件上传容器的ID, 默认: i_stream_files_queue */
+			filesQueueId : "i_stream_files_queue",
+			/** 文件上传容器的高度（px）, 默认: 450 */
+			filesQueueHeight : 88,
+			/** 消息显示容器的ID, 默认: i_stream_message_container */
+			messagerId : "i_stream_message_container",
+			/** 多个文件一起上传, 默认: false */
+			multipleFiles : false,
+			/** 选择文件后是否自动上传, 默认: true */
+			autoUploading : true,
+			autoRemoveCompleted : false, /** 是否自动删除容器中已上传完毕的文件, 默认: false */
+			//		maxSize: 1048	57600//, /** 单个文件的最大大小，默认:2G 写入配置 */
+			//		retryCount : 5, /** HTML5上传失败的重试次数 */
+		/**	postVarsPerFile : { /** 上传文件时传入的参数，默认: {}
+				param1: "val1",
+				param2: "val2"
+			},*/
+			//		swfURL : "/swf/FlashUploader.swf", /** SWF文件的位置 */
+			/** 根据文件名、大小等信息获取Token的URI（用于生成断点续传、跨域的令牌） */
+			tokenURL : requireIp+"teacher/suZhiController/tk.do?folder=evalbackup",
+			//		frmUploadURL : "/fd;", /** Flash上传的URI */
+			/** HTML5上传的URI */
+			uploadURL : requireIp+"web/evaluateUpload.servlet?folder=evalbackup&userid="+uuid,
+			/** 单次最大上传文件个数 */
+			simLimit : 1,
+			maxSize:209715200000,
+			extFilters : [".zip"],
+			/**停止上传点击事件*/
+			onStop : function(){
+				//document.getElementById("stop_button").style.display = "none";
+				//document.getElementById("upload_button").style.display = "block";
+				document.getElementById("i_select_files").style.display = "block";
+			},
+			/** 选择文件后的响应事件 */
+			onMaxSizeExceed: function(size, limited, name) {
+				MessageAlert({
+					info:"您上传的资源文件不得超过2G，请重新上传！"
+				});
+				setTimeout("window.location.reload();", 5000);
+			},
+			/** 文件的扩展名不匹配的响应事件 */
+			onExtNameMismatch : function(name, filters) {
+				document.getElementById("i_select_files").style.display = "block";
+				MessageAlert({	
+					info:"暂不支持此文件格式！",		
+				});
+			},
+			onComplete: function(file){
+				console.log(file)/** 单个文件上传完毕的响应事件 */
+				$('#ziZhiName1', window.parent.document).val(file.name.substring(0, file.name.lastIndexOf(".")));
+				//上传成功后多文件上传信息合并
+				var obj = eval('(' + file.msg + ')');
+				if (obj.message == "supportfail") {
+					MessageAlert({			
+						info:"系统不支持此文件格式！",		
+					});
+                    window.parent.hideUploadBtn("uploadBtn");
+					//document.getElementById("saveRes").style.display = "none";
+					$(".stream-files-scroll ul").empty();
+					$("#uploadJsonStr").val("");
+					setTimeout("window.location.reload();", 3000);
+					//document.getElementById("stop_button").style.display = "none";
+					//document.getElementById("upload_button").style.display = "none";
+				}else if(obj.message == "mediaformatfail"){
+                    window.parent.hideUploadBtn("uploadBtn");
+					MessageAlert({			
+						info:"视频编码错误，请选择h264编码的视频并重新上传！",		
+					});
+					$("#uploadJsonStr").val("");
+					//document.getElementById("stop_button").style.display = "none";
+					//document.getElementById("upload_button").style.display = "none";
+					//document.getElementById("saveRes").style.display = "none";
+				}
+				else if(obj.message == "formatfail"){
+                    window.parent.hideUploadBtn("uploadBtn");
+					MessageAlert({			
+						info:"系统不支持此类型的文件格式！",		
+					});
+					$("#uploadJsonStr").val("");
+					//document.getElementById("stop_button").style.display = "none";
+					//document.getElementById("upload_button").style.display = "none";
+					//document.getElementById("saveRes").style.display = "none";
+				}
+
+				multiul =document.getElementsByTagName("ul")[0];
+				multili=multiul.getElementsByTagName("li");
+				multilength = multili.length;
+				var obj = eval('(' + file.msg + ')');
+				var uploadVomap = eval('(' + obj.uploadVomap + ')');
+				if(uploadVomap!="undefined"&&typeof(uploadVomap) != "undefined"){
+					if (typeof(uploadVomap) == "undefined") { 
+						MessageAlert({			
+							info:"系统不支持此文件格式！",		
+						});
+	                    window.parent.hideUploadBtn("uploadBtn");
+						//document.getElementById("saveRes").style.display = "none";
+						$(".stream-files-scroll ul").empty();
+						$("#uploadJsonStr").val("");
+						//setTimeout("window.location.reload();", 3000);
+					}else{
+						uploadVomap.id = window.Stream.u_file_id;
+						$("#uploadJsonStr").val('['+JSON.stringify(uploadVomap)+']');
+						var title = $('#'+window.parent.resInputId, window.parent.document).val();
+						if(typeof(title)=="undefined"||title.replace(/\s+/g,"")==""){
+							$('#'+window.parent.resInputId, window.parent.document).val(file.name.substring(0, file.name.lastIndexOf("."))); 
+						} 
+						var utitleBack = $("#utitleBack", window.parent.document).val();
+						if(typeof(utitleBack)=="undefined"||utitleBack.replace(/\s+/g,"")==""){
+							$('#utitleBack', window.parent.document).val(file.name.substring(0, file.name.lastIndexOf("."))); 
+						} 
+					}  
+				}else{
+					MessageAlert({			
+						info:"系统不支持此文件,请重新上传文件！",		
+					});
+					$("#uploadJsonStr").val("");
+					//setTimeout("window.location.reload();", 1000);
+				}
+			}
+		};
+		
+		var _t = new Stream(config);
+	function hideUploadBtn(idName){
+    	$("#"+idName).hide();
+	}	
+	function showUploadBtn(idName){
+   		$("#"+idName).show();
+	}
+</script>

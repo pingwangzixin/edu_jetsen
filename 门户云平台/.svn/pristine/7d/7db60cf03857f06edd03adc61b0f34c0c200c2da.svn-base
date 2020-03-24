@@ -1,0 +1,54 @@
+<!--<div class="mlh_content">
+	<div class="guide">
+		<!--科目选择  start
+		<ul class="guide-choose">
+			<li class="item" 
+				ng-repeat="guide in variablePacket.subjects" 
+				ng-bind="guide.name"
+				ng-class="{'active':variablePacket.curr==$index}"  
+				ng-click="guideToggle(guide.id,$index)"></li>
+		</ul>
+		<!--科目选择  end
+	</div>
+</div>-->
+<div class="mlh_content clearfix">
+	<!--班级选择 start-->
+	<div class="mlh_bg">
+		<div class="title class">
+			<span>状态：</span>
+			<ul>
+				<li ng-class="{'active':variablePacket.stateIndex==$index}"
+					ng-repeat="state in variablePacket.states" 
+					ng-bind="state.name"
+					ng-click="stateChange(variablePacket.subjectId,$index,state.state, state.id)"
+					></li>
+			</ul>
+		</div>
+	</div>
+	<!--班级选择 end-->
+	<!--内容列表部分 start-->
+	<div class="mlh_bg mlh_top">
+		<div class="student" >
+			<!--每个列表项 start-->
+			<div class="guide-item clearfix"
+				 ng-repeat="i in subjectsData" 
+				 ng-if="i.state==variablePacket.state">
+				<div class="left" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id)"></span>
+						<em class="not-learn" ng-if="variablePacket.state=='unsubmitted'">未提交</em>
+						<em class="learn" ng-if="variablePacket.state=='submission'">已提交</em>
+						<em class="read" ng-if="variablePacket.state=='readyOver'">已批阅</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+			</div>
+			<!--每个列表项 end-->
+		</div>
+		<div class="loading"><i class="iconfont icon-jiazai"></i>加载更多...</div>
+	</div>
+	<!--内容列表部分 end-->
+</div>
+

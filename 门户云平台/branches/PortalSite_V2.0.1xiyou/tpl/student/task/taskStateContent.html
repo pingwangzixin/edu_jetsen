@@ -1,0 +1,123 @@
+<div class="main_width">
+	
+	<div class="zy_classroom_f zy_task_cont_wrap">
+		<div class="zy_guide_tit">
+			<div class="clearfix">
+				<p class="fl">
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.studentTaskList"></i>
+					<span ng-bind="examAndSubmit.name"><!--初一数学阶段测试考试--></span>
+				</p>
+			</div>
+		</div>
+		<div class="zy_student_pass_wrap">
+			<div class="zy_student_resource_main">
+				<div class="zy_task_cont">
+					<p>任务内容</p>
+					<div class="zy_word_wrap" ng-bind="examAndSubmit.content">
+						<!--一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做作业,家长可以定期查看孩子的学习进度及报告,情景交融的学习模式...一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做业,家长可以定期查看孩子的学习进度及报告,情景交融的学习模式-->
+					</div>
+					<p>任务附件</p>
+					<ul class="zy_enclosure_list clearfix" ng-repeat="i in examAndSubmit.attachmentList">
+						 <li>
+						 	<img ng-src = "{{i.type|icon}}"/>
+						 	<span>
+								<a ng-bind="i.name" ng-href="{{i.downUrl}}" ng-click="checkDownUrl(i.downUrl)"></a>
+							</span>
+						 </li>
+						<!--<li><img src="./img/resources_ear.png"/><span>2016—2017学年六年级语文</span></li>-->
+					</ul>
+					<p>任务资源</p>
+					<ul class="zy_enclosure_list clearfix" ng-repeat="i in examAndSubmit.resourceList">
+						<li><img ng-src = "{{i.type|icon}}"/><i></i><span ng-bind="i.name" ng-click='insertResource(i)'></span></li>
+						<!--<li><img src="./img/resources_ear.png"/><span>2016—2017学年六年级语文</span></li>-->
+					</ul>
+				</div>
+			</div>
+			<div class="zy_student_resource_main">
+				<div class="zy_task_cont">
+					<p>我的回答</p>
+					<!--已提交-->
+					<div ng-bind="examAndSubmit.examSubmit.content" class="zy_word_wrap" ng-if="variablePacket.listPageParam=='submission'||variablePacket.listPageParam=='readyOver'">
+						<!--一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做作业,家长可以定期查看孩子的学习进度及报告,情景交融的学习模式...一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做业,家长可以定期查看孩子的学习进度及报告,情景交融的学习模式-->
+					</div>
+					<!--未提交-->
+					<textarea ng-model="variablePacket.answerContent" name="" rows="" cols="" ng-if="variablePacket.listPageParam=='unsubmitted'"></textarea>
+					<p>回答附件</p>
+					<!--未提交-->
+					<div id="uploader" class="zy_enclosure_upload mlh_enclosure_upload" ng-show="variablePacket.listPageParam=='unsubmitted'">
+					    <div id="picker">选择文件</div>
+					</div>
+					<!--<div ng-click="shangchuan()"  ng-if="variablePacket.listPageParam=='unsubmitted'">
+						<span>上传附件</span>
+						<input type="file" name="" id="" value="" />
+					</div>-->
+					<!--未提交显示删除按钮-->
+					<ul class="zy_enclosure_list clearfix">
+						<li ng-repeat="i in variablePacket.answerEnclosureArr">
+							<img ng-src = "{{i.type|icon}}"/>
+							<span>
+								<a ng-bind="i.name" ng-href="{{i.downUrl}}" ng-click="checkDownUrl(i.downUrl)"></a>
+							</span>
+							<b ng-if="variablePacket.listPageParam=='unsubmitted'" ng-click="deleteEnclosure($index)">删除</b>
+						</li>
+						<!--<li ng-repeat="i in variablePacket.answerEnclosureArr"><img src="./img/resources_ear.png"/><span ng-bind="i.name">2</span><b ng-if="variablePacket.listPageParam=='unsubmitted'" ng-click="deleteEnclosure($index)">删除</b></li>-->
+					</ul>
+				</div>
+			</div>
+			<!--已批阅-->
+			<div class="zy_student_resource_main" ng-if="variablePacket.listPageParam=='readyOver'">
+				<div class="zy_task_cont">
+					<p>老师评语</p>
+					<div class="zy_word_wrap" ng-bind="examAndSubmit.examSubmit.comment">
+						<!--一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做作业,家长可以定期查看孩子的学习进度及报告,情景交融的学习模式...一起作业是一款免费学习工具,是一个学生、老师和家长三方互动的作业平台,老师轻松布置作业,学生快乐做业,家长可以定期查看孩子的学习进度及报告,情景交融的学习模式-->
+					</div>
+				</div>
+			</div>
+			<div class="zy_btn_group zy_btn_group_center" ng-if="variablePacket.listPageParam=='unsubmitted'"></textarea>
+				<!--未提交时显示-->
+				<button class="zy_student_task_submit" ng-click="submitFn()">提交</button>
+			</div>
+		</div>
+	</div>
+		<!--插入资源回显弹层-->
+	<div class="gy_del_down zy_resource_box" ng-if='variablePacket.insertResource'>
+	    <div class="gy_hide"></div>
+	    <div class="gy_con mlh_con">
+	    	<div class="zy_resource_box_tit">
+	    		<b ng-bind="variablePacket.clickResourceName"></b>
+	    		<i class="iconfont icon-guanbi1 fr" ng-click='closeResource()'></i>
+	    	</div>
+	    	<div class="zy_resource_box_main">
+				<div ng-if='variablePacket.backResourceType == "pic"'>
+					<img src="{{variablePacket.imagePath}}"/>
+				</div>
+				<div class="zyx_ResLineVideo bofangqi" id="showplayer">
+					<div ng-if="variablePacket.showplayer" class="loadFlashWrap">
+						<p>您的浏览器还没有安装Flash插件</p>
+						<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+					</div>
+				</div>
+				<div class="zyx_ResLinePDF mlh_pdf" ng-if='variablePacket.backResourceType == "pdf"'>
+					<iframe width="854" height="511" src="{{variablePacket.pdfPath}}"></iframe>
+				</div>
+				<div ng-show="variablePacket.convertState == '2'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>资源转码失败!</p>
+						</div>
+					</div>
+				</div>
+				<div ng-show="variablePacket.convertState == '0'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>该资源正在转码中......</p>
+						</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	
+</div>

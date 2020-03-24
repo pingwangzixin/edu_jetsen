@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>作业分析</title>
+		<!--公共样式-->
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../common/dataTable/jquery.dataTables.css" />
+		<script src="../common/js/jquery-2.2.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/dataTable/datatables.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/LAB.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--我的样式-->
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<script src="../js/index.js"></script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">作业名称：第一单元测试作业</div>
+			<div class="tabBox">
+				<p class="clearfix">
+					<strong>班级：</strong>
+					<a href="JavaScript:;" class="current">(1)班</a>
+					<a href="JavaScript:;">(2)班</a>
+				</p>
+				<p class="clearfix">
+					<strong>学科：</strong>
+					<a href="JavaScript:;" class="current">语文</a>
+				</p>
+			</div>
+
+			<!--均分优良率及格率统计-->
+			<div class="main" style="padding-top:0;">
+				<ul class="ichartTits clearfix">
+	                <li class="cur" data-tab='1'>作业分析</li>
+	                <li data-tab='2'>成绩列表</li>
+	            </ul>
+	            <!--作业分析-->
+				<div class="zyx_snalysis">
+					<!--分数段统计表-->
+					<div class="zyx_score">
+						<h3 class="tit">
+							<strong>分数段统计表</strong>
+						</h3>
+						<ul class="icharts">
+			                <li id="chart-list">
+			                    <div data-highcharts-chart="1" class="chart-column-3" style="height:350px;"></div>
+			                </li>
+			            </ul>
+			            <!--注释-->
+						<ul class="graph-comments">
+							<li>注释：</li>
+						    <li>→本图表示本次测试中各分数段人数分布情况；</li>
+						    <li>→图中X轴表示各个分数段；Y轴为学生人数，表示不同分数段的人数；</li>
+						</ul>
+			            <script>
+			                $LAB
+			                    .script('../common/js/highcharts.js')
+			                    .script('../common/js/highcharts-functions.js')
+			                    .wait(function(){
+			                        var chart_column_data_3 = {"categories":["100-80","80-60","60-40","40-20","20-0"],"ytitle":"人数","units":"%","data":[{"data":[1,2,3,1,2.5]}]};
+			                        chart_columns('.chart-column-3', chart_column_data_3.title, chart_column_data_3.categories, chart_column_data_3.ytitle, chart_column_data_3.data, chart_column_data_3.units, null, false, false);
+			                        $('.highcharts-legend').remove();
+			                    });
+			            </script>
+					</div>
+					<!--答题正误情况-->
+					<div class="zyx_answer">
+						<h3 class="tit">
+							<strong>答题正误情况</strong>
+						</h3>
+						<p>班级情况（班级总人数：42人    提交作业人数：39人    未提交作业人数：3人）    班级平均分  66.7</p>
+						<table class="zyx_testTable">
+							<thead>
+								<tr>
+									<th width="20%">题型</th>
+									<th width="20%">题号</th>
+									<th width="20%">班级平均得分率</th>
+									<th width="40%">班级错误学生</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td rowspan='3'>一、单选题</td>
+									<td>1</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td rowspan='3'>二、填空题</td>
+									<td>1</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td rowspan='3'>三、简答题</td>
+									<td>1</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td rowspan='3'>四、阅读理解</td>
+									<td>1</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td rowspan='3'>五、完形填空</td>
+									<td>1</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>20%</td>
+									<td>赵博名   孔满达   计晟棠</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!--典型错题-->
+					<div class="zyx_errorTopic">
+						<h3 class="tit">
+							<strong>典型错题</strong>
+						</h3>
+						<div class="zyx_topic">
+							<h6>题20</h6>
+							<div class="zyx_stem">
+								一个人花8块钱买了一只鸡，9块钱卖掉了，然后他觉得不划算，花10块钱又买回来了，11块卖给另外一个人。问他赚了多少？
+							</div>
+							<table class="zyx_tableExplain">
+								<thead>
+									<tr>
+										<th>试题类型：<span>简答</span></th>
+										<th>年级错误人数：<span>336</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan='2'>试题涉及知识点：<span>二次函数的应用</span></td>
+									</tr>
+									<tr>
+										<td colspan='2'>试题涉及学科能力和思想方法：<span>运算能力</span></td>
+									</tr>
+									<tr>
+										<td colspan='2'>年级平分得分率：<span>21%</span></td>
+									</tr>
+									<tr>
+										<td>年级高分组得分率：<span>41%</span></td>
+										<td>年级低分组得分率：<span>1%</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="zyx_topic">
+							<h6>题25</h6>
+							<div class="zyx_stem">
+								高铁被称为中国“新四大发明”之一，2017年初中国高铁运营里程已超过2.2万公里，占全球高铁运营里程的65%，其中“2.2万”用科学记数法可表示为？
+							</div>
+							<table class="zyx_tableExplain">
+								<thead>
+									<tr>
+										<th>试题类型：<span>简答</span></th>
+										<th>年级错误人数：<span>336</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan='2'>试题涉及知识点：<span>二次函数的应用</span></td>
+									</tr>
+									<tr>
+										<td colspan='2'>试题涉及学科能力和思想方法：<span>运算能力</span></td>
+									</tr>
+									<tr>
+										<td colspan='2'>年级平分得分率：<span>21%</span></td>
+									</tr>
+									<tr>
+										<td>年级高分组得分率：<span>41%</span></td>
+										<td>年级低分组得分率：<span>1%</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="zyx_topic">
+							<h6>题26</h6>
+							<div class="zyx_stem">
+								已知小华家、小夏家、小红家及学校在同一条大路旁，一天，他们放学后从学校出发，先向南行1000m到达小华家A处，继续向北行3000m到达小红家B处，然后向南行6000m到小夏家C处.
+								(1)以学校为原点，以向南为正方向，用1个单位长度表示1000m，请你在数轴上表示出小华家、小夏家、小红家的位置；
+								(2)小红家在学校什么位置？离学校有多远？
+							</div>
+							<table class="zyx_tableExplain">
+								<thead>
+									<tr>
+										<th>试题类型：<span>简答</span></th>
+										<th>年级错误人数：<span>336</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan='2'>试题涉及知识点：<span>二次函数的应用</span></td>
+									</tr>
+									<tr>
+										<td colspan='2'>试题涉及学科能力和思想方法：<span>运算能力</span></td>
+									</tr>
+									<tr>
+										<td colspan='2'>年级平分得分率：<span>21%</span></td>
+									</tr>
+									<tr>
+										<td>年级高分组得分率：<span>41%</span></td>
+										<td>年级低分组得分率：<span>1%</span></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<!--成绩列表-->
+				<div class="zyx_scoreList" style="display: none;">
+					<div class="tableBox">
+						<!--<div class="export"><a href="">导出表格</a></div>-->
+						<table class="zyx_testTable" id="failed_table_t">
+							<thead>
+								<tr>
+									<th style="width:25%;">学号</th>
+									<th style="width:25%;">姓名</th>
+									<th style="width:25%;">得分</th>
+									<th style="width:25%;">年级排名</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>G1301120033300003339</td>
+									<td>李小三</td>
+									<td>15</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>G1301120033300003333</td>
+									<td>李小三</td>
+									<td>52</td>
+									<td>22</td>
+								</tr>
+								<tr>
+									<td>G1301120033300003337</td>
+									<td>李小三</td>
+									<td>86</td>
+									<td>202</td>
+								</tr>
+								<tr>
+									<td>G1301120033300003334</td>
+									<td>李小三</td>
+									<td>88</td>
+									<td>28</td>
+								</tr>
+								<tr>
+									<td>G1301120033300003331</td>
+									<td>李小三</td>
+									<td>100</td>
+									<td>2</td>
+								</tr>
+							</tbody>
+						</table>
+						<!--这是分页-->
+						<!--<div class="pageBox clearfix">
+							<a href="JavaScript:;" class="previous"></a>
+							<a href="JavaScript:;" class="current" data-pag="page">1</a>
+							<a href="JavaScript:;" data-pag="page">2</a>
+							<a href="JavaScript:;" data-pag="page">3</a>
+							<a href="JavaScript:;" >...</a>
+							<a href="JavaScript:;" data-pag="page">10</a>
+							<a href="JavaScript:;" class="next"></a>
+						</div>
+						<img src="../img/backArrow.png" id="backArrow" />-->
+						<script>
+							$LAB.script('../common/dataTable/datatables.min.js').wait(function() {
+								
+									$('#failed_table_t').DataTable({
+										paging: false, // 不分页
+										info: false, // 不显示info
+										searching: false, // 不显示搜索框
+										language: {
+											emptyTable: "暂无数据"
+										},
+										columnDefs: [{
+											targets: [0,1], //设置不需要排序的列，从0开始
+											orderable: false
+										}]
+	
+									});
+	
+								});
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	
+	
+</html>

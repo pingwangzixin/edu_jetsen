@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Document</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/tsakCenter.css" charset="utf-8" />
+
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/html2canvas.min.js"></script>
+	</head>
+
+	<body style="overflow: hidden;">
+		<div class="header clearfix"></div>
+
+		<div class="zmj_editorcontent">
+
+			<div class="zmj_editor_top clearfix">
+				<span class="fl">唐诗鉴赏</span>
+				<a href="">
+					<div class="back fr">
+						<img src="../img/back.png" alt="">
+					</div>
+				</a>
+			</div>
+			<div class="zmj_editor_main clearfix">
+
+				<div class="zmj_editorimgbox">
+					<img src="../img/zuoye.jpg" alt="" class="zmj_editorimg" />
+				</div>
+				<div class="zmj_editoricon clearfix">
+					<div><img src="../img/zmj_wrong.png" alt="" /></div>
+					<div><img src="../img/zmj_right.png" alt="" /></div>
+					<div><img src="../img/zmj_pointprise.png" alt="" /></div>
+					<div><img src="../img/zmj_priseflower.png" alt="" /></div>
+					<div><img src="../img/zmj_medal.png" alt="" /></div>
+					<button class="fr zmj_readupload">批阅上传</button>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$(function() {
+				var W = $(".zmj_editorimgbox").width();
+				var H = $(".zmj_editorimgbox").height();
+				$(".zmj_editoricon div").click(function(e) { //点击下面图标的时候，判断下标来确定所要追加到的位置
+					e.stopPropagation();
+					e.preventDefault();
+					if($(this).index() == 0 || $(this).index() == 1) {
+						$(this).clone().addClass("center active").appendTo(".zmj_editorimgbox");
+					} else {
+						if(!$(".zmj_editorimgbox").find(".zmj_editoriconbox").length) {
+							$(".zmj_editorimgbox").append("<div class='zmj_editoriconbox'></div>");
+						};
+						$(this).clone().addClass("active").appendTo(".zmj_editoriconbox");
+					};
+
+				});
+
+				$(".zmj_editorimgbox").on("click", ".active", function(e) { //点击所追加的图标出现删除按钮
+					e.stopPropagation();
+					if(!$(this).find("i").length) {
+						$(this).addClass("iconwrap").append("<i class='delete'>x</i>");
+					};
+
+				});
+				$(".zmj_editorimgbox").on("click", ".delete", function(e) { //点击删除按钮，移除节点
+
+					$(this).parent().remove();
+
+				});
+
+				$("body").on("click", function(e) { //点击空白区域移除页面上的删除按钮以及背景
+
+					$(".iconwrap").removeClass('iconwrap').find("i").remove();
+
+				});
+
+				$("body").on("mousedown", ".center img", function(e) {
+					var that = this; //保留this指向
+					var w = $(this).parent().outerWidth();
+					var h = $(this).parent().outerHeight();
+					var disX = $(this).parents(".zmj_editorimgbox").offset().left;
+					var disY = $(this).parents(".zmj_editorimgbox").offset().top;
+					var ismove = true;
+					e.preventDefault();
+					$(document).on("mousemove", function(e) {
+
+						var x = e.pageX - disX;
+						var y = e.pageY - disY;
+
+						if(x <= w / 2) { //限制拖拽范围
+
+							x = w / 2;
+							ismove = false;
+						};
+						if(y <= h / 2) {
+							y = h / 2;
+							ismove = false;
+						};
+						if(x >= W - w / 2) {
+							x = W - w / 2;
+							ismove = false;
+						};
+						if(y >= H - h / 2) {
+							y = H - h / 2;
+							ismove = false;
+						};
+						if(ismove) {
+							$(that).parent().css({
+								left: x,
+								top: y
+							});
+						};
+
+					});
+
+				});
+				$(document).on("mouseup", function(e) {
+					$(this).off("mousemove");
+					e.preventDefault();
+				});
+				$(".zmj_readupload").click(function() { //借助插件把dom结构变成文件
+
+					html2canvas($(".zmj_editorimgbox")).then(function(canvas) {
+						$(".zmj_editorcontent").append(canvas);
+						var imgUrl = $("canvas")[0].toDataURL();
+					    $(".zmj_editorcontent").hide();
+						
+
+					});
+
+				});
+
+			});
+		</script>
+	</body>
+
+</html>

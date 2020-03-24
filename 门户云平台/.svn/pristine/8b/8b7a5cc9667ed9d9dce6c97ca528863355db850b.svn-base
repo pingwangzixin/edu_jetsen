@@ -1,0 +1,175 @@
+<div class="zy_class_space_index">
+	<div class="zy_carousel_wrap">
+		<i class="iconfont icon-zuojiantoubeijing"></i>
+		<ul class="clearfix">
+			<li ng-repeat="img in imgBox track by $index" carousel>
+				<img ng-src="./img/{{img.src}}.jpg" />
+			</li>
+		</ul>
+		<i class="iconfont icon-youjiantoubeijing"></i>
+	</div>
+	
+	<div class="zy_space_content ">
+		<div class="zy_space_show_wrap clearfix">
+			<div class="zy_class_abstract fl">
+				<div class="zy_about_introduce zy_class_introduce">
+					<div class="zy_introduce_tit">
+						<i class="iconfont icon-xiangqingjieshao"></i>
+						<span>班级介绍</span>
+					</div>
+					<div class="zy_introduce_cont clearfix">
+						<img class="fl" ng-src="{{classimagePath}}"/>
+						<!--<div class="fl" ellipsis ng-bind="classContent" max-length="variable.classTeacherIntrduce">-->
+						<div class="fl" ellipsis max-length="variable.classTeacherIntrduce" ui-sref="classSpace.classIntroduce.classIntroduceShow"> 
+						  
+						</div>
+						<p ui-sref="classSpace.classIntroduce.classIntroduceShow">查看更多>></p>
+					</div>
+				</div>
+				<div class="zy_about_introduce zy_teacher_introduce">
+					<div class="zy_introduce_tit">
+						<i class="iconfont icon-laoshiguanli"></i>
+						<span>班主任介绍</span>
+					</div>
+					<div class="zy_introduce_cont clearfix">
+						<img class="fl" src="{{teacherImagePath}}"/>
+						<div class="fl teacherIntroduce" ellipsis ng-bind="teacherContent" max-length="variable.classTeacherIntrduce" ui-sref="classSpace.classHeadTeacher.classHeadTeacherShow"> 
+<!--							我们班是一个和睦、可爱的大家庭,同学们团结友爱,互帮互助,快乐的生活在我们温暖的大家庭里。我们力争成为学校的荣耀，老师的骄傲！ 我们是用激情来诠释明天的一群少年。我们是朝气蓬勃的一绿青苗。我们班是一个和睦、可爱的大家庭,同学们团结友爱,互帮互助,快乐的生活在我们温暖的大家庭里。我们力争成为学校的荣耀，老师的骄傲！ 我们是用激情来诠释明天的一群少年。我们是朝气蓬勃的一绿青苗。
+-->						</div>
+                        <p ui-sref="classSpace.classHeadTeacher.classHeadTeacherShow">查看更多>></p>
+					</div>
+				</div>
+				<div class="zy_about_introduce zy_course_introduce">
+					<div class="zy_introduce_tit">
+						<i class="iconfont icon-kechengbiao"></i>
+						<span>课程表</span>
+					</div>
+					<div class="zy_course_list">
+						<table border="" cellspacing="" cellpadding="">
+							<tr>
+								<th width="131px" class="zy_slash_table">
+									<span>星期</span>
+									<p class="zy_slash"></p>
+									<span>节数</span>
+								</th>
+								<!--
+								<th width="128px">星期一</th>
+								<th width="128px">星期二</th>
+								<th width="128px">星期三</th>
+								<th width="128px">星期四</th>
+								<th width="128px">星期五</th>
+								-->
+								<th width="128px" ng-repeat="day in dayNum">{{day}}</th>
+							</tr>
+							<tr ng-repeat="lession in amCourseList">
+								<td>{{lession.lessionNum}}</td>
+								<td>{{lession.Monday}}</td>
+								<td>{{lession.Tuesday}}</td>
+								<td>{{lession.Wednesday}}</td>
+								<td>{{lession.Thursday}}</td>
+								<td>{{lession.Friday}}</td>
+								<td>{{lession.Saturday}}</td>
+							</tr>
+							<!--<tr>
+								<td>第二节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr>
+							<tr>
+								<td>第三节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr>
+							<tr>
+								<td>第四节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr>-->
+							<tr><td colspan="6">午休</td></tr>
+							<tr ng-repeat="lession in pmCourseList">
+								<td>{{lession.lessionNum}}</td>
+								<td>{{lession.Monday}}</td>
+								<td>{{lession.Tuesday}}</td>
+								<td>{{lession.Wednesday}}</td>
+								<td>{{lession.Thursday}}</td>
+								<td>{{lession.Friday}}</td>
+								<td>{{lession.Saturday}}</td>
+							</tr>
+							<!--<tr>
+								<td>第五节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr><tr>
+								<td>第六节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr><tr>
+								<td>第七节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr><tr>
+								<td>第八节</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+								<td>语文</td>
+							</tr>-->
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="zy_class_notice fr">
+				<div class="zy_class_show zy_class_notice_list">
+					<div class="zy_introduce_tit">
+						<i class="iconfont icon-jieshao"></i>
+						<span>班级公告</span>
+					</div>
+					<div class="zy_class_notice_list_box clearfix">
+						<ul>
+							<li class="clearfix" ng-repeat='i in classNoticeList'>
+								<span class="fl" ui-sref="classSpace.classNotice.classNoticeDetails({noticeId:i.id})">{{i.title}}</span>
+								<em class="fr" ng-bind="i.createDate|createDateFilter"></em>
+							</li>
+						</ul>
+						<span class="fr" ui-sref="classSpace.classNotice.classNoticeList">更多 >></span>
+					</div>
+				</div>
+				
+				<div class="zy_class_show zy_class_student_star">
+					<div class="zy_class_student_star_tit">
+						<img src="./img/student_star.png"/>
+						<b>明星学生</b>
+					</div>
+					<ul>
+						<li class="clearfix" ui-sref="classSpace.classStarStudent.classStarStudentList" ng-repeat='i in starStudentList'>
+							<img class="fl"  ng-src="{{i.imagePath}}"/>
+							<div class="fr">
+								<span ng-bind="i.title"></span>
+								<p ng-bind="i.content" ellipsis max-length="variable.topStudentIntrduce"></p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

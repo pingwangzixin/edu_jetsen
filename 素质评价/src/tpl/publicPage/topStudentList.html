@@ -1,0 +1,59 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<div class="zy_content zy_return_box clearfix">
+			<div class="zy_left fl">
+				<span ui-sref="{{prevPath}}"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<strong><img src="./img/icon_top_list.png"/>优秀学生榜</strong>
+			</div>
+		</div>
+		
+		<div class="zy_content zy_top_list">
+			<img src="./img/head_top_list.png" alt="" />
+			<div class="zy_top_list_cont">
+				<div class="zy_semester">
+					<p>2017-2018学年上学期</p>
+					<ul class="zy_semester_grade">
+						<li ng-repeat='grade in gradeList'>
+							<p ng-bind="grade.gradeName"></p>
+							<ul class="zy_semester_class">
+								<li class="clearfix" ng-repeat='cla in grade.classObj'>
+									<span class="fl" ng-bind="cla.className"> </span>
+									<ul class="fl">
+										<!--<li ui-sref="wrap.publicEvaluation({bestStuId : 123})">张莎莎</li>
+										<li>张莎</li>
+										<li>张莎莎</li>
+										<li>张莎莎</li>
+										<li>张莎莎</li>
+										<li>张莎</li>
+										<li>张莎</li>
+										<li>张莎</li>
+										<li>张莎</li>-->
+										<li ui-sref="wrap.publicEvaluation({bestStuId : stu.stuId,gradeName: grade.gradeName,classId:cla.classId,term:'上学期',stuName:stu.stuName})" ng-repeat='stu in cla.studens' ng-bind='stu.stuName'></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div class="zy_semester">
+					<p>2017-2018学年下学期</p>
+					<ul class="zy_semester_grade">
+						<li ng-repeat='grade1 in gradeList1'>
+							<p ng-bind="grade1.gradeName">一年级</p>
+							<ul class="zy_semester_class">
+								<li class="clearfix" ng-repeat='cla1 in grade1.classObj'>
+									<span class="fl" ng-bind="cla1.className">(1班)</span>
+									<ul class="fl">
+										<li ui-sref="wrap.publicEvaluation({bestStuId : stu1.stuId,gradeName: grade1.gradeName,classId:cla1.classId,term:'下学期',stuName:stu1.stuName})" ng-repeat='stu1 in cla1.studens' ng-bind="stu1.stuName">张莎莎</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<img src="./img/foot_top_list.png" alt="" />
+		</div>
+	</div>
+</div>

@@ -1,0 +1,97 @@
+<div>
+	
+		<div class="zyx_bg">
+			<div class="zy_central_content zy_space_index zyx-con">
+				<div class="zy_top_switch_box clearfix">
+					<ul class="zy_personal_space fl">
+						<!--<li ui-sref-active="active" ui-sref="secondNav.space">我的空间</li>-->
+						<!--<li ui-sref-active="active" ui-sref="wrapSpace.homePage">我的应用</li>-->
+						<li ui-sref-active="active" ui-sref="secondNav.homePage">我的主页</li>
+					</ul>
+					<ul class="zy_public_space fr">
+						<!--<pre>{{person.userClassId}}</pre>-->
+						<li ng-if="classSpace" ng-click="classSpace()" ui-sref="classSpace.classSpaceIndex({classId:person.userClassId,isInnovation:person.isInnovation})"><i class="iconfont icon-banji"></i>班级空间</li>
+						<li ng-if="schoolSpace" ui-sref="schoolSpace({relationId:homePage.officeId})"><i class="iconfont icon-xuexiao"></i>学校空间</li>
+					</ul>
+				</div>
+				
+				<!--开通空间-->
+				<div class="zyx_open" ng-if='homePage.open'>
+					<div class="zyx_content">
+						<div class="zyx_publish  clearfix">
+							<p>有什么新鲜事想告诉大家</p>
+							<div class="zyx_publish_box">
+								<textarea ng-keyup="changeText($event)" ng-model="homePage.inputText" class="in_text"></textarea>
+								<span>还剩  {{homePage.fontNumber}} 字</span>
+								<img src="./img/zyx_file_img.png" alt="" />
+								<input type="file" id="FileUpload"  multiple accept="image/*" ng-model="upFiles" ng-disabled="homePage.ifFiled"   onchange="angular.element(this).scope().filePhoto()">
+							</div>
+							<button class="fr" ng-click='issueClick()'  ng-disabled='homePage.issueStateDisabled' ng-class='{"active":homePage.issueState}'>发布</button>
+						</div>
+						<div class="zyx_pic ">
+							<i class="iconfont "></i>
+							<span>图片（<b ng-bind='homePage.fileNumber'></b> / 9 ）</span>
+							<ul>
+								<li ng-repeat = 'one in fileArr track by $index'><img ng-src="{{one.previewUrl}}" alt="" /> <i ng-click='closeClick($event,$index,one.fileLog.id)'></i> </li>
+							</ul>
+						</div>
+					</div>
+					<div class="zyx_state  zyx_content">
+						<div class="zyx-list clearfix" ng-repeat='one in listdata' >
+							<img class="fl headsmall" src="{{userFace}}" onerror='this.src="./img/default-head.png"' alt="" />
+							<div class="detail fl">
+								<b ng-bind='one.commentUserName'></b>
+								<h6 ng-bind='one.commentCreateDate'></h6>
+								<p ng-bind='one.content' style="word-wrap: break-word;"></p>
+								<div class="pic">
+									<img ng-src="{{two.url}}" ng-repeat='two in one.resourceList'/>
+								</div>
+							</div>
+							<div class="laud" ng-click='laudClick($index,one.id)'>
+								<i class="iconfont icon-dianzan" ng-class= "{'active':one.whetherDianZan}"></i>
+								<span ng-bind='one.dianZanCount'></span>
+							</div>
+							<div class="remove" ng-click="removeClick($event,one.id)">
+								<i class="iconfont icon-shanchu"></i>
+								<span>删除</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<!--没有开通-->
+				<div class="zyx_not_open" ng-if='!homePage.open'>
+					<p>您还未开通个人主页，是否立即开通？</p>
+					<span>立即开通</span>
+				</div>
+				
+				
+			</div>
+		</div>
+		
+		
+		<!--删除弹层-->
+		<div class="gy_del_down zyx_remove_layer" ng-if='homePage.removeState'>
+			<div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<p class="zyx_text" ng-bind='homePage.layerText'></p>
+		    	<div class="zyx_btn">
+		    		<span class="ok" ng-click='okClick()'>确认</span>
+		    		<span class="no" ng-click='noClick()'>取消</span>
+		    	</div>
+			</div>
+		</div>
+		
+		
+		<!--提示-->
+		<div class="gy_del_down zyx_hint" ng-if='homePage.hintState'>
+			<div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<i class="iconfont icon-chenggong" ng-if='homePage.issuesuccess'></i>
+		    	<i class="iconfont icon-shangchuanshibai" ng-if='!homePage.issuesuccess'></i>
+		    	<p class="zyx_text" ng-bind='homePage.layerText'></p>
+			</div>
+		</div>
+	
+</div>

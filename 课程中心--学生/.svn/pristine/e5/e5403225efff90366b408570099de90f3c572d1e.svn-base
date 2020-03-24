@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+	    
+		<title>课堂录播</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/public.css"/>
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--我的引用-->
+		<link rel="stylesheet" href="../css/tsakCenter.css" charset="utf-8"/>
+		<link rel="stylesheet" href="../css/classRecord.css" charset="utf-8"/>
+		<script type="text/javascript" src="../common/My97DatePicker/WdatePicker.js"></script>
+	</head>
+	<body class="classRecord">
+		<div class="header clearfix"></div>
+		<div class="main clearfix">
+			 <div class="main_right">
+					<ul class="list_tit clearfix">
+						<li><a href="classRecord.html">云课堂</a></li>
+						<li><a href="JavaScript:;" class="list_tit_active">课堂录播</a></li>
+						<li><a href="studentPractice.html" >学生实践</a></li>
+				    </ul>
+					<div class="r_border">
+						  <div class="r_border_m_b recorded_main">
+							  <div class="recorded_content">
+							  	    <div class="recorded_sidebar"></div>
+							  	    <div class="recorded_list">
+							  	    	<div class="recorded_details">
+							  	    		 <div class="recorded_date"><span>2017-11-28</span><span>星期三</span></div>
+							  	    		 <ul class="recorded_info clearfix">
+							  	    		 	 <li>
+							  	    		 	 	 <a href="classRecordedVideo.html" class="recorded_video"></a>
+							  	    		 	 	 <p class="recorded_title">植物光合作用</p>
+							  	    		 	 	 <p class="recorded_time">创建时间：<span>08:10</span></p>
+							  	    		 	 </li>
+							  	    		 	 <li>
+							  	    		 	 	 <a href="classRecordedVideo.html" class="recorded_video"></a>
+							  	    		 	 	 <p class="recorded_title">植物光合作用啦啦啦啦啦啦啦啦啦啦啦啦</p>
+							  	    		 	 	 <p class="recorded_time">创建时间：<span>08:10</span></p>
+							  	    		 	 </li>
+							  	    		 	 <li>
+							  	    		 	 	 <a href="classRecordedVideo.html" class="recorded_video"></a>
+							  	    		 	 	 <p class="recorded_title">植物光合作用</p>
+							  	    		 	 	 <p class="recorded_time">创建时间：<span>08:10</span></p>
+							  	    		 	 </li>
+							  	    		 </ul>
+							  	    	</div>
+							  	        <div class="recorded_details active">
+							  	    		 <div class="recorded_date"><span>2017-11-28</span><span>星期三</span></div>
+							  	    		 <ul class="recorded_info clearfix">
+							  	    		 	 <li>
+							  	    		 	 	 <a href="classRecordedVideo.html" class="recorded_video"></a>
+							  	    		 	 	 <p class="recorded_title">植物光合作用</p>
+							  	    		 	 	 <p class="recorded_time">创建时间：<span>08:10</span></p>
+							  	    		 	 </li>
+							  	    		 	 <li>
+							  	    		 	 	 <a href="classRecordedVideo.html" class="recorded_video"></a>
+							  	    		 	 	 <p class="recorded_title">植物光合作用</p>
+							  	    		 	 	 <p class="recorded_time">创建时间：<span>08:10</span></p>
+							  	    		 	 </li>
+							  	    		 	 <li>
+							  	    		 	 	 <a href="classRecordedVideo.html" class="recorded_video"></a>
+							  	    		 	 	 <p class="recorded_title">植物光合作用</p>
+							  	    		 	 	 <p class="recorded_time">创建时间：<span>08:10</span></p>
+							  	    		 	 </li>
+							  	    		 </ul>
+							  	    	</div>
+							  	    </div>
+							  </div>
+						  </div>	  
+					</div>
+		    </div>
+			
+			
+		</div>
+		
+	</body>
+</html>

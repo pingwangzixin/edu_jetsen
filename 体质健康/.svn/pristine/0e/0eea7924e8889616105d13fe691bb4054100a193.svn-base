@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>手环数据(班级)</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/dateRange.css"/>
+	<link rel="stylesheet" type="text/css"  href="../css/index.css"/>
+	<script src="../js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/datatables.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/highcharts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/highcharts-functions.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/dateRange.js"></script>
+	<script type="text/javascript" src="../js/monthPicker.js"></script>
+</head>
+
+<body>
+	<!--头部开始-->
+	<div class="perHead"></div>
+	<!--头部结束-->
+	
+	<!--内容开始-->
+	<div class="perWrap historyClass">
+		<!--年级班级开始-->
+		<div class="gradBorder">
+			<ul class="gradWrap classTop">
+				<li class="classtit">四年级（3）班</li>
+				<li>历史数据</li>
+				<span class="goback"><a href="health-handle.html">返回</a></span>
+			</ul>
+			
+		</div>
+		<!--年级班级结束-->
+		<div class="perRight">
+			<!--图表标题   选择选项开始 -->
+			<div class="chartWrap clearfix">
+				<!--左边图表开始-->
+				<div class="head_ChartWrap clearfix">
+					<div class="historyMain_tabs">
+						<span class="active"><a href="braceletDataClass.html">手环数据</a></span>
+						<span ><a href="balanceDataClass.html">电子秤数据</a></span>
+					</div>
+				</div>
+				<!--<div class="chartBtn fr">
+						班级历史数据
+					</div>-->
+				<!--左边图表结束-->
+				
+				
+			</div>
+			<!--图表标题   选择选项结束-->
+			<div class="per_center">
+				<div class="per_center_top per_center_bot">
+					<div class="people_sex people_xinlv" style="width: 95%;margin: 0;">
+						<h5>心率<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div style="display: -webkit-flex; " class="xinlvs">
+							<div style="width: 320px; overflow: hidden;">
+								<img src="../img/peo_heat.png" />
+								<div class="people_flex">
+									<p><span style="color: #36bb58;">0次</span><span>心率过缓(<40)</span></p>
+									<p><span style="color: red;">1次</span><span>心率速(>160)</span></p>
+								</div>
+							</div>
+							<div id="xinlv_highcharts" class="steps_highcharts" style="flex: 1;-webkit-box-flex: 1;margin-top: 10px; height: 235px;">
+								
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<script type="text/javascript">
+					new Highcharts.Chart('xinlv_highcharts', {
+					    title: {
+					        text: '',
+	//				        x: -20
+					    },
+					    xAxis: {
+					    	tickPosition: 'inside',
+					        categories: ['05/29','05/29','05/29','05/29','05/29','05/29'],
+					        tickmarkPlacement: 'on'
+					    },
+					    yAxis: {
+					        title: {
+					            text: '',
+					        },
+					        gridLineColor:'white',
+					        lineColor: '#ccc',
+	       					lineWidth: 1,
+	       					tickAmount: 5,
+					    },
+					    tooltip: {
+					        valueSuffix: '°C'
+					    },
+					    legend: {
+					    	enabled:false
+					        /*layout: 'vertical',
+					        align: 'right',
+					        verticalAlign: 'middle',
+					        borderWidth: 0*/
+					    },
+					    series: [
+				            {
+						        name: '我的心率',
+						        data: [7.0, 6.9, 9.5, 14.5, 6.9, 9.5],
+						        color:"#ff9e9e",
+						        type: 'areaspline',
+						        zones: [{
+					                fillColor:"#fff5f4"
+					            } ],
+					            zIndex: 1
+						    }
+					    
+					    ]
+					});
+				</script>
+				<div class="per_center_top per_center_bot" style="margin-top: 0;">
+					<div class="people_sex people_bushu" style="width: 95%; margin:0">
+						<h5>步数<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div class="people_flex">
+							<div class="steps_detail">
+								<img src="../img/peo_foot.png"/>
+								<div class="steps">
+									<p>
+										<span class="stepsColor">10959步</span>
+										<span>平均步数</span>
+									</p>
+								</div>
+							</div>
+							
+							<div id="steps_highcharts" class="steps_highcharts" style="flex: 1;-webkit-box-flex: 1;margin-top: 10px; height: 235px;">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				new Highcharts.Chart('steps_highcharts', {
+				    title: {
+				        text: '',
+//				        x: -20
+				    },
+				    xAxis: {
+				    	tickPosition: 'inside',
+				        categories: ['05/29','05/29','05/29','05/29'],
+//				        tickmarkPlacement: 'on'
+				    },
+				    yAxis: {
+				        title: {
+				            text: '',
+				        },
+				        gridLineColor:'white',
+				        lineColor: '#ccc',
+       					lineWidth: 1,
+       					tickAmount: 5,
+				    },
+				    tooltip: {
+				        valueSuffix: '°C'
+				    },
+				    legend: {
+				    	enabled:false
+				        /*layout: 'vertical',
+				        align: 'right',
+				        verticalAlign: 'middle',
+				        borderWidth: 0*/
+				    },
+				    series: [
+				   			{
+						        name: '我的步数',
+						        data: [7.0, 6.9, 9.5, 14.5,9, 12],
+						        type: 'areaspline',
+						        zones: [{
+					                fillColor:"#eff6fc"
+					            } ],
+					            zIndex: 1
+						    },
+				    
+				    ]
+				});
+			</script>
+			<!--学生健康信息表格开始-->
+			<div class="perHealthDeltail">
+				<div class="fl chart_sex">
+					<div class="selectItem clearfix">
+						<span class="fl" style="font-size: 16px;">时间段：</span>
+						<div class="fl timeSlot" id="timeSlot">
+						</div>
+					</div>
+					<script type="text/javascript">
+						var dateRange = new pickerDateRange('timeSlot', {
+							aRecent7Days : 'aRecent7DaysDemo3', //最近7天
+							isTodayValid : false,
+							startDate : '2017-04-14',
+							endDate : '2017-06-21',
+							//needCompare : true,
+							//isSingleDay : true,
+							//shortOpr : true,
+							defaultText : ' 至 ',
+							inputTrigger : 'input_trigger_demo3',
+							theme : 'ta',
+							success : function(obj) {
+								
+							}
+						});
+					</script>
+					<div class="selectItem timewrap clearfix">
+						<span class="fl" style="font-size: 16px;">关键字：</span>
+						<input type="text" value=""/>
+						<i></i>
+					</div>
+				</div>
+				<table class="fl statistics_table" id="fraction_table1" style="width:100%;margin-top: 20px;">
+						<thead>
+							<tr>
+								<th>时间 </th>
+								<th>国网学籍号</th>
+								<th>姓名</th>
+								<th>性别</th>
+								<th>心率</th>
+								<th>步数</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G54567461357651354</td>
+								<td>梁新乐</td>              
+								<td>女</td>              
+								<td data-order="165"><div class="tdFlex">
+									<p><span>1次</span> <span class="heart_count">165</span> <i class="stateTop">↑</i></p><p><span>2次</span> <span class="heart_count">65</span> </p><p><span>3次</span> <span class="heart_count">45</span></p>
+								</div></td>            
+								<td>5333</td>              
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G54567461357651354</td>
+								<td>梁新乐</td>              
+								<td>女</td>              
+								<td data-order="165"><div class="tdFlex">
+									<p><span>1次</span> <span class="heart_count">165</span> <i class="stateBot">↓</i></p><p><span>2次</span> <span class="heart_count">65</span> </p><p><span>3次</span> <span class="heart_count">45</span></p>
+								</div></td>           
+								<td>5333</td>              
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G54567461357651354</td>
+								<td>梁新乐</td>              
+								<td>女</td>              
+								<td data-order="165"><div class="tdFlex">
+									<p><span>1次</span> <span class="heart_count">165</span> <i class="stateBot">↓</i></p><p><span>2次</span> <span class="heart_count">65</span> </p><p><span>3次</span> <span class="heart_count">45</span></p>
+								</div></td>           
+								<td>5333</td>              
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G54567461357651354</td>
+								<td>梁新乐</td>              
+								<td>女</td>              
+								<td data-order="165"><div class="tdFlex">
+									<p><span>1次</span> <span class="heart_count">165</span> <i class="stateBot">↓</i></p><p><span>2次</span> <span class="heart_count">65</span> </p><p><span>3次</span> <span class="heart_count">45</span></p>
+								</div></td>           
+								<td>5333</td>              
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G54567461357651354</td>
+								<td>梁新乐</td>              
+								<td>女</td>              
+								<td data-order="165"><div class="tdFlex">
+									<p><span>1次</span> <span class="heart_count">165</span> <i class="stateBot">↓</i></p><p><span>2次</span> <span class="heart_count">65</span> </p><p><span>3次</span> <span class="heart_count">45</span></p>
+								</div></td>           
+								<td>5333</td>              
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G54567461357651354</td>
+								<td>梁新乐</td>              
+								<td>女</td>              
+								<td data-order="165"><div class="tdFlex">
+									<p><span>1次</span> <span class="heart_count">165</span> <i class="stateBot">↓</i></p><p><span>2次</span> <span class="heart_count">65</span> </p><p><span>3次</span> <span class="heart_count">45</span></p>
+								</div></td>           
+								<td>5333</td>              
+							</tr>
+						</tbody>
+					</table>
+					<script type="text/javascript">
+						$('#fraction_table1').DataTable({
+								paging: false, // 不分页
+								info: false, // 不显示info
+								searching: false, // 不显示搜索框
+								language: {
+									emptyTable: "暂无数据"
+								},
+								"columnDefs": [
+					                { "type": "chinese-string", targets: 1},
+					                {"type":"defineNum",targets: 3}
+					            ]
+
+							});
+					</script>
+
+			</div>
+			<!--学生健康信息表格结束-->
+			
+		</div>
+	</div>
+	<!--内容结束-->
+</body>
+</html>
+<script>
+		/*头部加载==============================================*/
+		$('.perHead').load('../head.html');
+		/*班级点击切换效果===================================*/
+		$('.historyMain_tabs span').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+		
+		/*以下模拟select===================================================*/
+		$('.selection').on('click',function(e){
+			$(this).find('ul').toggle();
+			$(this).parents('li').siblings().find('.opt').hide();
+		})
+		
+		$('.selection>ul li').on('click',function(){
+			$(this).addClass('active')
+			.siblings().removeClass('active')
+			.parent().siblings('p').text($(this).text());
+		})
+		
+		$(document).on('click',function(e) {
+			if(typeof e.target.parentNode.className=='string'){
+				if(e.target.parentNode.className.indexOf('selection')==-1){
+					$('.opt').hide();
+				}
+			}
+		})
+		//步数周年月切换
+		$('.bushu_cycle i').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active')
+		})
+</script>

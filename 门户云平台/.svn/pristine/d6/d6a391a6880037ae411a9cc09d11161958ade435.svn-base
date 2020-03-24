@@ -1,0 +1,51 @@
+<script src="common/jquery-calendar/laydate.js"></script>
+<div>   
+	  <div class="main_width">
+	  	    <div class="zmj_prepare_header clearfix">
+	  	  	   <div class="fl zmj_prepare_chooice">
+	  	  	   	    <p><span ng-bind="variablePacket.subject"></span><i class="iconfont icon-arrow-up"></i></p>
+	  	  	   	    <ul class="zmj_prepare_select">
+	  	  	   	    	<li ng-repeat="i in subjectList" ng-bind="i.name" ng-class={'active':$index==variablePacket.subjectIndex} ng-click="subjectTab(i,$index)"></li>
+	  	  	   	    </ul>
+	  	  	   </div>
+	  	  	   <div class="calendar fr">
+	  	  	   	   <i class="iconfont icon-riliriqi"></i>
+	  	  	   	   <span id="calendar" ng-click="calendar()"></span>
+	  	  	   </div>
+	  	   </div>
+	  	   <div class="zmj_classroomlist_nav clearfix">
+	  	   	     <span class="fl">班级 :</span>
+	  	   	     <ul class="fl">
+	  	   	     	   <li ng-repeat="i in grade" ng-class={'active':$index==variablePacket.gradeIndex} ng-click="gradeTab(i,$index)" ng-bind="i.name"></li>
+	  	   	     </ul>
+	  	   </div>
+	  	   <div class="zmj_classroomlist_content">
+	  	   	   <div class="zmj_classroomlist_timeshaft" ng-if="variablePacket.correctState">
+			  	   	   <div class="zmj_classroomlist_sidebar"></div>
+			  	       <div class="zmj_classroomlist_memorandum" ng-repeat="i in memoir" ng-class={'active':i.date==variablePacket.date}  repeat-finish="renderFinish()">
+	  	              <div class="zmj_classroomlist_date"><span ng-bind="i.date"></span><span ng-bind="i.week"></span></div>
+	  	              <div class="zmj_classroomlist_list" ng-repeat="item in i.data">
+						  	   	   	   <div class="zmj_classroomlist_info">
+						  	   	   	   	    <span ng-bind="item.grade"></span>
+						  	   	   	   	    <span>时间:<b ng-bind="item.time"></b></span>
+						  	   	   	   	    <span ng-bind="item.subject"></span>
+						  	   	   	   </div>
+						  	   	   	   <div class="zmj_classroomlist_knowledge clearfix" ui-sref="secondNav.classroomDel.classroomContent({id:item.id,className:item.grade,date:i.date,classId:item.classId})">
+						  	   	   	   	    <i class="triangle"></i>
+						  	   	   	   	    <p><i></i><span>课堂实录</span></p>
+						  	   	   	   	    <ul>
+						  	   	   	   	    	   <li ng-repeat="k in item.knowledge">
+						  	   	   	   	    	   	   <img ng-src="{{k.img}}" alt="" />
+						  	   	   	   	    	   	   <span ng-bind="k.name" title='{{k.name}}'></span>
+						  	   	   	   	    	   </li>
+						  	   	   	   	    </ul>
+						  	   	   	   </div>
+	  	   	         	</div>
+	  	      </div>  	   
+	  	       </div>
+	  	       <div class="zmj_classroomlist_wrong" ng-if="variablePacket.wrongState">
+	  	       	    <img src="img/zmj_zanwuneirong.png" alt=""/>
+	  	       </div>
+	  	   </div>
+	  </div>
+</div>

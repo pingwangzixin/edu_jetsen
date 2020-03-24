@@ -1,0 +1,1611 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<div>
+	<!--题库组卷-->
+	<div class="zyx_paperLibrary">
+		<div class="zyx_header clearfix">
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59 fl" ui-sref="secondNav.questionBankType"></i>
+			<span class="fl" ng-if="variablePacket.state=='test'">题库组卷</span>
+			<span class="fl" ng-if="variablePacket.state=='revise'">修改试卷</span>
+			<span class="fr" ng-click='uploadExam()'>上传</span>
+		</div>
+		<ul class="zyx_case" name="someForm" novalidate>
+			<li>
+				<em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科<i class="star">*</i></em>
+				<select  ng-model="selectedSubject" ng-click='Subject()' ng-change="clearxiugai(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+					<option value="">请选择学科</option>
+				</select>
+				<b ng-if="variablePacket.ProvingSubject" >
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请选择学科</span>
+				</b>
+			</li>
+			<li class="zyx_relativeTop12">
+				<em>章节目录<i class="star">*</i></em>
+				<span ng-click='verifySubject()'><choice-version tree-show-situation="variablePacket.subjectTreeShow" title-bar="variablePacket.libraryTitleBar" zjtree="selectedSubject"><choice-version></span>
+				<b ng-if="variablePacket.ProvingChapter" >
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请选择章节目录</span>
+				</b>
+			</li>
+			<li>
+				<em>试卷名称<i class="star">*</i></em>
+				<input type="text" name="UsernameMessage" ng-model="variablePacket.UsernameMessage" ng-keyup='zyx_username()' required />
+				<b ng-if="(someForm.UsernameMessage.$error.required && someForm.UsernameMessage.$touched  ) || variablePacket.ProvingUsername">
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请输入试卷名称</span>
+				</b>				
+			</li>
+			<li>
+				<em>试卷内容<i class="star">*</i></em>
+				<strong ng-click='addTopice()'> +从题库添加 </strong>
+				<b ng-if='variablePacket.ProvingContent'>
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请选择试卷内容</span>
+				</b>
+			</li>
+		</ul>
+		<!--8种题型展示-->
+		<div class="zyx_AddQuestion"  ng-if='variablePacket.AddQuestion_show'>
+			<!--单选-->
+			<div class="zyx_Single" ng-if='variablePacket.eightSwitchOut[0].show' ng-attr-id="{{'single'}}">
+				<p class="zyx_topicHead">一、单选题</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.single' >
+					<!--展示-->
+					<div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>单选题</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,0)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-bind='i.Answer'></div>
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix">
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>单选题</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请选择答案</span>
+									</b>
+								</p>
+								<ul class="zyx_option clearfix">
+									<li>
+										<input type="radio" ng-attr-name="{{i.Type+$index}}" ng-attr-id="{{'a'+i.Id+i.Type}}" ng-model='i.Answer' value="A" />
+										<label ng-attr-for="{{'a'+i.Id+i.Type}}">A</label>
+									</li>
+									<li>
+										<input type="radio" ng-attr-name="{{i.Type+$index}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-model='i.Answer' value="B" />
+										<label ng-attr-for="{{'b'+i.Id+i.Type}}">B</label>
+									</li>
+									<li>
+										<input type="radio" ng-attr-name="{{i.Type+$index}}" ng-attr-id="{{'c'+i.Id+i.Type}}" ng-model='i.Answer' value="C" />
+										<label ng-attr-for="{{'c'+i.Id+i.Type}}">C</label>
+									</li>
+									<li>
+										<input type="radio" ng-attr-name="{{i.Type+$index}}" ng-attr-id="{{'d'+i.Id+i.Type}}" ng-model='i.Answer' value="D" />
+										<label ng-attr-for="{{'d'+i.Id+i.Type}}">D</label>
+									</li>
+								</ul>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--多选题-->
+			<div class="zyx_Many"  ng-if='variablePacket.eightSwitchOut[1].show' ng-attr-id="{{'many'}}">
+				<p class="zyx_topicHead">二、多选题</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.many'>
+					<!--展示-->
+					<div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>多选题</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,1)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-bind="i.Answer">
+								</div>
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>多选题</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请选择答案</span>
+									</b>
+								</p>
+								<ul class="zyx_option clearfix">
+									<li ng-repeat="n in i.AnswerArr">
+										<input ng-checked="n.checked" type="checkbox" name="{{i.Type+$parent.$index}}" id="{{'many_'+i.id+'_'+n.id}}" value="{{n.id}}" />
+										<label for="{{'many_'+i.id+'_'+n.id}}" ng-bind="n.id"></label>
+									</li>
+									<!--<li>
+										<input type="checkbox" ng-attr-name="{{$index}}"  ng-attr-id="{{'a'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.AnswerMap.daanA' value="A" />
+										<label ng-attr-for="{{'a'+i.Id+i.Type}}">A</label>
+									</li>
+									<li>
+										<input type="checkbox" ng-attr-name="{{$index}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.AnswerMap.daanB' value="B" />
+										<label ng-attr-for="{{'b'+i.Id+i.Type}}">B</label>
+									</li>
+									<li>
+										<input type="checkbox" ng-attr-name="{{$index}}" ng-attr-id="{{'c'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.AnswerMap.daanC' value="C" />
+										<label ng-attr-for="{{'c'+i.Id+i.Type}}">C</label>
+									</li>
+									<li>
+										<input type="checkbox" ng-attr-name="{{$index}}" ng-attr-id="{{'d'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.AnswerMap.daanD' value="D" />
+										<label ng-attr-for="{{'d'+i.Id+i.Type}}">D</label>
+									</li>-->
+								</ul>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--判断题-->
+			<div class="zyx_Judge"  ng-if='variablePacket.eightSwitchOut[2].show' ng-attr-id="{{'judge'}}">
+				<p class="zyx_topicHead">三、判断题</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.judge'>
+					<!--展示-->
+					<div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>判断题</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,2)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-bind='i.Answer | judgeFormat'></div>
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>判断题</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请选择答案</span>
+									</b>
+								</p>
+								<ul class="zyx_option clearfix">
+									<li>
+										<input type="radio" ng-attr-name="{{i.Type+$index}}" ng-attr-id="{{'a'+i.Id+i.Type}}" ng-model='i.Answer' value="T" />
+										<label ng-attr-for="{{'a'+i.Id+i.Type}}">正确</label>
+									</li>
+									<li>
+										<input type="radio" ng-attr-name="{{i.Type+$index}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-model='i.Answer' value="F" />
+										<label ng-attr-for="{{'b'+i.Id+i.Type}}">错误</label>
+									</li>
+								</ul>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--填空题-->
+			<div class="zyx_FillIn"  ng-if='variablePacket.eightSwitchOut[3].show' ng-attr-id="{{'fillIn'}}" repeat-finish="renderFinish()">
+				<p class="zyx_topicHead">四、填空题</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.fillIn'>
+					<!--展示-->
+					<div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>填空题</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,3)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-repeat='s in fillInArr[$index]  track by $index'>
+									<span ng-bind='"("+($index+1)+")"'></span>
+									<span ng-bind='s'></span>
+								</div>
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>填空题</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>题干<i class="star">*</i><span ng-click='insertTransverseLine()'>插入填空</span></p>
+								<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+									<i class="iconfont icon-gantanhao"></i>
+									<span>请输入题干</span>
+								</b>
+								<div class="zyx_setHeight">
+									<div class="ueditor"  ready="ready" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<span ng-click="insertVerticalLine(i.Type,$index)">插入分割线</span>
+									<b>(多个答案之间请点击插入分割线按钮)</b>
+								</p>
+								<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+									<i class="iconfont icon-gantanhao"></i>
+									<span>请输入答案</span>
+								</b>
+								<input type="text" name="" id="" value="" ng-model="i.Answer" />
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--材料题-->
+			<div class="zyx_Material"  ng-if='variablePacket.eightSwitchOut[4].show' ng-attr-id="{{'material'}}" repeat-finish="renderFinish()">
+				<p class="zyx_topicHead">五、材料题</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.material'>
+					<!--展示-->
+					<div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>材料题</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,4)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-bind-html="i.Answer  | trustHtml"></div>
+								<!--<div ng-repeat='s in materialArr[$index]  track by $index'>
+									<span ng-bind='"("+($index+1)+")"'></span>
+									<span ng-bind='s'></span>
+								</div>-->
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>材料题</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入答案</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Answer'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--简答题-->
+			<div class="zyx_BriefAnswer"  ng-if='variablePacket.eightSwitchOut[5].show' ng-attr-id="{{'briefAnswer'}}" repeat-finish="renderFinish()">
+				<p class="zyx_topicHead">六、简答题</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.briefAnswer'>
+					<!--展示-->
+					<div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>简答题</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,5)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-bind-html="i.Answer  | trustHtml"></div>
+								<!--<div ng-repeat='s in briefAnswerArr[$index]  track by $index'>
+									<span ng-bind='"("+($index+1)+")"'></span>
+									<span ng-bind='s'></span>
+								</div>-->
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>简答题</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入答案</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Answer'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--完形填空-->
+			<div class="zyx_ClozeCloze"  ng-if='variablePacket.eightSwitchOut[6].show' ng-attr-id="{{'clozeCloze'}}">
+				<p class="zyx_topicHead">七、完形填空</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.clozeCloze'>
+					<!--展示-->
+				    <div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>完形填空</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,6)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit">
+								<div  ng-bind-html='i.queTit | trustHtml'></div>
+								<p ng-repeat = 's in i.queDaan' ng-bind='s.daan'></p>
+							</div>
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-repeat='s in i.list'>
+									<span ng-bind='"("+($index+1)+")"'></span>
+									<span ng-bind='s.option'></span>
+								</div>
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>完形填空</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<em ng-click="addOption($index,i.Type)">增加选项<i class="iconfont icon-tianjia"></i></em>
+									<em ng-click="deleteOption($index,i.Type)">减少选项<i class="iconfont icon-jianshao"></i></em>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请选择答案</span>
+									</b>
+								</p>
+								<div class="zyx_optionBox">
+									<div class="zyx_optionLine clearfix" ng-repeat="z in i.list">
+										<b class="fl" ng-bind='"("+($index+1)+")"'></b>
+										<ul class="fl zyx_option clearfix">
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'a'+i.Id+$index+i.Type}}" ng-model="z.option" value="A" />
+												<label ng-attr-for="{{'a'+i.Id+$index+i.Type}}">A</label>
+											</li>
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'b'+i.Id+$index+i.Type}}" ng-model="z.option" value="B" />
+												<label ng-attr-for="{{'b'+i.Id+$index+i.Type}}">B</label>
+											</li>
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'c'+i.Id+$index+i.Type}}" ng-model="z.option" value="C" />
+												<label ng-attr-for="{{'c'+i.Id+$index+i.Type}}">C</label>
+											</li>
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'d'+i.Id+$index+i.Type}}" ng-model="z.option" value="D" />
+												<label ng-attr-for="{{'d'+i.Id+$index+i.Type}}">D</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--阅读理解-->
+			<div class="zyx_Reading"  ng-if='variablePacket.eightSwitchOut[7].show' ng-attr-id="{{'reading'}}">
+				<p class="zyx_topicHead">八、阅读理解</p>
+				<div class="zyx_topic" ng-repeat='i in questionBank.Out.reading'>
+					<!--展示-->
+				    <div class="zyx_LookShow toggle" ng-if='!i.CanEdit'>
+						<div class="zyx_Top clearfix">
+							<div class="tit clearfix">
+								<h5 class="fl"><b ng-bind='$index+1'>1</b>阅读理解</h5>
+								<div class="fr">
+									<span class="MoveUp" ng-click='MoveUp(i.Type,$index)' ng-if='!$first'>
+										<i class="iconfont icon-shangyiyiceng"></i>上移
+									</span>
+									<span class="MoveDown"ng-click='MoveDown(i.Type,$index)' ng-if='!$last'>
+										<i class="iconfont icon-xiayiyiceng"></i>下移
+									</span>
+									<span class="Charu" ng-click='Charu(i.Type,$index)'>
+										<i class="iconfont icon-daoru"></i>插入资源
+									</span>
+									<span class="Modify" ng-click='Modify(i.Type,$index)' ng-if="variablePacket.state=='revise'">
+										<i class="iconfont icon-bianji2"></i>修改
+									</span>
+									<span class="Del" ng-click='Del(i.Type,$index,i.Id,7)'>
+										<i class="iconfont icon-shanchu"></i>删除
+									</span>
+								</div>
+							</div>
+							<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+							<!--<div class="zyx_fiveSmallTopic">
+								<div class="zyx_fiveSmallTopicLine" ng-repeat='z in i.myAnswer'>
+									<span ng-bind='"("+($index+1)+")"'></span><span ng-bind='z.tit'></span>
+								</div>
+							</div>-->
+							<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+								查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+							</span>
+						</div>
+						<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+							<li class="Answer">
+								<strong>答案</strong>
+								<div ng-repeat='z in i.list'>
+									<span ng-bind='"("+($index+1)+")"'></span>
+									<span ng-bind='z.option'></span>
+								</div>
+							</li>
+							<li class="Analysis">
+								<strong>解析</strong>
+								<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+							</li>
+							<li class="Chapter">
+								<strong>章节</strong>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<li class="Resource" ng-if='i.CanResource'>
+								<strong>资源</strong>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'></span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!--修改-->
+					<div class="zyx_CanEdit toggle" ng-if='i.CanEdit'>
+						<div class="zyx_Top">
+							<div class="tit">
+								<h5><b ng-bind='$index+1'>1</b>阅读理解</h5>
+							</div>
+						</div>
+						<div class="zyx_edit_box">
+							<div class="zyx_edit_queTit">
+								<p>
+									题干<i class="star">*</i>
+									<b ng-if="questionBank.Out[i.Type][$index].titleWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请输入题干</span>
+									</b>
+								</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.queTit'></div>
+								</div>
+							</div>
+							<div class="zyx_edit_Answer">
+								<p>
+									答案<i class="star">*</i>
+									<em ng-click="addOption($index,i.Type)">增加选项<i class="iconfont icon-tianjia"></i></em>
+									<em ng-click="deleteOption($index,i.Type)">减少选项<i class="iconfont icon-jianshao"></i></em>
+									<b ng-if="questionBank.Out[i.Type][$index].answerWarn" >
+										<i class="iconfont icon-gantanhao"></i>
+										<span>请选择答案</span>
+									</b>
+								</p>
+								<div class="zyx_optionBox">
+									<div class="zyx_optionLine clearfix" ng-repeat="z in i.list">
+										<b class="fl" ng-bind='"("+($index+1)+")"'></b>
+										<ul class="fl zyx_option clearfix">
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'a'+i.Id+$index+i.Type}}" ng-model="z.option" value="A" />
+												<label ng-attr-for="{{'a'+i.Id+$index+i.Type}}">A</label>
+											</li>
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'b'+i.Id+$index+i.Type}}" ng-model="z.option" value="B" />
+												<label ng-attr-for="{{'b'+i.Id+$index+i.Type}}">B</label>
+											</li>
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'c'+i.Id+$index+i.Type}}" ng-model="z.option" value="C" />
+												<label ng-attr-for="{{'c'+i.Id+$index+i.Type}}">C</label>
+											</li>
+											<li>
+												<input type="radio" ng-attr-name="{{i.Type+$parent.$index+$index}}" ng-attr-id="{{'d'+i.Id+$index+i.Type}}" ng-model="z.option" value="D" />
+												<label ng-attr-for="{{'d'+i.Id+$index+i.Type}}">D</label>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="zyx_edit_Analysis">
+								<p>解析</p>
+								<div class="zyx_setHeight">
+									<div class="ueditor" ng-model='i.Analysis'></div>
+								</div>
+							</div>
+							<li class="zyx_edit_Analysis">
+								<p>章节</p>
+								<div>
+									<span ng-bind='i.subjNames'></span> 
+								</div>
+							</li>
+							<div class="zyx_edit_Resource" ng-if='i.CanResource'>
+								<p>资源</p>
+								<div class="clearfix" >
+									<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+									<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+									<em class="fr" ng-click='delResource(i,$index)'>删除</em>
+								</div>
+							</div>
+							<div class="zyx_edit_btn">
+								<button ng-click="confirm(i.Type,$index)">确认</button>
+								<button ng-click="cancelBtn(i.Type,$index)">取消</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+<!--插入资源/从题库选题弹层-->	
+<div class="gy_del_down zyx_insert_choice" ng-if='variablePacket.insertChoiceAll'>
+    <div class="gy_hide"></div>
+    <div class="gy_con">
+    	<div class="zyx_tit clearfix">
+    		<span class="fl" ng-if='variablePacket.maskHeader'>从题库选择</span>
+    		<span class="fl" ng-if='!variablePacket.maskHeader'>插入资源</span>
+    		<img class="fr" src="./img/delete.png"  ng-click='closeMask()'/>
+    	</div>
+    	<div class="zyx_threeSwitch">
+    		<span ng-repeat='i in variablePacket.threeSwitch' ng-class={"active":variablePacket.insertChoice_threeType==$index} ng-click='insertChoice_ThreeSwitch($index,i.id)' ng-bind='i.name'></span>
+    	</div>
+    	<div class="zyx_substance clearfix">
+    		<!--左侧-->
+    		<div class="zyx_leftTree fl">
+    			<!--选择教材版本-->
+				<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+				<!--树结构-->
+				<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>	
+    		</div>
+    		<!--右侧-->
+    		<div class="zyx_rightQuestion fr">
+    			<!--从题库选择-->
+    			<div class="zyx_topicLibrary" ng-if='variablePacket.insertChoice' >
+    				<div class="zyx_eightTab">
+	    				<span ng-repeat='i in variablePacket.eightSwitchOut' ng-class={"active":variablePacket.insertChoice_eightType==$index}  ng-bind='i.name' ng-click='insertChoice_eightSwitchTab($index,i.id)'>单选题</span>
+	    			</div>
+	    			<p class="number">共 <span>{{variablePacket.quzNum}}</span> 试题</p>
+	    			<!--8种题型-->
+					<div  class="zyx_allEight" ng-switch='variablePacket.insertChoice_eightType'>
+						<!--单选-->
+						<div class="zyx_Single"  ng-switch-when='0'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.single'>
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>单选题</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,0)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-bind='i.Answer'></div>
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow' ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--多选题-->
+						<div class="zyx_Many" ng-switch-when='1'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.many'>
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>多选题</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,1)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div>
+											<span ng-bind="i.Answer">A</span>
+										</div>
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow' ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--判断题-->
+						<div class="zyx_Judge"  ng-switch-when='2'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.judge'>
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>判断题</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,2)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-bind='i.Answer | judgeFormat'></div>
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow'  ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--填空题-->
+						<div class="zyx_FillIn"  ng-switch-when='3'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.fillIn' repeat-finish="renderFinish()">
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>填空题</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,3)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-repeat='s in fillInArr[$index]  track by $index'>
+											<span ng-bind='"("+($index+1)+")"'></span>
+											<span ng-bind='s'></span>
+										</div>
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow'  ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--材料题-->
+						<div class="zyx_Material"  ng-switch-when='4'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.material' repeat-finish="renderFinish()">
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>材料题</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,4)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-bind-html="i.Answer | trustHtml"></div>
+										<!--<div ng-repeat='s in materialArr[$index]  track by $index'>
+											<span ng-bind='"("+($index+1)+")"'></span>
+											<span ng-bind='s'></span>
+										</div>-->
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow'  ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--简答题-->
+						<div class="zyx_BriefAnswer"  ng-switch-when='5'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.briefAnswer' repeat-finish="renderFinish()">
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>简答题</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,5)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-bind-html="i.Answer | trustHtml"></div>
+										<!--<div ng-repeat='s in briefAnswerArr[$index]  track by $index'>
+											<span ng-bind='"("+($index+1)+")"'></span>
+											<span ng-bind='s'></span>
+										</div>-->
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow'  ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--完形填空-->
+						<div class="zyx_ClozeCloze"  ng-switch-when='6'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.clozeCloze'>
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>完形填空</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,6)'></i>
+										</div>
+									</div>
+									<div class="queTit">
+										<div  ng-bind-html='i.queTit | trustHtml'></div>
+									</div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-repeat='s in i.list'>
+											<span ng-bind='"("+($index+1)+")"'></span>
+											<span ng-bind='s.option'></span>
+										</div>
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr" ng-if='variablePacket.delShow'  ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--阅读理解-->
+						<div class="zyx_Reading"  ng-switch-when='7'>
+							<div class="zyx_topic" ng-repeat='i in questionBank.In.reading'>
+								<div class="zyx_Top clearfix">
+									<div class="tit clearfix">
+										<h5 class="fl"><b ng-bind='$index+1'>1</b>阅读理解</h5>
+										<div class="fr zyx_sign">
+											<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='topic_Sign(i.Type,i.Id,$index,7)'></i>
+										</div>
+									</div>
+									<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+									<div class="zyx_fiveSmallTopic">
+										<div class="zyx_fiveSmallTopicLine" ng-repeat='z in i.myAnswer'>
+											<span ng-bind='"("+($index+1)+")"'></span><span ng-bind='z.tit'></span>
+										</div>
+									</div>
+									<span class="linesRight fr" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+										查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+									</span>
+								</div>
+								<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+									<li class="Answer">
+										<strong>答案</strong>
+										<div ng-repeat='s in i.list'>
+											<span ng-bind='"("+($index+1)+")"'></span>
+											<span ng-bind='s.option'></span>
+										</div>
+									</li>
+									<li class="Analysis">
+										<strong>解析</strong>
+										<div  ng-bind-html='i.Analysis  | trustHtml'></div>
+									</li>
+									<li class="Chapter">
+										<strong>章节</strong>
+										<div>
+											<span ng-bind='i.subjNames'></span> 
+										</div>
+									</li>
+									<li class="Resource" ng-if='i.CanResource'>
+										<strong>资源</strong>
+										<div class="clearfix" >
+											<img src="./img/{{i.Resource[0].ResourceType | resTypeFilter}}"/>
+											<span ng-bind='i.Resource[0].ResourceTit'>班级空间我的班我的班的班我的班我的班级空间jpg</span>
+											<em class="fr"  ng-if='variablePacket.delShow'  ng-click='delResource(i,$index)'>删除</em>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<li class="zyx_loadMore" ng-if="variablePacket.quzTotalPage > quzParams.pageNo" ng-click="findQuzAll('paging')"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+					</div>
+    			</div>
+    			
+    			<!--插入资源-->
+    			<div class="zyx_insert" ng-if='!variablePacket.insertChoice'>
+    				<div class="zyx_eightTab clearfix">
+	    				类型 ：<span ng-repeat='i in variablePacket.SelectType' ng-class={"active":variablePacket.insertChoice_selectType==$index}  ng-bind='i.name' ng-click='insertChoice_selectTypeTab($index,i.id)'>单选题</span>
+	    				<div class="insert_select fr">
+	    					<input ng-model="resParams.title" type="text" placeholder="搜索" />
+	    					<i ng-click="getAddResource()" class="iconfont icon-sousuo"></i>
+	    				</div>
+    				</div>
+	    			<p class="number">共 <span>{{addResCount}}</span> 资源</p>
+	    			<div class="insertLineAll">
+	    				<div class="insertLine clearfix" ng-repeat='i in insertData'>
+	    					<div class="insertLine_L fl">
+	    						<p ng-bind='i.ResourceTit'></p>
+	    						<div>
+	    							<img src="./img/{{i.ResourceType | resTypeFilter}}"/>
+	    							<span ng-bind='i.name'>刘敏</span>
+	    							<i class="iconfont icon-lishi"></i><span ng-bind='i.time'></span>
+	    							<i class="iconfont icon-daxiao"></i><span ng-bind='i.size'></span>
+	    						</div>
+	    					</div>
+	    					<div class="insertLine_R fr">
+	    						<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='insert_Sign($index,i.ResourceId)'></i>
+	    					</div>
+	    				</div>
+	    				<li  class="zyx_loadMore" ng-if="variablePacket.resTotalPage > resParams.pageNo" ng-click="getAddResource('paging')"><i class="iconfont icon-jiazai"></i>加载更多...</li>
+	    			</div>
+    			</div>
+    			<!--插入资源-->
+    			<!--<div class="zyx_insert" ng-if='!variablePacket.insertChoice'>
+    				<div class="zyx_eightTab clearfix">
+	    				类型 ：<span ng-repeat='i in variablePacket.SelectType' ng-class={"active":variablePacket.insertChoice_selectType==$index}  ng-bind='i.name' ng-click='insertChoice_selectTypeTab($index)'>单选题</span>
+	    				<div class="insert_select fr">
+	    					<input type="text" placeholder="搜索" />
+	    					<i class="iconfont icon-sousuo"></i>
+	    				</div>
+    				</div>
+	    			<p class="number">共 <span>2009</span> 试题</p>
+	    			<div class="insertLineAll">
+	    				<div class="insertLine clearfix" ng-repeat='i in insertData'>
+	    					<div class="insertLine_L fl">
+	    						<p ng-bind='i.ResourceTit'>五年级语文期末试卷.ppt</p>
+	    						<div>
+	    							<img src="./img/resources_word.png" ng-if='i.ResourceSrc==0'/>
+									<img src="./img/resources_ppt.png" ng-if='i.ResourceSrc==1'/>
+									<img src="./img/resources_pic.png" ng-if='i.ResourceSrc==2'/>
+									<img src="./img/resources_excal.png" ng-if='i.ResourceSrc==3'/>
+									<img src="./img/resources_ear.png" ng-if='i.ResourceSrc==4'/> 
+	    							<span ng-bind='i.name'>刘敏</span>
+	    							<i class="iconfont icon-lishi"></i><span ng-bind='i.time'>2017-08-20</span>
+	    							<i class="iconfont icon-daxiao"></i><span ng-bind='i.size'>1049.02k</span>
+	    						</div>
+	    					</div>
+	    					<div class="insertLine_R fr">
+	    						<i class="iconfont" ng-class={'icon-tianjiajingdian':!i.sign,'icon-jianqujingdian':i.sign} ng-click='insert_Sign($index)'></i>
+	    					</div>
+	    				</div>
+	    			</div>
+    			</div>-->
+    			
+    		</div>
+    	</div>
+	</div>
+</div>
+
+
+<!--插入资源回显弹层-->
+<div class="gy_del_down zy_resource_box" ng-if='variablePacket.insertResource'>
+    <div class="gy_hide"></div>
+    <div class="gy_con mlh_con">
+    	<div class="zy_resource_box_tit">
+    		<b ng-bind="variablePacket.clickResourceName"></b>
+    		<i class="iconfont icon-guanbi1 fr" ng-click='closeResource()'></i>
+    	</div>
+    	<div class="zy_resource_box_main">
+			<div ng-show='variablePacket.convertState == "1" && variablePacket.backResourceType == "pic"'>
+				<img src="{{variablePacket.imagePath}}"/>
+			</div>
+			<div ng-show="variablePacket.convertState == '1'" class="zyx_ResLineVideo bofangqi" id="showplayer">
+				<div ng-if="variablePacket.showplayer" class="loadFlashWrap">
+					<p>您的浏览器还没有安装Flash插件</p>
+					<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+				</div>
+			</div>
+			<div class="zyx_ResLinePDF mlh_pdf" ng-show='variablePacket.convertState == "1" && variablePacket.backResourceType == "pdf"'>
+				<iframe width="854" height="511" src="{{variablePacket.pdfPath}}"></iframe>
+			</div>
+			<div ng-show="variablePacket.convertState == '2'" >
+				<div class="bofangqi" >
+					<div class="loadFlashWrap">
+						<p>资源转码失败!</p>
+					</div>
+				</div>
+			</div>
+			<div ng-show="variablePacket.convertState == '0'" >
+				<div class="bofangqi" >
+					<div class="loadFlashWrap">
+						<p>该资源正在转码中......</p>
+					</div>
+				</div>
+			</div>
+    	</div>
+	</div>
+</div>
+
+<!--确认框及提示框-->
+<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk" mask-zindex='variablePacket.maskZindex'></prompt-box>

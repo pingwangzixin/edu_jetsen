@@ -1,0 +1,50 @@
+<div>
+	<div class="zyx_selectVersion"> 
+		<h2 ng-if="titleShow" ng-click="findAll()" >全部资源</h2>
+		<h3 ng-show="treeShow.teachingMaterial">
+			<b ng-show="titleShow">教材</b>
+			<span  class="titleSpan"> 
+				<em ng-bind='p' ng-attr-title='{{p}}'>年级</em>/
+				<em ng-bind='c' ng-attr-title='{{c}}'>科目</em>/
+				<em ng-bind='d' ng-attr-title='{{d}}'>版本</em>
+			</span> 
+			<i class="iconfont icon-next"></i>
+		</h3>
+		<div class="zyx_chooice toggle" ng-if='directiveState'>
+			<ul class="zyx_select clearfix">
+				<li class="zyx_grade">
+					<p ng-click="clear.p()"><span ng-bind="p"></span></p>
+					<div class="zyx_vessel" id="zyx_grade_mainbox">
+						<ol id="zyx_grade_contentbox" class="clearfix">
+								<li ng-repeat="item in grade" ng-click="set.p(item)" ng-class="{selected_active : p==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="P">{{item.name}}</li>
+						</ol>
+					</div>
+				</li>
+				<li class="zyx_Subject">
+					<p ng-click="clear.c()"><span ng-bind="c"></span></p>
+					<div class="zyx_vessel" id="zyx_Subject_mainbox">
+						<!--<div ng-if="Subjectlength">
+							<i class="iconfont icon-jiazai1"></i>
+							<span>加载中...</span>
+						</div>-->
+						<ol id="zyx_Subject_contentbox" class="clearfix">
+							<li ng-click="set.c(item)" ng-repeat="item in Subject" ng-class="{selected_active:c==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="C">{{item.name}}</li>
+						</ol>
+					</div>
+				</li>
+				<li class="zyx_version">
+					<p ng-click="clear.d()"><span ng-bind="d"></span></p>
+					<div class="zyx_vessel" id="zyx_version_mainbox">
+						<!--<div ng-if="versionlength" class="districtlength">
+							<i class="iconfont icon-jiazai1"></i>
+							<span>加载中...</span>
+						</div>-->
+						<ol id="zyx_version_contentbox">
+							<li ng-repeat="item in version" ng-class="{selected_active:d==item.name}" ng-click="set.d(item)" ng-attr-title="{{item.name}}" on-finish-render-filters="D">{{item.name}}</li>
+						</ol>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

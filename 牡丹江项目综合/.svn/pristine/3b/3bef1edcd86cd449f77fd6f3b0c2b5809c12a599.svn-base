@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+		<title>导入试题</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8"/>
+		<link rel="stylesheet" href="../css/public.css"/>
+		<link rel="stylesheet" href="../css/importTask.css"/>
+		<!--<link rel="stylesheet" href="../css/tsakCenter.css" charset="utf-8"/>-->
+		
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/importTask.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!-- 文本编辑 -->
+		<script src="../common/ueditor/ueditor.config.js"></script>
+	    <script src="../common/ueditor/ueditor.all.js"></script>
+	    
+	    <!--语言-->
+	    <script src="../common/ueditor/lang/zh-cn/zh-cn.js"></script>
+	    
+	    <!-- 数学公式 -->
+	    <script  src="../common/ueditor/kityformula-plugin/addKityFormulaDialog.js"></script>
+		<script  src="../common/ueditor/kityformula-plugin/getKfContent.js"></script>
+		<script  src="../common/ueditor/kityformula-plugin/defaultFilterFix.js"></script>
+		
+		<script type="text/javascript">
+			
+		</script>
+	</head>
+	<body>
+		<!-- 头部 -->
+		<div  class="header clearfix"></div>
+		<div class="main zy_main_part clearfix">
+			<!-- 左侧 -->
+			<!--<div  class="left fl"></div>-->
+			<!-- 右侧 -->
+			<div class="main_right">
+				<ul class="list_tit clearfix">
+					<li><a href="taskCenter_list.html">作业列表</a></li>
+					<li><a href="taskCenter_list_new.html" >闯关列表</a></li>
+					<li><a href="my_question.html" >我的题库</a></li>
+					<li><a href="public_question.html">公共题库</a></li>
+					<li><a href="taskCenter_test.html">课堂测试</a></li>
+					<li><a href="importTask.html" class="list_tit_active">导入试题</a></li>
+					<li class="fr">
+						<a href="javascript:;">
+							<div class="back fr">
+								<img src="../img/back.png" alt="">
+							</div>
+						</a>
+					</li>
+				</ul>
+				<div id="dd" style="display: none;">
+					<p align="justify">&ldquo;备课大师&rdquo;全科【9门】：免注册，不收费！http://www.eywedu.cn/</p>
+					<p align="center">八年 级 教学质量监测</p>
+					<p align="center">数
+						<p>2016.07.04</p> 学</p>
+					<p>注意事项：</p>
+					<p>1．本试卷分第Ⅰ卷（选择题）和第Ⅱ卷（非选择题）两部分，共5页。</p>
+					<p>2．答卷前，考生务必在答题卡上用直径0.5毫米的黑色字迹签字笔将自己的学校、班级、姓名及座位号，在右上角的信息栏填写自己的考号，并用2B铅笔填涂相应的信息点。</p>
+					<p>3．答Ⅰ卷时，选出每题答案后，用2B铅笔把答题卡上对应题目的答案标号涂黑。如需改动，用橡皮擦干净后，再选涂其它答案，答在本试卷上无效。</p>
+					<p>4．答第Ⅱ卷时，请用直径0.5毫米黑色字迹签字笔在答题卡上各题的答题区域内作</p>
+					<p>答。答在本试卷上无效。</p>
+					<p align="center"></p>
+					<p align="center">第Ⅰ卷 选择题</p>
+					<p align="center"></p>
+					<p>一、选择题（本题有12小题，每小题3分，共36分．在每小题给出的四个选项中，只有一项是符合题目要求的，请将正确的选项用铅笔涂在答题卡上．）</p>
+					<p>1.不等式<img src="../imgs/111_html_b86036eb90104550.gif"  name="瀵硅薄1" align="absmiddle" width="85" height="18" />的解集是</p><p> A.<img src="../imgs/111_html_c3d9e6fef0dfc3db.gif" name="瀵硅薄2" align="absmiddle" width="37" height="18" /> B.<img src="../imgs/111_html_58240eae4c778209.gif" name="瀵硅薄3" align="absmiddle" width="37" height="18" /> C.<img src="../imgs/111_html_bfaca5185befbee5.gif" name="瀵硅薄4" align="absmiddle" width="39" height="18" /> D.<img src="../imgs/111_html_79296448e4b3d54a.gif" name="瀵硅薄5" align="absmiddle" width="39" height="18" /></p><p>2.多项式<img src="../imgs/111_html_a6474c429fee4430.gif" name="瀵硅薄6" align="absmiddle" width="71" height="20" />分解因式的结果是</p><p align="left"> A.<img src="../imgs/111_html_68cc39f9cac64625.gif" name="瀵硅薄7" align="absmiddle" width="67" height="21" /> B. <img src="../imgs/111_html_16c767f5744f18ee.gif" name="瀵硅薄8" align="absmiddle" width="69" height="21" /> </p><p align="left">C.<img src="../imgs/111_html_b1998f62835776e6.gif" name="瀵硅薄9" align="absmiddle" width="108" height="19" /> D. <img src="../imgs/111_html_c54391a00fe1f19f.gif" name="瀵硅薄10" align="absmiddle" width="108" height="19" /></p>
+					<p align="left">3.下列图案中，不是中心对称图形的是</p>
+					<p>A．<img src="../imgs/111_html_c1c12a69e9226ed2.jpg" name="Picture24" align="bottom" width="57" height="53" border="0" />　 　B．<img src="../imgs/111_html_43ee2f5662e79474.jpg" name="鍥惧儚1" align="bottom" width="50" height="50" border="0" /> C．<img src="../imgs/111_html_ec49e0b4505cd796.jpg" name="鍥惧儚2" align="bottom" width="50" height="48" border="0" />　　D．<img src="../imgs/111_html_de30f1c00d08c100.jpg" name="鍥惧儚3" align="bottom" width="50" height="45" border="0" /></p>
+					<p></p>
+					<p>4<img src="../imgs/111_html_4f92a1d1f0909ede.jpg" name="鍥惧儚4" align="left" hspace="12" width="140" height="92" border="0" />.如图，△ABC中，AB的垂直平分线DE交AC于D，如果AC=5cm，BC=4cm，那么△DBC的周长是</p>
+					<p>A.6cmB.7cm</p>
+					<p>C.8cmD.9cm</p>
+					<p>5.要使分式<img src="../imgs/111_html_b86213148e3ff1b2.gif" name="瀵硅薄11" align="absmiddle" width="76" height="40" />有意义，那么x的取值范围是</p>
+					<p> A．x&ne;3 B．x&ne;3且x&ne;-3 C．x&ne;0且x&ne;-3 D．x&ne;-3</p>
+					<p>6．如果关于x的不等式(a+1)x&gt;a+1的解集为x&lt;1，则a的取值范围是</p>
+					<p><img src="../imgs/111_html_42f0bb5e24d802d6.png" name="鍥惧儚5" align="left" hspace="12" width="150" height="95" border="0" /> A．a&lt;0　　B.a&lt;-1　　 C.a&gt;1　　 D.a&gt;-1</p>
+					<p align="left">7．如图，在平行四边形ABCD中，AD=2AB，CE平分&ang;BCD交AD边于点E，且AE=3，则AB的长为</p>
+					<p>A．4 B．3 C．<img src="../imgs/111_html_21e6e0115f89463c.gif" name="鍥惧儚6" align="absmiddle" width="16" height="41" border="0" /> D．2</p>
+					<p align="left">8<img src="../imgs/111_html_7be3c8cb8ddfa1bf.jpg" name="鍥惧儚7" align="left" hspace="12" width="164" height="63" border="0" />.将一个有45&deg;角的三角板的直角顶点放在一张宽为3cm的纸带边沿上．另一个顶点在纸带的另一边沿上，测得三角板的一边与纸带的一边所在的直线成30&deg;角，如图，则三角板的最大边的长为</p>
+					<p align="left">A．3cmB．6cm C．<img src="../imgs/111_html_8652338d5158129c.png" name="鑿佷紭缃�-jyeoo" align="absmiddle" width="30" height="18" border="0" />cmD．<img src="../imgs/111_html_61723f401b665098.png" name="鍥惧儚8" align="absmiddle" width="30" height="18" border="0" />cm</p>
+					<p>9<img src="../imgs/111_html_7b6ca6e73926b2e8.png" name="鍥剧墖 577" align="left" hspace="12" width="169" height="124" border="0" />.如图，在□<img src="../imgs/111_html_948b06cb0d3af985.gif" name="鍥惧儚9" align="bottom" width="38" height="24" border="0" />中，<img src="../imgs/111_html_2a65999a03cc7601.gif" name="鍥惧儚10" align="bottom" width="19" height="24" border="0" />&perp;<img src="../imgs/111_html_f3bbe6eecfd2490b.gif" name="鍥惧儚11" align="bottom" width="19" height="24" border="0" />于点<img src="../imgs/111_html_ab1ce820485787e8.gif" name="鍥惧儚12" align="bottom" width="10" height="24" border="0" />，<img src="../imgs/111_html_5f40900e7e668e9a.gif" name="鍥惧儚13" align="bottom" width="19" height="24" border="0" />&perp;<img src="../imgs/111_html_e31fffe98975d17.gif" name="鍥惧儚14" align="bottom" width="19" height="24" border="0" />于点<img src="../imgs/111_html_ff313ca8a0741914.gif" name="鍥惧儚15" align="bottom" width="10" height="24" border="0" />.若<img src="../imgs/111_html_b76ddbad5ba3fe69.gif" name="鍥惧儚16" align="bottom" width="46" height="24" border="0" />，<img src="../imgs/111_html_cb6dacfe37b2acb1.gif" name="鍥惧儚17" align="bottom" width="46" height="24" border="0" />，且□<img src="../imgs/111_html_948b06cb0d3af985.gif" name="鍥惧儚18" align="bottom" width="38" height="24" border="0" />的周长为40，则□<img src="../imgs/111_html_948b06cb0d3af985.gif" name="鍥惧儚19" align="bottom" width="38" height="24" border="0" />的面积为</p>
+					<p>A.24B.36 </p>
+					<p>C.40D.48</p>
+					<p>1<img src="../imgs/111_html_ad5d98fe9231050b.jpg" name="Image0275.jpeg" align="left" hspace="12" width="144" height="141" border="0" />0.如图，函数y=2x和y=ax+4的图象相交于点A(m,3),则不等式2x&lt;ax+4的解集为</p>
+					<p>A.x&lt;<img src="../imgs/111_html_df9b27a8ef261342.gif" name="鍥惧儚20" align="bottom" width="8" height="33" border="0" />　　　B.x&lt;3</p>
+					<p>C.x&gt;<img src="../imgs/111_html_df9b27a8ef261342.gif" name="鍥惧儚21" align="bottom" width="8" height="33" border="0" />　　　D.x&gt;3</p>
+					<p>11．已知<img src="../imgs/111_html_7d0485c8c7ea0956.gif" name="瀵硅薄12" align="absmiddle" width="151" height="38" />的值为</p>
+					<p> A.<img src="../imgs/111_html_a6d0f2d797d7f2d3.gif" name="瀵硅薄13" align="absmiddle" width="27" height="19" /> B.<img src="../imgs/111_html_7d96d3829396229.gif" name="瀵硅薄14" align="absmiddle" width="40" height="19" /> </p>
+					<p> C.2 D.<img src="../imgs/111_html_89b4cdb85876530a.gif" name="瀵硅薄15" align="absmiddle" width="30" height="18" /></p>
+					<p>12.△ABC为等腰直角三角形，&ang;ACB=90&deg;，AC=BC=2，P为线段AB上一动点，D为BC上中点，则PC+PD的最小值为</p>
+					<p>A.<img src="../imgs/111_html_dc3c35f4b2a3be6e.gif" name="瀵硅薄16" align="absmiddle" width="24" height="24" /> B.3 C.<img src="../imgs/111_html_3eac3296a06c9627.gif" name="瀵硅薄17" align="absmiddle" width="24" height="24" /> D.<img src="../imgs/111_html_6e541ca35b84e891.gif" name="瀵硅薄18" align="absmiddle" width="44" height="23" /></p>
+					<p align="center">第Ⅱ卷 非选择题</p>
+					<p></p>
+					<p>二、填空题：（本题有4小题，每小题3分，共12分．把答案填在答题卡上）．</p>
+					<p>13.分解因式：<img src="../imgs/111_html_c536bf74f19f7655.gif" name="瀵硅薄19" align="absmiddle" width="98" height="20" /> </p>
+					<p>14．一个多边形的内角和与外角和的比是4:1，则它的边数是 </p>
+					<p>15．如图，&ang;AOP=&ang;BOP=15&deg;，PC∥OA，PD&perp;OA，若PC=4，则PD的长为 </p>
+					<p> <img src="../imgs/111_html_f86b9c0924c6a368.png" name="瀵硅薄20" align="left" hspace="12" width="158" height="81" /><img src="../imgs/111_html_5c5fb39f4d433f9e.gif" name="鍥惧儚22" align="left" hspace="12" width="104" height="103" border="0" /></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p>（第15题图） （第16题图）</p>
+					<p>16．如图，在Rt△ABC中，&ang;ABC＝90&ordm;，AB＝BC＝<img src="../imgs/111_html_e5152c332daf8910.gif" name="瀵硅薄21" align="absmiddle" width="33" height="23" />，将△ABC绕点A逆时针旋转60&ordm;，得到△ADE，连接BE，则BE的长是 </p>
+					<p></p>
+					<p></p>
+					<p>三、解答题（本大题有七道题,其中17题6分，18题7分，19题7分，20题7分，21题7分，22题9分，23题9分，共52分；把解答过程在答题卡上）</p>
+					<p>17.（6分）解分式方程：<img src="../imgs/111_html_d39273bab7068b71.gif" name="瀵硅薄22" align="absmiddle" width="117" height="40" /></p>
+					<p></p>
+					<p>18.（7分）解不等式组<img src="../imgs/111_html_b1219770902f9118.gif" name="瀵硅薄23" align="absmiddle" width="153" height="21" /></p>
+					<p></p>
+					<p>19.（7分）先化简，再求值：<img src="../imgs/111_html_d50656ca724f78da.gif" name="瀵硅薄24" align="absmiddle" width="174" height="43" />，其中<img src="../imgs/111_html_db8f3901b0341c87.gif" name="瀵硅薄25" align="absmiddle" width="18" height="18" />满足方程<img src="../imgs/111_html_2b05b40333540b10.gif" name="瀵硅薄26" align="absmiddle" width="94" height="20" />．</p>
+					<p></p>
+					<p></p>
+					<p>2<img src="../imgs/111_html_56e5ac19ad7c0c9d.gif" name="鍥惧儚23" align="left" hspace="12" width="157" height="163" border="0" />0.（7分）如图，在边长为1个单位长度的小正方形组成的网格中，△ABC的顶点A、B、C在小正方形的顶点上，将△ABC向下平移4个单位、再向右平移3个单位得到△A1B1C1，然后将△A1B1C1绕点A1顺时针旋转90&deg;得到△A1B2C2．</p>
+					<p>（1）在网格中画出△A1B1C1和△A1B2C2；</p>
+					<p>（2）计算线段AC从开始变换到A1C2的</p>
+					<p>过程中扫过区域的面积（重叠部分</p>
+					<p>不重复计算）</p>
+					<p></p>
+					<p></p>
+					<p>2<img src="../imgs/111_html_dff290bd7af7c76c.png" name="7e3e6709c93d70cfd61e50bcfbdcd100bba12b9f" align="left" hspace="12" width="182" height="114" border="0" />1.（7分）如图，在△ABC中，D、E分别是AB、AC的中点，F是DE延长线上的点，且EF=DE</p>
+					<p>（1）图中的平行四边形有哪几个？请选择其中一个说明理由</p>
+					<p>（2）若△AEF的面积是3，求四边形BCFD的面积</p>
+					<p></p>
+					<p align="left">22．（9分）某汽车销售公司经销某品牌A款汽车，随着汽车的普及，其价格也在不断下降．今年5月份A款汽车的售价比去年同期每辆降价1万元，如果卖出相同数量的A款汽车，去年销售额为100万元，今年销售额只有90万元．</p>
+					<p align="left">（1）今年5月份A款汽车每辆售价多少万元？</p>
+					<p align="left">（2）为了增加收入，汽车销售公司决定再经销同品牌的B款汽车，已知A款汽车每辆进价为7.5万元，B款汽车每辆进价为6万元，公司预计用不多于105万元且不少于99万元的资金购进这两款汽车共15辆，有几种进货方案？</p>
+					<p align="left">（3）按照（2）中两种汽车进价不变，如果B款汽车每辆售价为8万元，为打开B款汽车的销路，公司决定每售出一辆B款汽车，返还顾客现金a万元，要使（2）中所有的方案获利相同，a值应是多少？</p>
+					<p></p>
+					<p align="left">23.（9分）已知两个共一个顶点的等腰直角△ABC和等腰直角△CEF，&ang;ABC=&ang;CEF=90&deg;，连接AF，M是AF的中点，连接MB、ME．</p>
+					<p align="left">（1）如图1，当CB与CE在同一直线上时，求证：MB∥CF；</p>
+					<p align="left">（2）如图1，若CB=a，CE=2a，求BM，ME的长；</p>
+					<p align="left">（3）如图2，当&ang;BCE=45&deg;时，求证：BM=ME．</p>
+					<p align="left"></p>
+					<p lang="zh-CN" align="left"><img src="../imgs/111_html_6815411a3ff1cff3.png" name="Picture24" align="left" width="522" height="166" border="0" /></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+					
+					
+				</div>
+				<div class="zy_import_part">
+					<div class="zy_import_part_upper">
+						<div class="tit clearfix">
+							<span class="fl">导入试题</span>
+							<button class="fr">保存</button>
+						</div>
+						<ul>
+							<li>
+								<b>*</b> 课题：
+								<select name="">
+									<option value="">年水电费级</option>
+									<option value="">年级已</option>
+								</select>
+								<select name="">
+									<option value="">年级</option>
+									<option value="">年级已</option>
+								</select>
+								<select name="">
+									<option value="">年水电费撒的水电费级</option>
+									<option value="">年级已</option>
+								</select>
+								<select name="">
+									<option value="">年级</option>
+									<option value="">年级已</option>
+								</select>
+							</li>
+							<li>
+								<b>*</b> 关键词：
+								<input type="text" placeholder="请输入关键字，多个关键字用分号隔开" />
+							</li>
+						</ul>
+					</div>
+					<div class="zy_import_part_lower">
+						<div class="tit clearfix">
+							<span class="fl">试题内容</span>
+							<ul class="fr">
+								<li class="add_question_btn">添加小题</li>
+								<li>补录题干/解析</li>
+								<li>快速录入答案</li>
+								<li class="open_analysis">展开解析</li>
+							</ul>
+						</div>
+						<ul class="task_list"></ul>
+					</div>
+				</div>
+			</div>
+			
+			<!--回到顶部-->
+			<div class="back_top_wrap" style="display: none;">
+				<div class="back_top" style="right: 0;">
+					<img src="../img/back_top.png"/>
+				</div>
+			</div>
+		</div>
+		
+		<!--等待遮罩-->
+		<div class="del_down prompt_box public_box waiting_box">	
+			<div class="hide"></div>
+			<div class="con">
+				<div class="main_cont">
+					<img src="../img/loading.gif"/>
+					<p>数据加载中...</p>
+				</div>
+			</div>
+		</div>
+		
+		<!--定时提示框-->
+		<div class="del_down prompt_box public_box timing_box" style="display: none;">	
+			<div class="hide"></div>
+			<div class="con">
+				<div class="main_cont">
+					<img class="success" src="../img/success.png"/>
+					<img class="warning" src="../img/warn.png"/>
+					<img class="fail" src="../img/cuo.png"/>
+					<p>我是提示文字</p>
+				</div>
+			</div>
+		</div>
+		
+		<!--移动题型提示框-->
+		<div class="del_down prompt_box public_box subject_move_box">	
+			<div class="hide"></div>
+			<div class="con">
+				<div class="tit">
+					<span>移动题目</span>
+				</div>
+				<div class="main_cont">
+					<p class="order">
+						<span>目标小题题号：</span>
+						<input type="number" name="" id="" value="" placeholder="请输入" />
+						<!--<input type="text" name="" id="" value="" onkeyup="this.value=this.value.replace(/^[1-9]\d{0,2}$/,'') " onafterpaste="this.value=this.value.replace(/^[1-9]\d{0,2}$/,'')" placeholder="请输入" />-->
+					</p>
+					<p class="tip">请输入</p>
+				</div>
+				<div class="btn_group">
+					<button class="sure">确认</button>
+					<button class="cancel">取消</button>
+				</div>
+			</div>
+		</div>
+			
+		<!--添加小题框-->
+		<div class="del_down prompt_box public_box add_question_box">	
+			<div class="hide"></div>
+			<div class="con">
+				<div class="tit">
+					<span>添加小题</span>
+				</div>
+				<div class="main_cont">
+					<p class="order">
+						<span>起始题号：</span>
+						<input type="number" name="" id="" value="" placeholder="请输入" />
+						
+					</p>
+					<p class="number">
+						<span>增加数量：</span>
+						<input type="number" name="" id="" value="" placeholder="请输入" />
+					</p>
+					<p class="tip">请输入</p>
+					<p class="tip">请输入增加数量</p>
+				</div>
+				<div class="btn_group">
+					<button class="sure">确认</button>
+					<button class="cancel">取消</button>
+				</div>
+			</div>
+		</div>
+		
+		<!--确认删除框-->
+		<div class="del_down prompt_box public_box confirm_delete_box" style="display: none;">	
+			<div class="hide"></div>
+			<div class="con">
+				<div class="tit">
+					<span>提示</span>
+				</div>
+				<div class="main_cont">
+					<img src="../img/tips.png"/>
+					<p>确认删除</p>
+				</div>
+				<div class="btn_group">
+					<button class="sure">确认</button>
+					<button class="cancel">取消</button>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			
+		</script>
+	</body>
+</html>

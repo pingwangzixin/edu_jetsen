@@ -1,0 +1,45 @@
+<div>
+	<div class="zy_bg zk_bg">
+		<div class="zy_central_content zy_space_new clearfix" >
+			<div class="wd_left fl" >
+				<div class="user student">
+					<div class="shang">
+						<div class="headPortrait">
+							<span ng-if="faceHave">{{userLoggedMsg.realname.charAt(0)}}</span>
+							<p ng-click="upload1()" ng-if="visiter!=1">修改</br>头像</p>
+							<input type="file" name="" id="file1" value="" onchange="angular.element(this).scope().uploadTeaImage(this)"/>
+							<img ng-src="{{userImage}}" ng-if="!faceHave"/>
+						</div>
+						<!-- <div class="modify"><i class="iconfont icon-bianji2"></i><span>修改</span></div> -->
+						<div class="username">
+							<i ng-if="userLoggedMsg.sex == '男'" class="iconfont icon-nan"></i>
+							<i ng-if="userLoggedMsg.sex == '女'" class="iconfont icon-nv"></i>
+							<span ng-bind="userLoggedMsg.realname">唐海燕</span>
+						</div>
+					</div>
+					<div class="xia ">
+						<p>{{userLoggedMsg.gradeName}}年级（{{userLoggedMsg.className}}）班</p>
+						<p>{{userLoggedMsg.officeName}}</p>
+					</div>
+				</div>
+				<div class="learning" ng-repeat="w in entrance" ng-if="visiter!=1">
+					<h3>{{w.name}}</h3>
+					<ul class="clearfix"> 
+						<li class="fl" ng-repeat="i in w.data" ng-click="jump(i.href)">
+							<!--<img ng-attr-src="{'./img/'+i.href+'.png'}" alt="" />-->
+							<img ng-src="{{'./img/'+i.icon+'.png'}}" alt="" />
+							
+							<p>{{i.name}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="wd_right fr">
+				<ul class="wd_str_nav clearfix">
+					<li  ng-repeat="(e,i) in Navigation" class="fl" ng-class="{active:i.state}" ng-click="navigationJump(i)">{{i.name}}</li>
+				</ul>
+				<div ui-view class="" ></div>
+			</div>
+		</div>
+	</div>
+</div>

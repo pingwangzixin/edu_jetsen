@@ -1,0 +1,834 @@
+.del_down{
+    text-align: center;
+}
+.del_down .hide{
+    position: fixed;
+    z-index: 1002;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    opacity: 0.3;
+    background: rgba(0,0,0,1);
+}
+.del_down .con{
+    position: fixed;
+	top:0;
+	left:0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+    z-index:1003;
+    width:328px;
+    height: 180px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    opacity: 1;
+    -webkit-box-shadow: 0 0 6px #ccc;
+    -moz-box-shadow: 0 0 6px #ccc;
+    box-shadow: 0 0 6px #ccc;
+}
+html,body{width: 100%;height: 100%;}
+.header{
+	width: 100%;
+	height: 50px;
+	min-width: 1200px;
+}
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1496892487164'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1496892487164#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1496892487164') format('woff'), /* chrome, firefox */
+  url('../fonts/iconfont.ttf?t=1496892487164') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1496892487164#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cjlr:before { content: "\e662"; }
+
+.icon-tzgl:before { content: "\e61f"; }
+
+.icon-jkgl:before { content: "\e601"; }
+.main{height:100%;min-width: 1200px;}
+.main .left{width: 15%;background-color: #5093E1;height: 100%;min-width: 180px;height: 100%;position: fixed;left: 0;}
+.main .right{width: 85%;height: 100%;}
+.left .people {
+	text-align: center;
+	margin-top: 30px;
+}
+
+.left .people img {
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.left .name {
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	line-height: 33px;
+	margin-top: 14px;
+	margin-bottom: 20px;
+}
+
+
+.left .tab{text-align: center;font-size: 14px;}
+.left .tab ul{display: none;}
+.left .tab li{line-height: 26px;cursor: pointer;color:#fff;}
+.left .tab li.active{color:#ffea00;}
+.left .grade{text-align: center;line-height: 36px;color:#fff;font-size:14px; word-spacing: 0.3px;cursor: pointer;}
+.left .grade em{
+	display: inline-block;
+	width: 17px;
+	height: 9px;
+	background: url(../img/xia.png) no-repeat;
+}
+.left .grade em.xia{background: url(../img/shang.png) no-repeat;}
+
+
+.right .load{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #ccc;
+}
+.right  .load .tit{
+	height: 50px;
+	line-height: 50px;
+	color:#333333;
+	font-size: 18px;
+	margin-left: 35px;
+	font-size: 1.6rem;
+}
+.right  .load .down{
+	line-height: 50px;
+	margin-right: 62px;
+	color:#5093e1;
+	font-size: 16px;
+	cursor: pointer;
+}
+.right .load .down img{vertical-align: middle;margin-right: 6px;}
+.right .nav{margin-left: 35px;}
+.right .nav li{
+	line-height: 36px;
+	font-size: 16px;
+}
+.right .nav li span{margin-right: 40px;}
+
+.right .Table{border:1px solid #aaa;margin-left: 35px;width: 94%;margin-top: 10px;}
+.right .Table th,.right .Table td{border:1px solid #aaa;text-align: center;padding: 10px;}
+.right .Table thead th{background-color: #e6e6e6;font-size: 14px;font-weight: normal;}
+.right .Table td{font-size: 12px;}
+.right .Table tr.green{background-color: #dff6ff;}
+.right .Table tr.orange{background-color: #fde9d9;}
+.right .Table tr.blue{background-color: #c5d9f1;}
+
+.right .report{width: 100%;text-align: center;margin-top: 20px;}
+.right .report p{
+	font-size: 20px;
+	color:#5093e1;
+}
+.right .report p img{vertical-align: middle;margin: 0 10px;}
+.right .reportMain{margin-left: 35px;}
+.right .reportMain .reportTitle{font-size:50px; font-family: "mv boli";float: left; color:#5093e1; line-height: 50px; min-width: 50px;}
+.right .reportMain .reportword{float: left;width: 90%; }
+.right .reportMain .reportword h2{margin-bottom: 30px;}
+.right .reportMain .reportword h2 span{font-size:24px; font-weight: 600;}
+.right .reportMain .reportword h2 i{color: #7d7d7d;} 
+.right .reportMain .reportPara h3{color:#5093e1 ; font-size:17px; padding-bottom:10px;}
+.right .reportMain .reportPara p{color: black; line-height: 24px;font-size: 12px;width: 100%;overflow: hidden;word-break: break-all;}
+.right .reportMain .reportPara{padding-bottom:24px;}
+
+
+
+
+
+
+
+
+.per_header{height:50px;}
+em,i,b,strong{font-style:normal;}
+.per_subHeader{height: auto;margin:0!important; border-bottom:0px solid #cccccc;}
+.per_subHeader .gradWrap li{margin: 15px 0;}
+.per_subHeader .subHeadMain{margin: 0 auto;width: 1200px; line-height: 50px;}
+.per_subHeader .subHeadMain span{float:left}
+.per_subHeader .subHeadMain .subTile{font-size:16px; margin-right: 45px; }
+.per_subHeader .subHeadMain .subTerm{font-size:16px;}
+.per_selection ul{display: none;color:#333; position: absolute; width: 72%; border:1px solid #5093E1; border-top:none;margin-left:2px; background: white; z-index: 2; text-align: left;}
+.per_selection ul li:hover{background: dodgerblue; color: white!important; cursor: pointer;}
+.per_selection ul li{padding-left:2px;border-top:1px solid #5093E1;font-size: 14px;}
+.per_selection ul li.active{color:#5093E1}
+.per_selection p{text-align: left;padding-left:10px; margin-left:-10px;font-size: 14px;}
+.per_selection{width:116px; height:30px ;border:1px solid  #50a7e2;  border-radius: 20px;  padding-left:9px; background: url(../img/jiantou.png) no-repeat 100px -3px;color: #5093E1; line-height: 30px; display: inline-block; position: relative; cursor: pointer;}
+.per_subHeader .subHeadMain .subBack{float: right;width: 56px; height: 32px; background-color:#5093e1;font-size: 16px;line-height: 32px; border-radius: 6px;text-align: center; margin-top:10px; color:white; margin-right:60px; margin-left: 27px; cursor: pointer;}
+.per_subHeader .subHeadMain .historyBack{margin: 0;margin-top: 10px; width: auto;padding:0 10px}
+.per_subHeader .re_subhead span.subBack{
+	width: 56px; 
+	height: 32px; 
+	background-color:#5093e1;
+	font-size: 16px;
+	line-height: 32px;
+	border-radius: 6px;
+	text-align: center; 
+	margin-top:10px;
+	color:white; 
+	margin-right:60px; 
+	margin-left: 27px;
+	cursor: pointer;
+}
+.per_subHeader .subHeadMain .subBack a{
+	color: #fff;
+}
+
+.per_subHeader .subHeadMain .subExport{float: right; color: #5093e1; background: url(../img/load.png) no-repeat left center; padding-left: 24px;font-size: 17px; cursor: pointer;}
+.per_main{margin:0 auto;width: 1200px; padding-top:30px;position:relative; margin-bottom: 50px; }
+.per_main .main_head{margin-bottom: 30px;overflow: hidden;}
+.per_main .main_head .head_result{float: left; font-size: 20px;}
+.per_main .main_head ul{float: right;}
+.per_main .main_head ul li {float: left;background: #5093e1; padding: 0 10px;border-radius: 3px;height: 30px;line-height: 30px; color: white; cursor: pointer;}
+.per_main .main_head ul li:nth-of-type(1){margin-right: 20px;}
+.per_main .mainLeft{ width: 956px; }
+.per_main{margin:0 auto;width: 1200px; padding-top:30px; margin-bottom: 50px; position:relative}
+.per_main .mainLeft{width: 956px; }
+.per_main .mainLeft .mainLeftTitle{width: 100%; }
+#noDate{width:100%;height:324px;display:none;background:#e9e9e9 url(../img/noDate.png) no-repeat center 46px;}
+#noDate>p{font-size:18px;color:#666;padding-top:244px;line-height:18px;text-align:center;}
+.per_main .mainLeft .mainLeftTitle p{float: left; width:33.33%; font-size:16px; padding-bottom:26px;}
+.per_main .mainLeft .mainLeftTab{width: 100%;}
+.per_main .mainLeft .mainLeftTab .remark textarea{width:100%;height:100%;border:0;color: #888; outline: none; text-indent: 20px; background: transparent;}
+.per_main .mainLeft .mainLeftTab .remark{width: 100%;height:50px; position: relative}
+.per_main .mainLeft .mainLeftTab .remark .evaluate{position: absolute;padding-right: 20px; right: -8px;bottom: -8px;color: #909090;}
+.per_main .mainLeft .mainLeftTab .remark .evaluate:before{content: '';position: absolute; right: 0;bottom: 0;width: 0px;height: 0px;border-right:10px solid #ccc;border-top:10px solid #dff6ff }
+.per_main .mainLeft .mainLeftTab .remark .xuanfu{background: white; box-shadow: 0 0 10px black;position: absolute;right: 0px;z-index: 10;display: none;color: black;}
+.per_main .mainLeft .mainLeftTab .remark .xuanfu li{width:auto;padding:0 20px;white-space:nowrap;line-height: 30px; border-bottom: 1px solid #ccc; cursor: pointer;max-width: 380px; text-overflow: ellipsis;overflow: hidden;}
+.per_main .mainLeft .mainLeftTab .remark .xuanfu li:hover{background: #ccc;}
+
+.per_main .mainLeft .mainLeftTab table{border:1px solid #aaa;border-right:0 none;border-bottom:0 none;}
+.per_main .mainLeft .mainLeftTab tr{text-align: center;}
+.per_main .mainLeft .mainLeftTab tr th{text-align: center;background: #e6e6e6;font-weight:normal; font-size:14px; height: 44px; border: 1px solid #aaa;/*border-left:0 none;*/border-top:0 none;}
+.per_main .mainLeft .mainLeftTab tr td{line-height:24px;padding:8px; border: 1px solid #aaa; font-size:12px;/*border-left:0 none;*/border-top:0 none;}
+.per_main .mainLeft .mainLeftTab tbody tr td{background: #dff6ff;}
+.per_main .mainLeft .mainLeftTab tbody tr:last-of-type td{background: #fde9d9;}
+.per_main .mainLeft .mainLeftTab tbody tr:last-of-type td .evaluate:before{border-top:10px solid #fde9d9;}
+.per_main .mainLeft .mainLeftTab tfoot tr td{background: #c5d9f1;}
+.per_main .mainLeft .mainLeftTab tfoot tr td .evaluate:before{border-top:10px solid #c5d9f1!important;}
+.per_main .mainCenter{width: 900px;}
+.per_main .mainCenter .reportTop{height: 75px; width: 100%; line-height: 74px;font-size:20px; text-align: center; color: #5093e1;}
+.per_main .mainCenter .reportTop p{width: 180px; background: url(../img/juxing.png) no-repeat center; margin: 0 auto; height: 100%;}
+.per_main .mainCenter .reportMain .reportTitle{font-size:50px; font-family: "mv boli";  width: 8%;float: left; color:#5093e1; line-height: 50px; min-width: 50px;}
+.per_main .mainCenter .reportMain .reportword{float: left;width: 90%; }
+.per_main .mainCenter .reportMain .reportword h2{margin-bottom: 30px;}
+.per_main .mainCenter .reportMain .reportword h2 span{font-size:24px; font-weight: 600;}
+.per_main .mainCenter .reportMain .reportword h2 i{color: #7d7d7d;} 
+.per_main .mainCenter .reportMain .reportPara h3{color:#5093e1 ; font-size:17px; padding-bottom:10px;}
+.per_main .mainCenter .reportMain .reportPara p{color: black; line-height: 24px;font-size: 12px;width: 100%;overflow: hidden;word-break: break-all;}
+.per_main .mainCenter .reportMain .reportPara{padding-bottom:24px;}
+
+.per_main .mainRight h2 span{font-size:16px;}
+.per_main .mainRight{text-align: center; width: 202px; position: absolute; right: 0;top:95px;}
+.per_main .mainRight .changeClass{font-size:16px; line-height: 60px;}
+.per_main .mainRight .changeClass:nth-of-type(2){font-size:16px; line-height: 30px; margin-bottom:20px;}
+.per_main .mainRight .changeClass select{font-size:14px;}
+.loadGif{width:100%;height:300px;display:none;background:url(../img/load.gif) no-repeat center;}
+/*.per_main .mainRight h2{margin-bottom:18px; ;}*/
+.per_main .mainRight .personDetail li{float: left; overflow: hidden;margin-bottom: 15px ;  cursor: pointer; position: relative;}
+.per_main .mainRight .personDetail li:nth-of-type(2n-1){width: 52%; }
+.per_main .mainRight .personDetail li:nth-of-type(2n){width: 48%; }
+.per_main .mainRight .personDetail li span{float: left; line-height: 26px; font-size: 18px;width:26px;color:white; height:26px;border-radius: 6px; margin-right: 8px;}
+.per_main .mainRight .personDetail li i{line-height: 26px;float:left;font-size: 12px;}
+.per_main .mainRight .personDetail li span.activeB{background: #29cd80;}
+.per_main .mainRight .personDetail li span.activeG{background: #50a7e2;}
+.per_main .mainRight .personDetail li b{position:absolute;width: 26px;height: 26px;background: url(../img/gou.png) no-repeat center; left: 0;  background-color: rgba(0,0,0,0.5); border-radius: 4px; display: none;}
+
+
+.re_header{height: 50px;}
+.per_subHeader .re_subhead{width: 1200px; margin: 0 auto;}
+.per_subHeader .re_subhead span{color: black; font-size:16px; line-height: 50px; }
+.re_main .mainLeftTitle p:nth-of-type(3n-1){width: 28%;}
+.re_main .mainLeftTitle p:nth-of-type(3n){width: 36%;}
+.re_main .mainLeftTitle p:nth-of-type(3n+1){width: 35%;}
+.re_main .mainLeftTitle p button{float: right; margin-right: 10px; width:71px;height: 32px; margin-top:-10px; outline:none ; background: #5093e1;border: 0; color: white; border-radius: 4px;cursor: pointer; }
+.re_main .per_main .mainLeftTab input{background: transparent; outline: none; border: 0; width: 100%;height: 100%;  text-align: center;}
+/*.successNote .con{line-height: 180px; font-size:24px; color: #48c73b;}
+.successNote .con img{vertical-align:text-bottom ;}*/
+
+
+
+
+
+
+
+.perWrap{margin:52px auto 40px;}
+.perWrap .gradBorder{border-bottom:1px solid #ccc;}
+.perRight{width:1200px;margin:0 auto;}
+.gradWrap{width:1200px;margin:0 auto;overflow:hidden;font-size:16px;line-height:32px;padding:5px 0;color:#333;}
+.perWrap .gradWrap>li>.gradName{width:48px;padding-right:10px;font-size: 16px;}
+.perWrap .gradWrap>li>.gradItem{width:1142px;}
+.perWrap .gradWrap>li>.gradItem>span{padding:0 19px;cursor:pointer;font-size: 16px;float:left;}
+.perWrap .gradWrap>li>.gradItem>span.active{color:#5093e1;}
+
+.perWrap .leftChartWrap{width:46.66667%;}
+.perWrap .chartWrap{color:#333;}
+.perWrap .chartWrap .chartTitle{font-size:20px;padding-top:26px;line-height:24px;}
+.perWrap .chartTit{color:#5093e1;font-size:20px;padding-top:42px;line-height:20px;text-align:center;}
+.perWrap .chartWrap .chart_sex{padding-top: 26px;line-height: 24px;margin-left:20px}
+.perWrap .chartWrap .chartBtn a{width: 107px;height: 30px;border-radius: 5px; background: #50a7e2;color: white;text-align: center; line-height: 30px; display: inline-block;margin-top: 0px;cursor: pointer;}
+.perWrap .chartWrap .chartBtn{margin-top: -33px;}
+.perWrap .chartTit>span{padding:0 4rem;background-image:url(../img/report_left.png),url(../img/report_right.png);background-position:left center,right center;background-repeat:no-repeat;background-size:2.6rem 1.4rem;}
+.perWrap .rightChartWrap{width:53.33333%;}
+.perWrap .rightSelectWrap{width:100%;padding-top:26px;}
+.perWrap .rightSelectWrap>li{float:left;width:28%;position:relative;height:30px;}
+.perWrap .rightSelectWrap>li+li{margin-left:8%;}
+.perWrap .rightSelectWrap .selectItem{color:#333;font-size:16px;line-height:30px;width:100%;}
+.perWrap .selection {width:118px;height: 30px;border: 1px solid #50a7e2;border-radius: 15px;outline: none;padding-left:10px;background: url(../img/jiantou.png) no-repeat;background-size:28px 33px;background-position:103% -3px;appearance: none;-webkit-appearance: none;-moz-appearance: none;-ms-appearance: none;color: #50a7e2;cursor:pointer;}
+.perWrap .selection>p{padding-right:20px;height:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size: 14px;}
+.perWrap .selection li{color:#333;}
+.perWrap .selection ul{background:#fff;border:1px solid #50a7e2;}
+.perWrap .selection ul li{padding-left:4px; border-bottom: 1px solid #50a7e2;font-size: 14px;}
+.perWrap .selection ul li:last-child{border-bottom: 0;}
+.perWrap .selection ul li.active{color:#50a7e2;}
+.perWrap .selection ul li:hover{background:dodgerblue;color:white}
+.perWrap .selection>ul{display:none;width:94px;}
+
+.perWrap .rightTable{padding-top:3rem;}
+.perWrap .rightTable table{width:100%;border:1px solid #aaa;border-bottom: 0;}
+.perWrap .rightTable table tr:nth-child(1){background:#e6e6e6;}
+.perWrap .rightTable table tr.twoLine{background:#dff6ff;}
+.perWrap .rightTable table tr.threeLine{background:#fde9d9;}
+.perWrap .rightTable table tr.fourLine{background:#c5d9f1;}
+.perWrap .rightTable table tr.fiveLine{background:#e4dfec;}
+.perWrap .rightTable table tr.sixLine{background:#ebf1de;}
+.perWrap .rightTable table td,.perWrap .rightTable table tr th{text-align:center;font-size:12px;color:#333;padding:10px;border:1px solid #aaa;border-left:0 none;border-top:0 none;font-weight:normal;}
+.perWrap .rightTable table tr th{font-size:1.4rem;}
+
+.perWrap .luru{padding:3rem 0 2rem;text-align:right;font-size:1.6rem;color:#5093e1;line-height:1.6rem;}
+.perWrap .luru>.write{margin-right:3.6rem;}
+.perWrap .luru>.write a{color: #5093e1;}
+.perWrap .luru>span{cursor:pointer;}
+
+
+.perWrap .perHealthDeltail{width:1200px;overflow: auto; margin: 0 auto; max-width: 1200px;}
+/*.perWrap .perHealthDeltail>table.statistics_table{width:100%;}*/
+.arrow-bottom {width: 20px;height: 20px;	position: absolute;left: 0;	top: 0;}
+.arrow-box {position: relative;display: inline-block;top: -8px;}
+.bottom-arrow1,.bottom-arrow2 {	width: 0;height: 0;display: block;position: absolute;left: 0;top: 0;z-index: 5;/*兼容ie8-*/border-bottom: 5px transparent dashed;border-left: 5px transparent dashed;	border-right: 5px transparent dashed;border-top: 5px white solid;overflow: hidden;}
+.bottom-arrow1 {top: 1px;/*重要*/	border-top: 6px blue solid;}
+.bottom-arrow2 {border-top: 5px white solid;}
+.perWrap .perHealthDeltail>table th,.perWrap .perHealthDeltail>table td{text-align:center;line-height:3.6rem;border:1px solid #ccc;font-size: 12px;}
+.perWrap .perHealthDeltail table.dataTable td,.perWrap .perHealthDeltail table.dataTable th{font-weight:normal; line-height:2rem; min-width: 60px; border:1px solid #ccc;font-size: 14px; color: #000;}
+
+table.dataTable.no-footer,table.dataTable thead th, table.dataTable thead td{border:0 none;}
+table.dataTable td,table.dataTable th{text-align:center;}
+.perWrap table.dataTable.no-footer {border:1px solid #ccc; box-sizing:border-box;}
+
+/*新加table样式*/
+.perWrap .data .perHealthDeltail{width:1180px; overflow:visible; margin: 0 auto; max-width: 1180px;}
+.perWrap .data .perHealthDeltail>table th,.perWrap .data .perHealthDeltail>table td{text-align:center;line-height:3.6rem;border:1px solid #ccc;font-size: 12px;}
+.perWrap .data .perHealthDeltail table.dataTable td,.perWrap .data .perHealthDeltail table.dataTable th{font-weight:normal; line-height:2rem; min-width: 60px; border:1px solid #ccc;font-size: 14px; color: #000;}
+.perWrap .data .perHealthDeltail table.dataTable td:first-child,.perWrap .data .perHealthDeltail table.dataTable th:first-child{
+	min-width: 166px; 
+}
+.perWrap .data .perHealthDeltail table.dataTable th{
+	font-size: 16px;
+	background-color:#f5f5f5 ;
+}
+
+.success .con img{
+    display: block;
+    width: 47px;
+    margin: 40px auto 16px;
+}
+.success .con span{font-size: 1.6rem;}
+
+.delSureDel {
+	z-index: 999
+}
+
+.delSureDel .con {
+	height: 240px;
+	width: 412px;
+	top: 50%;
+	margin-top: -130px;
+	border-radius: 5px;
+	padding-top: 20px;
+}
+
+.delSureDel .delTishi {
+	color: #222;
+	font-size: 16px;
+	position: absolute;
+	left: 26px;
+	top: 20px;
+}
+
+.delSureDel .delClose {
+	position: absolute;
+	width: 13px!important;
+	padding: 12px;
+	top: 0;
+	right: 4px;
+	margin: 0!important;
+	cursor: pointer;
+}
+
+.delSureDel .tijiao {
+	width: 276px;
+	overflow: hidden;
+	margin: 56px auto 0;
+	font-size:14px;
+}
+
+.delSureDel .tijiao div {
+	float: right;
+	width: 108px;
+	height: 30px;
+	font-size: 14px;
+	line-height: 30px;
+	text-align: center;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.delSureDel .tijiao .upsuresc:hover{
+	background-color: #FF98B0;
+}
+.delSureDel .tijiao .upsuresc {
+	float: left;
+}
+
+.suredelcon {
+	margin-top: 30px;
+}
+
+.deltips {
+	height: 30px;
+}
+
+.text-text {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.anniubtn {
+	width: 109px;
+	height: 30px;
+}
+
+.upsuresc {
+	background: #fccad6;
+	color: #f65177;
+}
+
+.upqxsc {
+	border: 1px solid #ccc
+}
+.upqxsc:hover{
+	background-color: #f5f5f5;
+}
+.seche {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+}
+
+.sechexkxd {
+	position: relative;
+}
+/*健康体质*/
+.perRight .per_center .per_center_top{margin-top: 50px;margin-bottom:20px;display: -webkit-box; display: -webkit-flex;justify-content: space-between; -webkit-box-pack: justify;}
+.people_sex{width: 480px;[;width: auto;]; padding:10px 30px 10px; box-shadow: 0 0 5px #ccc;margin-right: 20px;}
+.people_sex h5{height: 35px; border-bottom: 1px solid #ccc; text-align: center;font-size: 14px;}
+.people_bushu{margin-right: 0;}
+.perRight .per_center .people_sex .people_flex{display: -webkit-box; display: -webkit-flex;justify-content: space-around;padding-bottom: 25px ; border-bottom: 1px solid #eee;margin-bottom: 60px; -webkit-box-pack: justify;}
+.perRight .per_center .people_sex .people_flex p img{display: block; margin-bottom:20px ;}
+.perRight .per_center .people_sex .people_flex p{text-align: center;margin-top: 33px;}
+.people_flex p{ [;margin-left:25px;margin-right: 32px;]}
+.people_flex.flexMargin p{ [;margin-left:64px;margin-right: 32px;]}
+.people_flex.flexMargin2 p{ [;margin-left:31px;margin-right: 32px;]}
+.perRight .per_center .people_sex .people_flex .high{display: block;width: 82px;height: 108px;background: url(../img/personGirl.png) no-repeat center; border-radius: 5px;margin:5px auto; }
+.perRight .per_center .people_sex .people_flex .highboy{background: url(../img/personBoy.png) no-repeat center;}
+.perRight .per_center .people_sex .people_flex .highWrap{margin-top:10px;display: -webkit-box; display: -webkit-flex; flex-direction: column; -webkit-box-orient:vertical;}
+.perRight .per_center .people_sex .people_flex .highWrap .girlHight{font-size: 14px; padding-left: 20px; background: url(../img/peoplegirl.jpg) no-repeat left center; background-size:13% ;margin-top: 12px;}
+.perRight .per_center .people_sex .people_flex .highWrap .boyHight{font-size: 14px; padding-left: 20px; background: url(../img/peopleboy.jpg) no-repeat left center; background-size:13% ;margin-top: 12px;}
+.perRight .per_center .people_sex .people_flex .highWrap i{color:#bb81ff ;font-size: 14px;display: block;}
+.perRight .per_center .people_sex .people_flex .highWrap span{font-size: 14px;display: block}
+
+.perRight .per_center .per_center_bot .people_xinlv{width: 354px; [;width: 302px;]}
+.perRight .per_center .per_center_bot .people_xinlv .xinlvs{ display: -webkit-box;}
+.perRight .per_center .per_center_bot .people_xinlv:nth-of-type(2){ -webkit-box-flex: 1; }
+.perRight .per_center .per_center_bot .people_xinlv img{display: block;margin: 20px auto 0}
+.perRight .per_center .per_center_bot .people_xinlv .people_flex p{display: -webkit-box; display: -webkit-flex; flex-direction: column; -webkit-box-orient:vertical;}
+.perRight .per_center .per_center_bot .people_xinlv .people_flex p span{font-size: 14px;}
+.people_flex.headlthxinlv p span{display: block}
+.people_flex.headlthxinlv p i{display: block}
+.perRight .per_center .per_center_bot .people_bushu{width: 800px;[;width: 760px;]}
+.perRight .per_center .per_center_bot{display: -webkit-box; display: -webkit-flex;}
+.bushu_cycle i{cursor: pointer;font-size: 14px;}
+.bushu_cycle{margin-left:-40px;}
+.bushu_cycle i.active{color: #50a7e2;}
+.perRight .per_center .per_center_bot .people_bushu .people_flex{justify-content: inherit;}
+.perRight .per_center .per_center_bot .people_bushu .people_flex .steps{display: -webkit-box; display: -webkit-flex; flex-direction: column; -webkit-box-orient:vertical;margin:45px 20px 0 0;justify-content: center;height: 150px; }
+.perRight .per_center .per_center_bot .people_bushu .people_flex .steps p{display: -webkit-box; display: -webkit-flex;flex-direction: column; -webkit-box-orient:vertical;margin-bottom: 30px;}
+.perRight .per_center .per_center_bot .people_bushu .people_flex .steps p span{font-size: 16px; display: block;}
+.perRight .per_center .per_center_bot .people_bushu .people_flex .steps p span.stepsColor{color: #50a7e2;font-size: 28px; white-space: nowrap}
+.perRight .per_center .per_center_bot .people_bushu .steps_detail{display: -webkit-box; display: -webkit-flex; width: 320px;}
+.perRight .per_center .per_center_bot .people_bushu .people_flex .steps_detail>img{width:92px;height:105px;margin:45px 35px 0px 45px}
+.perRight .per_center .per_center_bot .people_bushu .people_flex>img{width:92px;height:105px;margin:45px 35px 0px 45px;[;margin:45px 0 0 0;]}
+.per_main .personDetail.self_detail li{width: 33%!important;}
+.per_main .main_left{width: 73%; height: 1000px;}
+.per_main .main_left h4{font-size: 14px;margin-bottom: 50px;}
+.per_main .main_left h4 span{margin-right: 44px;}
+.per_main .main_left .people_basic{width: 350px;}
+.per_main .main_left .people_basic .people_flex{display: -webkit-box; display: -webkit-flex;justify-content: space-around;padding-top: 30px;}
+.per_main .main_left .people_basic .people_flex p{display: -webkit-box; display: -webkit-flex;flex-direction: column; -webkit-box-orient:vertical;}
+.per_main .main_content{display: -webkit-box; display: -webkit-flex; text-align: center;margin-bottom: 40px;}
+.per_main .main_left .people_basic .people_flex .xinlvDetail{margin-left: 40px;display: -webkit-box; display: -webkit-flex;flex-direction: column; -webkit-box-orient:vertical;}
+.per_main .main_left .people_basic .people_flex .xinlvDetail p{line-height: 30px;}
+.per_main .main_left .people_basic h5{font-size: 16px;}
+.per_main .main_left .people_basic h5 span.active{color: #50a7e2;}
+.per_main .main_left .people_basic h5 span{cursor: pointer;	}
+.per_main .main_left .people_basic h5 i{height: 22px;display: inline-block; background: #ccc;width: 2px;vertical-align: sub;margin:0 50px}
+.per_main .main_left .people_headlthData{width: 91%;}
+.per_main .main_left .people_headlthData .headlth_detail{display: -webkit-box; display: -webkit-flex;padding-top: 35px;justify-content: space-between;}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list{display: -webkit-box;[;margin-left:20px;] display: -webkit-flex; flex-direction: column; -webkit-box-orient:vertical;}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list p{width: 74px;height: 74px;background: #29cd80 url(../img/per_bmi.png) no-repeat center;border-radius: 50%; border:1px solid #129356;}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list .title{margin:21px 0 15px;}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list .tit_bot{font-size: 14px;}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list .tit_bot i:nth-of-type(1){color: #29cd80;}
+.stateTop{color: #fb5252;font-weight: 600;}
+.stateBot{color: #32ba54;font-weight: 600;}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col2 p{background-image: url(../img/per_zhifang.png);}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col3 p{background-image: url(../img/per_wart.png);}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col4 p{background-image: url(../img/per_jirou.png);}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col5 p{background-image: url(../img/per_gutou.png);}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col6 p{background-image: url(../img/per_xuedanbai.png);}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col7 p{background-image: url(../img/per_daixie.png);}
+.per_main .main_left .people_headlthData .headlth_detail .detail_list.col8 p{background-image: url(../img/per_neizang.png);}
+.historyClass .classTop li{float: left;}
+.historyClass .classTop li.classtit:after{content: '';display: inline-block;width: 0px; border-width: 10px; border-top-color:transparent; border-bottom-color:transparent; border-right-color:transparent; border-left-color:#5797e2; border-style: solid; border-left-width: 15px; margin:5px 20px 0;vertical-align: sub;}
+.historyClass .classTop .goback a{float: right;cursor: pointer; width: 57px;height: 25px;background: #5093e1; color: white; text-align: center; line-height: 25px;margin-top: 5px;font-size: 14px;border-radius:5px ;}
+.historyMain_tabs{width: 100%;padding-top: 18px;font-size: 15px}
+.historyMain_tabs span:nth-of-type(1){margin-right: 30px}
+.historyMain_tabs span{cursor: pointer;}
+.historyMain_tabs span.active{color: #5797e2; border-bottom:5px solid #5797e2;padding-bottom: 3px;}
+.historyClass .chart_sex .selectItem{line-height: 32px;float: left;margin-right: 30px;}
+.historyClass .chartWrap  .chart_sex{margin-left: 0}
+.historyClass .chart_sex .selectItem .timeSlot{width: 210px;padding-left:15px;height: 30px; border:1px solid #52a8e2; color: #52a8e2; background: url(../img/rili.png) no-repeat right 10px center;border-radius: 15px;}
+.historyClass .chart_sex .selectItem input{width: 180px; padding-left: 10px; border:1px solid #50a7e2; border-radius: 15px; height: 30px;outline: none;}
+.historyClass .chart_sex .selectItem.timewrap{position: relative;}
+.historyClass .chart_sex .selectItem.timewrap i{position: absolute;right: 10px;top: 5px;width: 20px; height: 20px; background:url(../img/searchgalss.png) no-repeat center; outline: none; cursor: pointer;}
+.statistics_table .heart_count{color: #5093e1;}
+.statistics_table td .tdFlex{display: -webkit-flex!important;justify-content: space-around; display:-webkit-box ; -webkit-box-pack:justify;}
+.historyClass .chart_sex .selectItem.timewrap input{float: left;}
+.main_content .people_bushu .people_flex img{display: -webkit-box; display: -webkit-flex; width: 92px;height: 105px;margin: 45px 35px 0px 45px;}
+.main_content .people_bushu .people_flex .steps{display: -webkit-box; display: -webkit-flex; flex-direction: column; -webkit-box-orient:vertical;margin:45px 20px 0 0;justify-content: center;height: 150px;}
+.main_content .people_bushu .people_flex .steps p{display: -webkit-box; display: -webkit-flex;flex-direction: column; -webkit-box-orient:vertical; margin-bottom: 30px;}
+.main_content .people_bushu .people_flex .steps p span{font-size: 16px;white-space: nowrap;}
+.main_content .people_bushu .people_flex .steps p span.stepsColor{color: #50a7e2;font-size: 28px;}
+.main_content .people_bushu .people_flex{display: -webkit-box; display: -webkit-flex;justify-content: space-around; padding-bottom: 25px ; border-bottom: 1px solid #eee;margin-bottom: 60px; padding-bottom: 20px;}
+.main_content .people_sex .people_flex.xinlv{display: -webkit-box; display: -webkit-flex;margin-top: 40px;}
+.main_content .people_sex .people_flex .left{width: 255px;}
+.main_content .people_sex .people_flex .left .xinlvDetail{display: -webkit-box; display: -webkit-flex;width: 100%; justify-content:center;margin-top: 10px;}
+.main_content .people_sex .people_flex .right{display: -webkit-box; display: -webkit-flex; flex: 1; justify-content: space-around; padding-top: 25px;}
+.main_content .people_sex .people_flex .right p{display: -webkit-box; display: -webkit-flex; height: 60px;justify-content: space-between; flex-direction: column; -webkit-box-orient:vertical;font-size: 16px;}
+.main_content .people_sex .people_flex .right p i{font-size: 14px;}
+.main_content .people_sex .people_flex .people_average{width: 53px;height: 85px;background: #bb81ff; border-radius: 5px;margin: 0 auto;}
+.perRight .per_center  .chartszhu{height: 522px;margin-top: 20px;padding-bottom: 20px; margin-bottom: 20px;box-shadow: 0 0 5px #ccc; flex-direction: column;  -webkit-box-orient:vertical;}
+.perRight .per_center .chartszhu .chartHead{width: 100%;height: auto; display: -webkit-box; display: -webkit-flex;justify-content: space-around;padding-top: 20px; -webkit-box-pack:center;}
+.perRight .per_center .chartszhu .chartHead span{display: inline-block; width: 100px;text-align: center; height: 30px;line-height:31px; border:1px solid #ccc; border-radius: 3px; font-size: 14px; cursor: pointer;}
+.perRight .per_center .chartszhu .chartHead span.active{color: white; background: #61aee4;}
+.chart-column-legend{height: 30px;line-height: 30px;text-align: center;width: 100%; font-size: 14px;}
+.chart-column-legend .can_choosed{display: inline-block;margin-right: 15px;}
+.chart-column-legend>span{cursor: pointer; margin-right: 10px;}
+.chart-column-legend>span.active{color: #61aee4;}
+.chart-column-legend.state>span.active{color: #ccc;}
+.chart-column-legend.state>span{color: #000;}
+.chart-column-legend.state i{width: 12px;height: 12px; margin: 0 5px; display: inline-block;}
+.chart-column-legend.state span.level-1 i{background: #5093e1;}
+.chart-column-legend.state span.level-2 i{background: #ff9e9e;}
+.chart-column-legend.state span.level-3 i{background: #f0ebeb;}
+.chart-column-legend.state span.active i{background:#ccc ;}
+.chartszhu .heads{margin:7px 25px 0 0}
+.limithigh{position: absolute;right: 83px;bottom: 31px; cursor: pointer; font-size: 14px;}
+.limithigh.active{color: #ccc;}
+.perRight .chartWrap .head_ChartWrap h4{font-size: 16px; margin-top: 20px;}
+.perRight .chartWrap .head_ChartWrap h4 span{margin-right: 35px;}
+
+/*体检--未录入页面样式*/
+.mlh_wrap{
+	margin:52px auto 40px;
+	width: 1200px;
+}
+.mlh_cont:first-of-type{
+	margin-top: 77px;
+}
+.mlh_cont{
+	margin-top:15px;
+	width: 1200px;
+	height:auto;
+	min-height: 54px;
+	_height:54px;
+	background: #fff;
+	box-shadow: 0 0 8px #c7c9ce;
+	border-radius: 5px;
+}
+.mlh_cont .semester_left{
+	margin-left:28px;
+	float: left;
+	line-height: 54px;
+	font-size: 16px;
+}
+.mlh_cont .semester_left .semester_tc{
+	position: relative;
+}
+.mlh_cont .semester_left p {
+	cursor: pointer;
+}
+.mlh_cont .semester_left p i{
+	margin-left:10px;
+	display: inline-block;
+	background: url(../img/mlh_arrow.png) no-repeat;
+	width: 16px;
+	height: 10px;
+}
+.mlh_cont .semester_left .semester_tc ul{
+	position: absolute;
+	display: none;
+	box-sizing: border-box;
+    width: 100%;
+    padding:10px;
+	background: #fff;
+    box-shadow: 0 0 8px #c7c9ce;
+	border-radius: 5px;
+    
+}
+.mlh_cont .semester_left .semester_tc ul li{
+	line-height: 2.5;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+.mlh_cont .semester_left .semester_tc ul li.active{
+	color: #5093e1;
+}
+.mlh_cont .semester_left .semester_tc ul li:last-child{
+	border:none;
+}
+.mlh_cont .semester_right{
+	float: right;
+	margin-right:28px;
+}
+.mlh_blue_btn{
+	display: inline-block;
+	font-size: 16px;
+	color: #fff;
+	text-align: center;
+	background: #5093e1;
+	border-radius: 5px;
+}
+.mlh_white_btn{
+	display: inline-block;
+	font-size: 16px;
+	color: #000;
+	text-align: center;
+	background: #fff;
+	border-radius: 5px;
+}
+.mlh_cont .semester_right a{
+	padding:6px 30px;
+	margin-top:10px;
+}
+.mlh_cont .grade{
+	min-height: 54px;
+}
+.mlh_cont .grade span{
+	display: inline-block;
+	vertical-align: top;
+	text-align: right;
+	width: 68px;
+	line-height: 54px;
+	font-size: 16px;
+}
+.mlh_cont .grade strong{
+	display: inline-block;
+	text-align: right;
+	width: 100px;
+	line-height: 54px;
+	font-size: 16px;
+	font-weight: normal;
+}
+.mlh_cont .grade a{
+	display: inline-block;
+	margin-bottom: 10px;
+	margin-right:20px;
+	padding:5px 15px;
+	font-size: 14px;
+}
+.mlh_cont .grade a.active{
+	color: #fff;
+	background: #5093e1;
+	border-radius: 5px;
+}
+.mlh_cont .grade,
+.gradeborder{
+	border-bottom: 1px solid #ccc;
+}
+.mlh_cont .title{
+	padding-top:10px;
+	height: 30px;
+	line-height: 30px;
+}
+.mlh_cont .title span{
+	float: left;
+	display: inline-block;
+	padding-left:10px;
+	font-size: 16px;
+	border-left:3px solid #5093e1;
+}
+.mlh_cont .title a{
+	float: right;
+	margin-right: 28px;
+	display: inline-block;
+	font-size: 16px;
+	color: #5093e1;
+}
+.mlh_cont .title a label{
+	cursor: pointer;
+}
+.mlh_cont .nodata{
+	width: 100%;
+	height: 360px;
+	line-height: 360px;
+	font-size: 20px;
+	color: #fe532a;
+	text-align: center;
+	
+}
+/*校领导-体检统计表*/
+.data{
+    position:relative;
+    margin: 0 auto;
+    margin-top:20px;
+    padding-bottom: 20px;
+    width: 1180px;
+    max-width: 1180px;
+    /*overflow-x: auto;*/
+}
+.perWrap .perHealthDeltail table{
+	border-collapse:collapse;
+	border:1px solid #ccc;
+}
+.mlh_timeset {
+    width: 185px;
+    height: 30px;
+    color: #999;
+    border: 1px solid #ccc;
+    background: url(../img/time_icon.png)no-repeat 158px;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    text-indent: 10px;
+    outline: none;
+    cursor: pointer;
+}
+.mlh_back{
+	font-size: 16px;
+	color: #5093e1;
+}
+.mlh_back i.back{
+	margin-right:5px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	background: url(../img/back.png) no-repeat left center;
+}
+.mlh_addClassBox{
+	width: 416px;
+	height: 260px;
+}
+.mlh_addClassBox .gy_con{
+	width: 416px;
+	height: 260px;
+}
+.mlh_addClassBox .tc_title{
+	height: 45px;
+	line-height: 45px;
+	font-size: 16px;
+	color: #222;
+	border-bottom: 1px solid #f1f2f3;
+}
+.mlh_addClassBox .tc_title span{
+	display: inline-block;
+	margin-left:20px;
+}
+.mlh_addClassBox .tc_title a{
+	float: right;
+	margin-top:16px;
+	margin-right: 20px;
+}
+.mlh_addClassBox .tc_nr img{
+	display: block;
+	width: 47px;
+	height: 47px;
+	margin: 25px auto 8px;
+}
+.mlh_addClassBox .tc_nr p.text{
+	font-size: 14px;
+	text-align: center;
+}
+.mlh_addClassBox .tc_nr p.btn{
+	margin-top:40px;
+	font-size: 14px;
+	text-align: center;
+}
+.mlh_addClassBox .tc_anniu_queding {
+    width: 110px;
+    height: 32px;
+    border: 0;
+    background: #fccad6;
+    color: #f65177;
+    margin-top: 10px;
+	border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.mlh_addClassBox .tc_anniu_quxiao {
+    margin-left: 80px;
+    width: 110px;
+    height: 32px;
+    border: 0;
+    background: #fff;
+    border:1px solid #e5e5e5;
+    color: #333;
+    margin-top: 10px;
+	border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+.mlh_bottom{
+	padding-bottom: 20px;
+}
+.mlh_data_margin{
+	margin-top:0;
+	width: 1200px;
+	max-width: 1200px;
+}
+ .perWrap .mlh_data_margin .perHealthDeltail{
+	margin: 0 auto;
+	width: 1200px;
+	max-width: 1200px;
+}
+#layui-laydate1 .layui-this{
+	background-color: #5093e1 !important;
+}
+.mlh_cont .grade p{ 
+	display: inline-block;
+	padding-top:12px;
+	width: 1000px;
+	min-height: 42px;
+}

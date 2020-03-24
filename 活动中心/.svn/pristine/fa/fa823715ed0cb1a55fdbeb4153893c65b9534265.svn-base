@@ -1,0 +1,110 @@
+<!--<div>
+	<div class="zy_bg zy_activity_list_bg">
+		<div class="zy_main_con zy_activity_list zy_share_list">
+			<div class="zy_activity_box">
+				<ul>
+					<li class="clearfix" ng-repeat="share in shareList">
+						<em ng-class="share.class" ng-bind="share.type">未开始</em>
+						<div class="zy_l_img fl" ui-sref="sharedLibraryDetail({activityId: '{{share.id}}'})">
+							<img ng-src="{{share.src}}"/>
+						</div>
+						<div class="zy_r_cont fr">
+							<h4 ui-sref="sharedLibraryDetail({activityId: '{{share.id}}'})" ng-bind="share.title">爱心字典行动招募志愿者</h4>
+							<p>
+								<span>活动日期:</span>
+								<i ng-bind="share.time">2017-06-26~2017-04-30</i>
+							</p>
+							<div ng-bind="share.cont">
+								“爱心灵沟通桥梁，通过“结对”形式为学生的全面发展提供力所能及的帮助。
+							</div>
+						</div>
+					</li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+</div>-->
+<style>
+	body{}
+</style>
+<div>
+	<div class="zy_sharedLibrary_list_bg">
+		<div class="zy_main_con zy_sharedLibrary_list">
+			<div class="clearfix">
+				<span class="fl">年级：</span>
+				<ul class="fl" ng-repeat="name in grade track by $index">
+					<li class="active" ng-click="classList(name.gradeId)">{{name.gradeName}}</li>
+					<!--<li ng-click="switchTab($event)">高二</li>
+					<li ng-click="switchTab($event)">高三</li>-->
+				</ul>
+			</div>
+			<div class="clearfix">
+				<span class="fl">班级：</span>
+				<ul class="fl" ng-repeat="name in className track by $index">
+					<li class="active" ng-bind="name.className" ng-click="sel(name.classId)">1班</li>
+					<span ng-if="className=='undefined'">没有班级</span>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="zy_bg zy_activity_list_bg">
+		<div class="zy_main_con zy_activity_list zy_share_list zy_share_list_data clearfix">
+			<div class="zy_activity_box fl">
+				<div ng-hide="zanwu" style="text-align: center;height:100px;line-height: 100px;font-size:20px;color:#FF0000">暂无数据</div>
+				<ul ng-show="zanwu">
+					<li class="clearfix" ng-repeat="activity in myShareList track by $index">
+						<em class="zy_education" ng-class="activity.class" ng-bind="activity.type">社会实践课</em>
+						<div class="zy_l_img fl" ui-sref="activityDetail({activityId: '{{activity.id}}'})">
+							<img src="{{activity.src}}"/>
+<!--						<div class="zy_l_img fl" ui-sref="sharedLibraryStatisticsDetail({activityId: '{{activity.id}}'})">
+							<img src="{{activity.src}}"/>  -->	
+					</div>
+						<div class="zy_r_cont fr">
+							<h4 ui-sref="activityDetail({activityId: '{{activity.id}}'})" ng-bind="activity.title">爱心字典行动招募志愿者</h4>
+							<p>
+								<span>活动日期:</span>
+								<i ng-bind="activity.time">2017-06-26~2017-04-30</i>
+							</p>
+							<div ng-bind="activity.cont">
+								“爱心灵沟通桥梁，通过“结对”形式为学生的全面发展提供力所能及的帮助。
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="zy_sharedLibrary_number fr">
+				<table border="" cellspacing="" cellpadding="">
+					<tr>
+						<th width="160px">活动类型</th>
+						<th>数量</th>
+					</tr>
+					<tr>
+						<td>社会实践课</td>
+						<td ng-bind="a">100</td>
+					</tr>
+					<tr>
+						<td>爱国与团队精神</td>
+						<td ng-bind="b">100</td>
+					</tr>
+					<tr>
+						<td>学生守则与行为规范</td>
+						<td ng-bind="c">100</td>
+					</tr>
+					<tr>
+						<td>思想品德与艺术教育</td>
+						<td ng-bind="d">100</td>
+					</tr>
+					<tr>
+						<td>其它</td>
+						<td ng-bind="e">100</td>
+					</tr>
+				</table>	
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--<z-footer></z-footer>-->

@@ -1,0 +1,116 @@
+<div>
+	<div class="zyx_greenbox">
+		<div class="zyx_whitebox">
+			<div class="zyx_schoolSpaceShow zk_schoolSpaceShow">
+				<div class="zy_introduce_tit clearfix">
+					<div class="fl">
+						<div class="zk_spaceChangeWrap  zk_school_spaceChangeWrap fl">
+							<p ng-repeat="(index,item) in variable.goodSpaceState"
+								ng-click="goodSpaceStateChange(index)"
+								ng-class="{'zk_school_activeSpace':variable.goodSpaceIndex == index}">{{item}}</p>
+						</div>
+					</div>
+					<div class="fr zyx_search">
+						<input type="text" placeholder="请输入关键字" ng-model="keyword" />
+						<i ng-hide='classFlag' class="iconfont icon-sousuo" ng-click="search(0)"></i>
+					</div>
+				</div>
+				<div class="zk_goodSpaceBtm zk_spaceShowWrap">
+					<!-- <ul class="fl" ng-show="variable.goodSpaceIndex == 0">
+						<li ng-repeat="item in goodSpaceShowList">
+							<div ng-class="{'zk_school_classSpace':variable.goodSpaceIndex == 0}">
+								<img ng-src="{{item.srcName}}" alt="">
+							</div>
+							<p>{{item.className}}</p>
+						</li>
+					</ul>
+					<ul class="fl" ng-show="variable.goodSpaceIndex == 1">
+						<li ng-repeat="item in goodSpaceShowList">
+							<div ng-class="{'zk_school_classSpace':variable.goodSpaceIndex == 0}">
+								<img ng-src="{{item.srcName}}" alt="">
+							</div>
+							<p>{{item.teaInfo.realname}}</p>
+							<p>{{item.teaInfo.subjectName}}</p>
+						</li>
+					</ul>
+					<ul class="fl" ng-show="variable.goodSpaceIndex == 2">
+						<li ng-repeat="item in goodSpaceShowList">
+							<div ng-class="{'zk_school_classSpace':variable.goodSpaceIndex == 0}">
+								<img ng-src="{{item.srcName}}" alt="">
+							</div>
+							<p>{{item.stuName}}</p>
+							<p>{{item.gradeName+item.className}}</p>
+						</li>
+					</ul> -->
+
+					<ul class="fl" ng-show="variable.goodSpaceIndex == 0">
+						<a ng-repeat="item in goodSpaceShowList" target="_blank"
+							ui-sref="wrap.classSpace.classSpaceIndex({classId:item.classId})">
+							<li>
+								<div ng-class="{'zk_school_classSpace':variable.goodSpaceIndex == 0}">
+									<!-- <img ng-src="{{item.srcName}}" alt=""> -->
+									<img src="./img/zk_schoolClassImg.png " alt="">
+								</div>
+								<p>{{item.className}}</p>
+							</li>
+						</a>
+						</ul>
+						<ul class="fl" ng-show="variable.goodSpaceIndex == 1">
+							<a ng-repeat="item in goodSpaceShowList" target="_blank"
+								ui-sref="wrap.space.teacherSpace.teaNews({id:item.teaInfo.id,type:item.teaInfo.userType})">
+								<li>
+									<div ng-if="item.teaInfo.userFace">
+										<img ng-src="{{spaceEaIp + '/resource/user/face/' + item.teaInfo.userFace}}" alt="">
+									</div>
+									<div ng-if="!item.teaInfo.userFace" class="schoolHeadImgDiv"
+										ng-class="{'woManHead':item.teaInfo.sex =='女'}">
+										{{item.teaInfo.realname.slice(0,1)}}
+									</div>
+									<p>{{item.teaInfo.realname}}</p>
+									<p>{{item.teaInfo.subjectName}}</p>
+								</li>
+							</a>
+
+						</ul>
+						<ul class="fl" ng-show="variable.goodSpaceIndex == 2">
+							<a ng-repeat="item in goodSpaceShowList" target="_blank"
+							ui-sref="wrap.space.studentSpace.stuNews({id:item.id,type:item.userType})">
+								<li>
+									<div ng-if="item.userFace">
+										<img ng-src="{{spaceEaIp + '/resource/user/face/' + item.userFace}}" alt="">
+									</div>
+									<div ng-if="!item.userFace" class="headImgDiv"
+										ng-class="{'woManHead':item.sex =='女'}">
+										{{item.realname.slice(0,1)}}
+									</div>
+									<p>{{item.stuName}}</p>
+									<p>{{item.gradeName+item.className}}</p>
+								</li>
+							</a>
+						</ul>
+
+
+
+
+
+
+
+
+
+
+				</div>
+				<div class="wd_paging" ng-show="variable.goodSpacePageTotal.length != 0">
+					<span ng-click="showMoreSpace(-1,0)">首页</span>
+					<span ng-click="showMoreSpace(0)" ng-show="prevFlag"><i class="iconfont icon-icon_arrow_left"></i>上一页</span>
+					<span ng-if="variable.goodSpacePage>2&&variable.goodSpacePageTotal.length>5">...</span>
+					<span ng-repeat="(index,item) in variable.goodSpacePageTotal track by $index"
+					 ng-if="(variable.goodSpacePage+3>index &&  variable.goodSpacePage-3<index) || (variable.goodSpacePage<3 && index <5)  || (variable.goodSpacePage>variable.goodSpacePageTotal.length-3 && index>variable.goodSpacePageTotal.length-6)"
+					ng-class="{'active':variable.goodSpacePage == index}"  ng-click="showMoreSpace(-1,index)">{{index+1}}</span>
+					<span ng-if="variable.goodSpacePage<variable.goodSpacePageTotal.length-3&&variable.goodSpacePageTotal.length>5">...</span>
+					<span ng-click="showMoreSpace(1)" ng-show="nextFlag">下一页<i class="iconfont icon-icon_arrow_right"></i></span>
+					<span  ng-click="showMoreSpace(-1,variable.goodSpacePageTotal.length-1)">尾页</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

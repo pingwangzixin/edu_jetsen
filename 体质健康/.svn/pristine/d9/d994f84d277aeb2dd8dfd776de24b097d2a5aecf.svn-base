@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>电子秤数据（班级）</title>
+	<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/dateRange.css"/>
+	<link rel="stylesheet" type="text/css"  href="../css/index.css"/>
+	<script src="../js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/datatables.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/order.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/highcharts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/highcharts-functions.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="../js/dateRange.js"></script>
+	<script type="text/javascript" src="../js/monthPicker.js"></script>
+</head>
+
+<body>
+	<!--头部开始-->
+	<div class="perHead"></div>
+	<!--头部结束-->
+	
+	<!--内容开始-->
+	<div class="perWrap historyClass">
+		<!--年级班级开始-->
+		<div class="gradBorder">
+			<ul class="gradWrap classTop">
+				<li class="classtit">四年级（3）班</li>
+				<li>历史数据</li>
+				<span class="goback"><a href="health-handle.html">返回</a></span>
+			</ul>
+			
+		</div>
+		<!--年级班级结束-->
+		<div class="perRight">
+			<!--图表标题   选择选项开始 -->
+			<div class="chartWrap clearfix">
+				<!--左边图表开始-->
+				<div class="head_ChartWrap clearfix">
+					<div class="historyMain_tabs">
+						<span><a href="braceletDataClass.html">手环数据</a></span>
+						<span class="active"><a href="balanceDataClass.html">电子秤数据</a></span>
+					</div>
+				</div>
+				<!--<div class="chartBtn fr">
+						班级历史数据
+					</div>-->
+				<!--左边图表结束-->
+				
+				
+			</div>
+			<!--图表标题   选择选项结束-->
+			<div class="per_center">
+				<div class="per_center_top per_center_bot">
+					<div class="people_sex people_xinlv" style="width: 45%;">
+						<h5>身高<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div style="display: flex; width: 100%;">
+							<div id="high_highcharts" class="steps_highcharts" style="width: 100%;margin-top: 10px; height: 200px;">
+								
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						new Highcharts.Chart('high_highcharts', {
+						    title: {
+						        text: '',
+						    },
+						    xAxis: {
+						    	tickPosition: 'inside',
+						        categories: ['05/29','05/29','05/29','05/29','05/29','05/29'],
+						        tickmarkPlacement: 'on'
+						    },
+						    yAxis: {
+						        title: {
+						            text: 'cm',
+						            rotation:'0',
+						            align:'low',
+						            x:10,
+						            y:13
+						        },
+						        gridLineColor:'white',
+						        lineColor: '#ccc',
+		       					lineWidth: 1,
+		       					plotLines: [{
+						            color: '#666',
+						            width: 2,
+						            value: 10,
+						            dashStyle:'ShortDash',
+						            label:{
+						            	text:"平均体重",
+						            	align:'right',
+						            	y:12
+						            }
+						        }]
+						    },
+						    tooltip: {
+						        valueSuffix: '°C'
+						    },
+						    legend: {
+						    	enabled:true
+						    },
+						    series: [{
+						        name: '女生',
+						        color:'#ff9e9e',
+						        data: [7.0, 6.9, 9.5, 14.5, 6.9, 9.5]
+						    },{
+						        name: '男生',
+						        color:'#61aee4',
+						        data: [6.0, 18, 2, 5, 20, 25]
+						    }]
+						});
+					</script>
+					<div class="people_sex people_xinlv" style="flex: 1; margin-right: 0;">
+						<h5>体重<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div style="display: flex; width: 100%;">
+							<div id="weight_highcharts" class="steps_highcharts" style="width: 100%;margin-top: 10px; height: 200px;">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+					new Highcharts.Chart('weight_highcharts', {
+					    title: {
+					        text: '',
+	//				        x: -20
+					    },
+					    xAxis: {
+					    	tickPosition: 'inside',
+					        categories: ['05/29','05/29','05/29','05/29','05/29','05/29'],
+					        tickmarkPlacement: 'on'
+					    },
+					    yAxis: {
+					        title: {
+					            text: 'kg',
+					            rotation:'0',
+					            align:'low',
+					            x:10,
+					            y:13
+					        },
+					        gridLineColor:'white',
+					        lineColor: '#ccc',
+	       					lineWidth: 1,
+	       					 plotLines: [{
+					            color: '#666',
+					            width: 2,
+					            value: 10,
+					            dashStyle:'ShortDash',
+					            label:{
+					            	text:"平均体重",
+					            	align:'right',
+					            	y:12
+					            }
+					        }]
+					    },
+					    
+					    tooltip: {
+					        valueSuffix: '°C'
+					    },
+					    legend: {
+					    	enabled:true
+					        /*layout: 'vertical',
+					        align: 'right',
+					        verticalAlign: 'middle',
+					        borderWidth: 0*/
+					    },
+					    series: [{
+					        name: '女生',
+					        color:'#ff9e9e',
+					        data: [7.0, 6.9, 9.5, 14.5, 6.9, 9.5]
+					    },{
+					        name: '男生',
+					        color:'#61aee4',
+					        data: [6.0, 18, 2, 5, 20, 25]
+					    }]
+					});
+				</script>
+				<div class="per_center_top chartszhu">
+						<h4 class="heads"><span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h4>
+						<div class="chartHead">
+							<span class="active" data-state="1">BMI</span>
+							<span data-state="2">脂肪率</span>
+							<span data-state="3">肌肉量</span>
+							<span data-state="4">基础代谢</span>
+							<span data-state="5">内脏脂肪等级</span>
+							<span data-state="6">水分率</span>
+							<span data-state="7">骨量</span>
+							<span data-state="8">蛋白质</span>
+						</div>
+						<div class="BMIwrap chartsWrap" style="display:block">
+							<div id="BMI_highcharts" class="BMI_highcharts" style="margin-top: 10px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexBMI" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all">全部</span>
+								<span data-state="a">男</span>
+								<span data-state="b" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeBMI" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1"><i></i>偏低</span>
+								<span class=" level-2" data-state="3"><i></i>标准</span>
+								<span class=" level-3" data-state="5"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="zhifang_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexZhifang" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all">全部</span>
+								<span data-state="a">男</span>
+								<span data-state="b" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeZhifang" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1"><i></i>偏低</span>
+								<span class=" level-2" data-state="3"><i></i>标准</span>
+								<span class=" level-3" data-state="5"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="jirou_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexJirou" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all">全部</span>
+								<span data-state="a">男</span>
+								<span data-state="b" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeJirou" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1"><i></i>偏低</span>
+								<span class=" level-2" data-state="3"><i></i>标准</span>
+								<span class=" level-3" data-state="5"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="daixie_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexDaixie" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all" data-do="on">全部</span>
+								<span data-state="a" data-do="off">男</span>
+								<span data-state="b" data-do="off" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeDaixie" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1" data-do="on"><i></i>偏低</span>
+								<span class=" level-2" data-state="3" data-do="on"><i></i>标准</span>
+								<span class=" level-3" data-state="5" data-do="on"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="neizang_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexNeizang" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all" data-do="on">全部</span>
+								<span data-state="a" data-do="off">男</span>
+								<span data-state="b" data-do="off" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeNeizang" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1" data-do="on"><i></i>偏低</span>
+								<span class=" level-2" data-state="3" data-do="on"><i></i>标准</span>
+								<span class=" level-3" data-state="5" data-do="on"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="shuifen_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexShuifen" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all" data-do="on">全部</span>
+								<span data-state="a" data-do="off">男</span>
+								<span data-state="b" data-do="off" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeShuifen" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1" data-do="on"><i></i>偏低</span>
+								<span class=" level-2" data-state="3" data-do="on"><i></i>标准</span>
+								<span class=" level-3" data-state="5" data-do="on"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="guliang_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexGuliang" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all" data-do="on">全部</span>
+								<span data-state="a" data-do="off">男</span>
+								<span data-state="b" data-do="off" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeGuliang" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1" data-do="on"><i></i>偏低</span>
+								<span class=" level-2" data-state="3" data-do="on"><i></i>标准</span>
+								<span class=" level-3" data-state="5" data-do="on"><i></i>理想</span>
+							</div>
+						</div>
+						<div class="chartsWrap" style="display: none;">
+							<div id="danbai_highcharts" style="margin-top: 10px;width:1200px;height: 383px;"></div>
+							<div class="chart-column-legend" id="changeSexDanbai" data-do="all">
+								<div class="can_choosed">可选择：</div>
+								<span class="active" data-state="all" data-do="on">全部</span>
+								<span data-state="a" data-do="off">男</span>
+								<span data-state="b" data-do="off" style="margin-right:102px ;">女</span>
+							</div>
+							<div class="chart-column-legend state" id="changeLikeDanbai" data-do="[1,3,5]">
+								<div class="can_choosed">可选择：</div>
+								<span class=" level-1" data-state="1" data-do="on"><i></i>偏低</span>
+								<span class=" level-2" data-state="3" data-do="on"><i></i>标准</span>
+								<span class=" level-3" data-state="5" data-do="on"><i></i>理想</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+			var BMIdata = {
+				xArr:['一月','二月','三月', '四月', '五月','六月','七月',],
+				data:[{ name: '男',
+			            color:'#5093e1',
+			            data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6],
+		             	stack: 'male',
+			        }, {
+			            name: '女',
+			            color:'#5093e1',
+			            data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0],
+			            stack: 'male',
+			        }, {
+			            name: '男',
+			            color:'#ff9e9e',
+			            stack: 'female',
+			            data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0]
+			        }, {
+			            name: '女',
+			            color:'#ff9e9e',
+			            stack: 'female',
+			            data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0]
+			        }, {
+			            name: '男',
+			            color:'#f0ebeb',
+			            stack: 'dmale',
+			            data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0]
+			        }, {
+			            name: '女',
+			            color:'#f0ebeb',
+			            stack: 'dmale',
+			            data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]
+			        }]
+			}
+			var zhifangData = {xArr:['asd月','asd月','asd月', '四月', '五月','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			var jirouData = {xArr:['肌肉月','肌肉月','肌肉月', '肌肉月', '肌肉月','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [41.9, 85.5, 106.4, 129.2, 120.0, 116.0, 125.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			var daixieData = {xArr:['代谢','代谢','代谢', '代谢', '代谢','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [55.9, 20.5, 30.4, 170.2, 50.0, 180.0, 290.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			var neizangData = {xArr:['內臟','內臟','內臟', '內臟', '內臟','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [55.9, 20.5, 30.4, 170.2, 50.0, 180.0, 290.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			var shuifenData = {xArr:['水分','水分','水分', '水分', '水分','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [55.9, 20.5, 30.4, 170.2, 50.0, 180.0, 290.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			var guliangData = {xArr:['骨量','骨量','骨量', '骨量', '骨量','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [55.9, 20.5, 30.4, 170.2, 50.0, 180.0, 290.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			var danbaiData = {xArr:['蛋白質','蛋白質','蛋白質', '蛋白質', '蛋白質','六月','七月',],data:[{ name: '男',color:'#5093e1',data: [55.9, 20.5, 30.4, 170.2, 50.0, 180.0, 290.6],stack: 'male',}, {name: '女', color:'#5093e1',data: [83.6, 123, 98.5, 93.4, 106.0, 84.5, 105.0], stack: 'male', }, {  name: '男', color:'#ff9e9e', stack: 'female', data: [48.9, 38.8, 39.3, 42.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#ff9e9e',stack: 'female',data: [48.9, 38.8, 39.3, 43.4, 47.0, 48.3, 59.0] }, { name: '男',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 44.4, 47.0, 48.3, 59.0] }, {name: '女',color:'#f0ebeb',stack: 'dmale',data: [48.9, 38.8, 39.3, 45.4, 47.0, 48.3, 59.0]}]};
+			
+			var chartColumn = chartsAction('BMI_highcharts',BMIdata);
+			var statename = chartColumn;
+			var chartColumnzhifang = chartsAction('zhifang_highcharts',zhifangData);
+			var chartColumnjirou = chartsAction('jirou_highcharts',jirouData);
+			var chartColumndaixie = chartsAction('daixie_highcharts',daixieData);
+			var chartColumnneizang = chartsAction('neizang_highcharts',neizangData);
+			var chartColumnshuifen = chartsAction('shuifen_highcharts',shuifenData);
+			var chartColumnguliang = chartsAction('guliang_highcharts',guliangData);
+			var chartColumndanbai = chartsAction('danbai_highcharts',danbaiData);
+			//喜好事件
+		    $(document).on('click','#changeLikeBMI > span',likeAction);
+		    $(document).on('click','#changeLikeZhifang > span',likeAction);
+		    $(document).on('click','#changeLikeJirou > span',likeAction);
+		    $(document).on('click','#changeLikeDaixie > span',likeAction);
+		    $(document).on('click','#changeLikeNeizang > span',likeAction);
+		    $(document).on('click','#changeLikeShuifen > span',likeAction);
+		    $(document).on('click','#changeLikeGuliang > span',likeAction);
+		    $(document).on('click','#changeLikeDanbai > span',likeAction);
+		    //男女事件
+		    $(document).on('click','#changeSexBMI>span',sexAction);
+		    $(document).on('click','#changeSexZhifang>span',sexAction);
+		    $(document).on('click','#changeSexJirou>span',sexAction);
+		    $(document).on('click','#changeSexDaixie>span',sexAction);
+		    $(document).on('click','#changeSexNeizang>span',sexAction);
+		    $(document).on('click','#changeSexShuifen>span',sexAction);
+		    $(document).on('click','#changeSexGuliang>span',sexAction);
+		    $(document).on('click','#changeSexDanbai>span',sexAction);
+		    //头部选项卡
+		    $('.chartHead>span').on('click',function(){
+		    	$(this).addClass('active').siblings().removeClass('active');
+		    	var state = parseInt($(this).attr('data-state'));
+		    	$('.chartsWrap').hide();
+    			$('.chartsWrap').get(state-1).style.display = 'block';
+		    	switch(state){
+		    		case 1:
+		    			statename = chartColumn;
+		    		break;
+		    		case 2:
+		    			statename = chartColumnzhifang;
+		    		break;
+		    		case 3:
+		    			statename = chartColumnjirou;
+		    		break;
+		    		case 4:
+		    			statename = chartColumndaixie;
+		    		break;
+		    		case 5:
+		    			statename = chartColumnneizang;
+		    		break;
+		    		case 6:
+		    			statename = chartColumnshuifen;
+		    		break;
+		    		case 7:
+		    			statename = chartColumnguliang;
+		    		break;
+		    		case 8:
+		    			statename = chartColumndanbai;
+		    		break;
+		    	};
+		    });
+		    
+		    function sexAction(){
+		    	$(this).addClass('active').siblings().removeClass('active');
+		    	var status = $(this).attr('data-state');
+		    	$(this).parent().attr('data-do',status);
+		    	var likeStatusArr = JSON.parse($(this).parent().next().attr('data-do'));
+		    	switch(status){
+		    		case 'all'://全部
+		    			likeStatusArr.forEach(function(v){
+		    				statename.series[v].show();
+		    				statename.series[--v].show();
+		    			});
+		    		break;
+		    		case 'a':
+		    			likeStatusArr.forEach(function(v){
+		    				statename.series[v-1].show();
+		    				statename.series[v].hide();
+		    			});
+		    		break;
+		    		case 'b':
+		    			likeStatusArr.forEach(function(v){
+		    				statename.series[v].show();
+		    				statename.series[v-1].hide();
+		    			});
+		    		break;
+		    	}
+		    };
+		    function likeAction(){
+		    	var num = parseInt($(this).attr('data-state'));
+		    	$(this).toggleClass('active');
+		    	var sexStatus = $(this).parent().prev().attr('data-do');
+		    	var likeStatusArr = JSON.parse($(this).parent().attr('data-do'));
+		    	if(sexStatus=='all'){
+		    		if($(this).hasClass('active')){
+		    			likeStatusArr.splice(likeStatusArr.indexOf(num),1);
+		    			statename.series[num].hide();
+		    			statename.series[--num].hide();
+		    		}else if(!$(this).hasClass('active')){
+		    			likeStatusArr.push(num);
+		    			statename.series[num].show();
+		    			statename.series[--num].show();
+		    		};
+		    	}else if(sexStatus=='a'){
+		    		if($(this).hasClass('active')){
+		    			likeStatusArr.splice(likeStatusArr.indexOf(num),1);
+		    			statename.series[--num].hide();
+		    		}else if(!$(this).hasClass('active')){
+		    			likeStatusArr.push(num);
+		    			statename.series[--num].show();
+		    		};
+		    	}else if(sexStatus=='b'){
+		    		if($(this).hasClass('active')){
+		    			likeStatusArr.splice(likeStatusArr.indexOf(num),1);
+		    			statename.series[num].hide();
+		    		}else if(!$(this).hasClass('active')){
+		    			likeStatusArr.push(num);
+		    			statename.series[num].show();
+		    		};
+		    	};
+		    	$(this).parent().attr('data-do',JSON.stringify(likeStatusArr));
+		    };
+		    //封装highcharts
+			function chartsAction(obj,serdata){
+				var highObj = new Highcharts.Chart(obj,{
+			        chart: {
+			            type: 'column'
+			        },
+			        title: {
+			            text: ''
+			        },
+			        xAxis: {
+			            categories: serdata.xArr,
+			            crosshair: true
+			        },
+			        yAxis: {
+			            title: {
+			                text: '水分率(%)',
+			            },
+			            labels: {
+			                format: '{value}%'
+			            }
+			        },
+			        tooltip: {
+			            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+			            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+			            '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+			            footerFormat: '</table>',
+			            shared: true,
+			            useHTML: true
+			        },
+			        plotOptions: {
+			            column: {
+				            dataLabels: {
+				                enabled: true,
+				                color: '#FFFFFF',
+				                allowOverlap:true,
+			                 	format: '{y} %',
+			                 	inside:false
+				            },
+				            stacking: 'normal'
+			            }
+			        },
+			        legend:{
+			        	enabled:false
+			        },
+			        series: serdata.data
+			    });
+			    return highObj;
+			};
+			</script>
+			
+			<!--学生健康信息表格开始-->
+			<div class="perHealthDeltail clearfix">
+				<div class="fl chart_sex">
+					<div class="selectItem clearfix">
+						<span class="fl" style="font-size: 16px;">时间段：</span>
+						<div class="fl timeSlot" id="timeSlot">
+						</div>
+					</div>
+					<script type="text/javascript">
+						var dateRange = new pickerDateRange('timeSlot', {
+							aRecent7Days : 'aRecent7DaysDemo3', //最近7天
+							isTodayValid : false,
+							startDate : '2017-04-14',
+							endDate : '2017-06-21',
+							//nff9e9eCompare : true,
+							//isSingleDay : true,
+							//shortOpr : true,
+							defaultText : ' 至 ',
+							inputTrigger : 'input_trigger_demo3',
+							theme : 'ta',
+							success : function(obj) {
+								
+							}
+						});
+					</script>
+					<div class="selectItem timewrap clearfix">
+						<span class="fl" style="font-size: 16px;">关键字：</span>
+						<input type="text" value=""/>
+						<i></i>
+					</div>
+				</div>
+				<table class="statistics_table fl" id="fraction_table1" style="width:100%;margin-top: 20px;">
+						<thead>
+							<tr>
+								<th>时间 </th>
+								<th>国网学籍号</th>
+								<th>姓名</th>
+								<th>性别</th>
+								<th>身高</th>
+								<th>体重</th>
+								<th>BMI</th>
+								<th>脂肪率</th>
+								<th>肌肉量</th>
+								<th>基础代谢</th>
+								<th>内脏脂肪等级</th>
+								<th>水分率</th>
+								<th>骨量</th>
+								<th>蛋白质</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>123</td>              
+								<td>45</td>              
+								<td>35</td>              
+								<td>55</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>              
+								<td>35</td>  
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>321</td>              
+								<td>65</td>              
+								<td>35</td>              
+								<td>35</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>                
+								<td>35</td>                
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>123</td>              
+								<td>45</td>              
+								<td>35</td>              
+								<td>55</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>              
+								<td>35</td>  
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>321</td>              
+								<td>65</td>              
+								<td>35</td>              
+								<td>35</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>                
+								<td>35</td>                
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>123</td>              
+								<td>45</td>              
+								<td>35</td>              
+								<td>55</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>              
+								<td>35</td>  
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>321</td>              
+								<td>65</td>              
+								<td>35</td>              
+								<td>35</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>                
+								<td>35</td>                
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>123</td>              
+								<td>45</td>              
+								<td>35</td>              
+								<td>55</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>              
+								<td>35</td>  
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+							<tr>
+								<td>2017-06-08</td>
+								<td>G45612345678945613</td>
+								<td>梁新乐</td>
+								<td>女</td>              
+								<td>321</td>              
+								<td>65</td>              
+								<td>35</td>              
+								<td>35</td>              
+								<td>55kg</td>              
+								<td>1174千卡</td>                
+								<td>35</td>                
+								<td>71.9%</td>  
+								<td>55kg</td>              
+								<td>71.9%</td>  
+							</tr>
+						</tbody>
+					</table>
+					<script type="text/javascript">
+						$('#fraction_table1').DataTable({
+								paging: false, // 不分页
+								info: false, // 不显示info
+								searching: false, // 不显示搜索框
+								language: {
+									emptyTable: "暂无数据"
+								},
+								"columnDefs": [
+					                { "type": "chinese-string", targets: 1},
+					                {"type":"defineNum",targets: 3}
+					            ]
+							});
+					</script>
+
+			</div>
+			<!--学生健康信息表格结束-->
+			
+		</div>
+	</div>
+	<!--内容结束-->
+</body>
+</html>
+<script>
+		/*头部加载==============================================*/
+		$('.perHead').load('../head.html');
+		/*班级点击切换效果===================================*/
+		$('.historyMain_tabs span').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+		});
+		
+		/*以下模拟select===================================================*/
+		$('.selection').on('click',function(e){
+			$(this).find('ul').toggle();
+			$(this).parents('li').siblings().find('.opt').hide();
+		})
+		
+		$('.selection>ul li').on('click',function(){
+			$(this).addClass('active')
+			.siblings().removeClass('active')
+			.parent().siblings('p').text($(this).text());
+		})
+		
+		$(document).on('click',function(e) {
+			if(typeof e.target.parentNode.className=='string'){
+				if(e.target.parentNode.className.indexOf('selection')==-1){
+					$('.opt').hide();
+				}
+			}
+		})
+		//步数周年月切换
+		$('.bushu_cycle i').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active')
+		});
+		
+</script>

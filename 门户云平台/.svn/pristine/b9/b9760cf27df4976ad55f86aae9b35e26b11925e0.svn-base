@@ -1,0 +1,167 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div class="mlh_content">
+	<div class="guide mlh_chooseHeight">
+		<!--科目选择  start-->
+		<ul class="guide-choose clearfix">
+			<li class="item" 
+				ng-repeat="guide in variablePacket.subjects" 
+				ng-bind="guide.name"
+				ng-class="{'active':variablePacket.curr==$index}"  
+				ng-click="guideToggle(guide.id,$index,guide.name)"></li>
+		</ul>
+		<!--科目选择  end-->
+	</div>
+</div>
+<div class="mlh_content clearfix">
+	<div class="zy_question_tree fl">
+		<!--选择教材版本-->
+		<choice-version tree-show-situation="variablePacket.leftTreeShow" xue-ke-id = "variablePacket.xuekeId"></choice-version>
+		<!--树结构-->
+		<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+	</div>
+	<div class="fr">
+		<!--班级选择 start-->
+		<div class="zy_question_library mlh_noborder">
+			<div class="title class">
+				<span>类型：</span>
+				<ul>
+					<li ng-repeat="v in variablePacket.classify" 
+					ng-bind="v.name"
+					ng-click="selectClassifyTab($index)"
+					ng-class="{'active':variablePacket.classifyIndex==$index}"></li>
+				</ul>
+			</div>
+			<!--课前导学-->
+			<div class="title class classify" ng-if="variablePacket.classifyIndex==0">
+				<span>状态：</span>
+				<ul>
+					<li ng-class="{'active':variablePacket.stateIndex==$index}"
+						ng-repeat="state in variablePacket.states" 
+						ng-bind="state.name"
+						ng-click="stateChange(variablePacket.subjectId,$index,state.isLearn,variablePacket.studyNO.length,variablePacket.studyOK.length)"
+						></li>
+				</ul>
+			</div>
+			<!--课中导学-->
+			<div class="title class classify" ng-if="variablePacket.classifyIndex==1">
+				<span>状态：</span>
+				<ul>
+					<li ng-class="{'active':variablePacket.stateinIndex==$index}"
+						ng-repeat="state in variablePacket.instates" 
+						ng-bind="state.name"
+						ng-click="stateinChange($index)"
+						></li>
+				</ul>
+			</div>
+		</div>
+		<!--班级选择 end-->
+		<!--内容列表部分 start-->
+		<div class="zy_question_library mlh_noborder mlh_top">
+			<!--课前导学-->
+			<div class="student" ng-if="variablePacket.classifyIndex==0">
+				<!--每个列表项 start-->
+				<div class="guide-item clearfix"
+					 ng-repeat="i in subjectsinData" 
+					 ng-click="updateState(i.id)"
+					 ng-if="variablePacket.isLearnStatus == 0"?true:false
+					 ui-sref="secondNav.studentGuideDel({'guidanceId':i.id,'userId':variablePacket.loginUserId,'state':i.studyState,'resourceReturn':i.backType=='0'?false:true})">
+					<img src="./img/mlh_guide.png" alt="" />
+					<div class="left" >
+						<div class="item-1">
+							<span class="zyx_fontShow" ng-bind="i.name"></span>
+							<em class="not-learn">未学习</em>
+							<em class="return" ng-if="i.backType=='1'"?true:false>回传</em>
+						</div>
+						<div class="item-2">
+							发布时间:<span ng-bind="i.createDate.substr(0,10)"></span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="guide-item clearfix"
+					 ng-repeat="i in subjectsinData" 
+					 ng-click="updateState(i.id)"
+					 ng-if="variablePacket.isLearnStatus == 1"?true:false
+					 ui-sref="secondNav.studentGuideDel({'guidanceId':i.id,'userId':variablePacket.loginUserId,'state':i.studyState,'resourceReturn':i.backType=='0'?false:true})">
+					<img src="./img/mlh_guide.png" alt="" />
+					<div class="left" >
+						<div class="item-1">
+							<span class="zyx_fontShow" ng-bind="i.name"></span>
+							<em class="learn">已学习</em>
+							<em class="return" ng-if="i.backType=='1'"?true:false>回传</em>
+						</div>
+						<div class="item-2">
+							发布时间:<span ng-bind="i.createDate.substr(0,10)"></span>
+						</div>
+					</div>
+				</div>
+				<!--每个列表项 end-->
+			</div>
+			<!--课中导学-->
+			<div class="student" ng-if="variablePacket.classifyIndex==1">
+				<!--每个列表项 start-->
+				<div class="guide-item clearfix"
+					 ng-repeat="i in subjectsinData" 
+					 ng-if="variablePacket.stateinIndex==0"
+					 ui-sref="secondNav.studentInClassDetails({'type':'guidance','state':'notSubmitted','stage':'inClass','packjectId':i.id,'classId':i.classId,'className':variablePacket.classaName,'subjectId':variablePacket.subjectId,'subjectName':variablePacket.subjectName})">
+					<img src="./img/mlh_guide.png" alt="" />
+					<div class="left" >
+						<div class="item-1">
+							<span class="zyx_fontShow" ng-bind="i.name"></span>
+							<em class="not-learn">未提交</em>
+						</div>
+						<div class="item-2">
+							发布时间:<span ng-bind="i.createDate.substr(0,10)"></span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="guide-item clearfix"
+					 ng-repeat="i in subjectsinData" 
+					 ng-if="variablePacket.stateinIndex==1"
+					 ui-sref="secondNav.studentInClassDetails({'type':'guidance','state':'notRead','stage':'inClass','packjectId':i.id,'classId':i.classId,'className':variablePacket.classaName,'subjectId':variablePacket.subjectId,'subjectName':variablePacket.subjectName})">
+					<img src="./img/mlh_guide.png" alt="" />
+					<div class="left" >
+						<div class="item-1">
+							<span class="zyx_fontShow" ng-bind="i.name"></span>
+							<em class="not-learn">未批阅</em>
+						</div>
+						<div class="item-2">
+							发布时间:<span ng-bind="i.createDate.substr(0,10)"></span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="guide-item clearfix"
+					 ng-repeat="i in subjectsinData" 
+					 ng-if="variablePacket.stateinIndex==2"
+					 ui-sref="secondNav.studentInClassDetails({'type':'guidance','state':'haveRead','stage':'inClass','packjectId':i.id,'classId':i.classId,'className':variablePacket.classaName,'subjectId':variablePacket.subjectId,'subjectName':variablePacket.subjectName})">
+					<img src="./img/mlh_guide.png" alt="" />
+					<div class="left" >
+						<div class="item-1">
+							<span class="zyx_fontShow" ng-bind="i.name"></span>
+							<em class="learn">已批阅</em>
+						</div>
+						<div class="item-2">
+							发布时间:<span ng-bind="i.createDate.substr(0,10)"></span>
+						</div>
+					</div>
+				</div>
+				<!--每个列表项 end-->
+			</div>
+			<!--<div class="loading" ng-if="variablePacket.jiazai" ng-click="jiazai(variablePacket.pageSize)"><i class="iconfont icon-jiazai"></i>加载更多...</div>-->
+			<!--分页-->
+			<div class="zmj_resource_page" ng-if="!variablePacket.guidamceListNotExist">
+	            <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+	        </div>
+			<div class="zyx_empty"  ng-if='variablePacket.guidamceListNotExist'>
+				<img src="./img/empty.png"/>	
+			</div>
+		</div>
+		<!--内容列表部分 end-->
+	</div>
+</div>

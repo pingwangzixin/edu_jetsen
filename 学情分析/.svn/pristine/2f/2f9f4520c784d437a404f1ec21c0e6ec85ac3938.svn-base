@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>测试分析</title>
+		<!--公共样式-->
+		<link rel="stylesheet" type="text/css" href="../css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="../common/dataTable/jquery.dataTables.css" />
+		<script src="../common/js/jquery-2.2.0.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/dataTable/datatables.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/LAB.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--我的样式-->
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+		<script src="../js/index.js"></script>
+	</head>
+
+	<body>
+		<div class="wrapper zyx_student_singletestAnalysis">
+			<div class="header clearfix">
+				<span>作业名称：第一单元测试作业</span>
+				<i class="fr">二年级(1)班:乔伟</i>
+			</div>
+			<div class="tabBox">
+				<p class="clearfix">
+					<strong>学科：</strong>
+					<a href="JavaScript:;" class="current">语文</a>
+				</p>
+			</div>
+
+			<div class="main" style="padding-top:0;">
+				<div class="zyx_answer">
+					<h3 class="tit">
+						<strong>各科目测试成绩</strong>
+					</h3>
+					<table class="zyx_testTable">
+						<thead>
+							<tr>
+								<th width="25%">科目</th>
+								<th width="25%">学生得分</th>
+								<th width="25%">班级均分</th>
+								<th width="25%">班级排名</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>语文</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20</td>
+							</tr>
+							<tr>
+								<td>数学</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="zyx_answer">
+					<h3 class="tit">
+						<strong>答题情况</strong>
+					</h3>
+					<table class="zyx_testTable">
+						<thead>
+							<tr>
+								<th width="25%">题型</th>
+								<th width="25%">题号</th>
+								<th width="25%">学生得分</th>
+								<th width="25%">班级平均得分率</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td rowspan='3'>一、单选题</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td rowspan='3'>二、填空题</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td rowspan='3'>三、简答题</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td rowspan='3'>四、阅读理解</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td rowspan='3'>五、完形填空</td>
+								<td>1</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>15</td>
+								<td>20%</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--典型错题-->
+				<div class="zyx_errorTopic">
+					<h3 class="tit">
+						<strong>典型错题</strong>
+					</h3>
+					<div class="zyx_topic">
+						<h6>题20</h6>
+						<div class="zyx_stem">
+							一个人花8块钱买了一只鸡，9块钱卖掉了，然后他觉得不划算，花10块钱又买回来了，11块卖给另外一个人。问他赚了多少？
+						</div>
+						<table class="zyx_tableExplain">
+							<thead>
+								<tr>
+									<th>试题类型：<span>简答</span></th>
+									<th>年级错误人数：<span>336</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan='2'>试题涉及知识点：<span>二次函数的应用</span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>试题涉及学科能力和思想方法：<span>运算能力</span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>年级平分得分率：<span>21%</span></td>
+								</tr>
+								<tr>
+									<td>年级高分组得分率：<span>41%</span></td>
+									<td>年级低分组得分率：<span>1%</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="zyx_topic">
+						<h6>题25</h6>
+						<div class="zyx_stem">
+							高铁被称为中国“新四大发明”之一，2017年初中国高铁运营里程已超过2.2万公里，占全球高铁运营里程的65%，其中“2.2万”用科学记数法可表示为？
+						</div>
+						<table class="zyx_tableExplain">
+							<thead>
+								<tr>
+									<th>试题类型：<span>简答</span></th>
+									<th>年级错误人数：<span>336</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan='2'>试题涉及知识点：<span>二次函数的应用</span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>试题涉及学科能力和思想方法：<span>运算能力</span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>年级平分得分率：<span>21%</span></td>
+								</tr>
+								<tr>
+									<td>年级高分组得分率：<span>41%</span></td>
+									<td>年级低分组得分率：<span>1%</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="zyx_topic">
+						<h6>题26</h6>
+						<div class="zyx_stem">
+							已知小华家、小夏家、小红家及学校在同一条大路旁，一天，他们放学后从学校出发，先向南行1000m到达小华家A处，继续向北行3000m到达小红家B处，然后向南行6000m到小夏家C处.
+							(1)以学校为原点，以向南为正方向，用1个单位长度表示1000m，请你在数轴上表示出小华家、小夏家、小红家的位置；
+							(2)小红家在学校什么位置？离学校有多远？
+						</div>
+						<table class="zyx_tableExplain">
+							<thead>
+								<tr>
+									<th>试题类型：<span>简答</span></th>
+									<th>年级错误人数：<span>336</span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan='2'>试题涉及知识点：<span>二次函数的应用</span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>试题涉及学科能力和思想方法：<span>运算能力</span></td>
+								</tr>
+								<tr>
+									<td colspan='2'>年级平分得分率：<span>21%</span></td>
+								</tr>
+								<tr>
+									<td>年级高分组得分率：<span>41%</span></td>
+									<td>年级低分组得分率：<span>1%</span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

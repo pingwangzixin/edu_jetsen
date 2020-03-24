@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="./js/angular.js"></script>
+</head>
+<body ng-controller="test">
+    <ul ng-repeat="name in names">
+        <li>{{name}}</li>
+    </ul>
+</body>
+
+<script>
+    var app=angular.module("app",[])
+    app.controller("test",function($scope,$http){
+       $http.get('http://yun.mdjedu.net/ActivityCenter/API/getClassActivityList/activityKey/0ba7a973c8e9f97733b5834d6adbd771/classId/78155').success(function(res){
+            $scope.names=res.activityList;
+            angular.forEach()
+        })
+    })
+</script>
+</html>

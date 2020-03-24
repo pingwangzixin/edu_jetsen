@@ -1,0 +1,33 @@
+<div class="main_width">
+	<div class="zy_student_main_wrap clearfix">
+		<!--左：三种类型-->
+		<div class="zy_student_pass_wrap fl">
+			
+		</div>
+		<!--右：学生列表-->
+		<div class="zy_student_wrap fr">
+			<p>学生姓名</p>
+			<div class="zy_student_right_main">
+				<div class="zy_student_list">
+					<ul class="clearfix" ng-class="{'active':variablePacket.listBorder}">
+						<li class="zy_not_read" ng-repeat="i in variablePacket.stuList.notRead">
+							<span ng-bind="i.name"></span>
+							<b ng-click="checkStuInfo(i.id, i.name, 'submission')">批阅</b>
+						</li>
+						<li class="zy_already_read" ng-repeat="i in variablePacket.stuList.alreadyRead">
+							<span ng-bind="i.name"></span>
+							<b ng-click="checkStuInfo(i.id, i.name, 'readyOver')">已批阅</b>
+						</li>
+						<li class="zy_no_sub" ng-repeat="i in variablePacket.stuList.noSub">
+							<span ng-bind="i.name"></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>  
+	
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>
+

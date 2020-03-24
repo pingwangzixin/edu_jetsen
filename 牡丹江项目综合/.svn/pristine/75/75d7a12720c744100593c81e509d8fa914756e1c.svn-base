@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="src/css/reset.css" />
+		<link rel="stylesheet" href="src/font-icon/iconfont.css"/>
+		
+	</head>
+	<body>
+		<!--gy_del_down为公用clss名不要动，后面放自有类名-->
+		<!--确认框 红色-->
+		<!--<div class="gy_del_down">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<i class="iconfont icon-weibiaoti2"></i>
+		    	<div class="tip_box">
+		    		<p class="tip_img">
+		    			<i class="iconfont icon-gantanhao"></i>
+		    		</p>
+		    		<p class="tip_text tip_text_red">确认要删除吗？</p>
+		    	</div>
+		    	<div class="btn_group">
+		    		<button class="sure">确认</button>
+		    		<button class="cancel">取消</button>
+		    	</div>
+			</div>
+		</div>-->
+		
+		<!--确认框 蓝色-->
+		<div class="gy_del_down">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<i class="iconfont icon-weibiaoti2"></i>
+		    	<div class="tip_box">
+		    		<p class="tip_img">
+		    			<i class="iconfont icon-duihao1"></i>
+		    		</p>
+		    		<p class="tip_text tip_text_blue">确认要删除吗？</p>
+		    	</div>
+		    	<div class="btn_group">
+		    		<button class="sure">确认</button>
+		    		<button class="cancel">取消</button>
+		    	</div>
+			</div>
+		</div>
+		
+		<!--提示框 蓝色-->
+		<!--<div class="gy_del_down warn_box">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<div class="tip_box">
+		    		<p class="tip_img">
+		    			<i class="iconfont icon-duihao1"></i>
+		    		</p>
+		    		<p class="tip_text tip_text_blue">提交成功</p>
+		    	</div>
+			</div>
+		</div>-->
+		
+		<!--提示框 红色-->
+		<!--<div class="gy_del_down warn_box">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<div class="tip_box">
+		    		<p class="tip_img">
+		    			<i class="iconfont icon-gantanhao"></i>
+		    		</p>
+		    		<p class="tip_text tip_text_red">提交失败</p>
+		    	</div>
+			</div>
+		</div>-->
+	</body>
+</html>

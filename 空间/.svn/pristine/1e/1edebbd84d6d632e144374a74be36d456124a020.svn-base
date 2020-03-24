@@ -1,0 +1,106 @@
+<div>
+	<div class="zyx_greenbox zyx_timetable">
+		<div class="zy_about_introduce zy_course_introduce">
+			<div class="zy_introduce_tit">
+				<span>课程表</span>
+			</div>
+			<div class="zy_course_list">
+				<table border="" cellspacing="" cellpadding="">
+					<tr>
+						<th width="131px" class="zy_slash_table">
+							<span>星期</span>
+							<p class="zy_slash"></p>
+							<span>节数</span>
+						</th>
+						<th width="128px" ng-repeat="day in dayNum">{{day}}</th>
+						<!--<th width="128px">星期一</th>
+						<th width="128px">星期二</th>
+						<th width="128px">星期三</th>
+						<th width="128px">星期四</th>
+						<th width="128px">星期五</th>-->
+					</tr>
+					<tr ng-repeat="lession in amCourseList">
+						<td>{{lession.lessionNum}}</td>
+						<td>{{lession.Monday}}</td>
+						<td>{{lession.Tuesday}}</td>
+						<td>{{lession.Wednesday}}</td>
+						<td>{{lession.Thursday}}</td>
+						<td>{{lession.Friday}}</td>
+						<td>{{lession.Saturday}}</td>
+					</tr>
+					<!--<tr>
+						<td>第一节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr>
+					<tr>
+						<td>第二节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr>
+					<tr>
+						<td>第三节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr>
+					<tr>
+						<td>第四节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr>-->
+					<tr><td colspan="6">午休</td></tr>
+					<tr ng-repeat="lession in pmCourseList">
+						<td>{{lession.lessionNum}}</td>
+						<td>{{lession.Monday}}</td>
+						<td>{{lession.Tuesday}}</td>
+						<td>{{lession.Wednesday}}</td>
+						<td>{{lession.Thursday}}</td>
+						<td>{{lession.Friday}}</td>
+						<td>{{lession.Saturday}}</td>
+					</tr>
+					<!--<tr>
+						<td>第五节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr><tr>
+						<td>第六节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr><tr>
+						<td>第七节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr><tr>
+						<td>第八节</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+						<td>语文</td>
+					</tr>-->
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

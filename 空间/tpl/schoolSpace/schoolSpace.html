@@ -1,0 +1,47 @@
+<div class="zy_space_nav_box zy_stu_nav">
+	
+	<!-- <div class="zy_admin_set">
+		<div class="zy_space_bg">
+			<div class="zy_set_wrap">
+				<div class="zy_set_bar clearfix">
+					<div class="fl">
+						<span class="zy_bar_big_tit">{{officeName}}</span>
+					</div>
+					<p class="zy_set_users fr"><i>{{section}}</i><span>{{realname}}</span></p>
+					<div class="zy_more_platform fr">
+						<span class="fl">
+							<a href="" ui-sref="wrap.index">捷成教育云平台</a>
+						</span>
+						<span class="fl">
+							<i class="iconfont icon-shouye"></i>
+							<a ui-sref="secondNav.homePage" href="">我的空间</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	
+	<div class="zyx_schoolSpaceHead">
+		<div class="zy_stu_nav_list_bg">
+			<div class="zyx_navBox clearfix">
+				<div class="zy_stu_nav_list fl zk_schoolNav">
+					<p>{{officeName}}</p>
+					<ul class="clearfix">
+						<li ui-sref={{nav.href}} ui-sref-active="active" ng-repeat="nav in spaceNav" ng-bind="nav.name"></li>
+					</ul>
+				</div>
+				<div  ng-if="bgFile" class="zyx_bgFile fr"  >
+					<i class="iconfont icon-icon--"></i>
+					<span >上传背景</span>
+					<input  id='FileInput' type="file"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="angular.element(this).scope().filePhoto(this)"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
+<div ui-view class="toggle zy_space zyx_schoolSpaceMain"></div>
+
+<z-footer></z-footer>

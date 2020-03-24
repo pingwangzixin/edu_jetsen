@@ -1,0 +1,101 @@
+<div class="wx_right_cont fl">
+	<!--右侧内容部分切换-->
+	<div class="wx_up_nav">
+		<ul class="wx_upnav_ul">
+			<li ui-sref="secondNav.leftTree.teachingStatistics" class="wx_active">教案统计</li>
+			<li ui-sref="secondNav.leftTree.activeStatistics">活动统计</li>
+		</ul>
+	</div>
+	<!--面包屑导航-->
+	<div class="wx_bread_nav">
+		<img src="./img/wx_bread_nav.png" class="wx_bread_icon">
+		<span ng-if="variablePacket.chinanav" ng-click="breadNav(1,'全国',0)">全国 </span>
+		<span ng-if="variablePacket.provincenav" ng-click="breadNav(variablePacket.provinceid,variablePacket.provincename,1)" ng-bind="variablePacket.provincename"></span>
+		<span ng-if="variablePacket.citynav"     ng-click="breadNav(variablePacket.cityid,variablePacket.cityname,2)" ng-bind="variablePacket.cityname"></span>
+		<span ng-if="variablePacket.countynav"   ng-click="breadNav(variablePacket.countyid,variablePacket.countyname,3)" ng-bind="variablePacket.countyname"></span>
+		<span ng-if="variablePacket.schoolnav"   ng-click="breadNav(variablePacket.schoolid,variablePacket.schoolname,4)" ng-bind="variablePacket.schoolname"></span>
+	</div>
+
+	<!--教案趋势图 折线图-->
+	<div class="wx_echart_useractive wx_mtnone">
+		<div class="wx_echart_tit clearfix">
+			<span class="fl">教案趋势图</span>
+			<div class="fr">
+				<select name="" ng-change="selectChange(year.name)" class="wx_studyyear" ng-model="year"  ng-options="year.name for year in variablePacket.schoolYear">
+				</select>
+			</div>
+		</div>
+		<!--折线图部分-->
+		<div>
+			<div id="containerChart3" class="containerChart"></div>
+		</div>
+	</div>
+
+	<!--教案量统计图 柱状图-->
+	<div class="wx_chart_bar" ng-if="variablePacket.jiaoanshow">
+		<p class="wx_echart_tit">教案量统计图</p>
+		<div class="wx_type_btn">
+			<button class="wx_btn_hui wx_active" ng-click="changeChartstate(0)" ng-class="{'wx_active':variablePacket.stateChart==0}">按年级</button>
+			<button class="wx_btn_hui" ng-click="changeChartstate(1)" ng-class="{'wx_active':variablePacket.stateChart==1}">按学科</button>
+		</div>
+		<div ng-if="variablePacket.stateChart==0">
+			<!--按年级柱状图-->
+			<div id="containerChart1" class="containerChart" style="height:350px;"></div>
+		</div>
+		<div ng-if="variablePacket.stateChart==1">
+			<!--按学科柱状图-->
+			<div id="containerChart2" class="containerChart" style="height:350px;"></div>
+		</div>
+	</div>
+
+	<!--教案量统计表-->
+	<div class="wx_register_ratio">
+		<p class="wx_echart_tit">教案量统计表</p>
+		<!--按省份-->
+		<div class="wx_userstatics_table">
+			<table class="wx_table_userstic" ng-if="!variablePacket.scholldatashow">
+				<thead>
+					<tr>
+						<th class="wx_tdfivewidth">{{variablePacket.tablearea}}</th>
+						<th>教案总量</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td>{{variablePacket.sum}}</td>
+					</tr>
+					<tr>
+
+					</tr>
+					<tr ng-repeat="i in variablePacket.tabledata.quyu">
+						<td class="wx_lanzi wx_cursor"  ng-click="findCityCount(i.id,i.name,variablePacket.tabledata.type)">{{i.name}}</td>
+						<td>{{i.resnum}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<!--教师数据表格 最后才显示-->
+			<table class="wx_table_userstic" ng-if="variablePacket.scholldatashow">
+				<thead>
+					<tr>
+						<th class="wx_tdfivewidth">{{variablePacket.tablearea}}</th>
+						<th>教案总量</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td>{{variablePacket.sum}}</td>
+					</tr>
+					<tr>
+
+					</tr>
+					<tr ng-repeat="i in variablePacket.tabledata.quyu">
+						<td class="" >{{i.name}}</td>
+						<td>{{i.resnum}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

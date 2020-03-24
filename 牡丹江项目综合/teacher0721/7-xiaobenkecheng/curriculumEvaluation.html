@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta name="renderer" content="webkit">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+		<meta name="format-detection" content="telephone=no" />
+
+		<title>课程评价</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../css/shetuan.css">
+		<link rel="stylesheet" href="../css/section.css">
+		<!--<link rel="stylesheet" href="../css/checkRecordTeacher.css" charset="utf-8" />-->
+
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/shetuan.js"></script>
+		<!--<script src="../js/checkRecordTeacher.js" type="text/javascript" charset="utf-8"></script>-->
+		<script src="../js/getTimes.js" type="text/javascript" charset="utf-8"></script>
+		
+		<style type="text/css">
+			.zy_evaluation{padding: 18px 10px;}
+			.zy_evaluation .screen{padding-bottom: 16px;}
+			.zy_evaluation .screen>select{box-sizing: border-box; width: 200px; height: 30px; padding: 0 10px; border-radius: 5px;}
+			.zy_evaluation .screen>span{width: 80px; height: 30px; line-height: 30px; text-align: center; color: #fff; background: #5093e1; border-radius: 5px; margin-left: 10px; cursor: pointer;} 
+			.zy_evaluation>table{width: 100%; line-height: 32px; text-align: center;}
+			.zy_evaluation>table th{text-align: center; background: #f9f9f9;}
+			.zy_evaluation>table td{border: 1px solid #cdd0d2;}
+			.zy_evaluation>table tr td:last-of-type{color: #5093e1; cursor: pointer;}
+			
+			.zy_standard_box .con{text-align: left;}
+			.zy_standard_box .tit{height: 38px; line-height: 38px; text-align: left; padding: 0 10px; border-bottom: 1px solid #e5e5e5;}
+			.zy_standard_box .tit>img{margin-top: 12px; cursor: pointer;}
+			.zy_evaluation_box{}
+			.zy_evaluation_box .con{width: 916px; height: 726px;}
+			.zy_evaluation_box .table{height:640px; padding: 14px 36px; overflow-y:auto; }
+			.zy_evaluation_box .table table{width: 100%;}
+			.zy_evaluation_box .table table th{height: 36px; text-align: center; background: #f1f2f3;}
+			.zy_evaluation_box .table table td{border: 1px solid #cdd0d2;}
+			.zy_evaluation_box .table table tr td{height: 100px; text-align: center;}
+			.zy_similar_box .con{width: 536px; height: 366px;}
+			.zy_similar_box .main_cont{padding: 20px 30px 0;}
+			.zy_similar_box .main_cont>p{margin-bottom: 20px;}
+			.zy_similar_box .main_cont>p i{color: red;}
+			.zy_similar_box .main_cont>p select{width: 374px; height: 34px; padding: 0 10px; border: 1px solid #e9e9eb; border-radius: 5px;}
+			.zy_issued_box{}
+			.zy_issued_box .main_cont p.evaluate_times span{display: inline-block; box-sizing: border-box; width: 28px; height: 28px; line-height: 28px; text-align: center; border: 1px solid #e2e2e2; border-radius: 5px; margin-right: 10px; cursor: pointer;}
+			.zy_issued_box .main_cont p.evaluate_times span.active{background: #5093e1; color: #fff; border-color: transparent;}
+			.zy_similar_box .btn{text-align: center;}
+			.zy_similar_box .btn button{box-sizing: border-box; width: 110px; height: 30px; border: 1px solid transparent; border-radius: 5px; outline: none; cursor: pointer;}
+			.zy_similar_box .btn button.sure{background: #cadef6; color: #5093e1; margin-right: 20px;}
+			.zy_similar_box .btn button.cancel{background: #f5f5f5; border-color: #e5e5e5;}
+			.zy_add_box{}
+			.zy_add_box .excel{padding-bottom: 10px;}
+			.zy_add_box .excel .con{height: 390px;}
+			.zy_add_box .excel button{padding: 0 16px; height: 28px; line-height: 28px; color: #fff; background: #1abd9d; margin: 0 10px 10px 0; border-radius: 5px; border: none; outline: none; cursor: pointer;}
+			.zy_add_box .excel b{font-weight: normal;}
+			.zy_add_box .excel p{box-sizing: border-box; width: 336px; height: 28px; line-height: 28px; padding: 0 16px; margin-left: 88px; background: #e2f1fa;}
+			.zy_add_box .excel p img{vertical-align: -3px;}
+			.zy_add_box .excel p em{font-style: normal; color: #1479bf; cursor: pointer;}
+		</style>
+	</head>
+
+	<body>
+		<!--头部开始-->
+		<div class="header clearfix"></div>
+
+		<div class="shetuan">
+			<!--列表切换-->
+			<div class="shetuanul">
+				<ul>
+					<li>
+						<a href="./shetuanxiangqing.html">校本课程详情</a>
+					</li>
+					<li>
+						<a href="#">校本课程成员</a>
+					</li>
+					<li>
+						<a href="./addxiaoben.html">校本课程教材</a>
+					</li>
+					<li class="active">
+						<a href="./curriculumEvaluation.html">课程评价</a>
+					</li>
+				</ul>
+			</div>
+			<!--社团详情  -->
+			<div class="stxiangqing">
+				<!-- 左侧树结构-->
+				<div class="myshetuan">
+					<div class="sttreeheader">我的校本课程</div>
+					<!--                <div class="addst">+新建社团</div>-->
+					<div class="stlist">
+						<ul class="shetuanname">
+							<li class="xuanzhong">花鸟字画社团</li>
+							<li>书法社团</li>
+							<li>剪纸社团</li>
+							<li>武术社团</li>
+							<li>合唱社团</li>
+							<li>唢呐社团</li>
+							<li>京剧社团</li>
+							<li>表演社团</li>
+						</ul>
+					</div>
+				</div>
+				
+				<!--右侧详情介绍-->
+				<div class="shetuanchengyuan zy_evaluation">
+					<div class="screen">
+						<select name="">
+							<option value="">上学期</option>
+							<option value="">下学期</option>
+						</select>
+						<span>下发评价</span>
+						<span>添加标准</span>
+					</div>
+					<table border="" cellspacing="" cellpadding="">
+						<tr>
+							<th width="25%">学科</th>
+							<th width="25%">评价指标</th>
+							<th width="25%">评价学期</th>
+							<th width="25%">操作</th>
+						</tr>
+						<tr>
+							<td>Data</td>
+							<td>Data</td>
+							<td>Data</td>
+							<td>查看</td>
+						</tr>
+						<tr>
+							<td>Data</td>
+							<td>Data</td>
+							<td>Data</td>
+							<td>查看</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		<!--查看评价弹框-->
+		<div class="del_down zy_standard_box zy_evaluation_box" style="display: none;">
+			<div class="hide"></div>
+		    <div class="con clearfix">
+		    	<div class="tit">
+		    		<span>合唱团评价标准</span>
+			    	<img class="close hand fr" src="../img/task_close.png"/>
+		    	</div>
+		        <div class="table">
+		        	<table border="" cellspacing="" cellpadding="">
+			        	<tr>
+			        		<th>评价要素</th>
+			        		<th>评价内容</th>
+			        		<th width="52%">关键表现</th>
+			        	</tr>
+			        	<tr>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        	</tr>
+			        	<tr>
+			        		<td rowspan="3">Data</td>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        	</tr>
+			        	<tr>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        	</tr>
+			        	<tr>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        	</tr>
+			        	<tr>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        	</tr>
+			        	<tr>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        		<td>Data</td>
+			        	</tr>
+			        </table>
+		        </div>
+		    </div>
+		</div>
+		
+		<!--下发评价弹框-->
+		<div class="del_down zy_standard_box zy_similar_box zy_issued_box" style="display: none;">
+			<div class="hide"></div>
+		    <div class="con clearfix">
+		    	<div class="tit">
+		    		<span>下发评价</span>
+			    	<img class="close hand fr" src="../img/task_close.png"/>
+		    	</div>
+		        <div class="main_cont">
+		        	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学科：<span>语文</span></p>
+		        	<p>&nbsp;&nbsp;&nbsp;下发班级：<span>合唱团班</span></p>
+		        	<p>
+		        		<i>*</i> 评价标准：
+		        		<select name="">
+		        			<option value="">大史莱克</option>
+		        			<option value="">大尚志大街</option>
+		        			<option value="">大尚志大街；打开</option>
+		        		</select>
+		        	</p>
+		        	<p>
+		        		<i>*</i> 评价时间：
+		        		<select name="">
+		        			<option value="">大史莱克</option>
+		        			<option value="">大尚志大街</option>
+		        		</select>
+		        	</p>
+		        	<p class="evaluate_times">&nbsp;&nbsp;&nbsp;评价次数：
+		        		<span>1</span>
+		        		<span>2</span>
+		        		<span>3</span>
+		        		<span>4</span>
+		        		<span>5</span>
+		        		<span>6</span>
+		        		<span>7</span>
+		        		<span>8</span>
+		        	</p>
+		        </div>
+		        <div class="btn">
+		        	<button class="sure">确认</button>
+		        	<button class="cancel">取消</button>
+		        </div>
+		    </div>
+		</div>
+		
+		
+		<!--添加标准弹框-->
+		<div class="del_down zy_standard_box zy_similar_box zy_add_box" style="display: none;">
+			<div class="hide"></div>
+		    <div class="con clearfix">
+		    	<div class="tit">
+		    		<span>添加标准</span>
+			    	<img class="close hand fr" src="../img/task_close.png"/>
+		    	</div>
+		        <div class="main_cont">
+		        	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学科：<span>语文</span></p>
+		        	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;班级：<span>合唱团班</span></p>
+		        	<p>
+		        		<i>*</i> 评价标准：
+		        		<select name="">
+		        			<option value="">大史莱克</option>
+		        			<option value="">大尚志大街</option>
+		        			<option value="">大尚志大街；打开</option>
+		        		</select>
+		        	</p>
+		        	<p>
+		        		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>*</i> 学期：
+		        		<select name="">
+		        			<option value="">大史莱克</option>
+		        			<option value="">大尚志大街</option>
+		        		</select>
+		        	</p>
+		        	<div class="excel">&nbsp;&nbsp;&nbsp;评价次数：
+		        		<button>导入Excel</button><b>下载模板（模板一  模板二  模板三）</b>
+		        		<p>
+		        			<img src="../img/ex.png"/>
+		        			<span>合唱团评价标准.xls</span>
+		        			<em class="fr">删除</em>
+		        		</p>
+		        	</div>
+		        </div>
+		        <div class="btn">
+		        	<button class="sure">确认</button>
+		        	<button class="cancel">取消</button>
+		        </div>
+		    </div>
+		</div>
+
+	</body>
+
+	<script type="text/javascript">
+		$(function() {
+			//2019.03.12 zy
+			//查看评价标准弹框
+			$('.zy_evaluation>table tr td:last-of-type').on('click',function (){
+				$('.zy_evaluation_box').show();
+			});
+			
+			//关闭评价标准弹框
+			$('.zy_evaluation_box .tit img').on('click',function (){
+				$('.zy_evaluation_box').hide();
+			});
+			
+			//下发评价弹框 评价次数tab切换
+			$('.evaluate_times span').on('click',function (){
+				$(this).addClass('active').siblings().removeClass('active');
+			});
+			
+			//查看下发评价弹框
+			$('.zy_evaluation .screen>span:first-of-type').on('click',function (){
+				$('.zy_issued_box').show();
+			});
+			
+			//关闭下发评价弹框
+			$('.zy_issued_box .close').on('click',function (){
+				$('.zy_issued_box').hide();
+			});
+			
+			//查看添加标准弹框
+			$('.zy_evaluation .screen>span:last-of-type').on('click',function (){
+				$('.zy_add_box').show();
+			});
+			
+			//关闭添加标准弹框
+			$('.zy_standard_box .close').on('click',function (){
+				$('.zy_add_box').hide();
+			});
+			
+		});
+	</script>
+
+</html>

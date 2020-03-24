@@ -1,0 +1,146 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div class="mlh_content">
+	<div class="guide">
+		<!--科目选择  start-->
+		<ul class="guide-choose">
+			<li class="item" 
+				ng-repeat="guide in variablePacket.subjects" 
+				ng-bind="guide.name"
+				ng-class="{'active':variablePacket.curr==$index}"  
+				ng-click="guideToggle(guide.id,$index)"></li>
+		</ul>
+		<!--科目选择  end-->
+	</div>
+</div>
+<div class="mlh_content clearfix">
+	<div class="zy_question_tree fl">
+		<!--选择教材版本-->
+		<choice-version tree-show-situation="variablePacket.leftTreeShow" xue-ke-id = "variablePacket.xuekeId"></choice-version>
+		<!--树结构-->
+		<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+	</div>
+	<div class="fr">
+		<!--班级选择 start-->
+		<div class="zy_question_library mlh_noborder">
+			<div class="title class">
+				<span>状态：</span>
+				<ul>
+					<li ng-class="{'active':variablePacket.stateIndex==$index}"
+						ng-repeat="state in variablePacket.states" 
+						ng-bind="state.name"
+						ng-click="stateChange(variablePacket.subjectId,$index,state.id, state.state)"
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--班级选择 end-->
+		<!--内容列表部分 start-->
+		<div class="zy_question_library mlh_noborder mlh_top">
+			<div class="student" >
+				<!--每个列表项 start-->
+			<div class="guide-item clearfix"
+				 ng-repeat="i in subjectsData" 
+				 ng-if="i.state==variablePacket.state">
+				<!--未提交  习题-->
+				<div class="left" ng-if="variablePacket.state=='unsubmitted'&&i.type=='exercises'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDetailsTestPaper', 'exercises')"></span>
+						<em class="not-learn">未提交</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--未提交  试卷-->
+				<div class="left" ng-if="variablePacket.state=='unsubmitted'&&i.type=='testPaper'">
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDetailsTestPaper', 'testPaper')"></span>
+						<em class="not-learn">未提交</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--未提交  答题卡-->
+				<div class="left" ng-if="variablePacket.state=='unsubmitted'&&i.type=='answerCard'">
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDetailsAnswerCard', '')"></span>
+						<em class="not-learn">未提交</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--已提交  习题-->
+				<div class="left" ng-if="variablePacket.state=='submission'&&i.type=='exercises'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDetailsTestPaper', 'exercises')"></span>
+						<em class="learn">已提交</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--已提交  试卷-->
+				<div class="left" ng-if="variablePacket.state=='submission'&&i.type=='testPaper'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDetailsTestPaper', 'testPaper')"></span>
+						<em class="learn">已提交</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--已提交  答题卡-->
+				<div class="left" ng-if="variablePacket.state=='submission'&&i.type=='answerCard'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDetailsAnswerCard', '')"></span>
+						<em class="learn">已提交</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--已批阅  习题-->
+				<div class="left" ng-if="variablePacket.state=='readyOver'&&i.type=='exercises'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDel', 'exercises', i.name, i.startTime+'至'+i.endTime, i.remark)"></span>
+						<em class="read">已批阅</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--已批阅  试卷-->
+				<div class="left" ng-if="variablePacket.state=='readyOver'&&i.type=='testPaper'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDel', 'testPaper', i.name, i.startTime+'至'+i.endTime, i.remark)"></span>
+						<em class="read">已批阅</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+				<!--已批阅  答题卡-->
+				<div class="left" ng-if="variablePacket.state=='readyOver'&&i.type=='answerCard'" >
+					<div class="item-1">
+						<span ng-bind="i.name" ng-click="addParams(i.id, 'secondNav.studentHomeworkDel', 'answerCard', i.name, i.startTime+'至'+i.endTime, i.remark)"></span>
+						<em class="read">已批阅</em>
+					</div>
+					<div class="item-2">
+						作答时间:<em ng-bind="i.startTime"></em>--<em ng-bind="i.endTime"></em>
+					</div>
+				</div>
+			</div>
+				<!--每个列表项 end-->
+			</div>
+			<div class="loading" ng-click="jiazai()"><i class="iconfont icon-jiazai"></i>加载更多...</div>
+		</div>
+		<!--内容列表部分 end-->
+	</div>
+</div>

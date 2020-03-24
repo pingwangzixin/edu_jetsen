@@ -1,0 +1,133 @@
+
+<div>
+	<div class="zyx_answerCard">
+		<!--新建及编辑答题卡头部-->
+		<div class="zyx_header clearfix" ng-if="variablePacket.state!='see'">
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59 fl" ui-sref="secondNav.questionBankType"></i>
+			<span class="fl" ng-if="variablePacket.state=='new'">导入试卷</span>
+			<span class="fl" ng-if="variablePacket.state=='edit'">修改试卷</span>
+			<span class="fr" ng-click="uploadExam()">上传</span>
+		</div>
+		<ul class="zyx_case" ng-if="variablePacket.state!='see'">
+			<li>
+				<em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科<i class="star">*</i></em>
+				<select  ng-model="selectedSubject" ng-click='Subject()' ng-change="clearxiugai(selectedSubject)" ng-options="i.name for i in variablePacket.arrSubject">
+					<option value="">请选择学科</option>
+				</select>
+				<b ng-if="variablePacket.ProvingSubject" >
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请选择学科</span>
+				</b>
+			</li>
+			<li class="zyx_relativeTop12">
+				<em>章节目录<i class="star">*</i></em>
+				<span ng-click='verifySubject()'><choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variablePacket.libraryTitleBar" zjtree="selectedSubject"><choice-version></span>
+				<b ng-if="variablePacket.ProvingChapter" >
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请选择章节目录</span>
+				</b>
+			</li>
+			<li>
+				试卷名称<i class="star">*</i><input type="text" ng-model="params.name" placeholder="试卷名称" />
+				<b ng-if="variablePacket.ProvingName" >
+					<i class="iconfont icon-gantanhao"></i>
+					<span>请输入试卷名称</span>
+				</b>
+			</li>
+		</ul>
+		<!--新建及编辑答题卡头部-->
+		<!--查看答题卡头部-->
+		<ul class="zmj_resource_testList zmj_resources_details" ng-if="variablePacket.state=='see'">
+			<li class="clearfix">
+				<i ui-sref="secondNav.questionBankType.myQuestionBank()" class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+				<h4 ng-bind = "variablePacket.examName"></h4>
+				<p><img src="img/ls/tiku_student_name.png"/><span class="uploadName " ng-bind="variablePacket.createUser"></span><span><i class="iconfont icon-lishi " ng-bind="variablePacket.createDate"></i></span></p>
+				<div class="zmj_resource_operating details">
+					<!--<span class="share"><i class="iconfont icon-fenxiang "></i>分享</span>
+					<span class="down"><i class="down iconfont icon-xiazai4 "></i>下载</span>-->
+				</div>
+
+			</li>
+
+		</ul>
+		<!--查看答题卡头部-->
+		<div class="zyx_card clearfix">
+			<div class="zyx_picture zy_scroll_box fl" ng-class="{'active':variablePacket.titFix}">
+				<div class="zyx_Cardtitle clearfix" id='zyx_CardtitleLeft'>
+					<span class="fl">
+						导入试卷  
+						<i class="iconfont" ng-class='{"icon-quanping1":variablePacket.fullScreen,"icon-suoxiao":!variablePacket.fullScreen}' ng-click='fullScreen($event)'></i> 
+					</span>
+					<b ng-if="variablePacket.ProvingPic" >
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请上传图片</span>
+					</b>
+					<span class="fr" ng-if="variablePacket.state!='see'">
+						<i class="iconfont icon-shangchuan"></i> 上传图片与文件
+						<input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onchange="angular.element(this).scope().imgUpload(this.files)" />
+					</span>
+				</div>
+				<div id="picture" class="picture">
+					<!--上传图片的展示-->
+					<ul class="zyx_hasData" ui-sortable="sortableOptions" ng-model="picdata" ng-if='!variablePacket.picLineShow'>
+			            <li ng-repeat="i in picdata" ng-mouseover='mouseoverPic($event)' ng-mouseleave='mouseleavePic($event)'  repeat-finish="scrollBar()">
+			                <img ng-src="{{i.src}}"/>
+			                <span ng-if="variablePacket.state!='see'"  ng-click='delPic($event,$index)'><i class="iconfont icon-shanchu"></i></span>
+			            </li>
+			        </ul>
+			        <!--未上传图片的展示-->
+			        <div class="zyx_noData" ng-if='variablePacket.picLineShow'>
+			        	<img src="./img/upload_school_logo.png"/>
+			        	<input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" onchange="angular.element(this).scope().imgUpload(this.files)"  />
+			        	<p>上传图片与文件</p>
+			        </div>
+				</div>
+			</div>
+			<div class="zyx_question fr" ng-class="{'active':variablePacket.floatBoxPos}">
+				<div class="rFixed zy_scroll_box" ng-class="{'active':variablePacket.titFix}">					
+					<div class="zyx_Cardtitle clearfix">
+						<span class="fl">答题卡</span>
+						<b ng-if="variablePacket.ProvingAnswerCard" >
+							<i class="iconfont icon-gantanhao"></i>
+							<span>请添加答案</span>
+						</b>
+						<!--<span class="fr">收起全部解析 <i class="iconfont icon-xialazhankai"></i></span>-->
+					</div>
+					<div class="question zy_question_scroll_bar">
+						<div class="zy_question_card">
+							<!--右侧内容-->
+						</div>
+					
+					</div>
+				
+					<!--题型浮窗-->
+					<div ng-if="variablePacket.state!='see'" class="zy_floating_window" ng-class="{'active':variablePacket.floatBoxPos}">
+						<div class="zy_float_modular" ng-class="{'active':variablePacket.floatBox}" ng-click="switchOptionsBox()">
+							<i class="iconfont icon-tuichu"></i>
+							<i class="iconfont icon-tuichu icon-you"></i>
+							<p><span ng-bind="variablePacket.floatBoxText"></span></p>
+						</div>
+						<div class="zy_location_modular clearfix slide-right" ng-if="variablePacket.floatBox">
+							<i class="iconfont icon-zuohua fl" ng-if="variablePacket.optionPointLeft" more-option variable-packet="variablePacket"></i>
+							<div class="zy_type_box fl">
+								<ul class="clearfix">
+									<li ng-class="{'active':variablePacket.switchOption==$index}" ng-repeat="i in variablePacket.questionType" ng-bind="i.name" ng-click="switchOptions($index,$event)">单选题</li>
+								</ul>
+							</div>
+							<i class="iconfont icon-youhua fl" ng-if="variablePacket.optionPointRight" more-option variable-packet="variablePacket"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>
+
+
+
+
+
+

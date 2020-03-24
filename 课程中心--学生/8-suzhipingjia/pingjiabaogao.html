@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+	    
+		<title>打分</title>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/zhpj.css" />
+		<link rel="stylesheet" href="../css/public.css" />
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/jquery.raty.min.js"></script>
+		<script src="../js/zhpj.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			body{background:url(../img/bg.jpg) repeat-y;}
+			.pjselect{width:92%;margin:0 auto;}
+			.dafenshow{width:92%;margin:10px auto;min-height:825px;min-width:1200px;background:#ebf4fc;position:relative;margin-top:26px;border-radius:5px;border:9px solid rgba(191,225,251,.6);border-top-left-radius:6%;border-top-right-radius: 6%;border-bottom-left-radius:7%;border-bottom-right-radius:7%;}
+			.tablepj thead tr{height:30px;}
+			.tablepj tbody td{text-align:center;}
+			.hovertctips{position:relative;}
+			.dafencon{min-height:500px;border:2px dotted #fff;margin:30px;border-top-left-radius: 4%;border-top-right-radius:5%;border-bottom-left-radius:4%;border-bottom-right-radius:4%;padding:40px;}
+			.dafentj:hover{color:#a8caf0;}
+			.kspj:hover{color:#5093e1}
+			.selectpy ul li:hover{color:#5093e1}
+			.contitle{width:300px;height:100px;background:#fff;border:2px solid #78adea;color:#666;position:absolute;top:30px;left:40px;z-index:999;text-align:left;padding:10px;}
+            table{width:90%;margin:0 auto;display: table;}
+            table tr th{background: #fff;text-align: center;border:1px solid #ccc;}
+            table tr td{text-align: center;border:1px solid #ccc;}
+            
+            td input[type="text"]{width:100%;height:84px;border:none;display: block;background: none;}
+            td input[type="file"]{display: none;}
+            td label{padding:40px;background:#eee;font-size: 30px;border:1px solid #ccc;cursor: pointer;}
+            .jianjie{background:#fff;}
+            .dafentj{width:75px;height:25px;background:#bdd8f4;border-radius: 20px;color:#5093e1;border:none;outline: none;}
+            .szpjzp{position: relative;}
+            .szpjzp p{height:40px;line-height: 40px;color:#6699ff;font-weight: bold;}
+            .szpjzp textarea{width:100%;height:80px;background:#eaf4fc;border:1px solid #b4cdfd;}
+            .szpjzp ul{position: absolute;bottom:10px;right:100px;}
+            .xszp{background: #eaf4fc;border:1px solid #b4cdfd;padding:10px;}
+            .xszp p{color:#000;}
+            .xszp input{width:90%;border:none;height:30px;background:none;}
+            .biaoti{text-align: center;}
+		</style>
+	</head>
+	<body>
+		<!--头部开始-->
+		<div class="header clearfix"></div>
+		<div class="pjselect">
+				<ul class="pingjia">
+					<li><a href="./suzhipingjia.html">素质评价</a></li>
+					<li class="active"><a href="#">评价报告</a></li>
+				</ul>
+		</div>
+		<!--点击打分弹出页面-->
+					<div class="dafenshow">
+						<div class="dafenback">
+							<a href="./zonghepingjia.html"><img src="../img/back.png" alt=""></a>
+						</div>
+						
+						<div class="dafencon">
+							<div class="biaoti">
+                                <b>黑龙江省初中毕业生综合素质评价报告单</b>
+							    <button class="right dafentj">生成报告</button>
+							</div>
+							<table border="1" cellpadding="0" cellspacing="0" class="tablepj">
+                                    <tr>
+                                        <td class="jianjie">姓名</td>
+                                        <td><input type="text"></td>
+                                        <td class="jianjie">性别</td>
+                                        <td><input type="text"></td>
+                                        <td class="jianjie">民族</td>
+                                        <td><input type="text"></td>
+                                        <td class="jianjie">出生年月</td>
+                                        <td><input type="text"></td>
+                                        <td rowspan="3" style="width:150px;">
+                                            <input type="file" id="usericon" accept="image/png, image/jpeg, image/gif">
+                                            <label for="usericon" id="disno">+</label>
+                                            
+                                            <img src="" alt="" id="userpic">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="jianjie">籍贯</td>
+                                        <td><input type="text"></td>
+                                        <td class="jianjie">家庭住址</td>
+                                        <td colspan="3"><input type="text"></td>
+                                        <td class="jianjie">联系电话</td>
+                                        <td><input type="text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="jianjie">学籍号</td>
+                                        <td><input type="text"></td>
+                                        <td class="jianjie">班级</td>
+                                        <td colspan="3"><input type="text"></td>
+                                        <td class="jianjie">班主任</td>
+                                        <td><input type="text"></td>
+                                    </tr>
+                                    
+								</table>
+								
+								<table border="1" cellpadding="0" cellspacing="0" class="tablepj" style="margin-top:20px;">
+                                    <thead>
+                                        <tr>
+                                            <th>评价维度</th>
+                                            <th>思想品德和公民素养</th>
+                                            <th>学业水平和习素养</th>
+                                            <th>身体和心理健康水平</th>
+                                            <th>兴趣特长及艺术素养</th>
+                                            <th>社会实践和动手能力</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>七（上）评价等级</td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>七（下）评价等级</td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>八（上）评价等级</td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>八（上）评价等级</td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>九（上）评价等级</td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>九（下）评价等级</td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                        </tr>
+                                    </tbody>
+                                    
+								</table>
+								
+								<table border="1" cellpadding="0" cellspacing="0" class="tablepj" style="margin-top:20px;">
+								    <thead>
+								        <tr>
+								            <th>学业水平考试（年级）</th>
+								            <th>思想品德</th>
+								            <th>语文</th>
+								            <th>数学</th>
+								            <th>外语</th>
+								            <th>历史</th>
+								            <th>地理</th>
+								            <th>生物</th>
+								            <th>物理</th>
+								            <th>化学</th>
+								            <th>体育</th>
+								            <th>音乐</th>
+								            <th>美术</th>
+								            <th>综合实践活动</th>
+								            <th>地方课程</th>
+								            <th>校本课程</th>
+								        </tr>
+								    </thead>
+								    <tbody>
+								        <tr>
+								            <td>七（上）</td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+								        </tr>
+								        <tr>
+								            <td>七（下）</td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+								        </tr>
+								        <tr>
+								            <td>八（上）</td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+								        </tr>
+								        <tr>
+								            <td>八（下）</td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+								        </tr>
+								        <tr>
+								            <td>九（上）</td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+								        </tr>
+								        <tr>
+								            <td>九（下）</td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+								            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+                                            <td><input type="text"></td>
+								        </tr>
+								    </tbody>
+								</table>
+								<div class="szpjcon">
+								    <div class="szpjzp">
+								        <p>学生自评：</p>
+								        <div class="xszp">
+								            <p>七（上）：<input type="text"></p>
+								            <p>七（下）：<input type="text"></p>
+								            <p>八（上）：<input type="text"></p>
+								            <p>八（下）：<input type="text"></p>
+                                            <p>九（上）：<input type="text"></p>
+                                            <p>九（下）：<input type="text"></p>
+								        </div>
+								    </div>
+								    <div class="szpjzp">
+								        <p>家长评价：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+								    <div class="szpjzp">
+								        <p>综合评语：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+								    <div class="szpjzp">
+								        <p>综合评价结果：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								        <ul>
+								            <li>教师评价小组:</li>
+								        </ul>
+								    </div>
+								    <div class="szpjzp">
+								        <p>学校评价工作委员会的认定结果：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								        <ul>
+								            <li>校长公章:</li>
+								            <li>学校公章:</li>
+								        </ul>
+								    </div>
+								</div>
+						</div>
+					</div>
+<!--打分页面结束-->
+
+
+	
+
+<!--页面灰色遮罩	-->
+	<div class="zhezhao" style="display:none"></div>
+	<!--弹窗-->
+	<div class="del_down del_down2" style="display:none">
+		<div class="hide"></div>
+		<div class="con">
+			<img src="../img/success.png">
+			<p class="text-text"></p>
+		</div>
+	</div>
+	
+<!--页面js-->
+		
+		<script>
+            var icon=document.getElementById("usericon");
+            var pic=document.getElementById("userpic");
+            var disno=document.getElementById("disno")
+            icon.onchange=function(e){
+                var f=icon.files[0];
+                var src = window.URL.createObjectURL(f);
+                pic.src=src;
+                disno.style.display="none"     
+            }
+            
+		</script>
+	</body>
+</html>

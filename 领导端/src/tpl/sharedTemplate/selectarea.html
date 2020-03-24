@@ -1,0 +1,36 @@
+<span class="wx_address areaone">
+	<input id="selectSchool" class="searchSchool" type="text" placeholder="请选择学校" ng-model="schoolname"
+		ng-keyup="searchSchool(schoolname)" ng-click="revealstate()" ng-mouseover="clearInput()" />
+	<b ng-click="revealstate()" ng-mouseover="clearInput()" ></b>
+	<div class="zmj_chooice" ng-if="directiveState">
+        <ul class="zmj_select clearfix" >
+            <li class="zmj_county" ng-if="scopeValue==2"   >
+                <p ng-click="clear.county()" ng-bind="county" style="background:#f6f7fa"></p>
+	            <div class="zmj_vessel" id="zmj_county_mainbox" style="background:#f6f7fa" >
+	                <ol id="zmj_county_contentbox" class="clearfix">
+	                    <li style="border-bottom:1px solid #ccc;" ng-repeat="item in countyData" ng-click="set.county(item)" ng-class="{'active' : county==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="C" ng-bind="item.name"></li>
+	                </ol>
+	            </div>
+            </li>
+            <li class="zmj_school" ng-if="scopeValue==2">
+                <p ng-bind="school"></p>
+                <div class="zmj_vessel" id="zmj_school_mainbox" >
+                    <b ng-if="schoolempty">暂无数据</b>
+                    <ol id="zmj_school_contentbox" class="clearfix">
+                        <li ng-click="set.school(item)"  ng-repeat="item in schoolData" ng-class="{'active':school==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="S" ng-bind="item.name"></li>
+                    </ol>
+                </div>
+            </li>
+            
+            <li class="zmj_school" ng-if="scopeValue==3" >
+                <p ng-bind="school"></p>
+                <div class="zmj_vessel" id="zmj_school_mainbox">
+                    <b ng-if="schoolempty">暂无数据</b>
+                    <ol id="zmj_school_contentbox" class="clearfix">
+                        <li ng-click="set.school(item)" ng-repeat="item in schoolData" ng-class="{'active':school==item.name}" ng-attr-title="{{item.name}}" on-finish-render-filters="S" ng-bind="item.name"></li>
+                    </ol>
+                </div>
+            </li>
+        </ul>
+	</div>
+</span>

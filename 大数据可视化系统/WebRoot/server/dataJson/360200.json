@@ -1,0 +1,41 @@
+{
+	"name": "景德镇市",
+	"type": "city",
+	"userNum": 6238,
+	"resouceNum": 235784,
+	"userList": [{
+		"value": 614,
+		"name": "教师"
+	}, {
+		"value": 6169,
+		"name": "学生"
+	}, {
+		"value": 5,
+		"name": "家长"
+	}],
+	"sex": [{
+		"value": 335,
+		"name": "男"
+	}, {
+		"value": 310,
+		"name": "女"
+	}],
+	"areaResource": {
+		"areaName": ["浮梁县", "珠山区", "昌江区", "乐平市"],
+		"areaCount": [204, 204, 0, 0]
+	},
+	"topicList": [{
+		"value": 614,
+		"name": "单选"
+	}, {
+		"value": 6169,
+		"name": "多选"
+	}, {
+		"value": 5,
+		"name": "判断"
+	}],
+	"areaTopic": {
+		"areaName": ["浮梁县", "珠山区", "昌江区", "乐平市"],
+		"areaCount": [200, 200, 0, 0]
+	}
+}

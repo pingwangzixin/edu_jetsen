@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+
+		<title>打分</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+        <link rel="stylesheet" href="../css/daterangepicker.css">
+		<link rel="stylesheet" href="../css/zhpj.css" />
+		<link rel="stylesheet" href="../css/section.css">
+		<link rel="stylesheet" href="../css/public.css" />
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/moment.min.js"></script>
+		<script src="../common/js/jquery.daterangepicker.js"></script>
+		<script src="../js/zhpj.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+            .mr20{margin-right:20px;}
+            .mt20{margin-top:20px}
+            .dafencon{min-height: 1350px;}
+            .dafenrt table{margin-top: 0;}
+			.pjselect{width:97%;margin:8px auto 0 auto;min-width: 1200px;}
+			.dafenshow{width:97%;margin:10px auto;min-height:825px;min-width:1200px;box-shadow: 0 0 10px #ccc;-moz-box-shadow: 0 0 10px #ccc;-webkit-box-shadow: 0 0 10px #ccc;-o-box-shadow: 0 0 10px #ccc;-ms-box-shadow: 0 0 10px #ccc;}
+			.tablepj thead{background:#f9f9f9;}
+			.tablepj thead tr{height:30px;}
+			.tablepj tbody td{text-align:center;}
+            .dafentj{width:50px;height:25px;border-radius:15px;background:#cadef6;border:none;color:#5093e1;outline:none;cursor:pointer;margin: 10px;}
+			.dafentj:hover{background:#a8caf0;}
+			.dafenshow .biaoti .goback{width:50px;height:25px;border-radius:15px;background:#cadef6;border:none; display:inline-block;color:#5093e1;outline:none;cursor:pointer;margin: 10px; text-align: center; float: right; line-height: 26px;}
+			.wx_clear{clear:both}
+            .szpjcon{height:500px;margin: 20px 0;}
+            .szpjcon textarea{width:100%;height:108px;background: #f5f5f5;outline: none;}
+            .szpjcon p{color:#5093e1;font-weight: bold;height:45px;line-height: 45px;}
+            .hupingstr{width:103px;height: 30px;border-radius: 3px;border: 1px solid #5093e1;background:none;color:#5093e1;font-weight: normal;}
+            .pingfenul li{height:50px;line-height: 50px;}
+            .pingfenul li span{cursor: pointer;display: block;width: 53px;height: 26px;margin-top: 10px;background:#f5f5f5;border:1px solid #dcdcdc;margin-left: 14px;line-height: 26px;border-radius: 15px;}
+            .pingfenul li:nth-child(2){border-top:1px solid #ccc;border-bottom: 1px solid #ccc;}
+            .pingfenul li span.pfactive{background: #8ed582;color: #fff;border:1px solid #8ed582;}
+            .sousuokuang select{width:100px;}
+            .wx_clear{clear: both;}
+            .wx_nopj{width:36%;height:auto;border:1px solid #999999;border-radius:5px;margin: 5px;cursor: pointer;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;outline: none;background:none;}
+            .chakanziyuan{width:752px;height:575px;background:#fff;border:1px solid #ccc;border-radius:10px;position: fixed;top:0;left:0;bottom: 0;right: 0;margin:auto;padding:20px;z-index: 1002}
+            .cktitle{width:100%;height:30px;border-bottom: 1px solid #ccc;font-size: 16px;line-height: 30px;color:#5093e1;}
+            .xiahuaxian{border-bottom: 2px solid #ccc;display: inline-block;height:28px;line-height: 28px;}
+            .zyxiangqing{height:60px;}
+            .zyxiangqing ul li{display: inline-block;margin-right: 20px;}
+            .ckxqcon{width:693px;height:454px;background:#ecf2fa;margin: 0 auto;overflow-y: auto;}
+            .reslist li{height:28px;line-height: 28px;}
+            .fangda{position: absolute;right: 0;bottom: 0;cursor: pointer;background:#ecf2fa url('../img/fangda.png');width: 21px;height: 23px;}
+            .quanping{position: fixed;top:0;left:0;right: 0;bottom: 0;margin:auto;background: rgba(0,0,0,.5);width:30%;}
+            .wx_pjbz{width:300px;height:300px;border:1px solid #ccc;position: absolute;word-break: break-all;background:#f9f9f9;top:200px; left: 80px;border-radius: 10px;padding: 10px;display:none;}
+		</style>
+	</head>
+	<body>
+		<!--头部开始-->
+		<div  class="header clearfix"></div>
+		<div class="pjselect">
+				<ul class="pingjia">
+					<li class="active"><a href="./szpjlist.html">素质评价</a></li>
+					<li><a href="./pjbglist.html">评价报告</a></li>
+				</ul>
+				
+		</div>
+		<div class="wx_clear"></div>
+		<!--点击打分弹出页面-->
+					<div class="dafenshow">
+						
+						<div class="biaoti">
+                          <div class="zhleft mr20">
+                              <select name="" id="">
+                                   <option value="">七(上)综合素质评价</option>
+                               </select>
+                          </div>
+                           
+                            <div class="zhleft pjtime">
+									完成时间：
+									<input type="text" id="date-range12" size="30" class="timer">
+                                    <button class="hupingstr">设置互评学生</button>
+				            </div>
+				            <button class="right dafentj">保存</button>
+				            <a class="goback" href="szpjlist.html">返回</a>
+						</div>
+						<div class="dafencon">
+							<div class="dfbanji zhleft">
+								<select name="dafenbanji" id="dafenbanji">
+									<option value="二年级一班">二年级一班</option>
+									<option value="二年级一班">二年级一班</option>
+									<option value="二年级一班">二年级一班</option>
+								</select>
+								<p class="wancheng">已评价</p>
+								<div class="yiwan">
+									<button class="ywbtn">高田泽</button>
+									<button class="ywbtn">高田泽</button>
+									<button class="ywbtn">高田泽</button>
+									<button class="ywbtn">高田泽</button>
+									<button class="ingwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+								</div>
+								<p class="weiwancheng">未评价</p>
+								<div class="weiwan">
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+									<button class="wx_nopj">郭子仪</button>
+								</div>
+							</div>
+							<div class="dafenrt zhleft">
+								
+								<table border="1" cellpadding="0" cellspacing="0" class="tablepj">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="9">学年第一学期</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">学校：捷成世纪中学</th>
+                                            <th colspan="2">学籍号：G282378368646443434334</th>
+                                            <th colspan="3">班级：七年级1班</th>
+                                            <th colspan="2">姓名：王玺</th>
+                                        </tr>
+                                        <tr>
+                                            <th>评价维度</th>
+                                            <th>评价要素</th>
+                                            <th style="width:25%">评价指标</th>
+                                            <th style="width:25%">关键表现</th>
+                                            <th style="width:80px;">达成度</th>
+                                            <th>评价人</th>
+                                            <th>资质</th>
+                                            <th>等级</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="4" style="position:relative;">
+                                                <span class="wx_shuzi">思想品德与公民素养</span>
+                                                <p class="wx_hover" style="color:#5093e1;margin-top:10px;cursor:pointer"><img src="../img/quest.png" alt=""><br>评价标准</p>
+                                                <div class="wx_pjbz">评价标准111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
+                                            </td>
+                                            <td>理想信念</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span class="pfactive">优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                            <td rowspan="4">
+                                                <ul>
+                                                    <li>王玺</li>
+                                                    <li>张新生</li>
+                                                </ul>
+                                            </td>
+                                            <td rowspan="4">
+                                                <ul class="reslist">
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                </ul>
+
+                                            </td>
+                                
+                                            <td rowspan="4">A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>公民素养</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>人格品质</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>行为习惯</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="4" style="position:relative;">
+                                                <span class="wx_shuzi">思想品德与公民素养</span>
+                                                <p class="wx_hover" style="color:#5093e1;margin-top:10px;cursor:pointer"><img src="../img/quest.png" alt=""><br>评价标准</p>
+                                                <div class="wx_pjbz">评价标准111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
+                                            </td>
+                                            <td>理想信念</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                            <td rowspan="4">
+                                                <ul>
+                                                    <li>王玺</li>
+                                                    <li>张新生</li>
+                                                </ul>
+                                            </td>
+                                            <td rowspan="4">
+                                                <ul class="reslist">
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                    <li><a href="#" onclick="seeres(this)">理想信念.jpg</a></li>
+                                                </ul>
+
+                                            </td>
+                                
+                                            <td rowspan="4">A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>公民素养</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>人格品质</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>行为习惯</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+								</table>
+								<div class="wx_clear"></div>
+								<div class="szpjcon">
+								    <div class="szpjzp">
+								        <p>自评：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+								    <div class="szpjzp">
+								        <p>互评：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+								    <div class="szpjzp">
+								        <p>师评：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+				            </div>
+							</div>
+							<div class="wx_clear"></div>
+							
+						</div>
+						
+					</div>
+<!--打分页面结束-->
+	
+	<!--页面灰色遮罩	-->
+	<div class="zhezhao" style="display:none;"></div>
+	<!--弹窗-->
+	<div class="del_down del_down2" style="display:none">
+		<div class="hide"></div>
+		<div class="con">
+			<img src="../img/success.png">
+			<p class="text-text"></p>
+		</div>
+	</div>
+    <!--资源弹窗	-->
+    
+    <div class="chakanziyuan" style="display:none">
+       <img src="../img/guanbi.png" alt="" class="wx_guanbi wx_gbziyuan" />
+        <div class="cktitle">
+            <span class="xiahuaxian">查看资质</span>
+        </div>
+        <div class="zyxiangqing">
+            <p>资质名称：我的资质</p>
+            <p>资质详情：我的资质我的资质我的资质我的资质</p>
+        </div>
+        <div class="ckxqcon" style="position: relative;">
+            <img src="../img/erweima.png" alt="" />
+            <span class="fangda" onclick="fangda()"></span>
+        </div>
+        
+    </div>
+	
+	
+	<!--新建群组弹窗-->
+    <div class="wx_cyglwrap wx_xinjianqunzu" style="display:none;"> <img src="../img/guanbi.png" alt="" class="wx_guanbi wx_gbqunzu" />
+        <div class="wx_cygltit"> 设置互评学生 </div>
+        <div class="wx_hr"></div>
+        <div class="mt20 sousuokuang">
+         
+            <div class="path-right wx_path">
+                <form action="">
+                    <input placeholder="输入学生信息" type="text" /> <span class="sousuo wx_sousuotb"></span> 
+                </form>
+            </div>
+        </div>
+        <div class="wx_clear"></div>
+        <div class="wx_lslist wx_xjqunzulist">
+            <h4>
+				<label style="color:red;margin-left: -12px;font-size: 16px">*</label>
+				学生列表:</h4>
+            <ul class="gongPersons xinjianUl1">
+                <li>
+                    <input type="checkbox" /><span><label >刘玉涛</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>朱家军</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>沙和尚</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>刘玉涛</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>朱家军</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>沙和尚</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>刘玉涛</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>朱家军</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>沙和尚</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>刘玉涛</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>朱家军</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>沙和尚</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>刘玉涛</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>朱家军</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>沙和尚</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>刘玉涛</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>朱家军</label></span></li>
+                <li>
+                    <input type="checkbox" /><span><label>沙和尚</label></span></li>
+            </ul>
+        </div> <span class="wx_fr wx_sureaddls wx_sureaddls2">+确认添加</span>
+        <div class="wx_clear"></div>
+        <div class="wx_hr wx_mt"></div>
+        <div class="wx_lslist wx_xjqunzulist">
+            <h4>已互评学生:</h4>
+            <ul class="gongPersons xinjianUl2">
+            </ul>
+        </div> 
+<!--        <span class="wx_fr wx_sureaddls yichu2">-确认移除</span>-->
+        <div class="wx_anbtn"> <span class="wx_cyglsure wx_qunzusure">确定</span><span class="wx_cyglcal wx_qunzuquxiao">取消</span> </div>
+    </div>
+	
+	
+	
+<!--页面js-->
+		<script>
+            
+            function seeres(obj){
+                $(".chakanziyuan").show();
+                $(".zhezhao").show();
+            }
+            
+            $(function(){
+                $(".timer").dateRangePicker({
+                //maxDays:7,
+                });
+                
+                addList('.wx_sureaddls1', '.weixuanzhong li', '.yixuanzhong');
+                addList('.wx_sureaddls2', '.xinjianUl1 li', '.xinjianUl2');
+                removeElement('.yichu1', '.yixuanzhong li');
+                removeElement('.yichu2', '.xinjianUl2 li');
+                clickSelect('.weixuanzhong li,.yixuanzhong li,.xinjianUl1 li,.xinjianUl2 li');
+                clickInput('.weixuanzhong li input,.yixuanzhong li input,.xinjianUl1 li input,.xinjianUl2 li input');
+                /*添加到组中==================*/
+                function addList(btn, weixuanzhong, yixuanzhong) {
+                    $(btn).on('click', function () {
+                        var str = '';
+                        var html = '';
+                        var lis = $(weixuanzhong);
+                        
+                        for (var i = 0; i < lis.length; i++) {
+                            if (lis.eq(i).children('input[type="checkbox"]').is(':checked')) {
+                                html += '<li>' + lis.eq(i).text() + '</li>';
+                                
+                            }
+                        }
+                        if ($(yixuanzhong).html()) {
+                            str = $(yixuanzhong).html();
+                            str += html;
+                            $(yixuanzhong).html(str);
+                        }
+                        else {
+                            $(yixuanzhong).html(html)
+                        }
+                        html = '';
+                    })
+                }
+                /*移除人员==================== */
+                function removeElement(btn, xuanzhong) {
+                    $(btn).on('click', function () {
+                        var lis = $(xuanzhong);
+                        
+                        for (var i = 0; i < lis.length; i++) {
+                            if (lis.eq(i).children('input[type="checkbox"]').is(':checked')) {
+                                lis.eq(i).remove();
+                            }
+                        }
+                    })
+                }
+                /*点击li的input*/
+                function clickSelect(obj) {
+                    $(document).on('click', obj, function () {
+                        if ($(this).children('input').is(':checked')) {
+                            $(this).children('input').prop('checked', false);
+                        }
+                        else {
+                            $(this).children('input').prop('checked', true);
+                        }
+                    })
+                }
+
+                function clickInput(obj) {
+                    $(document).on('click', obj, function () {
+                        if ($(this).is(':checked')) {
+                            $(this).prop('checked', false);
+                        }
+                        else {
+                            $(this).prop('checked', true);
+                        }
+                    })
+                }
+                
+                
+                $(document).on("click",".hupingstr",function(){
+                    $(".wx_xinjianqunzu").show();
+                    $(".zhezhao").show();
+                })
+                
+                $(".wx_gbqunzu,.wx_qunzuquxiao").on("click",function(){
+                    $(".wx_xinjianqunzu").hide();
+                    $(".zhezhao").hide();
+                })
+                
+                $(document).on("click",".pingfenul li span",function(){
+                    $(this).addClass("pfactive").parent().siblings().children("span").removeClass("pfactive")
+                })
+                
+                $(".wx_gbziyuan").on("click",function(){
+                    $(".chakanziyuan").hide();
+                    $(".zhezhao").hide();
+                })
+                
+                //循环出打分的三个评分优秀，合格，待提高
+                $(document).on("click",".pingfenul li",function(){
+                    $(".pingfenul").each(function(index){
+                       console.log( $(".pingfenul li span.pfactive"))
+                    })
+                })
+                
+                
+            })
+            
+            function fangda(){
+                	var image=$(".ckxqcon img");
+ 					image.toggleClass("quanping");
+                }
+            
+            
+            //鼠标放上去显示评价标准
+            $(".wx_hover").hover(function(){
+                $(this).siblings("div").show(200)
+            },function(){
+                $(this).siblings("div").hide(200)
+            })
+            
+		</script>
+	</body>
+</html>

@@ -1,0 +1,207 @@
+<div class="zy_full">
+	<div ng-bind="jsData" id="jsData" style="display: none;"></div>
+	<div class="zy_main">
+		<top-list page="prevPageNo" role-index="chooseTermVariable.roleState" role-all-name="chooseTermVariable.roleAllName" index="chooseTermVariable.gradeState" term="term"></top-list>
+		<div class="zy_content zy_roles_box">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li ng-repeat="role in roles" ng-class="{active:$index==chooseTermVariable.roleState}" ng-click="roleChange($index)" ng-bind="role.name" ui-sref="{{role.src}}"></li>
+					<!--<li ui-sref="wrap.cityLeaderPersonal">市领导</li>-->
+				</ul>
+			</div>
+		</div>
+
+		<div class="zy_content">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li ng-repeat="grade in gradeList" ng-click="gradeTab($event,$index)" ng-class="{active:$index==chooseTermVariable.gradeState}" ng-bind="grade.SchoolSubStages"></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="zy_content">
+			<div class="zy_term_box clearfix">
+				<div class="zy_left fl">
+					<span>
+						<strong ng-bind="gradeName"> </strong>
+						中学生综合素质评价 - 
+						<b ng-bind="term">下学期</b>
+						<i class="iconfont icon-jiantou2" ng-class="{'active' : chooseTermVariable.horn}" ng-click="chooseTermBtn()"></i>
+					</span>
+					<div class="zy_choose_term" ng-class="{'active' : chooseTermVariable.list}">
+						<span ng-class="{'active':chooseTermVariable.termActive==0}" ng-click="chooseTerm($event,0)" >上学期</span>
+						<span ng-class="{'active':chooseTermVariable.termActive==1}" ng-click="chooseTerm($event,1)" >下学期</span>
+					</div>
+				</div>
+				<div class="zy_right fr">
+					<span ui-sref="wrap.evaluationCriterion({'prevPage':'schoolLeaderPersonal','roleIndex':chooseTermVariable.roleState,'roleAllName':chooseTermVariable.roleAllName,'index':chooseTermVariable.gradeState,'term':term})">评价标准</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="zyx_content  zyx_highcharts">
+			<div class="zyx_tabData">
+				<!--表头切换-->
+				<div class="graph-tabs clearfix">
+					<a href="javascript:;" data-name="1" data-url="" class="active">思想品德和公民素养</a>
+					<a href="javascript:;" data-name="2" data-url="">学业水平和学习素养</a>
+					<a href="javascript:;" data-name="3" data-url="">身体和心理健康水平</a>
+					<a href="javascript:;" data-name="4" data-url="">兴趣特长及审美素养</a>
+					<a href="javascript:;" data-name="5" data-url="">社会实践和动手能力</a>
+				</div>
+
+				<!--柱状图1 -->
+				<div id="chart-list" class="tabcon" data-name="1">
+					<div class=" chart-column-line-global">
+						<div class="chart1 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+							<div class="can-choosed">评价等级：</div>
+							<span data-level="1" class="level-a"><i></i>A（优秀）</span>
+							<span data-level="2" class="level-b"><i></i>B（良好）</span>
+							<span data-level="3" class="level-c"><i></i>C（合格）</span>
+							<span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						</div>
+					</div>
+					<script>
+						
+
+						var zyx_Data1 = {
+							"title": "年级优良率堆积柱状图1",
+							"categories": [],
+							"ytitle": "占比",
+							"totalName": "总人数",
+							"units": "人",
+							"data": [
+							]
+						};
+						var zyx_Data2 = {
+							"title": "年级优良率堆积柱状图2",
+							"categories": [],
+							"ytitle": "\u5360\u6bd4",
+							"totalName": "\u603b\u4eba\u6570",
+							"units": "\u4eba",
+							"data": []
+						};
+						var zyx_Data3 = {
+							"title": "年级优良率堆积柱状图3",
+							"categories": [],
+							"ytitle": "\u5360\u6bd4",
+							"totalName": "\u603b\u4eba\u6570",
+							"units": "\u4eba",
+							"data": []
+						};
+						var zyx_Data4 = {
+							"title": "年级优良率堆积柱状图4",
+							"categories": [],
+							"ytitle": "\u5360\u6bd4",
+							"totalName": "\u603b\u4eba\u6570",
+							"units": "\u4eba",
+							"data": []
+						};
+						var zyx_Data5 = {
+							"title": "年级优良率堆积柱状图5",
+							"categories": [],
+							"ytitle": "\u5360\u6bd4",
+							"totalName": "\u603b\u4eba\u6570",
+							"units": "\u4eba",
+							"data": []
+						};
+
+					</script>
+				</div>
+				<!--柱状图2 -->
+				<div id="chart-list" class="tabcon" data-name="2">
+					<div class=" chart-column-line-global">
+						<div class="chart2 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+							<div class="can-choosed">评价等级：</div>
+							<span data-level="1" class="level-a"><i></i>A（优秀）</span>
+							<span data-level="2" class="level-b"><i></i>B（良好）</span>
+							<span data-level="3" class="level-c"><i></i>C（合格）</span>
+							<span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						</div>
+					</div>
+				</div>
+				<!--柱状图3 -->
+				<div id="chart-list" class="tabcon" data-name="3">
+					<div class=" chart-column-line-global">
+						<div class="chart3 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+							<div class="can-choosed">评价等级：</div>
+							<span data-level="1" class="level-a"><i></i>A（优秀）</span>
+							<span data-level="2" class="level-b"><i></i>B（良好）</span>
+							<span data-level="3" class="level-c"><i></i>C（合格）</span>
+							<span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						</div>
+					</div>
+				</div>
+				<!--柱状图4 -->
+				<div id="chart-list" class="tabcon" data-name="4">
+					<div class=" chart-column-line-global">
+						<div class="chart4 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+							<div class="can-choosed">评价等级：</div>
+							<span data-level="1" class="level-a"><i></i>A（优秀）</span>
+							<span data-level="2" class="level-b"><i></i>B（良好）</span>
+							<span data-level="3" class="level-c"><i></i>C（合格）</span>
+							<span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						</div>
+					</div>
+				</div>
+				<!--柱状图5 -->
+				<div id="chart-list" class="tabcon" data-name="5">
+					<div class=" chart-column-line-global">
+						<div class="chart5 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+							<div class="can-choosed">评价等级：</div>
+							<span data-level="1" class="level-a"><i></i>A（优秀）</span>
+							<span data-level="2" class="level-b"><i></i>B（良好）</span>
+							<span data-level="3" class="level-c"><i></i>C（合格）</span>
+							<span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="zyx_content">
+			<div class="zyx_Table">
+				<h3>年级优良率统计</h3>
+				<table class="zyx_border" ng-repeat='weiduObject in allData'>
+					<thead>
+						<tr>
+							<th rowspan="2" style="width: 20%;" ng-bind="weiduObject.weiduName"></th>
+							<th colspan="2" style="width: 20%;">A（优秀）</th>
+							<th colspan="2" style="width: 20%;">B（良好）</th>
+							<th colspan="2" style="width: 20%;">C（合格）</th>
+							<th colspan="2" style="width: 20%;">D（有待改进）</th>
+						</tr>
+						<tr>
+							<th style="width: 10%;">人数</th>
+							<th style="width: 10%;">占比(%)</th>
+							<th style="width: 10%;">人数</th>
+							<th style="width: 10%;">占比(%)</th>
+							<th style="width: 10%;">人数</th>
+							<th style="width: 10%;">占比(%)</th>
+							<th style="width: 10%;">人数</th>
+							<th style="width: 10%;">占比(%)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat='ListTwo in weiduObject.data'>
+							<td ng-bind='ListTwo.className'></td>
+							<td ng-bind='ListTwo.countA'></td>
+							<td ng-bind='ListTwo.percentA'></td>
+							<td ng-bind='ListTwo.countB'></td>
+							<td ng-bind='ListTwo.percentB'></td>
+							<td ng-bind='ListTwo.countC'></td>
+							<td ng-bind='ListTwo.percentC'></td>
+							<td ng-bind='ListTwo.countD'></td>
+							<td ng-bind='ListTwo.percentD'></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<div class="mlh_content clearfix">
+	<!--左侧树 start-->
+	<div class="mlh_left fl" ng-if="variablePacket.leftTreeShow">
+		<ul class="menu">
+			<li class="item" ng-repeat="i in variablePacket.data">
+				<!--一级菜单 start-->
+				<p>
+					<em ui-sref="{{i.url}}" ui-sref-opts="{reload:true}" ng-class="{'nonpoint':i.childrenShow}">
+						<i class="iconfont" ng-class="i.icon"></i>
+						<span ng-bind="i.label"></span>
+					</em>
+				</p>
+				<!--一级菜单 end-->
+				<!--二级菜单 start-->
+				<ul class="sub_menu">
+					<li ng-repeat="j in i.children" ng-class="{'active':j.state}" ng-click="two($parent.$index,$index)">
+						<span ng-bind="j.label" ui-sref-opts="{reload:true}" ui-sref="{{j.url}}"></span>
+					</li>
+				</ul>
+				<!--二级菜单 end-->
+				<!--分割线 start-->
+				<div class="mlh_border" ng-if="!(i.label=='教学管理')"></div>
+				<!--分割线 end-->
+			</li>
+		</ul>
+	</div>
+	<!--左侧树 end-->
+	<!--右侧内容部分 start-->
+	<div ui-view class="fr toggle"></div>
+	<!--右侧内容部分 end-->
+</div>

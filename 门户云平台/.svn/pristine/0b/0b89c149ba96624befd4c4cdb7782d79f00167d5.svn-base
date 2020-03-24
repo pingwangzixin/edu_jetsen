@@ -1,0 +1,403 @@
+<div>
+    <style type="text/css">
+        .zk_main {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .zk_point {
+            cursor: pointer;
+        }
+
+        .zk_head {
+            height: 50px;
+            background: #fff;
+        }
+        .zk_head img{
+            margin: 15px 0 0 30px;
+        }
+
+        .zl_headUl li {
+            float: left;
+            line-height: 50px;
+            font-size: 12px;
+            margin-right: 30px;
+            color: #333;
+            cursor: pointer;
+        }
+        .adminInfoLi{
+            position: relative;
+        }
+        .adminInfoLi:hover>div{
+            display: block;
+        }
+        .adminInfoLi>div>p:hover{
+            background: #f0f0f0;
+        }
+        .adminInfoLi>div{
+            font-size: 16px;
+            display: none;
+            position: absolute;
+            left: -181px;
+            top: 50px;
+            width: 262px;
+            background: #fff;
+            border: 1px solid #1479bf;
+            box-shadow: 0 0 8px 0 #ccc;
+            border-radius: 5px;
+        }
+        .adminInfoLi>div>p{
+            padding: 0 20px;
+            line-height: 50px;
+            border-bottom: 1px solid #eaeaea;
+            cursor: pointer;
+
+        }
+        .adminInfoLi>div>p:last-of-type{
+            background: #f0f0f0;
+        }
+        .adminInfoLi>div>div{
+            position: absolute;
+            top: -14px;
+            right: 64px;
+            background: url(./img/triangle.png) no-repeat;
+            width: 21px;
+            height: 14px;
+        }
+        .zl_headUl li a{
+            width: 36px;
+            height: 50px;
+        }
+        .zk_banner {
+            background: #021d46;
+            height: 380px;
+        }
+
+        .banner_left {
+            margin: 66px 0 0 10px;
+        }
+
+        .banner_left>div {
+            margin-top: 31px;
+        }
+
+        .banner_right img {
+            width: 600px;
+        }
+
+        /* 活跃度 */
+        .active_module {
+            padding-top: 80px;
+            height: 260px;
+            background: #eee;
+            position: relative;
+        }
+
+        .active_main {
+            position: absolute;
+            display: flex;
+            justify-content: space-around;
+            top: -56px;
+            left: 0;
+            right: 0;
+        }
+
+        .active_main>div {
+            width: 228px;
+            height: 110px;
+            background: #fff;
+            text-align: center;
+            box-shadow: 0px 0px 3px #ccc;
+        }
+
+        .active_main>div h3 {
+            font-size: 19px;
+            font-weight: 400;
+            margin-top: 27px;
+            margin-bottom: 19px;
+        }
+
+        .active_main>div p {
+            font-size: 12px;
+        }
+
+        .active_main>div p span {
+            color: #5093e1;
+            font-size: 20px;
+        }
+
+        .active_main>div:nth-of-type(1) {
+            background: #399fdf;
+            color: #fff;
+        }
+
+        .active_main>div:nth-of-type(1) h3 {
+            font-size: 22px;
+        }
+
+        .active_main>div:nth-of-type(1) p {
+            font-size: 15px;
+        }
+
+        /* 统计部分 */
+        .zk_tongji {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .zk_tongji>div {
+            width: 210px;
+            height: 230px;
+            background: #fff;
+            box-shadow: 0px 0px 3px #ccc;
+        }
+
+        .zk_tongji>div h4 {
+            font-size: 19px;
+            margin-bottom: 21px;
+        }
+
+        .zk_tongji>div p {
+            font-size: 14px;
+            color: #999999;
+        }
+
+        .zk_tongji>div>div {
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 27px;
+            margin-bottom: 10px;
+        }
+
+        .zk_tongji>div:last-of-type {
+            width: 103px;
+        }
+
+        .zk_tongji>div:last-of-type img {
+            margin: 95px 0 10px;
+        }
+
+        /* 最近一周 */
+        .zk_mainWrpper {
+            background: #fff;
+            padding: 26px 0 37px;
+            overflow: hidden;
+        }
+
+        .week_top {
+            border-bottom: 2px solid #dddddd;
+            height: 46px;
+            margin-bottom: 15px;
+        }
+
+        .week_top h3 {
+            font-size: 20px;
+            line-height: 46px;
+            font-weight: 600;
+        }
+        .week_main{
+            height: 166px;
+        }
+        .weekDiv {
+            width: 319px;
+            height: 166px;
+            float: left;
+            margin-right: 10px;
+            box-shadow: 0px 0px 3px #ccc;
+            text-align: center;
+        }
+
+        .weekDiv img {
+            width: 116px;
+            height: 166px;
+        }
+
+        .weekDiv h4 {
+            color: #ff9000;
+            margin: 52px 0 24px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .weekDiv>div:nth-of-type(2) {
+            width: 200px;
+        }
+
+        .weekLastDiv {
+            width: 212px;
+            height: 166px;
+            box-shadow: 0px 0px 3px #ccc;
+            text-align: center;
+
+        }
+
+        .weekLastDiv p {
+            margin: 54px 0 16px;
+            font-size: 23px;
+            color: #5093e1;
+        }
+
+        .weekLastDiv img {
+            margin-top: 2px;
+        }
+        .zk_foot{
+            text-align: center;
+            margin-top: 160px;
+            font-size: 13px;
+            color: #4c4f50;
+        }
+        .zk_foot>div{
+            display: flex;
+            justify-content: space-between;
+            width: 990px;
+            margin: 0 auto;
+        }
+        .zk_foot>p{
+            margin: 25px auto 15px;
+            letter-spacing: 5px;
+        }
+    </style>
+
+
+
+    <div class="adminPage">
+        <div class="zk_head ">
+            <div class=" zk_main">
+                <div class="fl">
+                    <img src="./img/admin_logo.png" alt="">
+                </div>
+                <div class="fr">
+                    <ul class="zl_headUl">
+                        <li  ng-click="toMonitor()">  云监控 </li>
+                        <li>家校公告</li>
+                        <li>教师通知</li>
+                        <li ng-click="toPlat()" > 平台管理 </li>
+                        <li class="adminInfoLi">
+                            <i class="iconfont icon-shezhi loginIcon"></i>
+                            <div>
+                                <div>
+                                </div>
+                                <p>{{userInfo.userName}}</p> 
+                                <p>	<i class="iconfont icon-daohanglan-05"></i>&nbsp;&nbsp;{{userInfo.userRole}}</p> 
+                                <p ui-sref="secondNav.homePage" ><i class="iconfont icon-txspace2f"  ></i>&nbsp;&nbsp;我的空间</p> 
+                                <p ng-click="myAccount()"><i class="iconfont icon-book" ></i>&nbsp;&nbsp;我的账户</p> 
+                                <p ng-click="loginOut()"><i class="iconfont icon-logout"></i>&nbsp;&nbsp;退出</p> 
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="zk_banner">
+            <div class=" zk_main">
+                <div class="banner_left fl">
+                    <img src="./img/adminBannerLogo.png" alt="">
+                    <div>
+                        <img src="./img/adminBannerDec.png" alt="">
+                    </div>
+                </div>
+                <div class="banner_right fr">
+                    <img src="./img/adminBannerTable.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="active_module">
+            <div class="zk_main active_main">
+                <div>
+                    <h3>活跃度</h3>
+                    <p>查看活跃数详情&nbsp;&nbsp;&nbsp;
+                        <img src="./img/huoyuedu.png" alt="" class="zk_point">
+                    </p>
+                </div>
+                <div ng-repeat=" item in activeInfo">
+                    <h3>{{item.title}}</h3>
+                    <p><span>{{item.num}}</span>{{item.word}}</p>
+                </div>
+            </div>
+            <div class="zk_tongji zk_main">
+                <div ng-repeat=" item in adminInfo">
+                    <div>
+                        <img ng-src="{{item.src}}" alt="">
+                    </div>
+                    <h4>{{item.title}}</h4>
+                    <p>{{item.dec}}</p>
+                </div>
+                <div>
+                    <img src="./img/admin_more.png" alt="" >
+                    <p>更多</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="zk_mainWrpper">
+            <div class="zk_main">
+                <div class="week_top">
+                    <h3>最近一周</h3>
+                </div>
+                <div class="week_main">
+                    <div ng-repeat=" item in weekInfo" class="weekDiv">
+                        <div class="fl ">
+                            <img ng-src="{{item.src}}" alt="">
+                        </div>
+                        <div class="fl">
+                            <h4>{{item.num}}次</h4>
+                            <p>{{item.people}}人参与</p>
+                        </div>
+                    </div>
+                    <div class="fl weekLastDiv">
+                        <p>平台应用</p>
+                        <div>查看详情
+                            <img src="./img/admin_right.png" alt=""  class="zk_point">
+                        </div>
+                    </div>
+                </div>
+                <div class="zk_foot">
+                    <div>
+                        <p>
+                            主办：北京捷成世纪科技股份有限公司
+                        </p>
+                        <p>
+                            承办：北京捷成世纪科技股份有限公司
+                        </p>
+                        <p>
+                            技术支持：北京捷成世纪科技股份有限公司
+                        </p>
+                    </div>
+                    <p>
+                        Copyright&copy;2013-2017jetsen.com.cn All Rights Reserved
+                    </p>
+                    <img src="./img/jetsen_logo.png" alt="">
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+</div>

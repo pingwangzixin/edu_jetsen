@@ -1,0 +1,265 @@
+<!--审核精品 start-->
+<div class="mlh_right">
+	<!--审核精品标题 start-->
+	<div class="title resource clearfix" ui-sref="secondNav.leftTree.resourceManage.resourceManageList">
+		<p>
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>审核精品
+		</p>
+	</div>
+	<!--审核精品标题 end-->
+	<!--审核精品选择列表 start-->
+	<div class="title resource">
+		<ul class="mlh_select">
+			<li class="item">
+				<select>
+					<option>教师</option>
+				</select>
+			</li>
+			<li class="item">
+				<select>
+					<option>七年级</option>
+				</select>
+			</li>
+			<li class="item">
+				<select>
+					<option>语文</option>
+				</select>
+			</li>
+		</ul>
+	</div>
+	<!--审核精品选择列表 end-->
+	<!--审核精品格式和排序选择 start-->
+	<div class="title options">
+		<ul>
+			<li>
+				<em>格式：</em>
+				<span ng-repeat="i in variablePacket.format" ng-bind="i.name" ng-click="formatTab($index)" ng-class={"active":variablePacket.formatIndex==$index}>
+				</span>
+			</li>
+			<li>
+				<em>排序：</em>
+				<span ng-repeat="i in variablePacket.sort" ng-bind="i.name" ng-click="sortTab($index)" ng-class={"active":variablePacket.sortIndex==$index}>
+				</span>
+			</li>  
+		</ul>
+	</div>
+	<!--审核精品格式和排序选择 end-->
+	<!--审核精品列表项  start-->
+	<div class="list details mlh_res mlh_fine">
+		<ul class="resource_tr">
+			<li class="resource_th">资源名称</li>
+			<li class="resource_th">操作</li>
+		</ul>
+		<div ng-switch="variablePacket.formatIndex">
+			<ul class="resource_tr" ng-switch-when="0" ng-repeat="i in resourceContent.all">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.examineFine',sort:variablePacket.sortIndex,format:variablePacket.formatIndex})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th examineFine">
+					<a href="javascript:;" ng-click="adopt($index,'all',i.name)">通过</a>
+					<a href="javascript:;" ng-click="repulse($index,'all',i.name)">打回</a>
+				</li>
+			</ul>
+			<ul class="resource_tr" ng-switch-when="1" ng-repeat="i in resourceContent.pic">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.examineFine',sort:variablePacket.sortIndex,format:variablePacket.formatIndex})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th examineFine">
+					<a href="javascript:;" ng-click="adopt($index,'pic',i.name)">通过</a>
+					<a href="javascript:;" ng-click="repulse($index,'pic',i.name)">打回</a>
+				</li>
+			</ul>
+			<ul class="resource_tr" ng-switch-when="2" ng-repeat="i in resourceContent.word">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.examineFine',sort:variablePacket.sortIndex,format:variablePacket.formatIndex})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th examineFine">
+					<a href="javascript:;" ng-click="adopt($index,'word',i.name)">通过</a>
+					<a href="javascript:;" ng-click="repulse($index,'word',i.name)">打回</a>
+				</li>
+			</ul>
+			<ul class="resource_tr" ng-switch-when="3" ng-repeat="i in resourceContent.video">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.examineFine',sort:variablePacket.sortIndex,format:variablePacket.formatIndex})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th examineFine">
+					<a href="javascript:;" ng-click="adopt($index,'video',i.name)">通过</a>
+					<a href="javascript:;" ng-click="repulse($index,'video',i.name)">打回</a>
+				</li>
+			</ul>
+			<ul class="resource_tr" ng-switch-when="4" ng-repeat="i in resourceContent.voice">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.examineFine',sort:variablePacket.sortIndex,format:variablePacket.formatIndex})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th examineFine">
+					<a href="javascript:;" ng-click="adopt($index,'voice',i.name)">通过</a>
+					<a href="javascript:;" ng-click="repulse($index,'voice',i.name)">打回</a>
+				</li>
+			</ul>
+			<ul class="resource_tr" ng-switch-when="5" ng-repeat="i in resourceContent.ppt">
+				<li class="resource_th">
+					<div class="res_title">
+						<a href="javascript:;" ng-bind="i.name" ui-sref="secondNav.leftTree.resourceManageResourcesDetails({page:'secondNav.leftTree.resourceManage.examineFine',sort:variablePacket.sortIndex,format:variablePacket.formatIndex})" ui-sref-opts="{reload:true}"></a>
+						<span ng-if="i.fine">校精品</span>
+					</div>
+					<div class="res_detail">
+						<span class="res_name">
+							<img ng-src="{{i.src}}"/>
+							<em ng-bind="i.uploader"></em>
+						</span>
+						<span class="res_site">
+							<i class="iconfont icon-location"></i>
+							<em ng-bind="i.site"></em>
+						</span>
+						<span class="res_time">
+							<i class="iconfont icon-lishi"></i>
+							<em ng-bind="i.time"></em>
+						</span>
+						<span class="res_browse">
+							<i class="iconfont icon-kejian"></i>
+							<em ng-bind="i.browse"></em>
+						</span>
+						<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em ng-bind="i.download"></em>
+						</span>
+					</div>
+				</li>
+				<li class="resource_th examineFine">
+					<a href="javascript:;" ng-click="adopt($index,'ppt',i.name)">通过</a>
+					<a href="javascript:;" ng-click="repulse($index,'ppt',i.name)">打回</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--审核精品列表项  end-->
+</div>
+<!--审核精品 end-->
+<!--确认框及提示框-->
+<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk" mask-zindex='variablePacket.maskZindex'></prompt-box>
+

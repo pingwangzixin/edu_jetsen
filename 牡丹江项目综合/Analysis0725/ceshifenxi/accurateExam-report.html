@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>任课老师组</title>
+    <link rel="stylesheet" href="../css/reset.css" charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="../css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+    <link rel="stylesheet" href="../css/daterangepicker.css" />
+    <script type="text/javascript" src="../common/js/jquery-2.2.0.min.js"></script>
+    <script src="../common/js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../common/js/daterangepicker.js" type="text/javascript" charset="utf-8"></script> 
+	<script src="../common/js/LAB.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/index.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../common/js/paging.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+	    $LAB.setGlobalDefaults({
+	        CacheBust: true // 是否加上尾巴(清缓存)，true 加尾巴无缓存
+	    });
+	</script>
+</head>
+<body>
+
+<header class="header clearfix"></header>
+<!--中心内容-->
+<div class="main clearfix">
+    <!--右侧-->
+    <div class="main_right" style="width: 90%;margin: 30px auto 50px; padding: 0;">
+    	<div class="zyx_PreciseDetails">
+    		<div class="title">
+    			<h3>牡丹江市第十四中学初二10月份数学测试考试</h3>
+    			<div class="exam-score">
+                	<span>
+                		考试时间：
+                		<strong>2016-05-09</strong>
+                	</span>
+                	<span>
+                		考试学校：
+                		<strong>牡丹江市第十四中学</strong>
+                	</span>
+                	<span>
+                		学校ID：
+                		<strong>193</strong>
+                	</span>
+                	<span>
+                		考试年级:
+                		<strong>初二</strong>
+                	</span>
+                	<span>
+                		考试类型:
+                		<strong>月考</strong>
+                	</span>
+                	<span>
+                		考试ID:
+                		<strong>45</strong>
+                	</span>
+                </div>
+    		</div>
+    		<div class="zyx_reportTab">
+    			<span class="active" tab='0'>个人报告</span>
+    			<span tab='1'>班级报告</span>
+    			<span tab='2'>年级报告</span>
+    		</div>
+    		<table class="zyx_reportTable">
+    			<thead>
+    				<tr>
+    					<th>报告编号</th>
+    					<th>报告名称</th>
+    					<th>学生姓名</th>
+    					<th>成绩</th>
+    					<th>总分</th>
+    					<th>生成时间</th>
+    					<th>操作</th>
+    				</tr>
+    			</thead>
+    			<tbody class="repeat_td">
+    				<!--<tr>
+    					<td>RS156204</td>
+    					<td>刘雨航同学月考分析报告(初中数学)</td>
+    					<td>刘雨航</td>
+    					<td>64</td>
+    					<td>120</td>
+    					<td>2018-10-24 09:58</td>
+    					<td>查看</td>
+    				</tr>-->
+    			</tbody>
+    		</table>
+    		<div class="zyx_reportPage">
+    			<div class="zyx_pagger-box zyx_pagger" id="page"></div>
+    		</div>
+    	</div>
+    </div>
+</div>
+</body>
+ <script>
+    $('#page').paging({
+        initPageNo: 1, // 初始页码
+        totalPages: 5, //总页数
+        slideSpeed: 500, // 缓动速度。单位毫秒
+        jump: false, //是否支持跳转
+        callback: function(page) { // 回调函数
+            $.ajax({
+	            type: "GET",
+	            url: "../js/personalReport.json",
+	            success: function(data){
+	            	$('.repeat_td').empty();
+	            	var oneClass = data.one.reportList;
+                    var newArr = [];
+					for (var i = 0; i < oneClass.length; i += 10) {
+					    newArr.push(oneClass.slice(i, i + 10));
+					}
+					var pageSize = newArr.length;
+                    for(var i=0;i<5;i++){
+                    	if(page==i+1){
+		                    var html = '';
+		                    $.each(newArr[i], function(commentIndex, comment){
+		                           html += '<tr>'+
+						    					'<td>RS'+ comment.id +'</td>'+
+						    					'<td>'+ comment.name  +'</td>'+
+						    					'<td>'+ comment.studentName  +'</td>'+
+						    					'<td>'+ comment.score  +'</td>'+
+						    					'<td>'+ comment.totalScore  +'</td>'+
+						    					'<td>'+ comment.createtime  +'</td>'+
+						    					'<td>查看</td>'+
+						    				'</tr>'
+		                    });
+		            	}
+                    }
+	            	$('.repeat_td').html(html);
+               }
+	        });
+        }
+    })
+    
+    $('.zyx_PreciseDetails .zyx_reportTab span').on("click", function() {
+		$(this).addClass("active").siblings("span").removeClass("active");
+		if($(this).attr('tab') == 0){
+			$('#page').paging({
+		        initPageNo: 1, // 初始页码
+		        totalPages: 5, //总页数
+		        slideSpeed: 500, // 缓动速度。单位毫秒
+		        jump: false, //是否支持跳转
+		        callback: function(page) { // 回调函数
+		            $.ajax({
+			            type: "GET",
+			            url: "../js/personalReport.json",
+			            success: function(data){
+			            	$('.repeat_td').empty();
+			            	var oneClass = data.one.reportList;
+		                    var newArr = [];
+							for (var i = 0; i < oneClass.length; i += 10) {
+							    newArr.push(oneClass.slice(i, i + 10));
+							}
+		                    for(var i=0;i<5;i++){
+		                    	if(page==i+1){
+				                    var html = '';
+				                    $.each(newArr[i], function(commentIndex, comment){
+				                           html += '<tr>'+
+								    					'<td>RS'+ comment.id +'</td>'+
+								    					'<td>'+ comment.name  +'</td>'+
+								    					'<td>'+ comment.studentName  +'</td>'+
+								    					'<td>'+ comment.score  +'</td>'+
+								    					'<td>'+ comment.totalScore  +'</td>'+
+								    					'<td>'+ comment.createtime  +'</td>'+
+								    					'<td>查看</td>'+
+								    				'</tr>'
+				                    });
+				            	}
+		                    }
+			            	$('.repeat_td').html(html);
+		               }
+			        });
+		        }
+		    })
+		}else if($(this).attr('tab') == 1){
+			$('#page').paging({
+		        initPageNo: 1, // 初始页码
+		        totalPages: 5, //总页数
+		        slideSpeed: 500, // 缓动速度。单位毫秒
+		        jump: false, //是否支持跳转
+		        callback: function(page) { // 回调函数
+		            $.ajax({
+			            type: "GET",
+			            url: "../js/personalReport.json",
+			            success: function(data){
+			            	$('.repeat_td').empty();
+			            	var twoClass = data.two.reportList;
+		                    var newArr = [];
+							for (var i = 0; i < twoClass.length; i += 10) {
+							    newArr.push(twoClass.slice(i, i + 10));
+							}
+		                    for(var i=0;i<5;i++){
+		                    	if(page==i+1){
+				                    var html = '';
+				                    $.each(newArr[i], function(commentIndex, comment){
+				                           html += '<tr>'+
+								    					'<td>RS'+ comment.id +'</td>'+
+								    					'<td>'+ comment.name  +'</td>'+
+								    					'<td>'+ comment.studentName  +'</td>'+
+								    					'<td>'+ comment.score  +'</td>'+
+								    					'<td>'+ comment.totalScore  +'</td>'+
+								    					'<td>'+ comment.createtime  +'</td>'+
+								    					'<td>查看</td>'+
+								    				'</tr>'
+				                    });
+				            	}
+		                    }
+			            	$('.repeat_td').html(html);
+		               }
+			        });
+		        }
+		    })
+		}else if($(this).attr('tab') == 2){
+			$('#page').paging({
+			        initPageNo: 1, // 初始页码
+			        totalPages: 1, //总页数
+			        slideSpeed: 500, // 缓动速度。单位毫秒
+			        jump: false, //是否支持跳转
+			        callback: function(page) { // 回调函数
+			            $.ajax({
+				            type: "GET",
+				            url: "../js/personalReport.json",
+				            success: function(data){
+				            	$('.repeat_td').empty();
+				            	var threeClass = data.three.reportList;
+			                    var newArr = [];
+								for (var i = 0; i < threeClass.length; i += 10) {
+								    newArr.push(threeClass.slice(i, i + 10));
+								}
+			                    for(var i=0;i<5;i++){
+			                    	if(page==i+1){
+					                    var html = '';
+					                    $.each(newArr[i], function(commentIndex, comment){
+					                           html += '<tr>'+
+									    					'<td>RS'+ comment.id +'</td>'+
+									    					'<td>'+ comment.name  +'</td>'+
+									    					'<td>'+ comment.studentName  +'</td>'+
+									    					'<td>'+ comment.score  +'</td>'+
+									    					'<td>'+ comment.totalScore  +'</td>'+
+									    					'<td>'+ comment.createtime  +'</td>'+
+									    					'<td>查看</td>'+
+									    				'</tr>'
+					                    });
+					            	}
+			                    }
+				            	$('.repeat_td').html(html);
+			               }
+				        });
+			        }
+			    })
+			}
+	});
+</script>
+</html>

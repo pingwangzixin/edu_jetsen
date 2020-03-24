@@ -1,0 +1,23 @@
+<div class="main_width">
+	<div class="zy_guide_tit">
+		<div class="clearfix">
+			<p class="fl">
+				<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ng-click="goBack()"></i>
+				<span ng-bind = 'names'></span>
+			</p>
+		</div>
+	</div>
+	<div class="zy_guide_tit mlh_taskcont" ng-if="variablePacket.types=='word'">
+		<!--<iframe ng-src="{{ressource}}" ></iframe>-->
+		<img ng-src="{{ressource}}"  >
+	</div>
+	<div class="zy_guide_tit mlh_taskPic" ng-if="variablePacket.types=='picture'">
+		<img ng-src="{{ressource}}"  >
+	</div>
+	
+	<div  class="zy_guide_tit mlh_taskPic"  id="showplayer">
+	</div>
+	<!--<div class="zy_guide_tit mlh_taskPic" id="showplayer"> 
+		<em>音乐插件放置</em>
+	</div>-->
+</div>

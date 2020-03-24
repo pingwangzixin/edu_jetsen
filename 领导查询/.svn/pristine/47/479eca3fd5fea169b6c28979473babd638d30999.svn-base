@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			var a=10; b=20; c=4;  
+			var d = ++b+c+a++;
+//			console.log(++b)
+//			console.log(d)
+			console.log(++b+c+a++)
+			console.log(0.4*0.2);
+			var aa = (1,2,3);
+			console.log(aa)
+			
+			var arr=[1,2,3,4];
+   			var arr2=new Array(1,2,3,4);
+   			console.log(arr == arr2)
+// 			arr2.push(5);
+   			console.log(arr2)
+   			console.log(arr)
+   			
+   			var arr3 = arr;
+   			console.log(arr3 == arr);
+   			arr3.push(7)
+   			console.log(arr3)
+   			console.log(arr)
+   			
+   			var arr4 = [1,2,3,4];
+   			console.log(arr4 == arr);
+   			
+   			arr4.push(6)
+   			console.log(arr4)
+   			console.log(arr)
+   			
+   			for(var i=0,k=0;i<3,k<4;i++,k++){
+   				console.log(i+k);
+   			}
+   			console.log(i+k);
+   			
+   			for(var i=0,k=0;i<10,k<8;i++,k++){
+   				console.log(i+k);
+   			}
+   			console.log(i+k);
+   			var w = 12;
+   			console.log(w)
+   			var w =5; 
+   			console.log(w)
+   			
+   			
+   			console.log(w = 12,5,8);
+   			
+   			/*var zz = 5;
+   			function  zy(){
+   				var zz = 10;
+   				 return  zz;
+   			}
+   			
+   			var ss = zy();
+   			console.log(ss);*/
+   			
+   			
+   			console.log(100%46)
+   			
+   			var len = 3;
+   			for(var i =0 ; i<len;i++){
+//				console.log(i%len)
+   			}
+   			var j=0;
+   			
+   			for(;j<3;j++){
+// 				alert(j);
+   			}
+// 			alert(j);
+   			
+		</script>
+			<script type="text/javascript">
+			while(true){
+			       var i = 1;
+			       break;
+			}
+		// alert(i);
+		
+		for(var i=0;i<10;i++){
+			setTimeout(function (){
+				console.log(i);
+			},10)
+		}
+		console.log(i);
+		</script>
+		<!--<input type="button" name="" value="点" id="button" />
+		
+		<input type="text" name="" id="text" value="" style="display: none;" />
+		
+		<script>
+			console.log(document.querySelector('#button'))
+			document.querySelector('#button').onclick = function (){
+				document.getElementById('text').style.display = 'block';
+			}
+		</script>-->
+	</body>
+</html>

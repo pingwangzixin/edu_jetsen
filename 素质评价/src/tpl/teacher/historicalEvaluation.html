@@ -1,0 +1,64 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<div class="zy_content zy_return_box clearfix">
+			<div class="zy_left fl">
+				<span ui-sref="wrap.teacherPersonal({index:index,roleIndex:teacherIn,term:term})"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<em>历史评价</em>
+			</div>
+			<div class="zy_right fr">
+				<select name="" class="zy_school_year" ng-change='selectSchoolYear(x)' ng-model="x" >
+					<option ng-repeat="nian in schoolYears">{{nian}}</option>
+					<!--<option value="2">2017-2018学年</option>-->
+				</select>
+			</div>
+		</div>
+		
+		<div class="zy_content zy_history_scroe">
+			<p>上学期</p>
+			<table border="" cellspacing="" cellpadding="">
+				<tr>
+					<th width="190px">学生</th>
+					<th>思想品德和公民素养</th>
+					<th>学业水平和学习素养</th>
+					<th>身体和心理健康水平</th>
+					<th>兴趣特长及审美素养</th>
+					<th>社会实践和动手能力</th>
+				</tr>
+				<tr ng-repeat="stuObject in jdata">
+					<td ng-bind="stuObject.stuName"></td>
+					<td ng-bind="(stuObject.data)[2].level"></td>
+					<td ng-bind="(stuObject.data)[1].level"></td>
+					<td ng-bind="(stuObject.data)[4].level"></td>
+					<td ng-bind="(stuObject.data)[0].level"></td>
+					<td ng-bind="(stuObject.data)[3].level"></td>
+					
+					<!--<td ng-bind="jibie.level" ng-repeat="jibie in stuObject.data"></td>-->
+				</tr>
+			</table>
+		</div>
+		
+		<div class="zy_content zy_history_scroe">
+			<p>下学期</p>
+			<table border="" cellspacing="" cellpadding="">
+				<tr>
+					<th width="190px">学生</th>
+					<th>思想品德和公民素养</th>
+					<th>学业水平和学习素养</th>
+					<th>身体和心理健康水平</th>
+					<th>兴趣特长及审美素养</th>
+					<th>社会实践和动手能力</th>
+				</tr>
+				<tr ng-repeat="stuxia in jdataXia">
+					<td ng-bind="stuxia.stuName"></td>
+					<td ng-bind="(stuxia.data)[2].level"></td>
+					<td ng-bind="(stuxia.data)[1].level"></td>
+					<td ng-bind="(stuxia.data)[4].level"></td>
+					<td ng-bind="(stuxia.data)[0].level"></td>
+					<td ng-bind="(stuxia.data)[3].level"></td>
+				</tr>
+			</table>
+		</div>
+		
+	</div>
+</div>

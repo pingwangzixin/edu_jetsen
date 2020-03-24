@@ -1,0 +1,124 @@
+<div class="main_width">
+	
+	<div class="zy_return_resource_main">
+		<div class="zy_student_resource_list clearfix">
+			<ul class="clearfix">
+				<li ng-repeat="i in variablePacket.stuBackResourceList" ng-click="resourceBoxFn(i.ossFileName,i.resourceName,i.resourceType)">
+					<div class="zy">
+						<img src="{{i.thumPath}}"/>
+						<b ng-click="delResource($event,$index,i.id,i.resourceName)"><i class="iconfont icon-shanchu"></i>删除</b>
+					</div>
+					<span ng-bind="i.resourceName"></span>
+				</li>
+				<li><strong class="zy_upload_plus" ng-click="resourceUploadFn()"><i class="iconfont icon-jiahao"></i></strong></li>
+			</ul>
+		</div>
+	</div>
+	
+	<!--查看资源详情弹框-->
+	<div class="gy_del_down zy_resource_box" ng-if="variablePacket.resourceBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con mlh_con">
+	    	<div class="zy_resource_box_tit">
+	    		<b ng-bind="variablePacket.clickResourceName"></b>
+	    		<i class="iconfont icon-guanbi1 fr" ng-click="variablePacket.resourceBox=false"></i>
+	    	</div>
+	    	<div class="zy_resource_box_main">
+				<div ng-if='variablePacket.backResourceType == "pic"'>
+					<img src="{{variablePacket.imagePath}}"/>
+				</div>
+				<div class="zyx_ResLineVideo bofangqi" id="showplayer">
+					<div class="loadFlashWrap">
+						<p>您的浏览器还没有安装Flash插件</p>
+						<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+					</div>
+				</div>
+				<div class="zyx_ResLinePDF mlh_pdf" ng-if='variablePacket.backResourceType == "pdf"'>
+					<iframe width="854" height="511" src="{{variablePacket.pdfPath}}"></iframe>
+				</div>
+				<div ng-show="variablePacket.convertState == '2'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>资源转码失败!</p>
+						</div>
+					</div>
+				</div>
+				<div ng-show="variablePacket.convertState == '0'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>该资源正在转码中......</p>
+						</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--上传资源弹框-->
+	<div class="gy_del_down zy_resource_upload_box" ng-show="variablePacket.resourceUpload">
+		<div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<div class="zy_resource_box_tit">
+	    		<b>上传资料</b>
+	    		<i class="iconfont icon-guanbi1 fr" ng-click="closeBox()"></i>
+	    	</div>
+	    	<div class="zmj_upload_file">
+	    		<div class="zy_resource_tit_build" style="margin: 15px 0;">
+	    			<em>资源名称<i class="star">*</i></em>
+	    			<input type="text"  id='backResourceName' required />
+	    			<b class="zyx_prompt" ng-if="variablePacket.ProvingUsername">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请输入资源名称</span>
+					</b>
+	    		</div>
+				<div class="uploadBox">           
+				    <div class="uploadFile">             
+						 <i class="iconfont icon-jiahao"  id="picker"></i>
+                         <span id="wenben"><p id = "wenjian">点击+上传文件</p></span>
+					</div>
+					<ul id="theList" class="fileType">
+						
+					</ul>
+					
+				</div>
+				<p class="uploadhint">提示：上传插件所支持的格式要求<span>（文档、视频、音频、图片、PPT）</span>上传资源即表示您同意捷成世纪上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+			</div>
+	    	<!--<div class="zy_resource_type_main ">
+	    		<div class="zy_resource_tit_build">
+	    			<em>资源名称<i class="star">*</i></em>
+	    			<input type="text" name="" id="" value="" placeholder="" />
+	    		</div>
+	    		<div class="zy_upload_step">
+	    			<i id="picker" class="iconfont icon-jiahao"></i>
+	    			<p>浏览文件或把文件拖拽到这里</p>
+	    		</div>
+				<ul id="theList" class="fileType">
+					
+				</ul>
+				<p>提示：上传插件所支持的格式要求<span>（文档、视频、音频、图片、PPT）</span>上传资源即表示您同意捷成世纪上传服务条款，请勿上
+				传色情、反动等违法违规的内容。
+				</p>
+	    	</div>-->
+	    	<div class="zy_btn_group zy_btn_group_center">
+				<button class="zy_student_task_submit" ng-click="submitFn()">提交</button>
+			</div>
+		</div>
+	</div>
+	
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+    <!--提示框-->
+	<div class="gy_del_down zmj_warn" style="display: none;">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<div class="zmj_con">
+	    		<img src="./img/zyx_delwram.png"/> <!--感叹号-->
+	    		<ul>
+	    			<li id="warntitle"></li>
+	    		</ul>
+	    	</div>
+		</div>
+	</div>
+	
+</div>
+

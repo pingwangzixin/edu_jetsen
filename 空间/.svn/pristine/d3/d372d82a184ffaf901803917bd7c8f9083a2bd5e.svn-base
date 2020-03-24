@@ -1,0 +1,20 @@
+<div>
+	<div class="zyx_greenbox zyx_classmotto">
+		<div class="zyx_whitebox">
+			<div class="zyx_title zk_classMottoTitle">
+				<!--<h3>班训：{{content}}</h3>-->
+				<p>班训：</p>
+				<div ng-if="!variable.editFlag" class="zyx_edit" ui-sref='wrap.classSpace.classMotto.classMottoEdit({id:id})'>
+					<i class="iconfont icon-bianji2"></i>
+					<b ng-if="variable.cuid=variable.userId">编辑</b>
+				</div>
+			</div>
+			<div class="zk_classmotto_img">
+				<h3 ng-bind-html="content | trustHtml"></h3>
+
+				<!--<img src="./img/classmottoImg.jpg" alt="" />-->
+				<img width="400" height="435" ng-src="{{imagePath}}"/>
+			</div>
+		</div>
+	</div>
+</div>

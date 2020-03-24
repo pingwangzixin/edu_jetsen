@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+	    
+		<title>课堂录播</title>
+		<link rel="stylesheet" href="../css/reset.css" charset="utf-8" />
+		<link rel="stylesheet" href="../css/public.css"/>
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		
+		<!--我的引用-->
+		<link rel="stylesheet" href="../css/tsakCenter.css" charset="utf-8"/>
+		<link rel="stylesheet" href="../css/classRecord.css" charset="utf-8"/>
+		<script type="text/javascript" src="../common/My97DatePicker/WdatePicker.js"></script>
+	</head>
+	<body class="classRecord">
+		<div class="header clearfix"></div>
+		<div class="main clearfix">
+			 <div class="main_right">
+					<ul class="list_tit clearfix">
+						<li><a href="classRecord.html">云课堂</a></li>
+						<li><a href="JavaScript:;" class="list_tit_active">课堂录播</a></li>
+						<li><a href="studentPractice.html" >学生实践</a></li>
+						<li class="back"><a href="classRecorded.html"><img src="../img/back.png"/></a></li>
+				    </ul>
+					<div class="r_border">
+						 <div class="r_border_m_b recordedvideo_content">
+						 	  <div class="recordedvideo_info">
+						 	  	   正在播放：<span>五年级语文</span>
+						 	  	         <span class="fr">2018年2月14日</span>
+						 	  </div>
+						 	  <div class="recordedvideo_show">
+						 	  	  <div class="recordedvideo_video"></div>
+						 	  	  <p class="recordedvideo_count">观看次数 : <span>2312</span></p>
+						 	  </div>
+						 </div>
+						  	    
+					</div>
+		    </div>
+			
+			
+		</div>
+		
+	</body>
+</html>

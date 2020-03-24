@@ -1,0 +1,74 @@
+
+<div ng-cloak>
+	<div class="main_width">
+		<div class="zmj_upload_head clearfix">
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.resourceType"></i>
+			<span>上传资源</span>
+			<button class="zmj_resource_uploadBtn" ng-click="shangchuan()">上传</button>
+		</div>
+		<div class="zmj_upload_content">
+		    <form name="someForm" novalidate>
+				<ul class="zmj_upload_info">
+					<li>
+						<em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科<i class="star">*</i></em>
+							<select ng-options="i.name for i in variablePacket.selectSubject" ng-model="selectedSubject" ng-click='Subject(selectedSubject)'>
+								<option value="">请选择学科</option>
+							</select>
+						<b ng-if="variablePacket.ProvingSubject" >
+							<i class="iconfont icon-gantanhao"></i>
+							<span>请选择学科</span>
+						</b>
+					</li>
+					<li class="zmj_upload_catalogue">
+						<em>章节目录<i class="star">*</i></em>
+					    <span ng-click="verifySubject()"><choice-version tree-show-situation="variablePacket.leftTreeShow" title-bar="variableGlobal.libraryTitleBar" zjtree="selectedSubject"></choice-version></span>
+					    <b ng-if="variablePacket.ProvingChapter" >
+							<i class="iconfont icon-gantanhao"></i>
+							<span>请选择章节目录</span>
+						</b>
+					</li>
+					<li>
+						<em>资源名称<i class="star">*</i></em>
+						<input type="text" name="resourceName" ng-model="variablePacket.resourceName" required ng-focus="focus()"/>
+					    <b ng-if="(someForm.resourceName.$error.required && someForm.resourceName.$touched  )">
+							<i class="iconfont icon-gantanhao"></i>
+							<span>请输入资源名称</span>
+						</b>	
+					</li>
+					<li>
+						<em>&nbsp;&nbsp;&nbsp;关键字&nbsp;</em>
+						<input type="text" name="keywords" ng-model="variablePacket.keywords"  maxlength="200" />
+					</li>
+				</ul>
+		    </form>	
+			    <div class="zmj_upload_file">
+					<p>文件上传</p>
+					<div class="uploadBox">           
+					    <div class="uploadFile">             
+							 <i class="iconfont icon-jiahao"  id="picker"></i>
+	                         <p><span>游览文件</span>或把文件拖拽到这里</p>
+						</div>
+						<ul id="theList" class="fileType">
+							
+						</ul>
+					</div>
+					<p class="uploadhint">提示：上传插件所支持的格式要求<span>（文档、视频、音频、图片、PPT）</span>上传资源即表示您同意捷成世纪上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+			   </div>
+		</div>
+	</div>
+
+   <!--提示框-->
+   <prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+   
+	<div class="gy_del_down zmj_warn" style="display: none;">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<div class="zmj_con">
+	    		<img src="./img/zyx_delwram.png"/> <!--感叹号-->
+	    		<ul>
+	    			<li id="warntitle"></li>
+	    		</ul>
+	    	</div>
+		</div>
+	</div>
+</div>

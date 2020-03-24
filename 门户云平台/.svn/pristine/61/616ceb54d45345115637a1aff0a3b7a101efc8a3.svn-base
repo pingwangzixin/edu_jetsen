@@ -1,0 +1,111 @@
+
+<div class="main_width">
+	<div class="zy_return_situation">
+		<!--需要回传显示-->
+		<div class="zy_student_main_wrap zy_classroom_student_main clearfix">
+			<!--左：学生回传-->
+			<div class="zy_student_pass_wrap fl">
+				<!--资源回显-->
+				<div class="zy_student_resource_main">
+					<p><span ng-bind="variablePacket.stuName">张燕霞</span>课堂上传</p>
+					<div class="zy_student_test_list">
+						<ul class="clearfix">
+							<!--<li ui-sref="secondNav.returnTest" ng-repeat="i in variablePacket.stuRes">-->
+								<!--<span class="fl">垃圾发电量卡萨解放路卡士大夫</span>-->
+								<!--<i class="iconfont icon-icon_arrow_right fr"></i>-->
+							<!--</li>-->
+							<li ng-click="returnTest(i.jsonQuz)"  ng-if="i.type== 'quz'" ng-repeat="i in variablePacket.stuRes">
+								<label>
+									<span class="fl" ng-bind="i.filename" title="{{i.filename}}">垃圾发电量卡萨解放路卡士大夫</span>
+									<i class="iconfont icon-icon_arrow_right fr"></i>
+								</label>
+							</li>
+						</ul>
+					</div>
+					<div class="zy_student_resource_list">
+						<ul class="clearfix">
+							<li ng-click="resourceBoxFn(i)" ng-if="i.type != 'quz'" ng-repeat="i in variablePacket.stuRes">
+								<label >
+									<img ng-src="{{i.thumbnaiImg}}" onerror="this.onerror='';src='./img/error72.png'"/>
+									<span ng-bind="i.filename" title="{{i.filename}}"></span>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--评价-->
+				<div class="zy_evaluate_wrap">
+					<p>评价</p>
+					<div class="zy_evaluate_main clearfix">
+						<div class="zy_evaluate_state clearfix">
+							<span class="fl">课堂状态</span>
+							<ul class="fl">
+								<li ng-class="{'active':variablePacket.classState==0}" ng-click="classStateFn(0)">优秀</li>
+								<li ng-class="{'active':variablePacket.classState==1}" ng-click="classStateFn(1)">正常</li>
+								<li ng-class="{'active':variablePacket.classState==2}" ng-click="classStateFn(2)">较差</li>
+							</ul>
+						</div>
+						<div class="zy_textarea_box">
+							<textarea name="" rows="" cols="" ng-model="variablePacket.textearaWord" ng-change="statisticsWord()"></textarea>
+							<p>
+								<span ng-bind="variablePacket.inputtedWordNum">0</span>/<span ng-bind="variablePacket.limitWordNum">255</span>
+							</p>
+						</div>
+						<button class="fr" ng-click="submitWord()">提交</button>
+					</div>
+				</div>
+			</div>
+			<!--右：学生列表-->
+			<div class="zy_student_wrap fr">
+				<p>学生姓名</p>
+				<div class="zy_student_right_main">
+					<div class="zy_student_list">
+						<ul class="clearfix" ng-class="{'active':variablePacket.listBorder}">
+							<li class="zy_normal" ng-repeat="i in variablePacket.stuList.normal" ng-click="stuInfo($index,i,0)">
+								<span ng-bind="i.name"></span>
+								<b id="{{i.id}}">正常</b>
+							</li>
+							<li class="zy_excellent" ng-repeat="i in variablePacket.stuList.excellent" ng-click="stuInfo($index,i,1)" >
+								<span ng-bind="i.name"></span>
+								<b id="{{i.id}}">优秀</b>
+							</li>
+							<li class="zy_poor" ng-repeat="i in variablePacket.stuList.poor" ng-click="stuInfo($index,i,2)" >
+								<span ng-bind="i.name"></span>
+								<b id="{{i.id}}">较差</b>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--资源详情弹框-->
+	<div class="gy_del_down zy_resource_box" ng-show="variablePacket.resourceBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<div class="zy_resource_box_tit">
+	    		<b ng-bind="variablePacket.filename ">分享分享分享分享分享分享分享分享分享分享分享</b>
+	    		<i class="iconfont icon-guanbi1 fr" ng-click="variablePacket.resourceBox=false"></i>
+	    	</div>
+	    	<div class="zy_resource_box_main" >
+				<!--<img  ng-repeat="img in variablePacket.imgs" ng-src="{{img}}"/>-->
+				<ul ng-show="variablePacket.resourceVo.type=='image' || variablePacket.resourceVo.type=='document'">
+					<li ng-repeat="x in variablePacket.resourceVo.imgs">
+						<a href="{{x}}" target="_blank"><img ng-src="{{x}}"/></a>
+					</li>
+				</ul>
+				<div ng-show="variablePacket.resourceVo.type=='video' || variablePacket.resourceVo.type=='audio'">
+					<div id="videoFlash" >
+						<p>您的浏览器还没有安装Flash插件</p>
+						<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	
+</div>

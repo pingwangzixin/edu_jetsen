@@ -1,0 +1,127 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<top-list page="prevPageNo"></top-list>
+		<div class="zy_content">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li class="active">八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+					<li>八年级（1）班</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="zy_content">
+			<div class="zy_term_box clearfix">
+				<div class="zy_left fl">
+					<span>
+						<strong>七年级(1)班 </strong>
+						中学生综合素质评价 - 
+						<b>下学期</b>
+						<i class="iconfont icon-jiantou2" ng-class="{'active' : chooseTermVariable.horn}" ng-click="chooseTermBtn()"></i>
+					</span>
+					<div class="zy_choose_term" ng-class="{'active' : chooseTermVariable.list}">
+						<span class="active" ng-click="chooseTerm($event)">上学期</span>
+						<span ng-click="chooseTerm($event)">下学期</span>
+					</div>
+				</div>
+				<div class="zy_right fr">
+					<span ui-sref="wrap.evaluationCriterion">评价标准</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="zyx_content">
+			<div class="zyx_tabData">
+				<!--表头切换-->
+				<div class="graph-tabs clearfix">
+					<a href="javascript:;" data-name="1" data-url="" class="active">思想品德和公民素养</a>
+					<a href="javascript:;" data-name="2" data-url="">学业水平和学习素养</a>
+					<a href="javascript:;" data-name="3" data-url="">身体和心理健康水平</a>
+					<a href="javascript:;" data-name="4" data-url="">兴趣特长及审美素养</a>
+					<a href="javascript:;" data-name="5" data-url="">社会实践和动手能力</a>
+				</div>
+				
+				
+				<!--柱状图1 -->
+				<div id="chart-list" class="tabcon" data-name="1" >						
+					<div class="white-box chart-column-line-global">
+						<div class="chart1 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+				</div>
+				<!--柱状图2 -->	
+				<div id="chart-list" class="tabcon" data-name="2">						
+					<div class="white-box chart-column-line-global">
+						<div class="chart2 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+				</div>
+				<!--柱状图3 -->	
+				<div id="chart-list" class="tabcon" data-name="3" >						
+					<div class="white-box chart-column-line-global">
+						<div class="chart3 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+				</div>
+				<!--柱状图4 -->
+				<div id="chart-list" class="tabcon" data-name="4" >						
+					<div class="white-box chart-column-line-global">
+						<div class="chart4 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+				</div>
+				<!--柱状图5 -->
+				<div id="chart-list" class="tabcon" data-name="5" >						
+					<div class="white-box chart-column-line-global">
+						<div class="chart5 charts-btb" style="height:350px;"></div>
+						<div class="chart-column-legend">
+					        <div class="can-choosed">评价等级：</div>
+					        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+					        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+					        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+					        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+					    </div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</div>
+</div>

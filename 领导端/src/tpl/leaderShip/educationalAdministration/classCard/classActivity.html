@@ -1,0 +1,70 @@
+<div class="mlh_classNotice mlh_classActivity">
+	<!--班级信息特色活动列表 start-->
+	<div ng-if="variablePacket.type=='class'">
+		<!--标题 显示 start-->
+		<div class="title" ng-if='(variablePacket.range=="school"&&variablePacket.nav=="school") || variablePacket.range=="class"'>
+			<a href="javascript:;" ui-sref="secondNav.leftTree.publicEdit({state:'classActivity'})" >
+				<i class="iconfont icon-jiahao"></i>
+				创建特色活动
+			</a>
+		</div>	
+		<!--标题 显示 end-->
+		<!--列表显示 start-->
+		<div class="list" ng-repeat="i in publicityData.publicity">
+			<ul>
+				<li>
+					<div class="gongshi_left">
+						<span class="gongshi activity">活动</span>
+						<a href="javascript:;" ui-sref="secondNav.leftTree.publicDetails({state:'classActivity',title:i.title})" class="name" ng-bind="i.title"></a>
+					</div>
+					<time class="time" ng-bind="i.time"></time>
+					<div class="operation" ng-if='(variablePacket.range=="school"&&variablePacket.nav=="school") || variablePacket.range=="class"'>
+						<a href="javascript:;" ng-click="deleteData($index,'publicity',i.title)"><i class="iconfont icon-shanchu"></i>删除</a>
+						<a href="javascript:;" ui-sref="secondNav.leftTree.publicEdit({name:'edit',state:'classActivity'})"><i class="iconfont icon-bianji2"></i>编辑</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--列表显示 start-->
+	</div>
+	<!--班级信息特色活动列表 end-->
+	<!--学校信息学校活动列表 start-->
+	<div ng-if="variablePacket.type=='school'">
+		<!--标题显示 start-->
+		<div class="title" >
+			<a href="javascript:;" ui-sref="secondNav.leftTree.publicEdit({state:'schoolActivity'})">
+				<i class="iconfont icon-jiahao"></i>
+				创建学校活动
+			</a>
+		</div>
+		<!--标题显示 end-->
+		<!--列表显示 start-->
+		<div class="list schoolActivity" ng-repeat="i in publicityData.schoolActivity">
+			<ul>
+				<li>
+					<div class="gongshi_left">
+						<span class="gongshi activity">活动</span>
+						<a href="javascript:;" ui-sref="secondNav.leftTree.publicDetails({state:'schoolActivity',title:i.title})" class="name" ng-bind="i.title"></a>
+					</div>
+					<div>
+						<time class="time" ng-bind="i.time"></time>
+						<span class="read"><em ng-bind="i.read"></em>已读</span>
+					</div>
+					<div class="operation">
+						<a href="javascript:;" ng-click="deleteData($index,'schoolActivity',i.title)"><i class="iconfont icon-shanchu"></i>删除</a>
+						<a href="javascript:;" ui-sref="secondNav.leftTree.publicEdit({name:'edit',state:'schoolActivity'})"><i class="iconfont icon-bianji2"></i>编辑</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--列表显示 end-->
+	</div>
+	<!--学校信息学校活动列表 end-->
+	<!--分页-->
+	<div class="wx_paging">
+        <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+    </div>
+    <!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>
+

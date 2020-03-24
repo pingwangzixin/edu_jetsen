@@ -1,0 +1,74 @@
+<div>
+	<div class="wx_right_cont fl">
+		<!--统计表-->
+		<div class="wx_echart_useractive wx_mtnone clearfix">
+			<div class="clearfix">
+				<div class="fr">
+					<select name="" ng-change="selectChange()" class="wx_studyyear" ng-model="year"  ng-options="year.id as year.name for year in variablePacket.schoolYear">
+					</select>					
+					<select name="" id="teamName" class="wx_studyyear">
+						<option value="上学期">上学期</option>
+						<option value="下学期">下学期</option>
+					</select>
+				</div>
+			</div>
+			<div class="zmj_evaluate_subject">
+				<span ng-repeat=" i in variablePacket.subjectData" ng-bind="i.name" ng-class={'active':variablePacket.subjectIndex==$index} ng-click="subjectTab($index)"></span>
+			</div>
+		    <div class="exam-all-charts">
+				<div class="chart-column-line-global">
+					<div class="chart-column-stack-2 charts-btb" style="width:922px;height:320px;margin: 0 auto;position: relative;" data-highcharts-chart="2"></div>
+					<!--<div class="chart-column-legends stack-2">
+						<b class="can-choosed">评价等级:</b>
+						<span class="btn-exam-level-a ttfu" data-level="1">A(优秀)</span>
+						<span class="btn-exam-level-b ttfu" data-level="2">B(良好)</span>
+						<span class="btn-exam-level-c ttfu" data-level="3">C(合格)</span>
+						<span class="btn-exam-level-d ttfu" data-level="4">D(有待改进)</span>
+					</div>-->
+				</div>
+
+		</div>
+        <!--表格-->
+	    <div class="zmj_evaluate_table">
+			<table>
+				<thead>
+					<tr>
+						<th rowspan="2"  width="20%" ng-bind="variablePacket.subjectData[variablePacket.subjectIndex].name"></th>
+						<th colspan="2"  width="20%" >A (优秀)</th>
+						<th colspan="2"  width="20%">B (良好)</th>
+						<th colspan="2"  width="20%">C (合格)</th>
+						<th colspan="2"  width="20%">D (有待改进)</th>
+					</tr>
+					<tr>
+						<th>人数</th>
+						<th>比例</th>
+						<th>人数</th>
+						<th>比例</th>
+						<th>人数</th>
+						<th>比例</th>
+						<th>人数</th>
+						<th>比例</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+				       <tr ng-repeat="i in variablePacket.tableData.data" ng-class={'active':i.group=="class"}>
+				       	   <td ng-bind="i.name" ng-click="areaTab(variablePacket.tableData.type,i.name,i.id)" ng-class={'active':variablePacket.tableData.type!="class"}></td>
+				       	   <td ng-bind="i.Apeople"></td>
+				       	   <td ng-bind="i.Aratio"></td>
+				       	   <td ng-bind="i.Bpeople"></td>
+				       	   <td ng-bind="i.Bratio"></td>
+				       	   <td ng-bind="i.Cpeople"></td>
+				       	   <td ng-bind="i.Cratio"></td>
+				       	   <td ng-bind="i.Dpeople"></td>
+				       	   <td ng-bind="i.Dratio"></td>
+				       </tr>
+					
+				</tbody>
+			</table>
+		</div>
+
+	 </div>
+	 
+	</div>
+</div>

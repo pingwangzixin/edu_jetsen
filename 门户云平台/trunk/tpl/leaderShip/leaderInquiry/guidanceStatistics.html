@@ -1,0 +1,127 @@
+<div class="wx_right_cont fl">
+	<!--右侧内容部分切换-->
+	<wx-nav></wx-nav>
+	<!--面包屑导航-->
+	<div class="wx_bread_nav clearfix">
+		<img src="./img/wx_bread_nav.png" class="wx_bread_icon">
+		<span ng-if="variablePacket.quanguo" ng-click="breadNav('0','0','全国')">全国</span>
+		<span ng-if="variablePacket.provincenav" ng-click="breadNav('china',variablePacket.provinceId,variablePacket.provincename)" ng-bind="variablePacket.provincename"></span>
+		<span ng-if="variablePacket.citynav"     ng-click="breadNav('province',variablePacket.cityId,variablePacket.cityname)" ng-bind="variablePacket.cityname"></span>
+		<span ng-if="variablePacket.countynav"   ng-click="breadNav('city',variablePacket.countyId,variablePacket.countyname)" ng-bind="variablePacket.countyname"></span>
+		<span ng-if="variablePacket.schoolnav"   ng-click="breadNav('county',variablePacket.schoolId,variablePacket.schoolname)" ng-bind="variablePacket.schoolname"></span>
+	</div>
+
+	<!--导学量统计趋势图 折线图-->
+	<div class="wx_echart_useractive wx_mtnone">
+		<div class="wx_echart_tit clearfix">
+			<span class="fl">{{variablePacket.linetitle}}统计趋势图</span>
+			<div class="fr">
+				<select name="" ng-change="selectChange()" class="wx_studyyear" ng-model="year"  ng-options="year.id as year.name for year in variablePacket.schoolYear">
+				</select>
+			</div>
+		</div>
+		<div>
+			<div id="containerChart3" class="containerChart"></div>
+		</div>
+
+	</div>
+
+	<!--导学量统计表-->
+	<div class="wx_chart_bar"  ng-if="!variablePacket.guidanceArea">
+		<p class="wx_echart_tit">{{variablePacket.linetitle}}统计表</p>
+		<div class="wx_type_btn">
+			<button class="wx_btn_hui wx_active" ng-click="changeChartstate(0)" ng-class="{'wx_active':variablePacket.stateChart==0}">按年级</button>
+			<button class="wx_btn_hui" ng-click="changeChartstate(1)" ng-class="{'wx_active':variablePacket.stateChart==1}">按学科</button>
+		</div>
+		<div ng-if="variablePacket.stateChart==0">
+			<!--按年级柱状图-->
+			<div id="containerChart1" class="containerChart" style="height:350px;"></div>
+		</div>
+		<div ng-if="variablePacket.stateChart==1">
+			<!--按学科柱状图-->
+			<div id="containerChart2" class="containerChart" style="height:350px;"></div>
+		</div>
+	</div>
+
+	<!--导学量统计表-->
+	<div class="wx_register_ratio" ng-if="variablePacket.guidanceArea">
+		<p class="wx_echart_tit">{{variablePacket.linetitle}}统计表</p>
+		<div class="wx_type_btn">
+			<button class="wx_btn_hui wx_active" ng-click="changestate(0)" ng-class="{'wx_active':variablePacket.stateType==0}">{{variablePacket.btnName}}</button>
+			<button class="wx_btn_hui" ng-click="changestate(1)" ng-class="{'wx_active':variablePacket.stateType==1}">按角色</button>
+		</div>
+		<!--按省份-->
+		<div class="wx_userstatics_table" ng-show="variablePacket.stateType==0">
+			<table class="wx_table_userstic  whfcwidth">
+				<thead>
+					<tr>
+						<th class="wx_tdfivewidth">{{variablePacket.tablearea}}</th>
+						<th>{{variablePacket.linetitle}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td>{{variablePacket.lessonSum}}</td>
+					</tr>
+					<tr ng-repeat="i in variablePacket.tabledata.quyu">
+						
+						<td class="wx_lanzi wx_cursor" ng-click="findCityCount(i.id,variablePacket.tabledata.type,i.name)">{{i.name}}</td>
+						<td>{{i.totle}}</td>
+					</tr>
+				</tbody>
+
+			</table>
+		</div>
+
+		<!--按角色-->
+		<div class="wx_userstatics_table wx_width_style_td" ng-show="variablePacket.stateType==1">
+			<p class="wx_paihangbang">Top30</p>
+			<table class="wx_table_userstic rolewidht">
+				<thead>
+					<tr>
+						<th class="wx_tdtwowidth">教师姓名</th>
+						<th>学校</th>
+						<th>次数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="i in variablePacket.tabledata.roleguidance">
+						<td><span ng-bind="$index + 1"></span>{{i.name}}</td>
+						<td>{{i.school}}</td>
+						<td>{{i.guidance}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<!--教师统计表-->
+	<div class="wx_register_ratio" ng-if="!variablePacket.guidanceArea">
+		<p class="wx_echart_tit">教师统计表</p>
+
+		<!--按省份-->
+		<div class="wx_userstatics_table">
+			<table class="wx_table_userstic">
+				<thead>
+					<tr>
+						<th class="wx_tdfivewidth">{{variablePacket.tablearea}}</th>
+						<th>次数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td>{{variablePacket.lessonSum}}</td>
+					</tr>
+					<tr ng-repeat="i in variablePacket.tabledata.quyu">
+						<td>{{i.name}}</td>
+						<td>{{i.totle}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	
+</div>

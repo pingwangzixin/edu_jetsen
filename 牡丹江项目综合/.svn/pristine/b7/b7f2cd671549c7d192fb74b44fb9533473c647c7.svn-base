@@ -1,0 +1,37 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<div class="zy_content zy_return_box clearfix">
+			<div class="zy_left fl">
+				<span ui-sref="{{prevPath}}"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<em>评价标准</em>
+			</div>
+		</div>
+		
+		<div class="zy_content zy_standard_list">
+			<ul class="zy_standard">
+				<li ng-repeat="staOne in standard">
+					<p ng-bind="staOne.tit"></p>
+					<div class="zy_standard_cont">
+						<ul class="clearfix">
+							<li class="clearfix" ng-repeat="staTwo in staOne.cont">
+								<span class="fl" ng-bind="staTwo.note">说明：</span>
+								<ul class="zy_explain fl">
+									<li class="clearfix" ng-repeat="staThree in staTwo.explain">
+										<span class="fl" ng-bind="staThree.note"></span>
+										<ul class="zy_material fl">
+											<li class="fl" ng-repeat="staFour in staThree.stuff">
+												<span ng-bind="staFour.note"></span>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<div class="leadership_right mlh_safeCont">
+	<!--今日情况 搜索  start-->
+	<p class="title"><i></i><b>今日情况</b></p>
+	<div class="search clearfix">
+		<!--今日情况 start-->
+		<div class="time">
+			<p ng-repeat="i in todayData">
+				<span ng-bind="i.name"></span>
+				<span ng-bind="i.startTime"></span>-<span ng-bind="i.endTime"></span>
+			</p>
+		</div>
+		<!--今日情况 end-->
+		<!--搜索 start-->
+		<div class="input">
+			<input type="text" placeholder="搜索...">
+			<div class="sou"><i class="iconfont icon-sousuo"></i></div>
+		</div>
+		<!--搜索 end-->
+	</div>
+	<!--今日情况 搜索  end-->
+	<!--表格 start-->
+	<div class="wx_userstatics_table mlh_safeTab">
+		<table class="wx_table_userstic">
+			<thead>
+				<tr>
+					<th>时间</th>
+					<th>姓名</th>
+					<th>行为</th>
+					<th>表现</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="i in studentData">
+					<td ng-bind="i.time"></td>
+					<td ng-bind="i.name"></td>
+					<td ng-bind="i.behavior"></td>
+					<td ng-bind="i.performance" class="normal" ng-class="{'abnormal':i.performance!='正常'}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!--表格 end-->
+	<!--页码翻页 start-->
+	<div class="wx_paging">
+        <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+    </div>
+    <!--页码翻页 end-->
+</div>

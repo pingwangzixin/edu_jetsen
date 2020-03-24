@@ -1,0 +1,212 @@
+<div class="zy_main">
+	
+	<div class="zy_bg">
+		<div class="zy_main_con zy_main_con_none">
+			<div class="zy_activity_detail clearfix">
+				<p class="fl">活动详情</p>
+				<span class="fr" ui-sref="wrap.list.activityList({token:token})">返回</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="zy_bg zy_actdet_bg" ng-class="activityDetail.class">
+		<div class="zy_main_con zy_main_con_none">
+			<div class="zy_activity_show clearfix">
+				<!--<p class="zy_more_operations zy_if_share" ng-class="{'zy_if_shared':ifShare.share}" ng-bind="ifShare.shareTip" ng-click="clickShare()">分享</p>-->
+				<div class="clearfix">
+					<div class="zy_l_img fl">
+						<img src="{{activityDetail.activityFile}}" style="width: 284px;height: 150px;"/>
+					</div>
+					<div class="zy_r_cont fr">
+						<h4 ng-bind="activityDetail.activityName">爱心字典行动招募志愿者</h4>
+						<p>
+							<span>活动日期：</span>
+							<i>{{activityDetail.activityStartdate}}~{{activityDetail.activityEnddate}}</i>
+						</p>
+						<p>
+							<span>活动状态：</span>
+							<i ng-bind="activityDetail.activityState|activityStateFilter">已结束</i>
+						</p>
+					</div>
+				</div>
+				<div class="zy_activity_show_text clearfix">
+					<span class="fl">活动要求：</span>
+					<div class="fl">{{activityDetail.activityDeman}}</div>
+				</div>
+				<div class="zy_activity_show_text zy_active_details_file_echo clearfix">
+					<span class="fl">活动附件：</span>
+					<ul class="fl">
+						<li ng-repeat="file in userfileLists">
+							<span ng-bind="file.edit_file" style="cursor: pointer;" ng-click="play(file.playName)"></span>
+							<a class="zyx_down" ng-href="{{file.filedownload}}">下载</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="zy_bg">
+		<div class="zy_main_con zy_main_con_none">
+			<div class="zy_finished zy_finish_student">
+				<p>学生完成情况</p>
+				<div class="zy_student_completion clearfix">
+					<div class="zy_student_type fl">
+						<span ng-class="{'active':studentType == 0}" ng-click="switchStudentType(0)">已完成</span>
+						<span ng-class="{'active':studentType == 1}" ng-click="switchStudentType(1)">进行中</span>
+						<!--<span ng-class="{'active':studentType == 2}" ng-click="switchStudentType(2)">未开始</span>-->
+					</div>
+					<div class="zy_student_list fr" ng-switch="studentType">
+						<ul>
+							<li class="zy_student_completed clearfix toggle" ng-switch-when="0">
+								<!--<span ng-click="StudentActivityComment(completed.assignStuid)">王纳文康康</span>-->
+								<span ng-repeat="completed in styudentCompletion.completed track by $index" ng-click="StudentActivityComment(completed.assignStuid)" ng-bind="completed.assignStuname">王纳文康康</span>
+							</li>
+							<li class="zy_student_conduct clearfix toggle" ng-switch-when="1">
+								<span ng-repeat="haveInHand in styudentCompletion.haveInHand track by $index" ng-bind="haveInHand.assignStuname">王纳文康康</span>
+							</li>
+							<!--<li class="zy_student_no_start clearfix toggle" ng-switch-when="2">
+								<span ng-repeat="notBegin in styudentCompletion.notBegin" ng-bind="notBegin.assignStuname">王纳文康康</span>
+							</li>-->
+						</ul>	
+					</div>
+				</div>
+			</div>
+			<div class="zy_finished zy_finish_teacher">
+				<p>教师总结活动</p>
+				<div class="zy_teacher_summary">
+					<div class="zy_a_strip">
+						<!--<span>活动总结</span>-->
+						<!--<i ng-bind="mastersummary"></i>-->
+						<textarea ng-change="checkText()" name="" id="isshow" rows="" cols="" placeholder="请输入活动总结" ng-model="activityDetail.assignMastersummary" ng-class="{'zy_disabled' : ssss}"></textarea>
+					</div>
+		          <dl class="clearfix" ng-show="deIsShowImg" >
+		          	<span class="fl">已上传文件：</span>
+					<ul class="fl">
+						<li ng-repeat="files in fileLists track by $index">
+							<span ng-bind="files.edit_file" ng-click="play(files.playFileName)" style="cursor: pointer;"></span>
+				 <a class="zyx_down" ng-href="{{files.filedownload}}">下载</a>
+						</li>
+					</ul>
+						  
+		       </dl>
+					<div class="zy_a_strip"  ng-hide="hidebtn">
+						<span>上传附件<i class="zy_tip_grey">注意:仅支持上传图片(jpg、png格式)</i></span>
+						<div class="zy_activity_file">
+							<em>选择上传文件</em>
+							<input type="file" name="" id="file" value="" onchange="angular.element(this).scope().upload()" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"/>
+						</div>
+			 <dl class="clearfix" ng-show="xzIsShowImg">
+				  <dt class="fl">已上传文件：</dt>
+				  <!-- <dd ng-bind="imgName2"></dd>-->
+				   <dd ng-repeat="imgName in imgDatas.imgNames track by $index"><span ng-click="showImgByIndex($index)">{{imgName}}</span> <span ng-click="delImgData($index)">删除</span></dd>
+			 </dl>
+					</div>
+					<div class="zy_a_strip clearfix">
+						<button class="fr" ng-click="subBtn()" ng-hide="hidebtn">总结并结束活动</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
+<!--确认弹层-->
+<div class="gy_del_down zy_popup" ng-show="submitActivity.popup">
+    <div class="gy_hide"></div>
+    <div class="gy_con"><!--弹框具体宽高自定义-->
+    	<p class="zy_sentence">确定无误并结束活动吗？</p>
+    	<div class="zy_btn_box">
+    		<button class="zy_cancel" ng-click="submitActivity.popup = false">取消</button>
+    		<button class="zy_sure" ng-click="subSureBtn()">确认</button>
+    	</div>
+	</div>
+</div>
+<!--提示弹层-->
+<div class="gy_del_down zy_popup" ng-show="myshow">
+    <div class="gy_hide"></div>
+    <div class="gy_con"><!--弹框具体宽高自定义-->
+		<p class="zy_prompt">
+			<img src="./img/filed.png" ng-src="./img/{{deleteActivity.tipSrc}}.png" />
+			<span ng-bind="tctips">提交成功</span>
+		</p>
+	
+    </div>
+</div>
+<!--<pre>{{imgsList}}</pre>-->
+<!--查看学生反馈弹层-->
+<style type="text/css">
+	#stuImg ul li{
+		width:100%;
+		height:400px;
+	}
+</style>
+<div class="gy_del_down zy_popup zy_issued_popup zy_student_feedback_box" style="display: none;">
+    <div class="gy_hide"></div>
+    <div class="gy_con"><!--弹框具体宽高自定义-->
+    	<i class="zy_close" ng-click="closeStudentActivity()"></i>
+    	<div class="zy_issued_con">
+    		<p>学生反馈详情</p>
+    		<div class="zy_issued_sel clearfix">
+    			<p class="zy_feedback_student fl">
+    				<span>姓名：</span>
+    				<i ng-bind="studentActivity.stuname">郭军</i>
+    			</p>
+    		</div>
+    		<div class="zy_issued_list zy_student_feedback_cont">
+    			
+    			<div class="zy_student_feedback_detail">
+    				<div ng-bind="studentActivity.comment">
+    				</div>
+    				<div>
+    					<span id="stuImg">
+    					<ul>
+    						<li ng-repeat="i in imgsList track by $index"><img style="width:600px;position:static;" src="{{i}}" alt="" /></li>
+    					</ul>
+    					</span>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="zy_a_strip" ng-show="stuIsShowImg">
+    		<dl class="clearfix">
+				<dt class="fl">已上传文件：</dt>
+				<dd>
+					<ul>
+    						<li ng-repeat="i in tupianList track by $index"><span >{{i.name}}</span><a class="zyx_down"
+ ng-href="{{i.ul}}">下载</a></li>
+    					</ul>
+					
+				</dd>
+			</dl>
+    	</div>
+	</div>
+</div>
+<!--提示弹层-->
+<div class="gy_del_down zy_popup" ng-show="submitActivity.tip">
+    <div class="gy_hide"></div>
+    <div class="gy_con"><!--弹框具体宽高自定义-->
+		<p class="zy_prompt">
+			<img src="./img/filed.png" ng-src="./img/{{submitActivity.tipSrc}}.png" />
+			<span ng-bind="submitActivity.tipWord">提交成功</span>
+		</p>
+	
+    </div>
+</div>
+<!--图片显示弹层-->
+<style type="text/css">
+	.Ydetail{position: fixed;top:0;left:0;right:0;bottom:0;margin:auto;}
+	.hide{width: 100%;height: 100%;background: rgba(0,0,0,.3);}
+.Yvi{width: 700px; height: 396px; border: 1px solid #dee6f1; background: #ecf2fa; margin: 50px auto;overflow: scroll;}
+.con{width: 780px;height: 500px;background: #fff;position: absolute;left: 0;top: 0;right: 0;bottom: 0;margin: auto;}
+</style>
+		<div class="del_down Ydetail" ng-hide="showimg">
+		    <div class="hide"></div>
+		    <div class="con">
+		        <i class="zy_close" ng-click="showimg=!showimg"></i>
+		        <div class="Yvi" id="showplayer">
+		        	
+		        </div>
+		    </div>
+		</div>

@@ -1,0 +1,122 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css" />
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<div>
+
+	<div class="zmj_resource_head zmj_sturesource">
+		<span class="active">我的资源</span>
+		<button ui-sref="secondNav.studentUploadResource" class="uploadingBtn fr">上传资源</button>
+	</div>
+	<div class="zmj_resource_subjectlist">
+		 <span ng-repeat="i in subjectData" ng-bind="i.name" ng-class={'active':variablePacket.subjectIndex==$index}  ng-click="subjectTab($index,i.id)"></span>
+	</div>
+	<div class="zmj_resource_main clearfix">
+		<div class="zmj_resource_mainLeft fl">
+			<!--选择教材版本-->
+			<choice-version tree-show-situation="variablePacket.leftTreeShow"  xue-ke-id = "variablePacket.xuekeId"></choice-version>
+			<!--树结构-->
+			<choice-tree tree-show-situation="variablePacket.leftTreeShow" ></choice-tree>
+		</div>
+		<div class="zmj_resource_mainright fr">
+			<div class="zmj_resource_source">
+			     <span ng-repeat="i in sourceData" ng-bind="i.name" ng-class={'active':variablePacket.sourceIndex==$index}  ng-click="sourceTab($index)"></span>
+			</div>
+			<div class="zmj_resource_content">
+				<div class="zmj_resource_type clearfix">
+					<span>类型&nbsp;:</span>
+					<ul class="zmj_resource_typeList clearfix">
+						<li ng-repeat="i in typeData" ng-bind="i.name" ng-class={'active':variablePacket.typeIndex==$index}  ng-click="typeTab($index,i.id)"></li>
+					</ul>
+				</div>
+				<div class="zmj_resource_result">
+					共<span ng-bind="variablePacket.total"></span>资源
+				</div>
+                <div class="zmj_resource_test">
+						<ul class="zmj_resource_testList">
+							<li ng-repeat="i in filetypeContent">
+								<div ng-if="variablePacket.sourceIndex == 1" class="zmj_resource_testInfo"  ng-click="stateTab(i)"  >
+									<h4 ng-bind="i.title"></h4>
+									<p><img ng-src="{{i.objId | icon:i.objId }}" alt="" /><span ng-bind="i.createUser"></span><i class="iconfont icon-lishi"></i><span ng-bind="i.createDate.slice(0,10)"></span><i class="iconfont icon-daxiao"></i><span ng-bind="i.fileSize"></span></p>
+								</div>
+								<div ng-if="variablePacket.sourceIndex != 1" class="zmj_resource_testInfo"  ng-click="stateTab(i)" >
+									<h4 ng-bind="i.resourceTitle"></h4>
+									<p><img ng-src="{{i.objId | icon:i.objId }}" alt="" /><span ng-bind="i.createUser"></span><i class="iconfont icon-lishi"></i><span ng-bind="i.createDate.slice(0,10)"></span><i class="iconfont icon-daxiao"></i><span ng-bind="i.fileSize"></span></p>
+								</div>
+								<div class="zmj_resource_operating zmj_sturesource_operating">
+									<span ng-if="variablePacket.sourceIndex == 0">
+										<span ng-if="i.sourceType == 1" class="amend" ng-click="getUpdateResById(i.id)" ng-if="variablePacket.amendState"><i class="iconfont icon-bianji2"></i>修改</span>
+										<span ng-if="i.sourceType == 1" class="share" ng-click="showShare(i)"><i class=" iconfont icon-fenxiang"></i>分享</span>
+									</span>
+									<span ng-if="variablePacket.sourceIndex == 1" >
+										<span class="amend" ng-click="getUpdateResById(i.id)" ng-if="variablePacket.amendState"><i class="iconfont icon-bianji2"></i>修改</span>
+										<span class="share" ng-click="showShare(i)"><i class=" iconfont icon-fenxiang"></i>分享</span>
+									</span>
+                                    <span class="down"   ng-click="download(i)"><i class="down iconfont icon-xiazai4"></i>下载</span>
+									<span class="delete" ng-click="Del(i,i.title)"><i class="iconfont icon-shanchu"></i>删除</span>
+								</div>
+							</li>
+						</ul>
+				       
+				      <div class="zmj_resource_loading" ng-if="variablePacket.loadShow" ng-click="findResourcePage()" ><i class="iconfont icon-jiazai"></i>加载更多...</div>
+			  </div>
+			</div>
+		</div>
+		 <!--分享框-->
+	    <share-box variable-packet="variablePacket" share-show="shareShow" wran-show="wranShow"></share-box>
+        <!--确认框及提示框-->
+	    <prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+	    <!--修改资源弹框-->
+	    <div class="gy_del_down zmj_resource_amendresource" ng-if="variablePacket.amendpopState">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	 <h5>修改资源 <i class="iconfont icon-guanbi1 fr" ng-click="closeTan()"></i></h5>
+		    	 <form name="someForm" novalidate class="zmj_upload_info" >
+					<p>
+						<em>学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;科&nbsp;&nbsp;<i class="star">*</i></em>
+						<select  ng-model="selectedSubject" ng-change="clearxiugai()" ng-click='Subject(selectedSubject)' ng-options="i.name for i in variablePacket.arrSubject">
+							<option value="">请选择学科</option>
+						</select>
+						<b ng-if="variablePacket.ProvingSubject" >
+							<i class="iconfont icon-gantanhao"></i>
+							<span>请选择学科</span>
+						</b>
+					</p>
+					<p class="zmj_upload_catalogue">
+						<em>章节目录&nbsp;<i class="star">*</i>&nbsp;</em>
+						<span ng-click="verifySubject()"><choice-version tree-show-situation="variablePacket.treeShow" title-bar="showSubjName" zjtree="selectedSubject"  ></choice-version></span>
+						<b ng-if="variablePacket.ProvingChapter" >
+							<i class="iconfont icon-gantanhao"></i>
+							<span>请选择章节目录</span>
+						</b>
+					</p>
+				    <p>
+				    	<em>资源名称&nbsp;&nbsp;&nbsp;</em>
+				    	<span>{{variablePacket.resourceName}}</span>
+				    </p>
+				    <p>
+				       <em>&nbsp;&nbsp;关键字&nbsp;&nbsp;&nbsp;&nbsp;</em>
+				       <input type="text" name="keywords" ng-model="variablePacket.keywords" maxlength="100" /></p>
+			    </form>
+			    <div class="zmj_resource_amendresourcesave">
+			    	<button ng-click="updateResource()">保存</button>
+			    </div>
+			    
+			</div>
+		</div>
+		<!--修改资源弹框-->
+	    <div class="gy_del_down zmj_resource_downsource" ng-if="variablePacket.downpopState">
+	          <div class="gy_hide"></div>
+	          <div class="gy_con">
+	          	   <h5>下载<i class="iconfont icon-guanbi1 fr" ng-click="closedownPop()"></i></h5>
+	          	   <ul>
+	          	   	   <li class="title" ng-bind="variablePacket.downtitle"></li>
+	          	   	   <li class="state">正在下载</li>
+	          	   	   <li>
+		          	   	   	<div class="progressbox">
+								<div class="progressbar" ng-style="{'width':width}"></div>
+						   </div>
+	          	   	   </li>
+	          	   </ul>
+	          </div>
+	    </div>	
+</div>
+</div>

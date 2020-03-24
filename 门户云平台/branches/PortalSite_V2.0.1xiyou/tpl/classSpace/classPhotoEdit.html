@@ -1,0 +1,100 @@
+
+<div>
+	<div class="zyx_greenbox zyx_classPhotoEdit">
+		<div class="zyx_whitebox">
+			<div class="zyx_title">
+				<span>班级风采</span>
+			</div>
+			<div class="zyx_classSpace_editfile">
+				<div class="zyx_name">
+					<span>相薄名称</span>
+					<input type="text"  placeholder="请输入相薄名称" ng-model="photoName"/> 
+					
+				</div>
+				<div class="zyx_edit clearfix">
+					<span>相薄描述</span>
+					<textarea ng-model='ueditor'></textarea>
+				</div>
+				<div class="zyx_file zy_photo_operation clearfix">
+					<span class="fl">上传图片</span>
+					<!--上传成功以后的回显-->
+					<ul class="zyx_echo_img fl"> 
+						<li ng-repeat="photo in photoArr">
+           					<img src="{{photo.src}}" err-src="./img/error94.png" alt="" ng-click="photoEnlarge($index)">
+							<!--<img src="./img/{{photo.src}}"/>-->
+							<span ng-click="deletePhoto($index,photo.imageId)"><i class="iconfont icon-shanchu"></i> 删除</span>
+						</li>
+						<li>
+							<input type="file" name="" id="FileInputs" value="" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="angular.element(this).scope().filePhoto(this)"/>
+							<img src="./img/upload_school_logo.png"/>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="zyx_classSpace_btn">
+				<span ng-click="save(ueditor)">保存</span>
+				<span ng-click="cancel()">取消</span>
+			</div>
+		</div>
+	</div>
+	
+	<!--照片查看大图-->
+	<div class="gy_del_down zy_photo_enlarge" ng-show="variable.photoBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<div class="zy_photo_show_details">
+	    		<i class="iconfont icon-guanbi" ng-click="variable.photoBox=false"></i>
+				<div class="zy_album_pic_big">
+					<i class="iconfont icon-zuojiantoubeijing" ng-show="variable.leftBtn"></i>
+					<div class="zy_pic_big_box">
+						<ul class="clearfix">
+							<li ng-repeat="photo in photoArr" view-photo>
+								<img ng-src="{{photo.src}}"/>
+							</li>
+						</ul>
+					</div>
+					<i class="iconfont icon-youjiantoubeijing" ng-show="variable.rightBtn"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down zy_if_box" ng-show="variable.deleteBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<p>确认删除吗？</p>
+	    	<div class="zy_if_btn_box">
+	    		<button class="zy_if_btn_sure" ng-click="sureDelete()">确认</button>
+	    		<button class="zy_if_btn_cancel" ng-click="variable.deleteBox=false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示弹框-->
+	<div class="gy_del_down zy_if_box zy_auto_box" ng-show="variable.tipBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-chenggong" ng-if="variable.tipSuccess"></i>
+	    	<i class="iconfont icon-shangchuanshibai" ng-if="!variable.tipSuccess"></i>
+	    	<p ng-bind="variable.tipWord"></p>
+		</div>
+	</div>
+	<!--
+    	作者：offline
+    	时间：2018-12-13
+    	描述：未添加相册名称提示框
+    -->
+	 <div class="gy_del_down zyx_warn" ng-if="variable.tixbox" >
+		  <div class="gy_hide"></div>
+					    <div class="gy_con">
+					    	<div class="zyx_con">
+					    		<img src="./img/zyx_delwram.png"> <!--感叹号-->
+					    		<ul>
+					    			<li>请输入相薄名称！！</li>
+					    		</ul>
+					    </div>
+		 </div>			   
+	</div>
+	
+</div>

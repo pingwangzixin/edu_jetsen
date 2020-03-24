@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>IconFont</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="iconfont.css">
+</head>
+<body>
+    <div class="main markdown">
+        <h1>IconFont 图标</h1>
+        <ul class="icon_lists clear">
+            
+                <li>
+                <i class="icon iconfont icon-weibiaoti2"></i>
+                    <div class="name">错误</div>
+                    <div class="fontclass">.icon-weibiaoti2</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-tuichu"></i>
+                    <div class="name">退出</div>
+                    <div class="fontclass">.icon-tuichu</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-zuojiantoubeijing"></i>
+                    <div class="name">左箭头-背景</div>
+                    <div class="fontclass">.icon-zuojiantoubeijing</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-youjiantoubeijing"></i>
+                    <div class="name">右箭头-背景</div>
+                    <div class="fontclass">.icon-youjiantoubeijing</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-chakan"></i>
+                    <div class="name">查看</div>
+                    <div class="fontclass">.icon-chakan</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-shezhi"></i>
+                    <div class="name">设置</div>
+                    <div class="fontclass">.icon-shezhi</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-lishi-copy"></i>
+                    <div class="name">历史</div>
+                    <div class="fontclass">.icon-lishi-copy</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-duihao"></i>
+                    <div class="name">对号</div>
+                    <div class="fontclass">.icon-duihao</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-gantanhao"></i>
+                    <div class="name">感叹号</div>
+                    <div class="fontclass">.icon-gantanhao</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-zizhi"></i>
+                    <div class="name">资质</div>
+                    <div class="fontclass">.icon-zizhi</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-guanbi"></i>
+                    <div class="name">关闭</div>
+                    <div class="fontclass">.icon-guanbi</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-jia"></i>
+                    <div class="name">加</div>
+                    <div class="fontclass">.icon-jia</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-wode"></i>
+                    <div class="name">我的</div>
+                    <div class="fontclass">.icon-wode</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-zizhi1"></i>
+                    <div class="name">资质</div>
+                    <div class="fontclass">.icon-zizhi1</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-xuankuang"></i>
+                    <div class="name">选框</div>
+                    <div class="fontclass">.icon-xuankuang</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+                    <div class="name">304错误、关闭、取消-方框</div>
+                    <div class="fontclass">.icon-cuowuguanbiquxiao-fangkuang</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-jiantou2"></i>
+                    <div class="name">箭头</div>
+                    <div class="fontclass">.icon-jiantou2</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-duihao1"></i>
+                    <div class="name">对号</div>
+                    <div class="fontclass">.icon-duihao1</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-fanhui1"></i>
+                    <div class="name">返回</div>
+                    <div class="fontclass">.icon-fanhui1</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-shangchuan"></i>
+                    <div class="name">上传</div>
+                    <div class="fontclass">.icon-shangchuan</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-baogao"></i>
+                    <div class="name">报告</div>
+                    <div class="fontclass">.icon-baogao</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-pingjia"></i>
+                    <div class="name">评价</div>
+                    <div class="fontclass">.icon-pingjia</div>
+                </li>
+            
+                <li>
+                <i class="icon iconfont icon-zizhi2"></i>
+                    <div class="name">资质</div>
+                    <div class="fontclass">.icon-zizhi2</div>
+                </li>
+            
+        </ul>
+
+        <h2 id="font-class-">font-class引用</h2>
+        <hr>
+
+        <p>font-class是unicode使用方式的一种变种，主要是解决unicode书写不直观，语意不明确的问题。</p>
+        <p>与unicode使用方式相比，具有如下特点：</p>
+        <ul>
+        <li>兼容性良好，支持ie8+，及所有现代浏览器。</li>
+        <li>相比于unicode语意明确，书写更直观。可以很容易分辨这个icon是什么。</li>
+        <li>因为使用class来定义图标，所以当要替换图标时，只需要修改class里面的unicode引用。</li>
+        <li>不过因为本质上还是使用的字体，所以多色图标还是不支持的。</li>
+        </ul>
+        <p>使用步骤如下：</p>
+        <h3 id="-fontclass-">第一步：引入项目下面生成的fontclass代码：</h3>
+
+
+        <pre><code class="lang-js hljs javascript"><span class="hljs-comment">&lt;link rel="stylesheet" type="text/css" href="./iconfont.css"&gt;</span></code></pre>
+        <h3 id="-">第二步：挑选相应图标并获取类名，应用于页面：</h3>
+        <pre><code class="lang-css hljs">&lt;<span class="hljs-selector-tag">i</span> <span class="hljs-selector-tag">class</span>="<span class="hljs-selector-tag">iconfont</span> <span class="hljs-selector-tag">icon-xxx</span>"&gt;&lt;/<span class="hljs-selector-tag">i</span>&gt;</code></pre>
+        <blockquote>
+        <p>"iconfont"是你项目下的font-family。可以通过编辑项目查看，默认是"iconfont"。</p>
+        </blockquote>
+    </div>
+</body>
+</html>

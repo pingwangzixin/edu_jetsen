@@ -1,0 +1,576 @@
+<div class="main_width">
+	<div class="zy_student_main_wrap clearfix">
+		<!--左：三种类型-->
+		<div class="zy_student_pass_wrap fl">
+			<!--资源回显-->
+			<div class="zy_student_resource_main">
+				<div class="zyx_testPaperTit clearfix">
+					<!--习题类型：显示名字 ；  试卷类型：显示名字+试卷名称-->
+					<div class="fl">
+						<span ng-bind="stuInfo.stuName"></span>
+						<span ng-bind="stuInfo.examAssemblyName" ng-if='variablePacket.testTYpe=="testPaper"||variablePacket.testTYpe=="answerCard"'></span>
+					</div>
+					<div  class="fr">
+						<span class="zyx_lookCard" ng-class={'active':variablePacket.LookCardActive} ng-click='LookCard()'  ng-if='variablePacket.testTYpe=="answerCard"'>
+							查看试卷<i class="iconfont icon-arrow_you"></i>
+						</span>
+					</div>
+				</div>
+				
+				<!--习题、组卷、答题卡类型-->
+				<div   class="zyx_Showtype" ng-class={"zyx_testCard":variablePacket.IfRelative}> 
+					<!--容纳的盒子-->
+					<div class="zyx_homeWork">
+						<!--标题切换-->
+						<div class="zyx_lines clearfix" id='zyx_lines' ng-class="{'active':variablePacket.titFixed}">
+							<div class="linesLeft fl">
+								<span  ng-class='{"active":variablePacket.queIndex==$index}' ng-repeat='i in echoQuestion.title' ng-bind='i.name' ng-click="jump(i.index)"></span>
+							</div>
+						</div>
+						<!--题型展示-->
+						<div class="zyx_AddQuestion">
+							<!--单选题-->
+							<div class="zyx_Single" ng-attr-id="{{'0'}}" ng-if="echoQuestion.single.length>0">
+								<p class="zyx_topicHead">一、单选题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.single' >
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>单选题</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--学生答案-->
+											<div class="clearfix">
+												<div class="zyx_myAnswer zyx_learn" ng-if="stuInfo.stuId!=''">
+													<em>学生答案:</em>
+													<span class="zyx_SingleBg" ng-if='i.myAnswer' ng-bind='i.myAnswer'></span>
+													<i class="iconfont icon-dui" ng-if='i.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-if='i.icon=="error"'></i>
+													<i class="iconfont icon-bandui" ng-if='i.icon=="half"'></i>
+													<div class="zyx_postil clearfix">
+														<b>批注：</b>
+														<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+													</div>
+												</div>
+												<div class="zyx_father">
+													<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+														查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+													</span>
+												</div>
+											</div>
+										</div>
+										<!--答案解析-->
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div ng-bind-html='i.Answer | trustHtml'></div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--多选题-->
+							<div class="zyx_Many" ng-attr-id="{{'1'}}" ng-if="echoQuestion.many.length>0">
+								<p class="zyx_topicHead">二、多选题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.many'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>多选题</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<span class="zyx_ManyBg" ng-if='z' ng-repeat='z in i.myAnswer' ng-bind='z'></span>
+												<i class="iconfont icon-dui" ng-if='i.icon=="correct"'></i>
+												<i class="iconfont icon-cuo" ng-if='i.icon=="error"'></i>
+												<i class="iconfont icon-bandui" ng-if='i.icon=="half"'></i>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<!--<div>
+													<span ng-if='i.Answer.daanA'>A</span>
+													<span ng-if='i.Answer.daanB'>B</span>
+													<span ng-if='i.Answer.daanC'>C</span>
+													<span ng-if='i.Answer.daanD'>D</span>
+												</div>-->
+												<div>
+													<span ng-repeat='a in i.Answer' ng-bind="a"></span>
+												</div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--判断题-->
+							<div class="zyx_Judge" ng-attr-id="{{'2'}}" ng-if="echoQuestion.judge.length>0">
+								<p class="zyx_topicHead">三、判断题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.judge'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>判断题</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<span class="zyx_JudgeBg" ng-if='i.myAnswer' ng-bind='i.myAnswer'></span>
+												<i class="iconfont icon-dui" ng-if='i.icon=="correct"'></i>
+												<i class="iconfont icon-cuo" ng-if='i.icon=="error"'></i>
+												<i class="iconfont icon-bandui" ng-if='i.icon=="half"'></i>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div ng-bind='i.Answer'></div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--填空题-->
+							<div class="zyx_FillIn"  ng-attr-id="{{'3'}}" ng-if="echoQuestion.fillIn.length>0">
+								<p class="zyx_topicHead">四、填空题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.fillIn'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>填空题</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<div class="zyx_OtherLine" ng-repeat='z in i.myAnswer'>
+													<i class="num" ng-bind='"("+($index+1)+")"'></i>
+													<span class="zyx_OtherBg" ng-if='z.daan' ng-bind-html='z.daan | trustHtml'></span>
+													<i class="iconfont cursor icon-dui" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'correct'}}" ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont cursor icon-cuo" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'error'}}"   ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont cursor icon-bandui" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'half'}}"  ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont icon-dui" ng-show="stuInfo.stuState=='readyOver'" ng-if='z.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-show="stuInfo.stuState=='readyOver'" ng-if='z.icon=="error"'></i>
+													<i class="iconfont icon-bandui" ng-show="stuInfo.stuState=='readyOver'" ng-if='z.icon=="half"'></i>
+												</div>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div ng-repeat='z in i.Answer track by $index'>
+													<span ng-bind='"("+($index+1)+")"'></span>
+													<span ng-bind-html='z.daan | trustHtml'></span>
+												</div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--材料题-->
+							<div class="zyx_Material" ng-attr-id="{{'4'}}" ng-if="echoQuestion.material.length>0">
+								<p class="zyx_topicHead">五、材料题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.material'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>材料题</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<div class="zyx_OtherLine">
+													<span class="zyx_OtherBg" ng-if='i.myAnswer' ng-bind-html='i.myAnswer | trustHtml'></span>
+													<i class="iconfont cursor icon-dui" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'correct'}}" ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont cursor icon-cuo" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'error'}}"   ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont cursor icon-bandui" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'half'}}"  ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont icon-dui" ng-show="stuInfo.stuState=='readyOver'" ng-if='i.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-show="stuInfo.stuState=='readyOver'" ng-if='i.icon=="error"'></i>
+													<i class="iconfont icon-bandui" ng-show="stuInfo.stuState=='readyOver'" ng-if='i.icon=="half"'></i>
+												</div>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div>
+													<span ng-bind-html='i.Answer | trustHtml'></span>
+												</div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--简答题-->
+							<div class="zyx_BriefAnswer"  ng-attr-id="{{'5'}}" ng-if="echoQuestion.briefAnswer.length>0">
+								<p class="zyx_topicHead">六、简单题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.briefAnswer'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>简答题</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<div class="zyx_OtherLine">
+													<span class="zyx_OtherBg" ng-if='i.myAnswer' ng-bind-html='i.myAnswer | trustHtml'></span>
+													<i class="iconfont cursor icon-dui" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'correct'}}" ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont cursor icon-cuo" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'error'}}"   ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont cursor icon-bandui" ng-if="stuInfo.stuState=='submission'" ng-attr-value="{{'half'}}"  ng-click='markExam($event,$index,i.Type,i.Id)'></i>
+													<i class="iconfont icon-dui" ng-show="stuInfo.stuState=='readyOver'" ng-if='i.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-show="stuInfo.stuState=='readyOver'" ng-if='i.icon=="error"'></i>
+													<i class="iconfont icon-bandui" ng-show="stuInfo.stuState=='readyOver'" ng-if='i.icon=="half"'></i>
+												</div>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div>
+													<span ng-bind-html='i.Answer | trustHtml'></span>
+												</div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--完形填空-->
+							<div class="zyx_ClozeCloze" ng-attr-id="{{'6'}}" ng-if="echoQuestion.clozeCloze.length>0">
+								<p class="zyx_topicHead">七、完形填空</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.clozeCloze'>
+									<!--展示-->
+								    <div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>完形填空</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'>
+												<div  ng-bind-html='i.queTit | trustHtml' ></div>
+												<!--<p ng-repeat = 's in i.queDaan' ng-bind='s.daan'></p>-->
+											</div>
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<div class="zyx_OtherLine" ng-repeat='z in i.myAnswer'>
+													<i class="num" ng-bind='"("+($index+1)+")"'></i>
+													<span class="zyx_SingleBg" ng-if='z.daan' ng-bind='z.daan'></span>
+													<i class="iconfont icon-dui" ng-if='z.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-if='z.icon=="error"'></i>
+													<i class="iconfont icon-bandui" ng-if='z.icon=="half"'></i>
+												</div>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div ng-repeat='s in i.Answer'>
+													<span ng-bind='"("+($index+1)+")"'></span>
+													<span ng-bind='s.daan'></span>
+												</div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<!--阅读理解-->
+							<div class="zyx_Reading"  ng-attr-id="{{'7'}}" ng-if="echoQuestion.reading.length>0">
+								<p class="zyx_topicHead">八、阅读理解</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.reading'>
+									<!--展示-->
+								    <div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>阅读理解</h5>
+												<!--<div class="fr zyx_conrect">班级正确率：<em>50%</em></div>-->
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml' ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'></div>
+											<!--<div class="zyx_fiveSmallTopic" ng-if='variablePacket.testTYpe=="exercises" ||variablePacket.testTYpe=="testPaper"'>
+												<div class="zyx_fiveSmallTopicLine" ng-repeat='z in i.fiveSmallTopic'>
+													<span ng-bind='"("+($index+1)+")"'></span><span ng-bind='z.tit'></span>
+												</div>
+											</div>-->
+											<!--学生答案-->
+											<div class="zyx_myAnswer" ng-if="stuInfo.stuId!=''">
+												<em>学生答案:</em>
+												<div class="zyx_OtherLine" ng-repeat='z in i.myAnswer'>
+													<i class="num" ng-bind='"("+($index+1)+")"'></i>
+													<span class="zyx_SingleBg" ng-if='z.daan' ng-bind='z.daan'></span>
+													<i class="iconfont icon-dui" ng-if='z.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-if='z.icon=="error"'></i>
+													<i class="iconfont icon-bandui" ng-if='z.icon=="half"'></i>
+												</div>
+												<div class="zyx_postil clearfix">
+													<b>批注：</b>
+													<textarea ng-model="i.comment" name="" rows="" cols=""></textarea>
+												</div>
+											</div>
+											<div class="zyx_father">
+												<span class="linesRight" ng-click='lookAnswerEcho(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+													查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+												</span>
+											</div>
+										</div>
+										<ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+											<li class="Answer">
+												<strong>答案</strong>
+												<div ng-repeat='z in i.Answer'>
+													<span ng-bind='"("+($index+1)+")"'></span>
+													<span ng-bind='z.daan'></span>
+												</div>
+											</li>
+											<li class="Analysis">
+												<strong>解析</strong>
+												<div  ng-bind-html='i.Analysis | trustHtml'></div>
+											</li>
+											<li class="Resource" ng-if='i.CanResource'>
+												<strong>资源</strong>
+												<div class="clearfix" >
+													<img ng-src = "{{i.Resource[0].ResourceSrc|icon}}" />
+													<span ng-bind='i.Resource[0].ResourceTit' ng-click='insertResource(i.Resource[0])'><!--班级空间我的班我的班的班我的班我的班级空间jpg--></span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--作业总评-->
+						<div class="zyx_postil">
+							<p>作业总评：</p>
+							<textarea ng-model="examSubmit.comment"></textarea>
+						</div>
+						<!--保存按钮-->
+						<button class="zyx_refer" ng-click="submitReadyOver()" ng-if="stuInfo.stuState=='submission'">保存</button>
+					</div>
+					<!--试卷的图片-->
+					<div class="zyx_LookAnswerCard" ng-if='variablePacket.LookAnswerCard'>
+						<img ng-src="{{z.path}}" ng-repeat='z in echoQuestion.assembly.questionImgList'/>
+						<!--<img src="./img/zyx_juanzi.jpg"/>
+						<img src="./img/zyx_juanzi.jpg"/>-->
+					</div>
+					<!--遮罩层-->
+					<div class="zyx_testCradMark" ng-class={'active':variablePacket.AnswerCardMask}></div>
+				</div>
+			</div>
+		</div>
+		<!--右：学生列表-->
+		<div class="zy_student_wrap fr">
+			<p>学生姓名</p>
+			<div class="zy_student_right_main">
+				<div class="zy_student_list">
+					<ul class="clearfix" ng-class="{'active':variablePacket.listBorder}">
+						<li class="zy_not_read" ng-repeat="i in variablePacket.stuList.notRead">
+							<span ng-bind="i.name"></span>
+							<b ng-click="checkStuInfo(i.id, i.name, 'submission')">批阅</b>
+						</li>
+						<li class="zy_already_read" ng-repeat="i in variablePacket.stuList.alreadyRead">
+							<span ng-bind="i.name"></span>
+							<b ng-click="checkStuInfo(i.id, i.name, 'readyOver')">已批阅</b>
+						</li>
+						<li class="zy_no_sub" ng-repeat="i in variablePacket.stuList.noSub">
+							<span ng-bind="i.name"></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>  
+	<!--插入资源回显弹层-->
+	<div class="gy_del_down zy_resource_box" ng-if='variablePacket.insertResource'>
+	    <div class="gy_hide"></div>
+	    <div class="gy_con mlh_con">
+	    	<div class="zy_resource_box_tit">
+	    		<b ng-bind="variablePacket.clickResourceName"></b>
+	    		<i class="iconfont icon-guanbi1 fr" ng-click='closeResource()'></i>
+	    	</div>
+	    	<div class="zy_resource_box_main">
+				<div ng-if='variablePacket.backResourceType == "pic"'>
+					<img src="{{variablePacket.imagePath}}"/>
+				</div>
+				<div class="zyx_ResLineVideo bofangqi" id="showplayer">
+					<div ng-if="variablePacket.showplayer" class="loadFlashWrap">
+						<p>您的浏览器还没有安装Flash插件</p>
+						<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+					</div>
+				</div>
+				<div class="zyx_ResLinePDF mlh_pdf" ng-if='variablePacket.backResourceType == "pdf"'>
+					<iframe width="854" height="511" src="{{variablePacket.pdfPath}}"></iframe>
+				</div>
+				<div ng-show="variablePacket.convertState == '2'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>资源转码失败!</p>
+						</div>
+					</div>
+				</div>
+				<div ng-show="variablePacket.convertState == '0'" >
+					<div class="bofangqi" >
+						<div class="loadFlashWrap">
+							<p>该资源正在转码中......</p>
+						</div>
+					</div>
+				</div>
+	    	</div>
+		</div>
+	</div>
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>
+

@@ -1,0 +1,244 @@
+<div class="wx_right_cont fl">
+	<!--用户人数统计-->
+	<div class="wx_usernum_statistics clearfix">
+		<!--所有人数统计-->
+		<div class="wx_all_user fl">
+			<img class="wx_position_img" src="./img/wx_userstatic_all.png" />
+			<div class="wx_right_detail">
+				<p>注册总人数</p>
+				<p class="wx_dacuzi" ng-bind="variablePacket.allusernum"></p>
+				<p class="wx_lanzi">活跃率{{variablePacket.activeall}}</p>
+			</div>
+		</div>
+		<!--用户类型人数统计-->
+		<div class="usertype_statics fr">
+			<!--教师人数-->
+			<div class="wx_teach_num wx_num_user fl">
+				<img class="wx_position_img" src="./img/wx_teache_num2.png" />
+				<div class="wx_right_detail">
+					<p>教师人数</p>
+					<p class="wx_dacuzi" ng-bind="variablePacket.teachnum"></p>
+					<p class="wx_lanzi">活跃率{{variablePacket.teachactive}}</p>
+				</div>
+			</div>
+			<!--学生人数-->
+			<div class="wx_student_num wx_num_user wx_fengexian fl">
+				<img class="wx_position_img" src="./img/wx_student_num2.png" />
+				<div class="wx_right_detail">
+					<p>学生人数</p>
+					<p class="wx_dacuzi" ng-bind="variablePacket.stunum"></p>
+					<p class="wx_lanzi">活跃率{{variablePacket.stuactive}}</p>
+				</div>
+			</div>
+			<!--家长人数-->
+			<div class="wx_parent_num wx_num_user fl">
+				<img class="wx_position_img" src="./img/wx_parent_num2.png" />
+				<div class="wx_right_detail">
+					<p>家长人数</p>
+					<p class="wx_dacuzi" ng-bind="variablePacket.parnum"></p>
+					<p class="wx_lanzi">活跃率{{variablePacket.paractive}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--平台用户注册统计图 多个柱状图-->
+	<div class="wx_echart_useractive wx_mt10">
+		<p class="wx_echart_tit">平台用户注册统计图</p>
+		<div class="exam-all-charts">
+			<div class="chart-column-line-global">
+				<div class="chart-column-stack-2 charts-btb" style="width:922px;height:320px;margin: 0 auto;position: relative;" data-highcharts-chart="2"></div>
+			</div>
+		</div>
+	</div>
+	<!--平台用户活跃趋势图 折线图-->
+	<div class="wx_echart_useractive wx_bdtp wx_mtfu30">
+		<p class="wx_echart_tit">平台用户活跃趋势图</p>
+		<div class="wx_btnwidthuser">
+			<button  ng-click="changequshistate(0)"  class="wx_qushibtn" ng-class="{'active':variablePacket.qushistate==0}">年度趋势</button>
+			<button  ng-click="changequshistate(1)"  class="wx_qushibtn" ng-class="{'active':variablePacket.qushistate==1}">月度趋势</button>
+			<button  ng-click="changequshistate(2)"  class="wx_qushibtn" ng-class="{'active':variablePacket.qushistate==2}">周度趋势</button>
+		</div>
+		<div id="chart-list" class="tabcon" data-name="1">
+			<div class="chart-column-line-global">
+				<!--数据表-->
+				<div class="chart_line_user charts-btb" style="width:922px;height:370px;margin: 0 auto;position: relative;"></div>
+			</div>
+		</div>
+	</div>
+	
+	<!--平台用户注册率 / 周活跃率统计表-->
+	<div class="wx_register_ratio wx_bdtp" ng-if="variablePacket.schooldata">
+		<p class="wx_echart_tit">平台用户注册率 / 周活跃率统计表</p>
+		<div class="wx_type_btn">
+			<button class="wx_btn_hui" ng-click="changestate(0)" ng-class="{'wx_active':variablePacket.state==0}">注册率统计表</button>
+			<button class="wx_btn_hui" ng-click="changestate(1)" ng-class="{'wx_active':variablePacket.state==1}">周活跃率统计表</button>
+		</div>
+		<!--注册率统计表-->
+		<div class="wx_userstatics_table">
+			<table class="wx_table_userstic" ng-if="!variablePacket.showschooldata">
+				<thead>
+					<tr>
+						<th rowspan="2" colspan="2">{{variablePacket.tablearea}}</th>
+						<th colspan="2">学校(所)</th>
+						<th colspan="2">教师(人)</th>
+						<th colspan="2">学生(人)</th>
+						<th colspan="2">家长(人)</th>
+					</tr>
+					<tr class="wx_widthth_pain">
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="teacher in variablePacket.tabledata.quyu">
+					<tr ng-repeat="student in teacher.regcount track by $index">
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}} class="wx_lanzi wx_cursor" ng-click="findCityCount(teacher.id,teacher.name,variablePacket.tabledata.type)"> {{teacher.name}} </td>
+						<td class="wx_width_td_pain" ng-if="$index ==0">{{variablePacket.rowone}}</td>
+						<td class="wx_width_td_pain" ng-if="$index ==1">{{variablePacket.rowtwo}}</td>
+						<td ng-if="$index ==0"><span ng-bind="student.schoolRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.schoolRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.schoolRegRate"></span></td>
+						<td ng-if="$index ==0"><span ng-bind="student.teaRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.teaRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.teaRegRate"></span></td>
+						<td ng-if="$index ==0"><span ng-bind="student.stuRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.stuRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.stuRegRate"></span></td>
+						<td ng-if="$index ==0"><span ng-bind="student.parRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.parRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.parRegRate"></span></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="wx_table_userstic" ng-if="variablePacket.showschooldata">
+				<thead>
+					<tr>
+						<th rowspan="2" colspan="2">{{variablePacket.tablearea}}</th>
+						<th colspan="2">教师(人)</th>
+						<th colspan="2">学生(人)</th>
+						<th colspan="2">家长(人)</th>
+					</tr>
+					<tr class="wx_widthth_pain">
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+						<th>数量</th>
+						<th ng-bind="variablePacket.twoclos"></th>
+					</tr>
+				</thead>
+				<tbody ng-repeat="teacher in variablePacket.tabledata.quyu">
+					<tr ng-repeat="student in teacher.regcount track by $index">
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}} class="wx_lanzi wx_cursor" ng-click="findCityCount(teacher.id,teacher.name,variablePacket.tabledata.type)"> {{teacher.name}} </td>
+						<td class="wx_width_td_pain" ng-if="$index ==0">{{variablePacket.rowone}}</td>
+						<td class="wx_width_td_pain" ng-if="$index ==1">{{variablePacket.rowtwo}}</td>
+						<td ng-if="$index ==0"><span ng-bind="student.teaRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.teaRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.teaRegRate"></span></td>
+						<td ng-if="$index ==0"><span ng-bind="student.stuRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.stuRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.stuRegRate"></span></td>
+						<td ng-if="$index ==0"><span ng-bind="student.parRegNum"></span></td>
+						<td ng-if="$index ==1"><span ng-bind="student.parRealNum"></span></td>
+						<td ng-if="$index ==0" rowspan={{teacher.regcount.length}}><span ng-bind="student.parRegRate"></span></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+	</div>
+	<!--学校用户注册资料-->
+	<div class="wx_school_regtable wx_bdtp" ng-if="!variablePacket.schooldata"  ng-controller="tableAreaCtrl as tableArea">
+		<p class="wx_echart_tit">平台用户注册率 / 周活跃率统计表</p>
+		<div class="wx_school_type_selct">
+			<div class="wx_ul_height clearfix">
+				<span class="fl">用户：</span>
+				<ul>
+					<li ng-class="{active:variablePacket.addusertype==r.id}" ng-repeat="r in variablePacket.userrange" ng-model="liname" ng-click="changeUseraddtype($index)">{{r.name}}</li>
+				</ul>
+			</div>
+			<div class="wx_ul_height clearfix">
+				<span class="fl">年级：</span>
+				<ul>
+					<li ng-class="{active:variablePacket.nianjiallselect}" ng-click="nianjiall()">全部</li>
+					<li ng-class="{active:variablePacket.nianjitype==r.id}" ng-repeat="r in variablePacket.nianjirange" ng-model="liname" ng-click="changenianji($index,r.id)">{{r.name}}</li>
+				</ul>
+			</div>
+			<div class="wx_ul_height clearfix" ng-if="variablePacket.subjecthide">
+				<span class="fl">学科：</span>
+				<ul>
+					<li ng-class="{active:variablePacket.xuekeallselect}" ng-click="xuekeall()">全部</li>
+					<li ng-class="{active:variablePacket.xueketype==r.id}" ng-repeat="r in variablePacket.xuekerange" ng-model="liname" ng-click="changexueke($index,r.id)">{{r.name}}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wx_schooltable_detail wx_mt20">
+			<table class="wx_table_school_detail" datatable="ng" dt-options="tableArea.dtOptionsone" ng-if="teacherfy">
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>注册时间</th>
+						<th>最后登录时间</th>
+						<th>总登录次数(次)</th>
+						<th>总在线时长(小时)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="i in tableArea.tabledata_user">
+						<td ng-bind="i.oneusertd"></td>
+						<td ng-bind="i.twousertd"></td>
+						<td ng-bind="i.threeusertd"></td>
+						<td ng-bind="i.fourusertd"></td>
+						<td ng-bind="i.fiveusertd"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="wx_table_school_detail" datatable="ng" dt-options="tableArea.dtOptionstwo" ng-if="studentfy">
+				<thead>
+					<tr>
+						<th>班级</th>
+						<th>注册学生人数</th>
+						<th>学生周活率</th>
+						<th>总在线时长(小时)</th>
+						<th>人均在线时长(小时)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="i in tableArea.tabledata_user">
+						<td ng-bind="i.oneusertd"></td>
+						<td ng-bind="i.twousertd"></td>
+						<td ng-bind="i.threeusertd"></td>
+						<td ng-bind="i.fourusertd"></td>
+						<td ng-bind="i.fiveusertd"></td>
+					</tr>
+				</tbody>
+			</table>
+			<table class="wx_table_school_detail" datatable="ng" dt-options="tableArea.dtOptionsthree" ng-if="parentsfy">
+				<thead>
+					<tr>
+						<th>班级</th>
+						<th>注册家长人数</th>
+						<th>家长周活率</th>
+						<th>总在线时长(小时)</th>
+						<th>人均在线时长(小时)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="i in tableArea.tabledata_user">
+						<td ng-bind="i.oneusertd"></td>
+						<td ng-bind="i.twousertd"></td>
+						<td ng-bind="i.threeusertd"></td>
+						<td ng-bind="i.fourusertd"></td>
+						<td ng-bind="i.fiveusertd"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

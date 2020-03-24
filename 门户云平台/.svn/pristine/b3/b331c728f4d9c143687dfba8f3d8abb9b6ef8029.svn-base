@@ -1,0 +1,667 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div>
+	<div class="main_width">	
+		<div class="mlh_content">
+			<div class="guide">
+				<!--科目选择  start-->
+				<ul class="guide-choose">
+					<li class="item" 
+						ng-repeat="course in variablePacket.subjects" 
+						ng-bind="course.name"
+						ng-class="{'active':variablePacket.currCourseId==course.id}"  
+						ng-click="guideToggle(course.id)"></li>
+				</ul>
+				<!--科目选择  end-->
+			</div>
+		</div>
+		<div class="zy_question_main mlh_question_main clearfix">
+			<div class="zy_question_tree fl">
+				<!--选择教材版本-->
+				<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+				<!--树结构-->
+				<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+			</div>
+			<div class="fr">
+			<!--我的收藏/复习错题/错题记录选择 start-->
+			<div class="zy_question_library clearfix" >
+				<div class="title class mlh_questionbank ">
+					<ul class="clearfix">
+						<li ng-class="{'active':variablePacket.exercisesAndtest==state.id}"
+							ng-repeat="state in variablePacket.states" 
+							ng-bind="state.name"
+							ng-click="exercisesAndtestTab(state.id)"
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--我的收藏/复习错题/错题记录选择 end-->
+			<!--我的收藏-->
+			<div class="zy_question_library mlh_question_library">
+				<div class="zy_question_type_wrap">
+					<div class="zy_exercises clearfix toggle">
+						<div class="mlh_question_tit">
+							<ul class="zy_question_type_list clearfix">
+								<li ng-repeat="i in variablePacket.questionType" ng-if="i.state" ng-class="{'active':variablePacket.questionTypeId==i.id}" ng-bind="i.name" ng-click="questionTypeIndexTab(i.id)">单选题</li>
+							</ul>
+							<div class="zy_count_box">共<span ng-bind="variablePacket.exercisesNum"></span>试题</div>
+						</div>
+						<div class="zy_question_bank_switch mlh_question_bank_switch" ng-switch="variablePacket.questionTypeId">
+							<!--单选题-->
+							<ul class="zy_question_type_details zy_type_single toggle" ng-switch-when="2">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.single">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index + 1">1</b>
+											<span>单选题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!--<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'single')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'single',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub" ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<!--<div class="zy_small_question_option">
+												<ul class="clearfix">
+													<li>
+														A. {1,.3}
+													</li>
+													<li>
+														B. {-3，-1，1，3}
+													</li>
+													<li>
+														A. {1,.3}
+													</li>
+													<li>
+														A. {1,.3}
+													</li>
+												</ul>
+											</div>-->
+											<!--重新作答-->
+											<div class="zyx_myAnswer mlh_myAnswer zyx_learn clearfix" ng-if="variablePacket.exercisesAndtest!=1 && !i.edit">
+												<em>我的答案:</em>
+												<span class="zyx_SingleBg" ng-bind='i.myAnswer'></span>
+												<button ng-click="editQuestion($index,'single')">重新作答</button>
+											</div>
+											<!--确认提交-->
+											<div class="zyx_myAnswer mlh_myAnswer zyx_notLearn mlh_notLearn clearfix toggle" ng-if="variablePacket.exercisesAndtest!=1 && i.edit">
+												<em>答案:</em>
+												<ul class="zyx_option clearfix">
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'a'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="A" />
+														<label ng-attr-for="{{'a'+i.Id+i.Type}}">A</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="B" />
+														<label ng-attr-for="{{'b'+i.Id+i.Type}}">B</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'c'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="C" />
+														<label ng-attr-for="{{'c'+i.Id+i.Type}}">C</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'d'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="D" />
+														<label ng-attr-for="{{'d'+i.Id+i.Type}}">D</label>
+													</li>
+												</ul>
+												<button ng-click="submitQuestion($index,'single',i)">确认提交</button>
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'single')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--单选题-->
+							
+							<!--多选题-->
+							<ul class="zy_question_type_details zy_type_many toggle" ng-switch-when="4">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}"  ng-repeat="i in questionBank.many">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>多选题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!-- <li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'many')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'many',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<!--<div class="zy_small_question_option">
+												<ul class="clearfix">
+													<li>
+														A. {1,.3}
+													</li>
+													<li>
+														B. {-3，-1，1，3}
+													</li>
+													<li>
+														A. {1,.3}
+													</li>
+													<li>
+														A. {1,.3}
+													</li>
+												</ul>
+											</div>-->
+											<!--重新作答-->
+											<div class="zyx_myAnswer mlh_myAnswer zyx_learn clearfix" ng-if="variablePacket.exercisesAndtest!=1 && !i.edit">
+												<em>我的答案:</em>
+												<span class="zyx_ManyBg" ng-repeat='z in i.myAnswer' ng-bind='z'></span>
+												<button ng-click="editQuestion($index,'many')">重新作答</button>
+											</div>
+											<!--确认提交-->
+											<div class="zyx_myAnswer mlh_myAnswer zyx_notLearn mlh_notLearn clearfix" ng-if="variablePacket.exercisesAndtest!=1 && i.edit">
+												<em>答案:</em>
+												<ul class="zyx_option clearfix">
+													<li>
+														<input type="checkbox" ng-attr-name="{{$index}}"  ng-attr-id="{{'a'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.notLearnAnswer.daanA' value="A" />
+														<label ng-attr-for="{{'a'+i.Id+i.Type}}">A</label>
+													</li>
+													<li>
+														<input type="checkbox" ng-attr-name="{{$index}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.notLearnAnswer.daanB' value="B" />
+														<label ng-attr-for="{{'b'+i.Id+i.Type}}">B</label>
+													</li>
+													<li>
+														<input type="checkbox" ng-attr-name="{{$index}}" ng-attr-id="{{'c'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.notLearnAnswer.daanC' value="C" />
+														<label ng-attr-for="{{'c'+i.Id+i.Type}}">C</label>
+													</li>
+													<li>
+														<input type="checkbox" ng-attr-name="{{$index}}" ng-attr-id="{{'d'+i.Id+i.Type}}" ng-true-value="true" ng-false-value="false" ng-model='i.notLearnAnswer.daanD' value="D" />
+														<label ng-attr-for="{{'d'+i.Id+i.Type}}">D</label>
+													</li>
+												</ul>
+												<button ng-click="submitQuestion($index,'many',i)">确认提交</button>
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'many')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--多选题-->
+							
+							<!--判断题-->
+							<ul class="zy_question_type_details zy_type_judge toggle" ng-switch-when="1">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.judge">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>判断题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<<!--li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'judge')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'judge',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<!--<div class="zy_small_question_option">
+												<ul class="clearfix">
+													<li>
+														A. 对
+													</li>
+													<li>
+														B. 错
+													</li>
+												</ul>
+											</div>-->
+											<!--重新作答-->
+											<div class="zyx_myAnswer mlh_myAnswer zyx_learn clearfix" ng-if="variablePacket.exercisesAndtest!=1 && !i.edit">
+												<em>我的答案:</em>
+												<span class="zyx_JudgeBg" ng-bind='i.myAnswer'></span>
+												<button ng-click="editQuestion($index,'judge')">重新作答</button>
+											</div>
+											<!--确认提交-->
+											<div class="zyx_myAnswer mlh_myAnswer zyx_notLearn mlh_notLearn clearfix" ng-if="variablePacket.exercisesAndtest!=1 && i.edit">
+												<em>答案:</em>
+												<ul class="zyx_option JudgeBg  clearfix">
+													<li>
+														<input type="radio" ng-attr-name="{{$index}}" ng-attr-id="{{'a'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="正确" />
+														<label ng-attr-for="{{'a'+i.Id+i.Type}}">正确</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="错误" />
+														<label ng-attr-for="{{'b'+i.Id+i.Type}}">错误</label>
+													</li>
+												</ul>
+												<button ng-click="submitQuestion($index,'judge',i)">确认提交</button>
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'judge')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--判断题-->
+							
+							<!--填空题-->
+							<ul class="zy_question_type_details zy_type_fill toggle" ng-switch-when="3">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.fill">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>填空题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!--<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'fill')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'fill',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<div class="zy_wrong_people_group mlh_wrong_people_group clearfix" ng-if="variablePacket.exercisesAndtest!=1">
+												答：已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x
+											</div>
+											<div class="zy_view_answer zyx_father">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'fill')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>	
+							<!--填空题-->
+							
+							<!--材料题-->
+							<ul class="zy_question_type_details zy_type_material toggle" ng-switch-when="8">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.material">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1">1</b>
+											<span>材料题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!--<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'material')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'material',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<div class="zy_wrong_people_group mlh_wrong_people_group clearfix" ng-if="variablePacket.exercisesAndtest!=1">
+												答：已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':questionBank.material[$index].showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'material')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--材料题-->
+							
+							<!--简答题-->
+							<ul class="zy_question_type_details zy_type_answer toggle" ng-switch-when="6">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.answer">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>简答题</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!--<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'answer')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'answer',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<div class="zy_wrong_people_group mlh_wrong_people_group clearfix" ng-if="variablePacket.exercisesAndtest!=1">
+												答：已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'answer')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--简答题-->
+							
+							<!--完形填空-->
+							<ul class="zy_question_type_details zy_type_gestalt toggle" ng-switch-when="7">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.gestalt">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>完形填空</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!--<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'gestalt')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'gestalt',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<!--<div class="zy_small_question_option">
+												<div class="zy_small_question_option_gestalt clearfix">
+													<b class="fl">(1)</b>
+													<ul class="clearfix fl">
+														<li>
+															A. {1,.3}
+														</li>
+														<li>
+															B. {-3，-1，1，3}
+														</li>
+														<li>
+															A. {1,.3}
+														</li>
+														<li>
+															A. {1,.3}
+														</li>
+													</ul>
+												</div>
+												<div class="zy_small_question_option_gestalt clearfix">
+													<b class="fl">(2)</b>
+													<ul class="clearfix fl">
+														<li>
+															A. {1,.3}
+														</li>
+														<li>
+															B. {-3，-1，1，3}
+														</li>
+														<li>
+															A. {1,.3}
+														</li>
+														<li>
+															A. {1,.3}
+														</li>
+													</ul>
+												</div>
+											</div>-->
+											<div class="zy_wrong_people_group mlh_wrong_people_group clearfix" ng-if="variablePacket.exercisesAndtest!=1">
+												答：已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'gestalt')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--完形填空-->
+						
+							<!--阅读理解-->
+							<ul class="zy_question_type_details zy_type_read toggle" ng-switch-when="5">
+								<li class="zy_question_examples toggle" ng-class="{'active':i.edit}" ng-repeat="i in questionBank.read">
+									<div class="zy_small_question_tit clearfix">
+										<p class="fl">
+											<b ng-bind="$index+1"></b>
+											<span>阅读理解</span>
+										</p>
+										<ul class="zy_operation_list fr toggle" ng-if="variablePacket.exercisesAndtest==1">
+											<!--<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'read')"><i class="iconfont icon-shoucangxingxing"></i>收藏</li>-->
+											<li class="collect_icon" ng-if="i.collection" ng-click="collectionFn($index,'read',i.id)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</li>
+										</ul>
+									</div>
+									<!--编辑部分-->
+									<div class="zy_small_question_main toggle">
+										<div class="zy_small_question_stem">
+											<div class="zy_small_question_sub"  ng-bind-html="i.body">
+												1.已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x，则函数g（x） =f（x） - x+3的零点的集合为（）
+											</div>
+											<div class="zy_small_question_option">
+												<div class="zy_read_check_strip">
+													<b>(1) 孔子要表达的意思</b>
+													<ul class="zy_option_election clearfix">
+														<li>
+															A. 不认识你
+														</li>
+														<li>
+															B. 不认识你
+														</li>
+														<li>
+															C. 不认识你
+														</li>
+														<li>
+															D. 不认识你
+														</li>
+													</ul>
+												</div>
+												<div class="zy_read_check_strip">
+													<b>(2) 孔子要表达的意思</b>
+													<ul class="zy_option_election clearfix">
+														<li>
+															A. 不认识你
+														</li>
+														<li>
+															B. 不认识你
+														</li>
+														<li>
+															C. 不认识你
+														</li>
+														<li>
+															D. 不认识你
+														</li>
+													</ul>
+												</div>
+												<div class="zy_read_check_strip">
+													<b>(3) 孔子要表达的意思</b>
+													<ul class="zy_option_election clearfix">
+														<li>
+															A. 不认识你
+														</li>
+														<li>
+															B. 不认识你
+														</li>
+														<li>
+															C. 不认识你
+														</li>
+														<li>
+															D. 不认识你
+														</li>
+													</ul>
+												</div>
+												<div class="zy_read_check_strip">
+													<b>(4) 孔子要表达的意思</b>
+													<ul class="zy_option_election clearfix">
+														<li>
+															A. 不认识你
+														</li>
+														<li>
+															B. 不认识你
+														</li>
+														<li>
+															C. 不认识你
+														</li>
+														<li>
+															D. 不认识你
+														</li>
+													</ul>
+												</div>
+												<div class="zy_read_check_strip">
+													<b>(5) 孔子要表达的意思</b>
+													<ul class="zy_option_election clearfix">
+														<li>
+															A. 不认识你
+														</li>
+														<li>
+															B. 不认识你
+														</li>
+														<li>
+															C. 不认识你
+														</li>
+														<li>
+															D. 不认识你
+														</li>
+													</ul>
+												</div>
+											</div>
+											<div class="zy_wrong_people_group mlh_wrong_people_group clearfix" ng-if="variablePacket.exercisesAndtest!=1">
+												答：已已知（x）是定义在R上的义在R上的义在R上的义在R上的奇函数，当x≥0时，f（x）=x2 - 3x
+											</div>
+											<div class="zy_view_answer zyx_father" ng-if="!i.edit">
+												<p ng-class="{'active':i.showAnswer}"
+													ng-click="checkAnswer($index,i.showAnswer,'read')">
+													<span>查看答案及解析</span>
+													<i class="iconfont icon-arrow_you"></i>
+												</p>
+											</div>
+										</div>
+										<div class="zy_small_question_answer toggle" ng-if="i.showAnswer">
+											<div class="zy_small_question_answer_box">
+												<p>答案</p>
+												<div class="" ng-bind="i.answer">答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案答案</div>
+											</div>
+											<div class="zy_small_question_analysis_box">
+												<p>解析</p>
+												<div class="" ng-bind-html="i.analysis">解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析解析</div>
+											</div>
+										</div>
+									</div>
+									<!--编辑部分-->
+								</li>
+							</ul>
+							<!--阅读理解-->
+						</div>
+					</div>
+				</div>
+				<!--分页-->
+				<div class="zmj_resource_page">
+			        <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+			    </div>
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

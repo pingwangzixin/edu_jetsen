@@ -1,0 +1,76 @@
+<div class="">
+	<div class="zy_class_space_index">
+		<div class="zy_photo_wrap">
+			<div class="zy_introduce_tit clearfix">
+				<span>班级风采</span>
+				<strong ng-hide="variable.editFlag"  class="fr" ui-sref="classSpace.classPhoto.classPhotoEdit({state:0})">
+					<i    class="iconfont icon-jiahao"></i>
+					添加
+				</strong>
+			</div>
+			<ul class="zy_school_year_list">
+				<li class="zy_school_year" ng-repeat="album in albumArr">
+					<p class="zy_school_year_tit">{{album.stuYear}}学年</p>
+					<ul class="zy_school_year_album clearfix">
+						<li ng-repeat="photo in album.list">
+							<div class="zy_cover_photo" ui-sref="classSpace.classPhoto.classPhotoDetails({photoId:photo.id})">
+								<img src="{{photo.src}}" err-src="./img/error152.png" />
+								<i>{{photo.count}}张</i>
+							</div>
+							<div class="zy_cover_word">
+								<p class="zy_photo_tit" ng-bind="photo.name"></p>
+								<p class="zy_photo_time">发表于{{photo.createDate}}</p>
+								<p class="zy_photo_oper" ng-hide="variable.editFlag">
+									<span ng-hide="editFlag" ng-click="deleteAlbum($index,photo.id)">删除|</span>
+									<span ng-hide="editFlag" ui-sref="classSpace.classPhoto.classPhotoEdit({state:1,photoId:photo.id})">编辑</span>
+								</p>
+							</div>
+						</li>
+					</ul>
+				</li>
+<!--				<li class="zy_school_year">
+					<p class="zy_school_year_tit">2017-2018学年</p>
+					<ul class="zy_school_year_album clearfix">
+						<li>
+							<div class="zy_cover_photo">
+								<img src="./img/class_space_test1.png"/>
+								<i>55张</i>
+							</div>
+							<div class="zy_cover_word">
+								<p class="zy_photo_tit">运动会风采</p>
+								<p class="zy_photo_time">发表于2018-01-01</p>
+								<p class="zy_photo_oper">
+									<span>删除</span> |
+									<span>编辑</span>
+								</p>
+							</div>
+						</li>
+					</ul>
+				</li>-->
+			</ul>
+		</div>
+	</div>
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down zy_if_box" ng-show="variable.deleteBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<p>确认删除吗？</p>
+	    	<div class="zy_if_btn_box">
+	    		<button class="zy_if_btn_sure" ng-click="sureDelete()">确认</button>
+	    		<button class="zy_if_btn_cancel" ng-click="variable.deleteBox=false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示弹框-->
+	<div class="gy_del_down zy_if_box zy_auto_box" ng-show="variable.tipBox">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-chenggong" ng-if="variable.tipSuccess"></i>
+	    	<i class="iconfont icon-shangchuanshibai" ng-if="!variable.tipSuccess"></i>
+	    	<p ng-bind="variable.tipWord"></p>
+		</div>
+	</div>
+	
+</div>

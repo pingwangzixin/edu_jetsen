@@ -1,0 +1,18 @@
+<div>
+	<div class="wx_up_nav">
+		<ul class="wx_upnav_ul mlh_safe">
+			<li ui-sref='secondNav.leftTree.publicNav.safeIndex'>安全管理</li>
+		</ul>
+	</div>
+	
+	<div class="wx_bread_nav">
+		<img src="./img/wx_bread_nav.png" class="wx_bread_icon">
+		<span ng-if="false" ng-click="breadNav(0)">全国</span>
+		<span ng-if="variableGlobal.crumbs.provincenav" ng-click="breadNav(1)" ng-bind="variableGlobal.crumbs.provincename"></span>
+		<span ng-if="variableGlobal.crumbs.citynav"     ng-click="breadNav(2)" ng-bind="variableGlobal.crumbs.cityname"></span>
+		<span ng-if="variableGlobal.crumbs.countynav"   ng-click="breadNav(3)" ng-bind="variableGlobal.crumbs.countyname"></span>
+		<span ng-if="variableGlobal.crumbs.schoolnav"   ng-click="breadNav(4)" ng-bind="variableGlobal.crumbs.schoolname"></span>
+	</div>
+	
+	<div ui-view class="toggle"></div>
+</div>

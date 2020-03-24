@@ -1,0 +1,48 @@
+
+<div>
+	<div class="zyx_greenbox zyx_classStarStudentEdit">
+		<div class="zyx_whitebox">
+			<div class="zyx_title">
+				<span>明星学生</span>
+			</div>
+			<div class="zyx_classSpace_editfile">
+				<div class="zyx_name">
+					<span>学生姓名</span>
+					<input type="text"  placeholder="请输入姓名" ng-model="title"/>
+				</div>
+				<div class="zyx_file clearfix">
+					<span class="fl">上传图片</span>
+					<div class="zyx_echo_img fl"> 
+						<!--<img id="FileImg" src="./img/register_teacher.png"/>-->
+						<img  ng-hide="constants.defaultImage" id="FileImg" src="./img/register_teacher.png"/>
+						<img  ng-hide="!constants.defaultImage" id='FileImg' ng-src="{{imagePath}}" />
+					</div>
+					<div class="zyx_fileInput fl">
+						<input type="file" id="FileInput" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="angular.element(this).scope().filePhoto(this)"/>
+						<img src="./img/upload_school_logo.png"/>
+					</div>
+				</div>
+				<div class="zyx_edit clearfix">
+					<span>学生简介</span>
+					<textarea ng-model='ueditor' config='config' ng-keyup="conut"></textarea>
+				</div>
+			</div>
+			<div class="zyx_classSpace_btn">
+				<span ng-click="save(ueditor)">保存</span>
+				<span ng-click="cancel()">取消</span>
+			</div>
+		</div>
+	</div>
+    <div class="gy_del_down zyx_warn" ng-if="constants.tixbox" >
+		  <div class="gy_hide"></div>
+					    <div class="gy_con">
+					    	<div class="zyx_con">
+					    		<img src="./img/zyx_delwram.png"> <!--感叹号-->
+					    		<ul>
+					    			<li>请上传图片！</li>
+					    		</ul>
+					    </div>
+		 </div>			   
+	</div>
+
+</div>	

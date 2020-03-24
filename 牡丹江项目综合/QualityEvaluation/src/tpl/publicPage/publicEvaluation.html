@@ -1,0 +1,1224 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<top-list page="prevPageNo" best="bestStuId" ng-if="roleShow.student.show"></top-list>
+		
+		<!--优秀学生头部返回-->
+		<div class="zy_content zy_return_box clearfix" ng-if="roleShow.bestStudent.show">
+			<div class="zy_left fl">
+				<span ui-sref="wrap.topStudentList({bestStuId : roleShow.bestStudent.bestStuId})"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<strong><img src="./img/icon_top_list.png"/>优秀学生</strong>
+				<em>赵大艳</em>
+			</div>
+		</div>
+		
+		<!--学生头部返回-->
+		<div class="zy_content zy_return_box clearfix" ng-if="roleShow.teacher.show && !roleShow.bestStudent.show">
+			<div class="zy_left fl">
+				<span ui-sref="{{prevPath}}"><i class="iconfont icon-fanhui1"></i>退回</span>
+				<b>|</b>
+				<em>赵大艳</em>
+			</div>
+			<div class="zy_right fr" ng-if="roleShow.teacher.show && teacherState=='edit'">
+				<button ng-click="keep()">保存</button>
+			</div>
+
+		</div>
+
+		<div class="zy_content zy_progress_axis" ng-if="roleShow.student.show">
+			<div class="zy_return_box clearfix">
+				<div class="zy_left fl">
+					学生：<em>赵大艳</em>
+					<em>七年级（下学期）</em>
+				</div>
+				<div class="zy_right fr">
+					<button ng-click="viewReport()">查看报告</button>
+				</div>
+			</div>
+			<div class="zy_progress_box">
+				<div class="zy_progress_show">
+					<b></b>
+					<ul class="clearfix">
+						<li><p>资质上传</p><i class="iconfont icon-duihao1"></i></li>
+						<li><p>教师评级</p><i class="iconfont icon-duihao1"></i></li>
+						<li><p>师评</p><i class="iconfont icon-duihao1"></i></li>
+						<li><p>自评</p><i class="iconfont icon-duihao1"></i></li>
+						<li class="active"><p>家评</p><i class="iconfont icon-duihao1"></i></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="zy_evaluate_box">
+			<div class="zy_evaluate_top clearfix" ng-if="!roleShow.bestStudent.show">
+				<p class="fl">
+					<span ng-class="{'active' : evaluateState.comment == 0}" ng-click="switchComment(0)">评价</span>
+					<span ng-class="{'active' : evaluateState.comment == 1}" ng-click="switchComment(1)">评语</span>
+				</p>
+				<p class="fr"><span>学生</span>评价截止时间到<span>2月20日</span></p>
+			</div>
+			<div class="zy_evaluate_bottom" ng-switch="evaluateState.comment">
+				<!--评价-->
+				<div class="zy_evaluate_con toggle" ng-switch-when="0">
+					<ul class="zy_evaluate_term_tit clearfix">
+						<li ng-class="{'active': evaluateState.evaluationType == 0}" ng-click="swicthType(0)">思想品德和公民素养</li>
+						<li ng-class="{'active': evaluateState.evaluationType == 1}" ng-click="swicthType(1)">学业水平和学习素养</li>
+						<li ng-class="{'active': evaluateState.evaluationType == 2}" ng-click="swicthType(2)">身体和心理健康水平</li>
+						<li ng-class="{'active': evaluateState.evaluationType == 3}" ng-click="swicthType(3)">兴趣特长及审美素养</li>
+						<li ng-class="{'active': evaluateState.evaluationType == 4}" ng-click="swicthType(4)">社会实践和动手能力</li>
+					</ul>
+					<ul class="zy_evaluate_term" ng-switch="evaluateState.evaluationType">
+						<li ng-switch-when="0">
+							<div class="zy_evaluate_term_con">
+								<div class="zy_evaluate_prove">
+									<div class="zy_evaluate_upload zy_student_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">学生/资质</span>
+											<b class="fr" ng-click="upLoad('stu')" ng-if="roleShow.student.show"><i class="iconfont icon-shangchuan"></i>上传资质</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show" ng-click="check('stu')">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.student.show"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+									<div class="zy_evaluate_upload zy_teacher_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">教师/佐证</span>
+											<b class="fr" ng-click="upLoad('tea')" ng-if="roleShow.teacher.show && teacherState=='edit'"><i class="iconfont icon-shangchuan"></i>上传佐证</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show" ng-click="check('tea')">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.teacher.show && teacherState=='edit'"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.teacher.show && teacherState=='edit'"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang" ng-click="deleteing($event)" ng-if="roleShow.teacher.show && teacherState=='edit'"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+								</div>
+								<div class="zy_evaluate_grade">
+									<div class="zy_evaluate_grade_tit">
+										<ul class="clearfix">
+											<li class="fl">思想品德和公民素养</li>
+											<li class="fr">评价老师：<span>赵大艳</span></li>
+											<li class="fr">评价等级：<span>A</span></li>
+										</ul>										
+									</div>
+									<table border="" cellspacing="" cellpadding="">
+										<tr>
+											<th width="170px">评价要素</th>
+											<th width="190px">评价内容</th>
+											<th width="470px">关键表现</th>
+											<th>成度</th>
+										</tr>
+										<tr>
+											<td>理想信念</td>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.背诵社会主义核心价值观的24字内容、了解中国内涵</span>
+												<span>2.有自己的人生偶像，有明确的人生梦想</span>
+												<span>3.分辨是非善恶，勤俭节约不攀比</span>
+											</td>
+											<td>
+												<p ng-if="roleShow.teacher.show && teacherState=='edit'">
+													<em class="zy_good" ng-click="resultsTab($event)">优秀</em>
+													<em class="zy_qualified" ng-click="resultsTab($event)">合格</em>
+													<em class="zy_improved" ng-click="resultsTab($event)">待提高</em>
+												</p>
+<!--												<p ng-if="teacherState=='see' || roleShow.student.show || roleShow.bestStudent.show">-->
+												<p ng-if="!(roleShow.teacher.show && teacherState=='edit')">
+													<em class="zy_good active">优秀</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td rowspan="3">公民素养</td>
+											<td class="zy_evaluate_cont">爱祖国、爱家乡、爱学校、爱班级</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+												<span>3.能熟练的说出家乡知名景观、著名人物，了解土文化</span>
+												<span>4.认真做值日，能积极参加班级、学校组织的活动，认真履行所 承担职责</span>
+											</td>
+											<td>
+												<p ng-if="roleShow.teacher.show && teacherState=='edit'">
+													<em class="zy_good" ng-click="resultsTab($event)">优秀</em>
+													<em class="zy_qualified" ng-click="resultsTab($event)">合格</em>
+													<em class="zy_improved" ng-click="resultsTab($event)">待提高</em>
+												</p>
+												<p ng-if="!(roleShow.teacher.show && teacherState=='edit')">
+													<em class="zy_good active">优秀</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</li>
+						<li ng-switch-when="1">
+							<div class="zy_evaluate_term_con">
+								<div class="zy_evaluate_prove">
+									<div class="zy_evaluate_upload zy_student_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">学生/资质</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传资质</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+									<div class="zy_evaluate_upload zy_teacher_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">教师/佐证</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传佐证</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+								</div>
+								<div class="zy_evaluate_grade">
+									<div class="zy_evaluate_grade_tit">
+										<ul class="clearfix">
+											<li class="fl">学业水平和学习素养</li>
+											<li class="fr">评价老师：<span>赵大艳</span></li>
+											<li class="fr">评价等级：<span>A</span></li>
+										</ul>										
+									</div>
+									<table border="" cellspacing="" cellpadding="">
+										<tr>
+											<th width="170px">评价要素</th>
+											<th width="190px">评价内容</th>
+											<th width="470px">关键表现</th>
+											<th>成度</th>
+										</tr>
+										<tr>
+											<td>理想信念</td>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.背诵社会主义核心价值观的24字内容、了解中国内涵</span>
+												<span>2.有自己的人生偶像，有明确的人生梦想</span>
+												<span>3.分辨是非善恶，勤俭节约不攀比</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good active">优秀</em>
+													<em class="zy_qualified active">合格</em>
+													<em class="zy_improved active">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td rowspan="3">公民素养</td>
+											<td class="zy_evaluate_cont">爱祖国、爱家乡、爱学校、爱班级</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+												<span>3.能熟练的说出家乡知名景观、著名人物，了解土文化</span>
+												<span>4.认真做值日，能积极参加班级、学校组织的活动，认真履行所 承担职责</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good" ng-click="resultsTab($event)">优秀</em>
+													<em class="zy_qualified" ng-click="resultsTab($event)">合格</em>
+													<em class="zy_improved" ng-click="resultsTab($event)">待提高</em>
+												</p>
+												<p>
+													<em class="zy_good active">优秀</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</li>
+						<li ng-switch-when="2">
+							<div class="zy_evaluate_term_con">
+								<div class="zy_evaluate_prove">
+									<div class="zy_evaluate_upload zy_student_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">学生/资质</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传资质</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+									<div class="zy_evaluate_upload zy_teacher_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">教师/佐证</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传佐证</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+								</div>
+								<div class="zy_evaluate_grade">
+									<div class="zy_evaluate_grade_tit">
+										<ul class="clearfix">
+											<li class="fl">身体和心理健康水平</li>
+											<li class="fr">评价老师：<span>赵大艳</span></li>
+											<li class="fr">评价等级：<span>A</span></li>
+										</ul>										
+									</div>
+									<table border="" cellspacing="" cellpadding="">
+										<tr>
+											<th width="170px">评价要素</th>
+											<th width="190px">评价内容</th>
+											<th width="470px">关键表现</th>
+											<th>成度</th>
+										</tr>
+										<tr>
+											<td>理想信念</td>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.背诵社会主义核心价值观的24字内容、了解中国内涵</span>
+												<span>2.有自己的人生偶像，有明确的人生梦想</span>
+												<span>3.分辨是非善恶，勤俭节约不攀比</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good active">优秀</em>
+													<em class="zy_qualified active">合格</em>
+													<em class="zy_improved active">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td rowspan="3">公民素养</td>
+											<td class="zy_evaluate_cont">爱祖国、爱家乡、爱学校、爱班级</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+												<span>3.能熟练的说出家乡知名景观、著名人物，了解土文化</span>
+												<span>4.认真做值日，能积极参加班级、学校组织的活动，认真履行所 承担职责</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good" ng-click="resultsTab($event)">优秀</em>
+													<em class="zy_qualified" ng-click="resultsTab($event)">合格</em>
+													<em class="zy_improved" ng-click="resultsTab($event)">待提高</em>
+												</p>
+												<p>
+													<em class="zy_good active">优秀</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</li>
+						<li ng-switch-when="3">
+							<div class="zy_evaluate_term_con">
+								<div class="zy_evaluate_prove">
+									<div class="zy_evaluate_upload zy_student_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">学生/资质</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传资质</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+									<div class="zy_evaluate_upload zy_teacher_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">教师/佐证</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传佐证</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+								</div>
+								<div class="zy_evaluate_grade">
+									<div class="zy_evaluate_grade_tit">
+										<ul class="clearfix">
+											<li class="fl">兴趣特长及审美素养</li>
+											<li class="fr">评价老师：<span>赵大艳</span></li>
+											<li class="fr">评价等级：<span>A</span></li>
+										</ul>										
+									</div>
+									<table border="" cellspacing="" cellpadding="">
+										<tr>
+											<th width="170px">评价要素</th>
+											<th width="190px">评价内容</th>
+											<th width="470px">关键表现</th>
+											<th>成度</th>
+										</tr>
+										<tr>
+											<td>理想信念</td>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.背诵社会主义核心价值观的24字内容、了解中国内涵</span>
+												<span>2.有自己的人生偶像，有明确的人生梦想</span>
+												<span>3.分辨是非善恶，勤俭节约不攀比</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good active">优秀</em>
+													<em class="zy_qualified active">合格</em>
+													<em class="zy_improved active">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td rowspan="3">公民素养</td>
+											<td class="zy_evaluate_cont">爱祖国、爱家乡、爱学校、爱班级</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+												<span>3.能熟练的说出家乡知名景观、著名人物，了解土文化</span>
+												<span>4.认真做值日，能积极参加班级、学校组织的活动，认真履行所 承担职责</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good" ng-click="resultsTab($event)">优秀</em>
+													<em class="zy_qualified" ng-click="resultsTab($event)">合格</em>
+													<em class="zy_improved" ng-click="resultsTab($event)">待提高</em>
+												</p>
+												<p>
+													<em class="zy_good active">优秀</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</li>
+						<li ng-switch-when="4">
+							<div class="zy_evaluate_term_con">
+								<div class="zy_evaluate_prove">
+									<div class="zy_evaluate_upload zy_student_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">学生/资质</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传资质</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+									<div class="zy_evaluate_upload zy_teacher_upload">
+										<div class="zy_evaluate_upload_tit clearfix">
+											<span class="fl">教师/佐证</span>
+											<b class="fr"><i class="iconfont icon-shangchuan"></i>上传佐证</b>
+										</div>
+										<div class="zy_evaluate_upload_con">
+											<i class="iconfont icon-zuojiantoubeijing"></i>
+											<div class="zy_example_list" show-more>
+												<ul class="clearfix">
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+													<li class="zy_example_show">
+														<div class="zy_example_img_box">
+															<img src="./img/tu.png"/>
+															<i class="iconfont icon-cuowuguanbiquxiao-fangkuang"></i>
+															<p>证书</p>
+														</div>
+														<span>市级数学竞赛一等奖证书</span>
+													</li>
+												</ul>
+											</div>
+											<i class="iconfont icon-youjiantoubeijing"></i>
+										</div>
+									</div>
+								</div>
+								<div class="zy_evaluate_grade">
+									<div class="zy_evaluate_grade_tit">
+										<ul class="clearfix">
+											<li class="fl">社会实践和动手能力</li>
+											<li class="fr">评价老师：<span>赵大艳</span></li>
+											<li class="fr">评价等级：<span>A</span></li>
+										</ul>										
+									</div>
+									<table border="" cellspacing="" cellpadding="">
+										<tr>
+											<th width="170px">评价要素</th>
+											<th width="190px">评价内容</th>
+											<th width="470px">关键表现</th>
+											<th>成度</th>
+										</tr>
+										<tr>
+											<td>理想信念</td>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.背诵社会主义核心价值观的24字内容、了解中国内涵</span>
+												<span>2.有自己的人生偶像，有明确的人生梦想</span>
+												<span>3.分辨是非善恶，勤俭节约不攀比</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good active">优秀</em>
+													<em class="zy_qualified active">合格</em>
+													<em class="zy_improved active">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td rowspan="3">公民素养</td>
+											<td class="zy_evaluate_cont">爱祖国、爱家乡、爱学校、爱班级</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+												<span>3.能熟练的说出家乡知名景观、著名人物，了解土文化</span>
+												<span>4.认真做值日，能积极参加班级、学校组织的活动，认真履行所 承担职责</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good" ng-click="resultsTab($event)">优秀</em>
+													<em class="zy_qualified" ng-click="resultsTab($event)">合格</em>
+													<em class="zy_improved" ng-click="resultsTab($event)">待提高</em>
+												</p>
+												<p>
+													<em class="zy_good active">优秀</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+										<tr>
+											<td class="zy_evaluate_cont">初步树立正确的世界观、人生观、价值观</td>
+											<td class="zy_evaluate_performance">
+												<span>1.了解基本党史、国情，关心国家大事，珍视国家荣誉</span>
+												<span>2.尊重国旗、国徽，遵守升降国旗的礼仪</span>
+											</td>
+											<td>
+												<p>
+													<em class="zy_good">优秀</em>
+													<em class="zy_qualified">合格</em>
+													<em class="zy_improved">待提高</em>
+												</p>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--评语-->
+				<div class="zy_comment_con toggle" ng-switch-when="1">
+					<ul>
+						<li>
+							<p>师评：</p>
+							<textarea name="" rows="" cols="" ng-disabled="(roleShow.teacher.show && teacherState=='see')"></textarea>
+						</li>
+						<li>
+							<p>自评：</p>
+							<textarea name="" rows="" cols="" ng-disabled="true"></textarea>
+						</li>
+						<li>
+							<p>家评：</p>
+							<textarea name="" rows="" cols=""></textarea>
+						</li>
+					</ul>
+					<div class="zy_botton_group" ng-if="(roleShow.teacher.show && teacherState=='edit') || roleShow.student.show">
+						<button ng-click="commentSub()">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+	<!--确认删除弹框-->
+	<div class="gy_del_down" ng-show="tipState.deleteBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="tipState.deleteBox.ifShow = false"></i>
+	    	<div class="tip_box">
+	    		<p class="tip_img">
+	    			<i class="iconfont icon-gantanhao"></i>
+	    		</p>
+	    		<p class="tip_text tip_text_red">确认要删除吗？</p>
+	    	</div>
+	    	<div class="btn_group">
+	    		<button class="sure" ng-click="deleteSure()">确认</button>
+	    		<button class="cancel" ng-click="tipState.deleteBox.ifShow = false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--提示框-->
+	<div class="gy_del_down warn_box" ng-show="tipState.tipBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<div class="tip_box">
+	    		<p class="tip_img">
+	    			<i class="iconfont icon-gantanhao" ng-show="tipState.tipBox.tipRed"></i>
+	    			<i class="iconfont icon-duihao1" ng-show="!tipState.tipBox.tipRed"></i>
+	    		</p>
+	    		<p class="tip_text tip_text_blue" ng-bind="tipState.tipBox.tipsWord"></p>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--上传佐证、资质-->
+	<div class="gy_del_down zy_upload_box" ng-show="tipState.upLoadBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="tipState.upLoadBox.ifShow = false"></i>
+	    	<div class="zy_upload_tit_box">
+	    		<span ng-show="tipState.upLoadBox.role == 'stu'">上传资质</span>
+	    		<span ng-show="tipState.upLoadBox.role == 'tea'">上传佐证</span>
+	    	</div>
+	    	<div class="zy_upload_con_box">
+	    		<div class="zy_upload_strip zy_upload_dimension clearfix">
+	    			<span class="fl">评价维度：</span>
+	    			<ul class="fl">
+	    				<li class="active" ng-click="uploadTab($event)">思想品德和公民素养</li>
+	    				<li ng-click="uploadTab($event)">学业水平和学习素养</li>
+	    				<li ng-click="uploadTab($event)">身体和心理健康水平</li>
+	    				<li ng-click="uploadTab($event)">兴趣特长及审美素养</li>
+	    				<li ng-click="uploadTab($event)">社会实践和动手能力</li>
+	    			</ul>
+	    		</div>
+	    		<div class="zy_upload_strip zy_upload_type clearfix">
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'stu'">资质类型：</span>
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'tea'">佐证类型：</span>
+	    			<ul class="fl">
+	    				<li class="active" ng-click="uploadTab($event)">活动</li>
+	    				<li ng-click="uploadTab($event)">证书</li>
+	    				<li ng-click="uploadTab($event)">待提高</li>
+	    				<li ng-click="uploadTab($event)">其它</li>
+	    			</ul>
+	    		</div>
+	    		<div class="zy_upload_strip zy_upload_name clearfix">
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'stu'">资质名称：</span>
+	    			<span class="fl" ng-show="tipState.upLoadBox.role == 'tea'">佐证名称：</span>
+	    			<input type="text" class="fl" />
+	    		</div>
+	    	</div>
+	    	<div class="zy_upload_file_box">
+	    		<div class="zy_upload_file_bg">
+	    			<div class="zy_upload_file_dashed">
+	    				<input type="file" name="" id="" value="" />
+	    				<span>+</span>
+	    				<p>浏览文件或把文件拖拽到这里</p>
+	    			</div>
+	    		</div>
+	    		<p class="zy_upload_file_tip">提示：单次最大上传10个文件，上传插件所支持的格式有（MP3，MP4，png，jpg，doc，xls，xlx，pdf） 上传资源，即表示您同意牡丹江教育云空间上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+	    	</div>
+	    	<div class="btn_group">
+	    		<button class="sure" ng-click="uploadSure()">确认</button>
+	    		<button class="cancel" ng-click="tipState.upLoadBox.ifShow = false">取消</button>
+	    	</div>
+		</div>
+	</div>
+	
+	<!--查看佐证、资质-->
+	<div class="gy_del_down zy_check_box" ng-show="tipState.checkBox.ifShow">
+	    <div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-weibiaoti2" ng-click="tipState.checkBox.ifShow = false"></i>
+	    	<div class="zy_upload_tit_box">
+	    		<span ng-show="tipState.checkBox.role == 'stu'">查看资质</span>
+	    		<span ng-show="tipState.checkBox.role == 'tea'">查看佐证</span>
+	    	</div>
+	    	<div class="zy_upload_con_box">
+	    		<div class="zy_upload_strip zy_upload_name clearfix">
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'stu'">资质名称：</span>
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'tea'">佐证名称：</span>
+	    			<em>学业水平和学习素养</em>
+	    		</div>
+	    		<div class="zy_upload_strip zy_upload_type clearfix">
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'stu'">资质类型：</span>
+	    			<span class="fl" ng-show="tipState.checkBox.role == 'tea'">佐证类型：</span>
+	    			<em>证书</em>
+	    		</div>
+	    	</div>
+	    	<div class="zy_show_box">
+	    		<img src="./img/tu.png"/>
+	    	</div>
+		</div>
+	</div>
+
+</div>

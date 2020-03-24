@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="../common/zTree/css/demo.css" type="text/css">
+<link rel="stylesheet" href="../common/zTree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<script src="../common/zTree/js/jquery.ztree.core.js"></script>
+<script src="../js/ztree.js" type="text/javascript" charset="utf-8"></script>
+<script src="../common/js/angular.min.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	.main .mainLeft{
+		width: 100%;
+		height:auto;
+		min-height: 720px;
+		border:7px solid #bddffa;
+		border-radius: 70px 70px 70px 50px;
+		overflow: hidden;
+		margin-top: 27px;
+		background-color: #eaf4fc;
+	}
+
+	.mainLeft .left_name{
+		height: 40px;
+		line-height: 40px;
+		color:#222;
+		font-size: 1.6rem;
+		text-align: center;
+		border-bottom: 1px solid #fff;
+		/*background: #c4e5ff;*/
+		/*font-weight: bold;*/
+		cursor: pointer;
+	}
+	.mainLeft .left_name.Yactive{background: #b8d9f3;}
+	/*.bg_color{background-color:#b8d9f3;}*/
+	.main_left_ztree{width: 100%;margin-top: 40px;}
+	.mainLeft .img{
+		margin: 100px auto;
+		width: 80%;
+	}
+	ul.ztree{min-height: auto;}
+	/*.otherMeun{}
+	.otherMeun span{height: 44px; line-height: 44px; background-color: #b8d9f3; text-align: center; cursor: pointer; font-size: 14px;}*/
+	.Yother{box-sizing: border-box; width: 100%; height: 40px; text-align: center; line-height: 40px; cursor: pointer; font-size: 16px;border-top: 1px solid white;}
+	.left_name img, .Yother img{vertical-align: baseline;}
+	.Yother.Yactive{background: #b8d9f3;}
+	.ztreeTab {border-bottom: 1px solid #fff;}
+	.ztreeTab span{width:45%;font-size: 14px;color:#666666;text-align: center;height:40px;line-height: 40px;display: inline-block;cursor: pointer;}
+	.ztreeTab span.active b{color:#65b0e9;height:38px;border-bottom: 2px solid #65b0e9;display:inline-block;}
+	.selectSubject{margin: 13px 10%;display: none;}
+	.selectSubject select{border: 1px solid #ccc;border-radius: 5px;color: #666;width:45%;height: 24px;font-size: 12px;background:none;display: inline-block;}
+	.selectSubject select:first-child{margin-right: 2%;}
+	.selectSubject select:last-child{margin-left: 2%;}
+</style>
+
+<div class="mainLeft">
+	<div class="main_left_ztree">
+		<div class="content_wrap">
+			<div class="left_name">
+				<img src="../img/Yall.png"/>
+				全部
+			</div>
+			<div class="ztreeTab">
+				<span class="active"><b>教材</b></span>
+				<span><b>知识点</b></span>
+			</div>
+			<div class="zTreeDemoBackground">
+				<div class="selectSubject">
+					 <select name="" id="" class=""><option value="">学段</option> </select>
+					 <select name="" id="" class=""><option value="">学科</option> </select>
+				</div>
+				
+				
+				<ul id="treeDemo" class="ztree"></ul>
+				<!--<div class="otherMeun">
+					<span>其他</span>
+					
+				</div>-->
+				<div class="Yother">
+					<img src="../img/Yother.png"/>
+					其它
+				</div>
+			</div>
+		</div>
+		<img src="../img/yun.png" class="img"/>
+	</div>
+</div>
+
+<script type="text/javascript">
+	/*var _off = true;
+	$('.left_name').click(function(){
+		if(_off){
+			$(this).addClass('bg_color');
+			_off = false;
+		}else{
+			$(this).removeClass('bg_color');
+			_off = true;
+		}
+	});*/
+	
+	/*$('.left_name').click(function(){
+		$(this).addClass('bg_color');
+	});*/
+	
+</script>
+
+

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班牌首页</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/banpai.css">
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/banpai.js"></script>
+</head>
+<body onload="showLeftTime()">
+    <div class="header">
+        <div class="logo">
+            <img src="./images/logo.png" alt="">
+            
+            <div class="classbtn dw1" onclick="andJump()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>云空间</span>
+            </div>
+            <div class="classbtn dw2" onclick="andJump2()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>教育网</span>
+            </div>
+        </div>
+        <div class="weather">
+            <iframe class="tianqi" src="http://www.seniverse.com/weather/weather.aspx?uid=UEC970B676&cid=CHBJ000000&l=&p=SMART&a=0&u=C&s=1&m=0&x=1&d=0&fc=FFFFFF&bgc=&bc=&ti=0&in=0&li=" frameborder="0" scrolling="no" width="200" height="90" allowTransparency="true"></iframe>
+            
+            <p class="tqzhezhao"></p>
+            
+            <label id="show"></label>
+            <div class="selctclass">
+                <div class="classbtn dw3">
+                    <span>四年级(3)班</span><img src="./images/classbtnxiala.png" alt="">
+                </div>
+                <div class="strlist" style="display:none">
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="leftmenu">
+            <ul>
+                <a href="./index.html"><li><img src="./images/bjactive1.png" alt=""></li></a>
+                <a href="./xuexiao.html"><li><img src="./images/xuexiao.png" alt=""></li></a>
+                <a href="./shetuan.html"><li><img src="./images/shetuan.png" alt=""></li></a>
+                <a href="./wode.html?name=孔甜诺"><li><img src="./images/wode.png" alt=""></li></a>
+            </ul>
+        </div>
+        <div class="rightcon">
+           <div class="mingxingxuesheng">
+               <img src="./images/mxxstouxiang.jpg" class="mxxstouxiang">
+               <p style="position:absolute;top:160px;right:400px;font-weight:bold;font-size:20px;color:#fff;">明星学生</p>
+               <div class="mxxsdetail">
+                   四年三班   孔甜诺   女 10岁 品学兼优多才多艺，以良好的思想品质， 优异的学习成绩，全面发展的综合素质，成为同学中的佼佼者，校园里的小明星。作为班级干部，她不仅是老师的好助手还是同学的小当家。曾多次荣获“三好学生”“优秀班干部”等称号。在朗诵、京剧等方面表现优异，并多次担任各项活动的主持人。
+               </div>
+           </div>
+               
+        </div>
+    </div>
+    <div class="footer">
+        <ul>
+            <li><a href="./banfeng.html"><img src="./images/banfeng.png"></a></li>
+            <li><a href="./banwugongshi.html"><img src="./images/banwugongshi.png"></a></li>
+            <li><a href="./banzhurenjieshao.html"><img src="./images/banzhurenjieshao.png"></a></li>
+            <li><a href="./banjijieshao.html"><img src="./images/banjijieshao.png" ></a></li>
+            <li><a href="./mingxingxuesheng.html"><img src="./images/mingxingxuesheng.png"  class="ftbtnactive"></a></li>
+            <li><a href="./tesehuodong.html"><img src="./images/tesehuodong.png" alt=""></a></li>
+            <li><a href="./banjifengcai.html"><img src="./images/banjifengcai.png" alt=""></a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    $(function(){
+        $(".dw3").on("click",function(){
+            $(".strlist").toggle(300)
+        })
+        
+        $(".strlist ul li span").on("click",function(){
+            $(this).addClass("nameactive").parent().siblings().children("span").removeClass("nameactive")
+        })
+    })
+    
+    function andJump(){
+        window.android.AndJump();
+    }
+
+    function andJump2(){
+        window.android.AndJump2();
+    }
+</script>
+
+</html>

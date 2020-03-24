@@ -1,0 +1,235 @@
+<div>
+	<div class="wd_daily">
+		<div class="header clearfix">
+			<img class="fl" src="img/woderizhi.png"/></i>
+			<span class="fl">
+				日志
+			</span>
+			<button class="fr"  ng-show="!release.state" ng-click="release1()" ng-if="visiter != 1">发布</button>
+		</div>
+		<div class="release" ng-show="release.state">
+			<textarea ng-model='publishContent' name="" rows="" cols="" placeholder="有什么新鲜事想告诉大家" ></textarea>
+			<span ng-if="verificationReview" class="tips">您填写的内容可能包含敏感词，请调整后重新输入</span>
+			<span ng-if="verificationReview1" class="tips">内容或图片不能都为空</span>
+			<div class="clearfix upload ">
+				<p class="fl">
+					<label>
+						<span><i class="iconfont icon-tupian1"></i>上传图片({{picture.length}}/9)</span>
+						<input type="file" name="" accept="image/*" multiple="multiple" id="" value="" onchange="angular.element(this).scope().uploadPictures(this)" />
+					</label>
+					<label ng-click="parentsComment()">
+						<span>家长评论</span>
+						<i class="iconfont icon-kaiguan4" ng-if="whetherComment"></i>
+						<i class="iconfont icon-kaiguan3" ng-if="!whetherComment"></i>
+					</label>
+				</p>
+				<p class="fr">
+					<button class="cancel" ng-click="release1()">取消</button>
+					<button class="confirm" ng-click="release2()">发布</button>
+				</p>
+			</div>
+			<div class="pictureLibrary clearfix" ng-if="picture.length>0">
+				<div class="fl" ng-repeat="(e,i) in picture track by $index">
+					<img ng-src="{{i}}" />
+					<i class="iconfont icon-guanbi1" ng-click="deleteimg(e)"></i>
+				</div>
+				
+			</div>
+		</div>
+		<div class="main" >
+			<ul>
+				<li  ng-repeat="(index,item) in variablePacket.messageArray">
+					<div class="clearfix">
+						<div class="fl one">
+							<p ng-if="!faceHave" ng-class="{active:queryGender == '女'}">{{item.commentUserName.charAt(0)}}</p>
+							<img ng-src="{{userImage}}" ng-if="faceHave"/>
+						</div>
+						<div class="fl two">
+							<ul>
+								<li>{{item.commentUserName}} <i class="iconfont icon-nan" ng-if="queryGender == '男'"></i><i ng-if="queryGender == '女'" class="iconfont icon-nv"></i></li>
+								<li><span>{{item.commentCreateDate}}</span></li>
+								<li class="neirong">{{item.content}}</li>
+								<li class="tu clearfix" ng-if="item.resourceList.length>0">
+									<div class="fl" ng-repeat="(index1,item1) in item.resourceList">
+										<img ng-src="{{item1.url}}"/>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="three fr" ng-if="visiter != 1">
+							<p  ng-click="deleteComments(item)"><i class="iconfont icon-shanchu"></i>删除</p >
+						</div>
+					</div>
+					<div class="operation clearfix">
+						<div class="left fl">
+							<i class="iconfont icon-dianzan"></i>
+							<span ng-repeat="w in item.dianZanList">{{w.userName}}</span>
+						</div>
+						<div class="right fr">
+							<font ng-click="dianZan(item,index)">
+								<i class="iconfont icon-dianzan" ng-class="{active:item.whetherDianZan}"></i>
+								{{item.dianZanCount}}
+							</font>
+							<span>丨</span>
+							<font ng-click="openClose(index)">
+								<i class="iconfont icon-liuyan"></i>
+								{{item.replyList.length}}
+							</font>
+						</div>
+					</div>
+					<div class="comment" ng-show="item.state">
+						<ul>
+							<li class="clearfix" ng-repeat="w in item.replyList">
+								<div class="fl">
+									<p ng-if="w.userFace == ''" ng-class="{active:w.sex == '女'}">{{w.replyUserName.charAt(0)}}</p>
+									<img ng-src="{{w.userFace}}" ng-if="w.userFace != ''"/>
+								</div>
+								<div class="fl"> 
+									<p>{{w.replyUserName}}  <span>{{w.commentCreateDate}}</span></p>
+									<p>{{w.content}}</p>
+								</div>
+								<div class="fr" >
+									<p ng-if="w.state"  ng-click="deleteReply(w,index)"><i class="iconfont icon-shanchu"></i>删除</p>
+								</div>
+							</li>
+						</ul>
+						<div class="comment1" ng-if="!item.pinglunflag">
+							<textarea ng-change="replysensitive(item)" name="" rows="" cols="" ng-model="item.publishContent1"></textarea>
+							<span ng-if="item.verificationReview2" class="tips">内容不能为空</span>
+							<span ng-if="item.verificationReview3" class="tips">您填写的内容可能包含敏感词，请调整后重新输入</span>
+							<button ng-click="release3(item,index)">发布</button>
+						</div>
+					</div>
+				</li>
+				<!--<li>
+					<div class="clearfix">
+						<div class="fl one">
+							<p>唐</p>
+						</div>
+						<div class="fl two">
+							<ul>
+								<li>唐海燕 <i class="iconfont icon-nan"></i></li>
+								<li><span>2019-07-19</span></li>
+								<li class="neirong">今天通知，明天下午全体班级，老师进行校演活动，望大家踊跃参加。</li>
+							</ul>
+						</div>
+						<div class="three fr">
+							<p><i class="iconfont icon-shanchu"></i>删除</p >
+						</div>
+					</div>
+					<div class="operation clearfix">
+						<div class="left fl">
+							<i class="iconfont icon-dianzan"></i>
+							唐海涛、李想、吴宇
+						</div>
+						<div class="right fr">
+							<i class="iconfont icon-dianzan"></i>
+							1
+							<span>丨</span>
+							<i class="iconfont icon-liuyan"></i>
+							23
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="clearfix">
+						<div class="fl one">
+							<p>唐</p>
+						</div>
+						<div class="fl two">
+							<ul>
+								<li>唐海燕 <i class="iconfont icon-nan"></i></li>
+								<li><span>2019-07-19</span></li>
+								<li class="neirong">今天通知，明天下午全体班级，老师进行校演活动，望大家踊跃参加。</li>
+							</ul>
+						</div>
+						<div class="three fr">
+							<p><i class="iconfont icon-shanchu"></i>删除</p >
+						</div>
+					</div>
+					<div class="operation clearfix">
+						<div class="left fl">
+							<i class="iconfont icon-dianzan"></i>
+							唐海涛、李想、吴宇
+						</div>
+						<div class="right fr">
+							<i class="iconfont icon-dianzan"></i>
+							1
+							<span>丨</span>
+							<i class="iconfont icon-liuyan"></i>
+							23
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="clearfix">
+						<div class="fl one">
+							<p>唐</p>
+						</div>
+						<div class="fl two">
+							<ul>
+								<li>唐海燕 <i class="iconfont icon-nan"></i></li>
+								<li><span>2019-07-19</span></li>
+								<li class="neirong">今天通知，明天下午全体班级，老师进行校演活动，望大家踊跃参加。</li>
+							</ul>
+						</div>
+						<div class="three fr">
+							<p><i class="iconfont icon-shanchu"></i>删除</p >
+						</div>
+					</div>
+					<div class="operation clearfix">
+						<div class="left fl">
+							<i class="iconfont icon-dianzan"></i>
+							唐海涛、李想、吴宇
+						</div>
+						<div class="right fr">
+							<i class="iconfont icon-dianzan"></i>
+							1
+							<span>丨</span>
+							<i class="iconfont icon-liuyan"></i>
+							23
+						</div>
+					</div>
+					<div class="comment">
+						<ul>
+							<li class="clearfix">
+								<div class="fl">
+									<p>王</p>
+								</div>
+								<div class="fl"> 
+									<p>王四  <span>2017-07-07 15:58:39</span></p>
+									<p>这篇文章真的是太好了！</p>
+								</div>
+								<div class="fr">
+									<p><i class="iconfont icon-shanchu"></i>删除</p>
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="fl">
+									<p>王</p>
+								</div>
+								<div class="fl"> 
+									<p>王四  <span>2017-07-07 15:58:39</span></p>
+									<p>这篇文章真的是太好了！</p>
+								</div>
+								<div class="fr">
+									<p><i class="iconfont icon-shanchu"></i>删除</p>
+								</div>
+							</li>
+						</ul>
+						<div class="comment1">
+							<textarea name="" rows="" cols=""></textarea>	
+							<button>发布</button>
+						</div>
+					</div>
+				</li>-->
+			</ul>
+			<!--{{variablePacket.pageNumber}}-->
+			<paging ng-if="variablePacket.messageArray.length > 0" page="totalPageNumber" callback="variablePacket.pageNumber"></paging>
+		</div>
+		<div class="noNews" ng-if="variablePacket.messageArray.length == 0">
+			<img src="img/rizhi.png"/>
+			<p>暂无日志</p>
+		</div>
+	</div>
+</div>

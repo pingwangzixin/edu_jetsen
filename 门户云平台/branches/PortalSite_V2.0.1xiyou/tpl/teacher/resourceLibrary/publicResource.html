@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<div ng-cloak>
+	<!--主体开始-->
+	<div class="zmj_resource_main clearfix">
+		<div class="zmj_resource_mainLeft fl">
+			<!--选择教材版本-->
+			<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+			<!--树结构-->
+			<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+		</div>
+		<!--主体右边-->
+		<!--类型列表tab-->
+		<div class="zmj_resource_mainRight fr">
+			<!--类型开始-->
+		<div class="zmj_resource_filtrate">
+			<div class="zmj_resource_genre clearfix">
+				<span>类型&nbsp;:</span>
+				<ul class="zmj_resource_genreList clearfix">
+					<li ng-repeat="i in variablePacket.filetypeHead" ng-class={'active':variablePacket.filetypeHeadIndex==i.id} ng-click="findResourceList(i.id,'','')" ng-bind="i.name"></li>
+				</ul>
+				<!--搜索资源条按钮-->
+				<div class="zmj_resource_serach">
+					<input type="text" placeholder="搜索..." class="zmj_resource_serachText" ng-model="variablePacket.title" />
+					<i class="iconfont icon-sousuo zmj_resource_serachBtn" ng-click="findResourceList('','','')" ></i>
+				</div>
+			</div>
+			<!--搜索资源条数-->
+			<div class="searchResult">
+				共<span>{{variablePacket.total}}</span>资源
+			</div>
+         </div>
+			<!--类型结束-->
+			<!--类型切换tab  start -->
+			<div class="zmj_resource_test" >
+				<ul class="zmj_resource_testList" >
+					<li ng-repeat="i in data" class="clearfix">
+						<div class="zmj_resource_testInfo fl" ui-sref="secondNav.resourceDtealis({id:i.id,page:'secondNav.resourceType.publicResource',collect:i.collect})">
+							<h4 ng-bind="i.title"></h4>
+							<p><img ng-src="{{i.objId | icon:i.objId}}" alt="" /><span class="uploadName" ng-bind="i.createUser"></span><i class="iconfont icon-lishi"></i><span ng-bind="i.createDate | dateformat:i.createDate"></span><i class="iconfont icon-daxiao"></i><span ng-bind="i.fileSize"></span></p>
+						</div>
+						<div class="zmj_resource_testOperation fl">
+							<span class="prepareLessons">一键备课</span>
+						</div>
+						<div class="zmj_resource_operating">
+							<span class="collect" ng-if="!i.showFav && i.collect"><i class="iconfont" ng-class={'icon-quxiaoshoucang':i.collect,'icon-shoucangxingxing':!i.collect,'active':i.collect} ng-click="collectTab(i)"></i>取消收藏</span>
+							<span class="collect" ng-if="!i.showFav && !i.collect"><i class="iconfont" ng-class={'icon-quxiaoshoucang':i.collect,'icon-shoucangxingxing':!i.collect,'active':i.collect} ng-click="collectTab(i)"></i>收藏</span>
+							<span class="down" ng-click="download(i.id,i.title)"><i class="iconfont icon-xiazai1" ></i>下载</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="zmj_resource_loading" ng-if="variablePacket.loadShow" ng-click="findResourcePage()"  ><i class="iconfont icon-jiazai"></i>加载更多...</div>
+			<!--类型切换tab  end -->
+		</div>
+		
+
+	</div>
+	<!--主体结束-->
+
+</div>

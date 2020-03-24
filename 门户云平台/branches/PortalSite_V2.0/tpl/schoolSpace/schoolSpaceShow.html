@@ -1,0 +1,44 @@
+<div>
+	<div class="zyx_greenbox">
+		<div class="zyx_whitebox">
+			<div class="zyx_schoolSpaceShow">
+				<div class="zy_introduce_tit clearfix">
+					<div class="fl">
+						<em ng-class= '{active:varPack.showIndex==0}' ng-click='tabShow(0)'>班级</em>
+						<em ng-class= '{active:varPack.showIndex==1}' ng-click='tabShow(1)'>老师</em>
+						<em ng-class= '{active:varPack.showIndex==2}' ng-click='tabShow(2)'>学生</em>
+					</div>
+					<div class="fr zyx_search">
+						<input type="text" placeholder="请输入关键字" ng-model="keyword"/>
+						<i ng-hide='classFlag' class="iconfont icon-sousuo" ng-click="search(0)"></i>
+						<i ng-hide='teacherFlag' class="iconfont icon-sousuo" ng-click="search(1)"></i>
+						<i ng-hide='studentFlag' class="iconfont icon-sousuo" ng-click="search(2)"></i>
+					</div>
+				</div>
+				<div ng-switch='varPack.showIndex' >
+					<ul class="zyx_classShowList clearfix" ng-switch-when='0'>
+						<li ng-repeat='i in gradeList' >
+							<img  ng-src="{{i.srcName}}" ui-sref="classSpace.classSpaceIndex({classId:i.classId,cuid:i.cuid})"/>
+							<p ng-bind='i.gradeName'></p>
+						</li>
+					</ul>
+					<ul class="zyx_classShowList clearfix" ng-switch-when='1'>
+						<li ng-repeat='i in teacherList'>
+							<img ng-src="{{i.srcName}}"/>
+							<p ng-bind='i.teacherName'></p>
+						</li>
+					</ul>
+					<ul class="zyx_classShowList clearfix" ng-switch-when='2'>
+						<li ng-repeat='i in studentList'>
+							<img ng-src="{{i.srcName}}"/>
+							<p ng-bind='i.studentName'></p>
+						</li>
+					</ul>
+				</div>
+				<div class="zyx_classNoticeList_Btn">
+					<zjy-pagination conf="classNoticeListBtn" onSelectStart="return false"></zjy-pagination>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

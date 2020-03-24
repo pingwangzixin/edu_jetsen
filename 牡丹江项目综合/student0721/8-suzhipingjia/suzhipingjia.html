@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="renderer" content="webkit">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,minimum-scale=1" />
+	    <meta name="format-detection" content="telephone=no" />
+	    
+		<title>打分</title>
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/zhpj.css" />
+		<link rel="stylesheet" href="../css/ziyuan.css">
+		<link rel="stylesheet" href="../css/public.css" />
+		<link rel="stylesheet" href="../common/dropzone/dropzone.min.css">
+		<script src="../common/js/jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/head_left.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../common/js/jquery.raty.min.js"></script>
+		<script src="../common/dropzone/dropzone.min.js"></script>
+		<script src="../js/zhpj.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			body{background:url(../img/bg.jpg) repeat-y;}
+            .dafenrt table{margin-top:0;width:100%;margin-bottom: 20px;}
+			.pjselect{width:92%;margin:0 auto;}
+			.dafenshow{width:92%;margin:10px auto;min-height:825px;min-width:1200px;background:#ebf4fc;position:relative;margin-top:26px;border-radius:5px;border:9px solid rgba(191,225,251,.6);border-top-left-radius:6%;border-top-right-radius: 6%;border-bottom-left-radius:7%;border-bottom-right-radius:7%;}
+            .tablepj{background: #f2f8fd;margin-left:20px;margin-top:0;}
+            .tablepj thead{background: #fff;}
+			.tablepj thead tr th{height:30px;border:1px solid #ccc;}
+			.tablepj tbody td{text-align:center;border:1px solid #ccc;}
+			.hovertctips{position:relative;}
+			.dafencon{min-height:1200px;border:2px dotted #fff;margin:30px;border-top-left-radius: 4%;border-top-right-radius:5%;border-bottom-left-radius:4%;border-bottom-right-radius:4%;}
+            .dafencon .dfbanji{background: #f2f8fd;}
+			.dafentj:hover{color:#a8caf0;}
+			.kspj:hover{color:#5093e1}
+			.selectpy ul li:hover{color:#5093e1}
+			.contitle{width:300px;height:100px;background:#fff;border:2px solid #78adea;color:#666;position:absolute;top:30px;left:40px;z-index:999;text-align:left;padding:10px;}
+            .biaoti select{background:#eaf4fc;}
+            .dafentjbtn{width:50px;height:25px;border-radius: 5px;background:#5093e1;color:#fff;border:none;margin:10px;}
+            .zhleft{float: left;}
+            .dfbanji{width:20%;}
+            .dafenrt{width:83%;}
+            .wx_clear{clear: both;}
+            .szpjzp p{color:#6699ff;font-weight: bold;height:40px;line-height: 40px;}
+            .szpjzp textarea{width:100%;height:80px;background:#eaf4fc;}
+           
+            .uploadstrzizhi{width:73px;height:30px;border:1px solid #65b0e9;color:#65b0e9;border-radius: 5px;cursor: pointer;padding:5px;background:none;}
+            .pingfenul li{height:28px;line-height: 28px;cursor: pointer;}
+            .pingfenul li:nth-child(2){border-top:1px solid #ccc;border-bottom: 1px solid #ccc;}
+            .pingfenul li span.pfactive{width: 53px;height: 26px;display: block;background: #8ed582;border-radius: 5px;color: #fff;margin-left: 14px;margin-top:1px;}
+            
+            .pjweidu li{display: inline-block;text-align: center;height:23px;line-height: 23px;padding:2px 10px;}
+            .pjweidu li.active{border-radius: 20px;background: #65b0e9;color:#fff;}
+            .uploadfile{width:553px;height:149px;border:1px solid #ccc;background:#f5f5f5;margin: 0 auto;}
+            .ft20{font-size: 16px;margin:10px 0 10px 10px;}
+            .fileup{width:530px;height:80px;border:#ccc 1px dashed;margin:0 auto;text-align: center;line-height: 80px;cursor: pointer;}
+            .zizhiname{margin:10px 0}
+		</style>
+	</head>
+	<body>
+		<!--头部开始-->
+		<div class="header clearfix"></div>
+		<div class="pjselect">
+				<ul class="pingjia">
+					<li class="active"><a href="#">素质评价</a></li>
+					<li><a href="./pingjiabaogao.html">评价报告</a></li>
+				</ul>
+		</div>
+		<!--点击打分弹出页面-->
+					<div class="dafenshow">
+						<div class="dafenback">
+							<a href="./zonghepingjia.html"><img src="../img/back.png" alt=""></a>
+						</div>
+						
+						<div class="dafencon">
+							<div class="biaoti">
+							    <select name="" id="">
+                                    <option value="">七（上）综合素质评价</option>
+							    </select>
+							    <span style="margin-left:20px;">完成时间：2017-09-01至2017-10-01</span>
+							    <button class="right dafentjbtn">提交</button>
+							</div>
+                        <!--打分内容开始-->
+                            <!--    左侧    -->
+                            <div class="dfbanji zhleft">
+								<select name="dafenbanji" id="dafenbanji" style="background:#f2f8fd;">
+									<option value="二年级一班">二年级一班</option>
+									<option value="二年级一班">二年级一班</option>
+									<option value="二年级一班">二年级一班</option>
+								</select>
+								<p class="wancheng">已完成任务</p>
+								<div class="yiwan">
+									<button class="ywbtn">高田泽</button>
+									<button class="ywbtn">高田泽</button>
+									<button class="ywbtn">高田泽</button>
+									<button class="ywbtn">高田泽</button>
+									<button class="ingwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+									<button class="willwan">高田泽</button>
+								</div>
+								<p class="weiwancheng">未完成任务</p>
+								<div class="weiwan">
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+									<button class="wx_weiwan">郭子仪</button>
+								</div>
+							</div>
+                            <!--右侧-->
+                            <div class="dafenrt zhleft">
+								
+								<table border="1" cellpadding="0" cellspacing="0" class="tablepj">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="9">学年第一学期</th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">学校：捷成世纪中学</th>
+                                            <th colspan="2">学籍号：G282378368646443434334</th>
+                                            <th colspan="3">班级：七年级1班</th>
+                                            <th colspan="2">姓名：王玺</th>
+                                        </tr>
+                                        <tr>
+                                            <th>评价维度</th>
+                                            <th>评价要素</th>
+                                            <th style="width:25%">评价指标</th>
+                                            <th style="width:25%">关键表现</th>
+                                            <th style="width:80px;">达成度</th>
+                                            <th>评价人</th>
+                                            <th>资质</th>
+                                            <th>评价标准</th>
+                                            <th>等级</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="4"><span class="wx_shuzi">思想品德与公民素养</span></td>
+                                            <td>理想信念</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span class="pfactive">优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                            <td rowspan="4">王玺</td>
+                                            <td rowspan="4">
+                                               <button class="uploadstrzizhi" onclick="makeFileList()">上传资质</button>
+                                                <ul id="fileList1">
+                                                      
+                                                </ul>
+
+                                            </td>
+                                            <td rowspan="4"></td>
+                                            <td rowspan="4">A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>公民素养</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>人格品质</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>行为习惯</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="4"><span class="wx_shuzi">思想品德与公民素养</span></td>
+                                            <td>理想信念</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>初步树立正确的世界观，人生观，价值观</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                            <td rowspan="4">王玺</td>
+                                            <td rowspan="4">
+                                                <button class="uploadstrzizhi" onclick="makeFileList()">上传资质</button>
+                                                <ul id="fileList1">
+                                                      
+                                                </ul>
+
+                                            </td>
+                                            <td rowspan="4"></td>
+                                            <td rowspan="4">A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>公民素养</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>自尊，自律，自强，自信</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>人格品质</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>维护功德，关心集体，对个人的行为负责</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                         <tr>
+                                            <td>行为习惯</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>自觉维护社会功德，做合格公民</td>
+                                            <td>
+                                                <ul class="pingfenul">
+                                                    <li><span>优秀</span></li>
+                                                    <li><span>合格</span></li>
+                                                    <li><span>待提高</span></li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+								</table>
+								<div class="wx_clear"></div>
+							</div>
+                           <div class="wx_clear"></div>
+                            <div class="szpjcon">
+								    <div class="szpjzp">
+								        <p>自评：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+								    <div class="szpjzp">
+								        <p>互评</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+								    <div class="szpjzp">
+								        <p>师评：</p>
+								        <textarea name="" id="" cols="30" rows="10"></textarea>
+								    </div>
+                            </div>
+                            
+						</div>
+					</div>
+<!--打分页面结束-->
+
+
+
+
+<!--页面灰色遮罩	-->
+	<div class="zhezhao" style="display:none"></div>
+	<!--弹窗-->
+	<div class="del_down del_down2" style="display:none">
+		<div class="hide"></div>
+		<div class="con">
+			<img src="../img/success.png">
+			<p class="text-text"></p>
+		</div>
+	</div>
+	
+    <!--上传资源弹窗-->
+		<div class="uploadzy YupResources" style="display:none;">
+			<div class="weikeUptxtWrap">
+				<div class="uptit">
+					<span class="zysc">上传资质</span>
+					<span class="right weikegb"><img src="../img/gerenUpClose.png" ></span>
+				</div>
+				<div class="upcon">
+					<div class="nianji">
+						<span>评价维度：</span>
+						<ul class="pjweidu">
+						    <li class="active">思想品德和公民素养</li>
+						    <li>学业水平和习素养</li>
+						    <li>身体和心理健康水平</li>
+						    <li>兴趣特长及艺术素养</li>
+						    <li>社会实践和动手能力</li>
+						</ul>
+						<div class="zizhiname">
+						    <p>资质名称：<input type="text"></p>
+                            <p>关&nbsp;键&nbsp;字：<input type="text"></p>
+                            <p>资质描述：<input type="text"></p>
+						</div>
+						
+					</div>
+					
+					<div class="uploadfile">
+					    <p class="ft20">资质上传</p>
+					    <div class="fileup"  id="fileup" >
+					        浏览文件或把文件拖拽到这里
+					    </div>
+					</div>
+					
+					
+					<p class="upLoadTishi">提示：单次最大上传10个文件，上传插件所支持的格式有（MP3，MP4，png，jpg，doc，xls，xlx，pdf） 上传资源，即表示您同意牡丹江教育云空间上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+					
+					<div class="tijiao">
+						<button class="upqxsc">取消上传</button><button class="upsuresc">确认上传</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+<!--页面js-->
+		<script>
+            
+            
+            
+            
+			var dropz = new Dropzone("#fileup", {
+				url: "1.php",
+				maxFiles: 10,
+				//maxFilesize:10240,
+				acceptedFiles: ".png,.jpg,.gif",
+                uploadMultiple:true,
+			});
+
+			
+            
+            
+		function makeFileList() {
+			$(".YupResources").show()
+		}
+            
+            
+            $(function(){
+                $(document).on("click",".pjweidu li",function(){
+                    $(this).addClass("active").siblings().removeClass("active")
+                })
+            })
+	
+		</script>
+	</body>
+</html>

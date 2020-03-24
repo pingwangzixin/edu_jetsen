@@ -1,0 +1,42 @@
+<div class="zy_space_nav_box zy_stu_nav">
+	
+	<div class="zy_admin_set">
+		<div class="zy_space_bg">
+			<div class="zy_set_wrap">
+				<div class="zy_set_bar clearfix">
+					<div class="fl">
+						<span class="zy_bar_big_tit">{{schoolName}}</span>
+						<span class="zy_bar_tit">{{commonVar.name}}班的空间</span>
+					</div>
+					<p class="zy_set_users fr"><i>{{section}}</i><span>{{realname}}</span></p>
+					<div class="zy_more_platform fr">
+						<span class="fl">
+							<a href="" ui-sref="wrap.index">捷成教育云平台</a>
+						</span>
+						<span class="fl">
+							<i class="iconfont icon-shouye"></i>
+							<a ui-sref="secondNav.homePage" href="">我的空间</a>
+						</span>
+						<!--<span class="fl" ng-hide="commonVar.edFlag">
+							<i class="iconfont icon-shouye"></i>
+							<a ui-sref="schoolSpace.schoolSpaceShow" href="">学校空间展示</a>
+						</span>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="zy_stu_nav_list_bg">
+		<div class="zy_stu_nav_list">
+			<ul class="clearfix">
+				<li ui-sref={{nav.href}} ui-sref-active="active" ng-repeat="nav in spaceNav" ng-bind="nav.name"></li>
+			</ul>
+		</div>
+	</div>
+	
+</div>
+
+<div ui-view class="toggle zy_space"></div>
+
+<z-footer></z-footer>

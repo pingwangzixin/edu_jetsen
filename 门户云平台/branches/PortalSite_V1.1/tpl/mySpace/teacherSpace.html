@@ -1,0 +1,246 @@
+<div>
+	<style>
+		
+	</style>
+	<div class="zy_bg">
+		<div class="zy_central_content zy_space_new clearfix">
+			<div class="wd_left fl" >
+				<div class="user">
+					<div class="shang">
+						<div class="headPortrait" ng-bind="userLoggedMsg.surname">唐</div>
+						<!-- <div class="modify"><i class="iconfont icon-bianji2"></i><span>修改</span></div> -->
+						<div class="username">
+							<i ng-if="userLoggedMsg.sex == '男'" class="iconfont icon-nan"></i>
+							<i ng-if="userLoggedMsg.sex == '女'" class="iconfont icon-nv"></i>
+							<span ng-bind="userLoggedMsg.realname">唐海燕</span>
+						</div>
+					</div>
+					<div class="xia clearfix">
+						<ul class="fl left">
+							<li ng-repeat="w in roles" ><p class="fr">{{w}}组：</p></li>
+							<!--<li ><p class="fr">德育组：</p></li>
+							<li ><p class="fr">班主任组：</p></li>
+							<li ><p class="fr">任课教师组：</p></li>-->
+						</ul>
+						<ul class="fr right">
+							<li ng-repeat="w in rules"  ><p class="fl">{{w}}</p></li>
+							<!--<li ><p class="fl">校级领导组</p></li>
+							<li ><p class="fl">考试教务管理员</p></li>
+							<li ><p class="fl">初一年级（1）班</p></li>
+							<li ><p class="fl">语文  初一（1）班</p></li>
+							<li ><p class="fl">数学  初一（1）班</p></li>-->
+						</ul>
+						
+					</div>
+				</div>
+				<div class="application">
+					<div class="header">教学应用</div>
+					<div class="main">
+						<ul>
+							<li ng-repeat="w in entrance.application">
+								<h3>
+									<i ng-if="w.name == '家校互动'" class="iconfont icon-hudong"></i>
+									<i ng-if="w.name == '课程中心'" class="iconfont icon-kecheng"></i>
+									<i ng-if="w.name == '考试中心'" class="iconfont icon-kaoshi"></i>
+									<i ng-if="w.name == '综合发展'" class="iconfont icon-fazhanlicheng"></i>
+									<span>{{w.name}}</span>
+								</h3>
+								<div class="clearfix">
+									<p class="fl" ng-repeat="i in w.data"><span  ng-click="jump(i.url)">{{i.name}}</span></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="teacherOA">
+					<div class="header">教师OA</div>
+					<div class="main">
+						<ul class="clearfix">
+							<li class="fl" ng-repeat="w in entrance.teacherOA" ng-click="jump(i.url)">{{w.name}}</li>
+						</ul>
+					</div>
+				</div>
+				<div class="teacherOA management">
+					<div class="header">教学管理</div>
+					<div class="main">
+						<ul class="clearfix">
+							<li class="fl" ng-repeat="w in entrance.management" ng-click="jump(i.url)">{{w.name}}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="wd_right fr">
+				<div class="box"> 
+					<div class="header">
+						<span>消息中心</span>
+					</div>
+					<div class="main">
+						<div class="modular">
+							<div class="clearfix">
+								<div class="fl one">
+									<p>唐</p>
+								</div>
+								<div class="two fl">
+									<ul>
+										<li>唐海涛 <i class="iconfont icon-nan"></i></li>
+										<li><span>2019-07-19</span></li>
+										<li>为爱奉献一点爱</li>
+										<li><p><i class="iconfont icon-rili"></i> 2019.07.19-2019.07.22</p></li>
+										<li class="neirong">全国人民是一家，为灾区奉献一点爱，世界将会变得更美好！</li>
+									</ul>
+								</div>
+								<div class="three fr">
+									<p>德育活动</p >
+								</div>
+							</div>
+							<p><span>初二（1）班</span></p>
+						</div>
+						<div class="modular">
+							<div class="clearfix">
+								<div class="fl one ">
+									<p class="active">刘</p>
+								</div>
+								<div class="two fl">
+									<ul>
+										<li>刘琳 <i class="iconfont icon-nv"></i></li>
+										<li><span>2019-07-19</span></li>
+										<li><p><i class="iconfont icon-lishi"></i> 答卷时间：2019.07.19-2019.07.22</p></li>
+										<li class="neirong">今天通知，明天下午全体班级，老师进行校演活动，望大家踊跃参加。</li>
+										<li><img src="./img/classmottoImg.jpg" ></li>
+									</ul>
+								</div>
+								<div class="three fr">
+									<p>德育活动</p >
+								</div>
+							</div>
+							<div class="operation">
+								<ul class="clearfix">
+									<li class="fl"><i class="iconfont icon-yinpin"></i><span>音频</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-toupiao"></i><span>投票</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-poll-copy"></i><span>发起问卷调查</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-liuyan"></i><span>32</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-kechengbiao"></i><span>29276</span></li>
+								</ul>
+							</div>
+							<p><span>学生</span><span>家长</span><span>初一年级</span><span>初二年级</span></p>
+						</div>
+						<div class="modular">
+							<div class="clearfix">
+								<div class="fl one">
+									<p>唐</p>
+								</div>
+								<div class="two fl">
+									<ul>
+										<li>唐海涛 <i class="iconfont icon-nan"></i></li>
+										<li><span>2019-07-19</span></li>
+										<li>为爱奉献一点爱</li>
+										<li><p><i class="iconfont icon-rili"></i> 2019.07.19-2019.07.22</p></li>
+										<li class="neirong">全国人民是一家，为灾区奉献一点爱，世界将会变得更美好！</li>
+									</ul>
+								</div>
+								<div class="three fr">
+									<p>德育活动</p >
+								</div>
+							</div>
+							<p><span>初二（1）班</span></p>
+						</div>
+						<div class="modular">
+							<div class="clearfix">
+								<div class="fl one ">
+									<p class="active">刘</p>
+								</div>
+								<div class="two fl">
+									<ul>
+										<li>刘琳 <i class="iconfont icon-nv"></i></li>
+										<li><span>2019-07-19</span></li>
+										<li><p><i class="iconfont icon-lishi"></i> 答卷时间：2019.07.19-2019.07.22</p></li>
+										<li class="neirong">今天通知，明天下午全体班级，老师进行校演活动，望大家踊跃参加。</li>
+										<li><img src="./img/classmottoImg.jpg" ></li>
+									</ul>
+								</div>
+								<div class="three fr">
+									<p>德育活动</p >
+								</div>
+							</div>
+							<div class="operation">
+								<ul class="clearfix">
+									<li class="fl"><i class="iconfont icon-yinpin"></i><span>音频</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-toupiao"></i><span>投票</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-poll-copy"></i><span>发起问卷调查</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-liuyan"></i><span>32</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-kechengbiao"></i><span>29276</span></li>
+								</ul>
+							</div>
+							<p><span>学生</span><span>家长</span><span>初一年级</span><span>初二年级</span></p>
+						</div>
+						<div class="modular">
+							<div class="clearfix">
+								<div class="fl one">
+									<p>唐</p>
+								</div>
+								<div class="two fl">
+									<ul>
+										<li>唐海涛 <i class="iconfont icon-nan"></i></li>
+										<li><span>2019-07-19</span></li>
+										<li>为爱奉献一点爱</li>
+										<li><p><i class="iconfont icon-rili"></i> 2019.07.19-2019.07.22</p></li>
+										<li class="neirong">全国人民是一家，为灾区奉献一点爱，世界将会变得更美好！</li>
+									</ul>
+								</div>
+								<div class="three fr">
+									<p>德育活动</p >
+								</div>
+							</div>
+							<p><span>初二（1）班</span></p>
+						</div>
+						<div class="modular">
+							<div class="clearfix">
+								<div class="fl one ">
+									<p class="active">刘</p>
+								</div>
+								<div class="two fl">
+									<ul>
+										<li>刘琳 <i class="iconfont icon-nv"></i></li>
+										<li><span>2019-07-19</span></li>
+										<li><p><i class="iconfont icon-lishi"></i> 答卷时间：2019.07.19-2019.07.22</p></li>
+										<li class="neirong">今天通知，明天下午全体班级，老师进行校演活动，望大家踊跃参加。</li>
+										<li><img src="./img/classmottoImg.jpg" ></li>
+									</ul>
+								</div>
+								<div class="three fr">
+									<p>德育活动</p >
+									<span>未确认</span>
+								</div>
+							</div>
+							<div class="operation">
+								<ul class="clearfix">
+									<li class="fl"><i class="iconfont icon-yinpin"></i><span>音频</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-toupiao"></i><span>投票</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-poll-copy"></i><span>发起问卷调查</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-liuyan"></i><span>32</span></li>
+									<li class="fl shu"></li>
+									<li class="fl"><i class="iconfont icon-kechengbiao"></i><span>29276</span></li>
+								</ul>
+							</div>
+							<p><span>学生</span><span>家长</span><span>初一年级</span><span>初二年级</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<span>点击查看更多</span><i class="iconfont icon-xiangxiazhankai"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

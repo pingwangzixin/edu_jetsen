@@ -1,0 +1,42 @@
+<div>
+	<div class="zyx_greenbox zyx_timetable">
+		<div class="zy_about_introduce zy_course_introduce">
+			<div class="zy_introduce_tit">
+				<span>课程表</span>
+			</div>
+			<div class="zy_course_list">
+				<table border="" cellspacing="" cellpadding="">
+					<tr>
+						<th width="131px" class="zy_slash_table">
+							<span>星期</span>
+							<p class="zy_slash"></p>
+							<span>节数</span>
+						</th>
+						<th  ng-repeat="day in dayNum">{{day}}</th>
+					</tr>
+					<tr ng-repeat="lession in amCourseList">
+						<td>{{lession.lessionNum}}</td>
+						<td>{{lession.Monday}}</td>
+						<td>{{lession.Tuesday}}</td>
+						<td>{{lession.Wednesday}}</td>
+						<td>{{lession.Thursday}}</td>
+						<td>{{lession.Friday}}</td>
+						<td ng-if="variable.ensconce">{{lession.Saturday}}</td>
+						<td ng-if="variable.show">{{lession.Sunday}}</td>
+					</tr>
+					<tr><td colspan="6">午休</td></tr>
+					<tr ng-repeat="lession in pmCourseList">
+						<td>{{lession.lessionNum}}</td>
+						<td>{{lession.Monday}}</td>
+						<td>{{lession.Tuesday}}</td>
+						<td>{{lession.Wednesday}}</td>
+						<td>{{lession.Thursday}}</td>
+						<td >{{lession.Friday}}</td>
+						<td ng-if="variable.ensconce">{{lession.Saturday}}</td>
+						<td ng-if="variable.show">{{lession.Sunday}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

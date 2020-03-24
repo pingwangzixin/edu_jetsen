@@ -1,0 +1,278 @@
+<div class="zy_full">
+	<div ng-bind="teaJsData" id="teaJsData" style="display: none;"></div>
+	<div class="zy_main">
+		<top-list page="prevPageNo" role-index="chooseTermVariable.roleState" index="chooseTermVariable.gradeState" term="term"></top-list>
+		<div class="zy_content zy_roles_box">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li ng-repeat="role in roles" ng-class="{active:$index==chooseTermVariable.roleState}" ng-click="roleChange($index)" ng-bind="role.name" ui-sref="{{role.src}}"></li>
+				</ul>
+			</div>
+		</div>
+		<div class="zy_content">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li ng-repeat = "class in gradeList" ng-class="{active:$index==chooseTermVariable.gradeState}" ng-bind = "class.subStages+class.classNo | reverse" ng-click="gradeTab($index,$event,class)">八年级（1）班</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="zy_content">
+			<div class="zy_term_box clearfix">
+				<div class="zy_left fl">
+					<span>
+						<strong ng-bind="className"></strong>
+						中学生综合素质评价 - 
+						<b ng-bind="term"></b>
+						<i class="iconfont icon-jiantou2" ng-class="{'active' : chooseTermVariable.horn}" ng-click="chooseTermBtn()"></i>
+					</span>
+					<div class="zy_choose_term" ng-class="{'active' : chooseTermVariable.list}">
+						<span ng-class="{'active':chooseTermVariable.termActive==0}" ng-click="chooseTerm($event,0)" >上学期</span>
+						<span ng-class="{'active':chooseTermVariable.termActive==1}" ng-click="chooseTerm($event,1)" >下学期</span>
+					</div>
+				</div>
+				<div class="zy_right fr">
+					<span 					ui-sref="wrap.evaluationCriterion({'prevPage':'teacherPersonal','roleIndex':chooseTermVariable.teacherIn,index:chooseTermVariable.gradeState,term:term})">评价标准</span>
+					<b>|</b>
+					<span ui-sref="wrap.historicalEvaluation({index:chooseTermVariable.gradeState,'roleIndex':chooseTermVariable.teacherIn,term:term})"><i class="iconfonticon-lishi-copy"></i>历史评价</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="zy_evaluate_box">
+			<div class="zy_evaluate_top clearfix">
+				<p class="fl">
+					<span ng-class="{'active' : chooseTermVariable.type == 0}"  ng-click="switchComment(0)">评价进度</span>
+					<span ng-class="{'active' : chooseTermVariable.type == 1}"  ng-click="switchComment(1)">评价统计</span>
+				</p>
+				<p class="fr"><span>学生</span>评价截止时间到<span ng-bind='chooseTermVariable.date'>2月20日</span></p>
+			</div>
+			<div class="zyx_EvaluateTab" ng-switch="chooseTermVariable.type">
+				<!--评价进度-->
+				<div class="zyx_Progress" ng-switch-when="0">
+					<table class="zyx_TableRate">
+						<thead>
+							<tr>
+								<th>学生</th>
+								<th>资质上传</th>
+								<th>教师评级</th>
+								<th>师评</th>
+								<th>自评</th>
+								<th>家评</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="student in stuList">
+								<td ng-bind="student.stuName">刘铁民啦啦</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="student.zizhi==1"></i>
+									<i class="iconfont icon-xuankuang" ng-if="student.zizhi==0"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="student.dafen==1"></i>
+									<i class="iconfont icon-xuankuang" ng-if="student.dafen==0"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="student.teaComment==1"></i>
+									<i class="iconfont icon-xuankuang" ng-if="student.teaComment==0"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="student.selComment==1"></i>
+									<i class="iconfont icon-xuankuang" ng-if="student.selComment==0"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="student.homeComment==1"></i>
+									<i class="iconfont icon-xuankuang" ng-if="student.homeComment==0"></i>
+								</td>
+								<td class="clearfix">
+									<span class="fl active" ng-if="!chooseTermVariable.dateStatus" ui-sref="wrap.publicEvaluation({prevPage:prevPageNo,stuId : student.stuId,state:'see',stuName:student.stuName,index:chooseTermVariable.gradeState,roleIndex:chooseTermVariable.teacherIn,term:term})">
+										<i class="iconfont icon-chakan"></i>查看评价
+									</span>
+									<span class="fl active" ng-if="chooseTermVariable.dateStatus" ui-sref="wrap.publicEvaluation({prevPage:prevPageNo,state:'edit',stuId:student.stuId,stuName:student.stuName,index:chooseTermVariable.gradeState,roleIndex:chooseTermVariable.teacherIn,term:term})">
+										<i class="iconfont icon-pingjia"></i>评价
+									</span>
+									<span class="fr active" ng-click="viewReport(student)">
+										<i class="iconfont icon-baogao"></i>报告
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--评价统计-->
+				<div class="zyx_Statistics zyx_highcharts " ng-switch-when="1">
+					<div id="chart-list" class="tabcon">						
+						<div class="chart-column-line-global" style="padding-top: 20px;background: #fff;">
+							<div class="chart1 charts-btb" style="height:380px;"></div>
+							<div class="chart-column-legend">
+						        <div class="can-choosed">评价等级：</div>
+						        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+						        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+						        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+						        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						    </div>
+						</div>
+						<script type="text/javascript">
+							aaa();
+							function aaa(){
+								setTimeout(function() {
+								allData = $("#teaJsData").html();
+								var jdata = eval('(' + allData + ')');
+								console.info(jdata);
+								var allList = new Array();
+								for(var m = 0; m < 4; m++){
+									var o = new Object();
+									if(m==0){
+											var listOne = new Array();
+											o.name="优秀";
+											o.color="#32ba54";
+											o.level=1;
+											for(var k = 0; k < jdata.length; k++) {
+												var b = new Object();
+												b.y=((parseFloat((jdata[k].data)[0].countA))/
+												(parseFloat((jdata[k].data)[0].countNum)))*100;
+												b.num=parseInt((jdata[k].data)[0].countA);//优秀的人数
+												b.count=parseInt((jdata[k].data)[0].countNum);//总人数
+												listOne[k] = b;
+											}
+											o.data=listOne;
+											allList.push(o);
+										}
+										if(m==1){
+											var listOne = new Array();
+											o.name="良好";
+											o.color="#3598db";
+											o.level=2;
+											for(var k = 0; k < jdata.length; k++) {
+												var b = new Object();
+												b.y=((parseFloat((jdata[k].data)[0].countB))/
+												(parseFloat((jdata[k].data)[0].countNum)))*100;
+												b.num=parseInt((jdata[k].data)[0].countB);//优秀的人数
+												b.count=parseInt((jdata[k].data)[0].countNum);//总人数
+												listOne[k] = b;
+											}
+											o.data=listOne;
+											allList.push(o);
+										}
+										if(m==2){
+											var listOne = new Array();
+											o.name="及格";
+											o.color="#fdbc2a";
+											o.level=3;
+											for(var k = 0; k < jdata.length; k++) {
+												var b = new Object();
+												b.y=((parseFloat((jdata[k].data)[0].countC))/
+												(parseFloat((jdata[k].data)[0].countNum)))*100;
+												b.num=parseInt((jdata[k].data)[0].countC);//优秀的人数
+												b.count=parseInt((jdata[k].data)[0].countNum);//总人数
+												listOne[k] = b;
+											}
+											o.data=listOne;
+											allList.push(o);
+										}
+										if(m==3){
+											var listOne = new Array();
+											o.name="不及格";
+											o.color="#fb5252";
+											o.level=4;
+											for(var k = 0; k < jdata.length; k++) {
+												var b = new Object();
+												b.y=((parseFloat((jdata[k].data)[0].countD))/
+												(parseFloat((jdata[k].data)[0].countNum)))*100;
+												b.num=parseInt((jdata[k].data)[0].countD);//优秀的人数
+												b.count=parseInt((jdata[k].data)[0].countNum);//总人数
+												listOne[k] = b;
+											}
+											o.data=listOne;
+											allList.push(o);
+										}
+								}
+								console.info(allList);
+								zyx_Data1.data=allList;	
+								zyx_Data1.categories=["思想品德和公民素养", "学业水平和学习素养", "身体和心里健康水平", "兴趣特长及审美素养","社会实践和动手能力"];
+				            	chart_column_stack('.chart1', zyx_Data1.title, zyx_Data1.categories, zyx_Data1.ytitle, 								zyx_Data1.data, zyx_Data1.totalName, zyx_Data1.units, false);
+				           		initSingleColumnChart($('.chart1'), zyx_Data1.data);
+				
+				            	$('.chart-column-legend > span').on("click",function(){
+				                	legendUpdate($(this), $('.chart1'), zyx_Data1.data, true);
+				           		});
+							},1200);
+							}
+							
+							
+							var zyx_Data1={"title":"年级优良率堆积柱状图","categories":[],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[]};
+							
+							
+							
+						</script>
+					</div>
+					<div class="zyx_Table">
+						<h3>年级优良率统计</h3>
+						<table class="zyx_border">
+							<thead>
+								<tr>
+		    						<th rowspan="2" style="width: 20%;">评价维度</th>
+		                            <th colspan="2" style="width: 20%;">A（优秀）</th>
+		                            <th colspan="2" style="width: 20%;">B（良好）</th>
+		                            <th colspan="2" style="width: 20%;">C（合格）</th>
+		                            <th colspan="2" style="width: 20%;">D（有待改进）</th>
+		                        </tr>
+								<tr>
+		                        	<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                    		<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                    		<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                    		<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                        </tr>
+					        </thead>
+					        <tbody>
+					        	<tr ng-repeat='weiduObject in allData'>
+					        		<td ng-bind='weiduObject.weiduName'>思想品德和公民素养</td>
+					        		<td ng-bind="(weiduObject.data)[0].countA"></td>
+					        		<td ng-bind="(weiduObject.data)[0].percentA"></td>
+					        		<td ng-bind="(weiduObject.data)[0].countB"></td>
+					        		<td ng-bind="(weiduObject.data)[0].percentB"></td>
+					        		<td ng-bind="(weiduObject.data)[0].countC"></td>
+					        		<td ng-bind="(weiduObject.data)[0].percentC"></td>
+					        		<td ng-bind="(weiduObject.data)[0].countD"></td>
+					        		<td ng-bind="(weiduObject.data)[0].percentD"></td>
+					        	</tr>
+					        </tbody>
+						</table>
+					</div>
+					<div class="zyx_StudentStatistics">
+						<h3>学生评价统计</h3>
+						<table class="zyx_TableOther">
+							<thead>
+								<tr>
+									<th>学生</th>
+									<th>思想品德和公民素养 </th>
+									<th>学业水平和习惯素养 </th>
+									<th>身体和心理健康水平</th>
+									<th>兴趣特长及审美素养</th>
+									<th>社会实践和动手能力</th>
+									<!--<th>等级分</th>-->
+								</tr>
+							</thead>
+							<tbody>
+								
+								<tr ng-repeat="stuObject in jdata3">
+									<td ng-bind="stuObject.stuName"></td>
+									<td ng-bind="(stuObject.data)[2].level"  ng-class="{'color_a':((stuObject.data)[2].level)=='A','color_b':((stuObject.data)[2].level)=='B','color_c':((stuObject.data)[2].level)=='C','color_d':((stuObject.data)[2].level)=='D'}"></td>
+									<td ng-bind="(stuObject.data)[1].level" ng-class="{'color_a':((stuObject.data)[1].level)=='A','color_b':((stuObject.data)[1].level)=='B','color_c':((stuObject.data)[1].level)=='C','color_d':((stuObject.data)[1].level)=='D'}"></td>
+									<td ng-bind="(stuObject.data)[4].level" ng-class="{'color_a':((stuObject.data)[4].level)=='A','color_b':((stuObject.data)[4].level)=='B','color_c':((stuObject.data)[4].level)=='C','color_d':((stuObject.data)[4].level)=='D'}"></td>
+									<td ng-bind="(stuObject.data)[0].level" ng-class="{'color_a':((stuObject.data)[0].level)=='A','color_b':((stuObject.data)[0].level)=='B','color_c':((stuObject.data)[0].level)=='C','color_d':((stuObject.data)[0].level)=='D'}"></td>
+									<td ng-bind="(stuObject.data)[3].level" ng-class="{'color_a':((stuObject.data)[3].level)=='A','color_b':((stuObject.data)[3].level)=='B','color_c':((stuObject.data)[3].level)=='C','color_d':((stuObject.data)[3].level)=='D'}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

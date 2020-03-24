@@ -1,0 +1,25 @@
+<div class="main_width">
+	<div class="">
+		<div class="zy_guide_tit">
+			<div class="clearfix">
+				<p class="main_tit fl">
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="{{variablePacket.backUrl}}"></i>
+					<span ng-bind="variablePacket.name"></span>
+					<b class="subject" ng-bind="variablePacket.subjectName"></b>
+				</p>
+			</div>
+			<div class="zy_test_brief">
+				<!--去掉说明-->
+				<!--<p><span>练习说明：</span><b>大家认真写作业/大家认真写作业/大家认真写作业</b></p>-->
+				<p><span>作答对象</span>:<b ng-bind="variablePacket.className"></b></p>
+			</div>
+		</div>
+		
+		<div class="zy_guide_bar" ng-if="variablePacket.barArrShow">
+			<ul class="clearfix">
+				<li class="fl" ng-repeat="i in variablePacket.barArr" ng-bind="i.name" ui-sref="{{i.href}}" ui-sref-active="active"></li>
+			</ul>
+		</div>
+	</div>
+	<div ui-view></div>
+</div>

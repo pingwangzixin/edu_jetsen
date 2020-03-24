@@ -1,0 +1,41 @@
+规范：
+
+1、html、js文件名采用驼峰命名，文件包、文件名中不出现下划线
+   eg ：newList	
+   
+2、css类名前面必须加姓名缩写前缀，不允许写行间样式，若必须要写，需知会组长知道
+   eg ：zy_main
+
+3、所有js文件中变量要打包统一定义，必须统一命名包（variablePacket，必须为此名称）
+   eg： var variablePacket = {one:123,two:456};	
+   angular项目：$scope.variablePacket = {one:123,two:456};
+   
+4、此项目为angular项目，所有绑定数据的地方使用 "ng-bind" 代替 "{{}}" ，使用 "ng-if" 代替 "ng-show" 和 "ng-hide" 
+
+
+共用部分：（无前缀类名都是公用样式）
+
+1、项目中小图标均使用阿里巴巴矢量图标，不允许私自使用img，新入组同学需要找组长加入项目,统一使用i标签
+   eg：<i class="iconfont icon-xinwen-copy"></i>
+
+2、reset.css为清除默认样式文件，统一引入
+
+3、弹框基本样式，在(弹框.html)里
+
+4、渐变色圆角边框，在(弹框.html)里
+
+5、必填项*号，标签<i class="star">*</i>，已有共用样式
+   eg ：<p>身份证号 <i class="star">*</i></p>，i标签前面有个空格
+
+6、输入项的错误提示信息，标签<strong class="error_prompt"></strong>，已有共用样式
+   eg：<p>身份证号 <i class="star">*</i><strong class="error_prompt">（请输入正确的身份证号）</strong></p>，
+
+7、select、input等表单元素，border-radius值设置为5px
+
+8、此项目页面宽度固定，类名main_width为页面宽度1200，统一在元素上加此类名，不允许任何人改动或者增加删除
+
+9、切换状态时统一加类名active，不需要加前缀
+   eg：常规字体黑色，选中字体蓝色，加active变蓝
+
+
+PS：大家有更好的建议，随时提出

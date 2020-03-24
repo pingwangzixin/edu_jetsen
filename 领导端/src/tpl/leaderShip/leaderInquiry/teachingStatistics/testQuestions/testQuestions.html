@@ -1,0 +1,153 @@
+<div class="mlh_classroom">
+	<div class="wx_right_cont fl">
+		<!--试题量统计图-->
+		<div class="wx_echart_useractive wx_mtnone mlh_radius mlh_line">
+			<div class="clearfix">
+				<p class="wx_echart_tit fl">试题量统计图</p>
+				<div class="fr">
+					<select name="" class="wx_studyyear" ng-model="variablePacket.yearid" id="stuYear" >
+						<option ng-repeat="x in variablePacket.getStuYearList" value="{{x.id}}" ng-selected="x.id == variablePacket.yearid" >{{x.name}}</option>
+					</select>
+				</div>
+			</div>
+			<!--学段  柱状图  start-->
+			<div class="clearfix">
+				<div class="wx_xueduan_ul">
+					学段：
+					<ul>
+						<li ng-class="{active:variablePacket.xueduanelect}" ng-click="xueduanall()">全部</li>
+						<li ng-class="{active:variablePacket.xueduantype==r.id}" ng-repeat="r in variablePacket.xueduanrange" ng-click="changexueduan(r.id)" ng-bind="r.name"></li>
+					</ul>
+				</div>
+				<!--柱状图 start-->
+				<div class="mlh_jl">
+					<div id="changeSubjectColumn" class="containerChart" style="height:350px;"></div>
+				</div>
+				<!--柱状图 end-->
+				<!--数据明细 start-->
+				<div class="zyx_dataDetail mlh_tab">
+					<p>
+						数据明细 
+						<span ng-click='typeIfShow()'>
+							<em ng-if='variablePacket.typeIfShow'>
+								收起
+								<i class="iconfont icon-xiangxiazhankai"></i>
+							</em>
+							<em ng-if='!variablePacket.typeIfShow'>
+								展开
+								<i class="iconfont icon-arrow-up "></i>
+							</em>
+						</span>
+					</p>
+					<table class="zyx_ResTables toggle" ng-if='variablePacket.typeIfShow' ng-repeat='j in typeData' >
+						<thead>
+							<tr>
+								<th style="width: 103px;">学科</th>
+								<th style="width: 103px;" ng-repeat='i in j.dataThead' ng-bind='i.name'></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 103px;">试题量</td>
+								<td style="width: 103px;" ng-repeat='i in j.dataTbody' ng-bind='i.type'></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--数据明细 end-->
+			</div>
+			<!--学段  柱状图  end-->
+		</div>
+		<!--试题量统计表-->
+		<div class="zyx_blockShow mlh_bg"  ng-controller="tableAreaCtrl as tableArea">
+			<span class="tit">试题量统计表</span>
+			<!--学生个人展示的-->
+			<ul class="zyx_lineType" ng-if='variablePacket.personalData'>
+				<li class="clearfix">
+					<b class="fl">用户：</b>
+					<div class="fl">
+						<span ng-repeat='i in changeData.lineData.user' ng-bind='i.name' ng-class='{"active":variablePacket.studentUserIndex==$index}' ng-click='studentUserTab($index,i)'></span>
+					</div>
+				</li>
+				<li class="clearfix">
+					<b class="fl">年级：</b>
+					<div class="fl">
+						<span ng-repeat='i in changeData.lineData.grade' ng-bind='i.name' ng-class='{"active":variablePacket.studentGradeIndex==$index}' ng-click='studentGradeTab($index,i)'></span>
+					</div>
+				</li>
+				<li class="clearfix" ng-if="variablePacket.studentUserValue == 1"  >
+					<b class="fl">学科：</b>
+					<div class="fl">
+						<span ng-repeat='i in changeData.lineData.subject' ng-bind='i.name' ng-class='{"active":variablePacket.studentSubjectIndex==$index}' ng-click='studentSubjectTab($index,i)'></span>
+					</div>
+				</li>
+			</ul>
+			<!--市区县展示的-->
+			<div class="zyx_switch" ng-if='!variablePacket.personalData'>
+				<span ng-class='{"active":variablePacket.tabIndex==0}' ng-click='switchTable(0)'>按区县</span>
+				<span ng-class='{"active":variablePacket.tabIndex==1}' ng-click='switchTable(1)'>按角色</span>
+			</div>
+			
+			<!--区县-教师-->
+			<table datatable="ng" dt-options="tableArea.OptionsOne" class="zyx_ResTables" ng-show="variablePacket.tabIndex==0">
+				<thead>
+					<tr>
+						<th ng-bind='variablePacket.name'>牡丹江市</th>
+						<th>上传资源</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="study">
+						<td>总计</td>
+						<td>{{changeData.resourceCounter}}</td>
+					</tr>
+					<tr ng-repeat="i in changeData.tabledata_area" class="{{changeData.type == 'school'?'':'fontColor'}}">
+						<td ng-bind='i.areaname'  ng-click="findNext(i,changeData.type)"></td>
+						<td ng-bind='i.quz'></td>
+					</tr>
+				</tbody>
+			</table>
+			<!--区县-学生/家长-->
+			<table datatable="ng" dt-options="tableArea.OptionsTwo" class="zyx_ResTables" ng-show="variablePacket.studentUserIndex!=0">
+				<thead>
+					<tr>
+						<th ng-bind='variablePacket.name'>牡丹江市</th>
+						<th>班级</th>
+						<th>上传资源</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="study">
+						<td>总计</td>
+						<td>全部</td>
+						<td>{{changeData.resourceCounter}}</td>
+					</tr>
+					<tr ng-repeat="i in changeData.tabledata_area" class="">
+						<td ng-bind='i.name' ></td>
+						<td ng-bind='i.class'></td>
+						<td ng-bind='i.totle'></td>
+					</tr>
+				</tbody>
+			</table>
+			<!--角色-->
+			<table datatable="ng" dt-options="tableArea.OptionsOne" class="zyx_ResTables" ng-show="variablePacket.tabIndex==1">
+				<thead>
+					<tr>
+						<th ng-bind='variablePacket.name'>牡丹江市</th>
+						<th>上传试题</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="study">
+						<td>总计</td>
+						<td>{{changeData.total}}</td>
+					</tr>
+					<tr ng-repeat="i in changeData.tabledata_user">
+						<td ng-bind='i.name' ></td>
+						<td ng-bind='i.total'></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</div>
+</div>

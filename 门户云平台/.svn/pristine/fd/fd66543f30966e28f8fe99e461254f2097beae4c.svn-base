@@ -1,0 +1,116 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div class="mlh_content" ng-cloak>
+	<div class="guide">
+		<!--科目选择  start-->
+		<div class="guide-left">
+			<!--<div class="subjects"><span ng-bind="variablePacket.subjectName"></span><i class="iconfont icon-arrow-up"></i></div>
+			<div class="subject-list">
+				<div class="sanjiao"><i></i></div>
+				<ul class="guide-list">
+					<li ng-repeat="name in variablePacket.subjects" ng-class={'active':$index==variablePacket.subjectIndex} ng-bind="name.name" ng-click="getName($index,name)"></li>
+				</ul>
+			</div>-->
+			<span class="guide_name">作业列表</span>
+		</div>
+		<!--科目选择  end-->
+		<!--布置练习  start-->
+		<div class="guide-right" ui-sref="secondNav.practiceContent({state:'new'})">
+			布置作业
+		</div>
+		<!--布置练习  end-->
+	</div>
+</div>
+<div class="mlh_content clearfix" ng-cloak>
+	<div class="zy_question_tree fl">
+		<!--选择教材版本-->
+		<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+		<!--树结构-->
+		<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+	</div>
+	<!--班级选择 start-->
+	<div class="zy_question_library mlh_noborder fr">
+		<!--班级选择 start-->
+		<div class="mlh_bg">
+		<div class="title class">
+			<span>班级：</span>
+			<ul>
+				<li ng-repeat="class in variablePacket.selectClass" 
+					ng-bind="class.name"
+					ng-click="selectClassTab($index,class.classId,class.name)"
+					ng-class="{'active':variablePacket.classIndex==$index}"></li>
+			</ul>
+		</div>
+		<!--<div class="title class state">
+			<span>状态：</span>
+			<ul>
+				<li ng-repeat="state in variablePacket.selectState" 
+					ng-bind="state.name"
+					ng-click="selectStateTab(state.state,$index)"
+					ng-class="{'active':variablePacket.stateIndex==$index}"></li>
+			</ul>
+		</div>-->
+	</div>
+		<!--班级选择 end-->
+	</div>
+	<!--班级选择 end-->
+	<!--内容列表部分 start-->
+	<div class="zy_question_library mlh_noborder fr mlh_top">
+		<!--内容列表部分 start-->
+		<div class="mlh_bg mlh_top">
+		<!--每个列表项 start-->
+		<div class="guide-item clearfix" 
+			ng-repeat="value in classSummary.sevenClassOne"
+			ng-if="value.state==variablePacket.state">
+			<div class="left">
+				<img src="./img/mlh_guide.jpg">
+				<div class="guide_cont">
+					<div class="item-1" ng-if="variablePacket.isOngoing">
+						<span ng-bind="value.title" ng-click="addParams(value.id, value.title, value.startTime, value.endTime, value.remark, 'underWay', 'exercises')" ng-if="value.type=='exercises'"></span>
+						<span ng-bind="value.title" ng-click="addParams(value.id, value.title, value.startTime, value.endTime, value.remark, 'underWay', 'testPaper')" ng-if="value.type=='testPaper'"></span>
+						<span ng-bind="value.title" ng-click="addParams(value.id, value.title, value.startTime, value.endTime, value.remark, 'underWay', 'answerCard')" ng-if="value.type=='answerCard'"></span>
+						<!--<em class="ongoing">进行中</em>-->
+					</div>
+					<div class="item-1" ng-if="variablePacket.isStart">
+						<span ng-bind="value.title" ui-sref="secondNav.practiceContent({state:'edit',quesid:value.id,claid:variablePacket.claid})"></span>
+						<!--<em class="start">未开始</em>-->
+					</div>
+					<div class="item-1" ng-if="variablePacket.isEnd">
+						<span ng-bind="value.title" ng-click="addParams(value.id, value.title, value.startTime, value.endTime, value.remark, 'Finished', 'exercises')" ng-if="value.type=='exercises'"></span>
+						<span ng-bind="value.title" ng-click="addParams(value.id, value.title, value.startTime, value.endTime, value.remark, 'Finished', 'testPaper')" ng-if="value.type=='testPaper'"></span>
+						<span ng-bind="value.title" ng-click="addParams(value.id, value.title, value.startTime, value.endTime, value.remark, 'Finished', 'answerCard')" ng-if="value.type=='answerCard'"></span>
+						<!--<em class="end">已结束</em>-->
+					</div>
+					<div class="item-2">
+						发布时间:<span class="mlh_juli" ng-bind="value.startTime"></span>
+						发布对象：<span>初一（1）班</span>
+					</div>
+				</div>
+				<!--<div class="item-3 clearfix" ng-if="!variablePacket.isStart">
+					<span>学习进度:</span>
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="60"
+							 aria-valuemin="0" aria-valuemax="100" ng-style="{width:{{value.complete}}/{{value.totalNum}}*100+'%'}">
+						</div>
+					</div>
+					<span><em ng-bind="value.complete"></em>/<em ng-bind="value.totalNum"></em></span>
+				</div>-->
+			</div>
+			<div class="right">
+				<!--<div class="copy"  ui-sref="secondNav.practiceContent({state:'edit',quesid:value.id,claid:variablePacket.claid})"ng-if="variablePacket.isStart"><i class="iconfont icon-bianji2"></i>编辑</div>
+				<div class="copy"  ui-sref="secondNav.practiceContent({state:'echo',quesid:value.id,claid:variablePacket.claid})"><i class="iconfont icon-fuzhi"></i>复制</div>-->
+				<div class="del" ng-click="deleteData($index,'sevenClassOne',value.title,value.id)"><i class="iconfont icon-shanchu"></i>删除</div>
+			</div>
+		</div>
+		<!--每个列表项 end-->
+		<!--确认框及提示框-->
+		<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+		<div class="loading" ng-click="putExam()" ng-if="variablePacket.jzgd"><i class="iconfont icon-jiazai"></i>加载更多...</div>
+	</div>
+		<!--内容列表部分 end-->
+	</div>
+	<!--内容列表部分 end-->
+</div>

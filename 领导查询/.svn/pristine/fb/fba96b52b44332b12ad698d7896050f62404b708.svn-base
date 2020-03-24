@@ -1,0 +1,141 @@
+<style type="text/css">
+	.bigPic{
+		text-align: center;
+    		width: 950px;
+    		margin: 0 auto;
+    		margin-bottom: 15px;
+	}
+</style>
+<!--资源管理列表 详情 start-->
+<div class="mlh_right mlh_width" ng-if="variablePacket.page == 'secondNav.leftTree.resourceManage.resourceManageList'">
+<div class="mlh_resdetails">
+	<div class="zy_guide_tit clearfix">
+		<div class="fl mlh_rescont">
+			<ul class="title_left">
+				<li>
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" 
+						ui-sref="secondNav.leftTree.resourceManage.resourceManageList" 
+						ui-sref-opts="{reload:true}"
+						ng-click="back()" ></i>
+					<span ng-bind="resouce.title"></span>
+					<span class="fine" ng-if="variablePacket.fine">校精品</span>
+				</li>
+				<li class="res_detail mlh_detail">
+					<span class="res_name">
+						<img ng-src="{{resouce.fileImage}}"/>
+						<em>{{resouce.createUser}}</em>
+					</span>
+					<span class="res_site">
+						<i class="iconfont icon-location"></i>
+						<em>{{resouce.areaName}}</em>
+					</span>
+					<span class="res_time">
+						<i class="iconfont icon-lishi"></i>
+						<em>{{resouce.createDate}}</em>
+					</span>
+					<span class="res_browse">
+						<i class="iconfont icon-kejian"></i>
+						<em>{{resouce.browse}}</em>
+					</span>
+					<span class="res_download">
+							<i class="iconfont icon-xiazai" ng-click="downloadFile(resouce.id,resouce.title)"></i>
+							<em>{{resouce.download}}</em>
+						</span>
+				</li>
+			</ul>
+			<a href="javascript:;" ng-click="deleDate1($index,resouce.id)">删除</a>
+		</div>
+	</div>
+	<!--<div class="zy_guide_tit mlh_taskcont">
+		<p>新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面</p>
+		<p>新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面</p>
+	</div>-->
+	<div class="commMusic" id="FilePackage"><img src="{{i}}" ng-repeat="i in variablePacket.imgList"/></div>
+	<div class="play">
+        <div class="bofangqi" id="showplayer">
+			<div class="loadFlashWrap">
+				<img src="../img/loadFlash.png" />
+				<p>您的浏览器还没有安装Flash插件</p>
+				<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+			</div>
+		</div>
+    </div>
+</div>
+</div>
+<!--资源管理列表 详情 end-->
+
+<!--校精品列表 详情 start-->
+<div class="mlh_right mlh_width" ng-if="variablePacket.page == 'secondNav.leftTree.resourceManage.examineFine'">
+<div class="mlh_resdetails">
+	<div class="zy_guide_tit clearfix">
+		<div class="fl mlh_rescont">
+			<ul class="title_left">
+				<li>
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" 
+						ui-sref="secondNav.leftTree.resourceManage.examineFine" 
+						ui-sref-opts="{reload:true}"
+						ng-click="goBack()" ></i>
+					<span ng-bind="resouce.title"></span>
+					<span class="fine" ng-if="variablePacket.fine">校精品</span>
+				</li>
+				<li class="res_detail mlh_detail">
+					<span class="res_name">
+						<img src="img/resources_word.png"/>
+						<em>{{resouce.createUser}}</em>
+					</span>
+					<span class="res_site">
+						<i class="iconfont icon-location"></i>
+						<em>{{resouce.areaName}}</em>
+					</span>
+					<span class="res_time">
+						<i class="iconfont icon-lishi"></i>
+						<em>{{resouce.createDate}}</em>
+					</span>
+					<span class="res_browse">
+						<i class="iconfont icon-kejian"></i>
+						<em>{{resouce.browse}}</em>
+					</span>
+					<span class="res_download">
+							<i class="iconfont icon-xiazai"></i>
+							<em>{{resouce.download}}</em>
+						</span>
+				</li>
+			</ul>
+			<a href="javascript:;" ng-if="variablePacket.amputate" ng-click="delDate2($index,resouce.id)">删除</a>
+			<a href="javascript:;" ng-if="variablePacket.isDisplay">打回</a>
+			<a href="javascript:;" ng-if="variablePacket.isDisplay" ng-click="adopt($index)">通过</a>
+			
+		</div>
+		
+	</div>
+<!--	
+	<div class="zy_guide_tit mlh_taskcont">
+		<p>新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面</p>
+		<p>新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面
+		新华社北京11月5日电学习贯彻党的十九大精神中央宣讲团在京举行首场报告会后，5日起赴全国各地宣讲。宣讲团的报告全面</p>
+	</div>-->
+	
+    <div class="commMusic" id="FilePackage"><img src="{{i}}" ng-repeat="i in variablePacket.imgList"/></div>
+	<div class="play">
+        <div class="bofangqi" id="showplayer">
+			<div class="loadFlashWrap">
+				<img src="../img/loadFlash.png" />
+				<p>您的浏览器还没有安装Flash插件</p>
+				<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+			</div>
+		</div>
+    </div>
+</div>
+</div>
+<!--校精品列表 详情 start-->

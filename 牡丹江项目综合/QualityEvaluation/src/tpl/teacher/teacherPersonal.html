@@ -1,0 +1,356 @@
+<div class="zy_full">
+	<div class="zy_main">
+		<top-list page="prevPageNo"></top-list>
+		<div class="zy_content">
+			<div class="zy_screen_box">
+				<ul class="clearfix">
+					<li class="active" ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+					<li ng-click="gradeTab($event)">八年级（1）班</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="zy_content">
+			<div class="zy_term_box clearfix">
+				<div class="zy_left fl">
+					<span>
+						<strong>七年级(1)班 </strong>
+						中学生综合素质评价 - 
+						<b>下学期</b>
+						<i class="iconfont icon-jiantou2" ng-class="{'active' : chooseTermVariable.horn}" ng-click="chooseTermBtn()"></i>
+					</span>
+					<div class="zy_choose_term" ng-class="{'active' : chooseTermVariable.list}">
+						<span class="active" ng-click="chooseTerm($event)">上学期</span>
+						<span ng-click="chooseTerm($event)">下学期</span>
+					</div>
+				</div>
+				<div class="zy_right fr">
+					<span ui-sref="wrap.evaluationCriterion({'prevPage':'teacherPersonal'})">评价标准</span>
+					<b>|</b>
+					<span ui-sref="wrap.historicalEvaluation"><i class="iconfont icon-lishi-copy"></i>历史评价</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="zy_evaluate_box">
+			<div class="zy_evaluate_top clearfix">
+				<p class="fl">
+					<span ng-class="{'active' : chooseTermVariable.type == 0}"   ng-click="switchComment(0)">评价进度</span>
+					<span ng-class="{'active' : chooseTermVariable.type == 1}"   ng-click="switchComment(1)">评价统计</span>
+				</p>
+				<p class="fr"><span>学生</span>评价截止时间到<span>2月20日</span></p>
+			</div>
+			<div class="zyx_EvaluateTab" ng-switch="chooseTermVariable.type">
+				<!--评价进度-->
+				<div class="zyx_Progress" ng-switch-when="0">
+					<table class="zyx_TableRate">
+						<thead>
+							<tr>
+								<th>学生</th>
+								<th>资质上传</th>
+								<th>教师评级</th>
+								<th>师评</th>
+								<th>自评</th>
+								<th>家评</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>刘铁民啦啦</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.upload"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.upload"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.grade"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.grade"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.teacher"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.teacher"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.oneself"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.oneself"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.parent"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.parent"></i>
+								</td>
+								<td class="clearfix">
+									<span class="fl active" ng-if="evaluateProgress.operate" ui-sref="wrap.publicEvaluation({prevPage:prevPageNo,stuId : 123,state:'see'})">
+										<i class="iconfont icon-chakan"></i>查看评价
+									</span>
+									<span class="fl active" ng-if="!evaluateProgress.operate">
+										<i class="iconfont icon-pingjia"></i>评价
+									</span>
+									<span class="fr active" ng-click="viewReport()">
+										<i class="iconfont icon-baogao"></i>报告
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>刘铁民啦啦</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.upload"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.upload"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.grade"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.grade"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.teacher"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.teacher"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.oneself"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.oneself"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.parent"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.parent"></i>
+								</td>
+								<td class="clearfix">
+									<span class="fl" ng-if="!evaluateProgress.operate">
+										<i class="iconfont icon-chakan"></i>查看评价
+									</span>
+									<span class="fl" ng-if="evaluateProgress.operate" ng-if="evaluateProgress.operate" ui-sref="wrap.publicEvaluation({prevPage:prevPageNo,stuId : 123,state:'edit'})">
+										<i class="iconfont icon-pingjia"></i>评价
+									</span>
+									<span class="fr" ng-click="viewReport()">
+										<i class="iconfont icon-baogao"></i>报告
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>刘铁民啦啦</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.upload"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.upload"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.grade"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.grade"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.teacher"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.teacher"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.oneself"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.oneself"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.parent"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.parent"></i>
+								</td>
+								<td class="clearfix">
+									<span class="fl active" ng-if="evaluateProgress.operate">
+										<i class="iconfont icon-chakan"></i>查看评价
+									</span>
+									<span class="fl active" ng-if="!evaluateProgress.operate">
+										<i class="iconfont icon-pingjia"></i>评价
+									</span>
+									<span class="fr active">
+										<i class="iconfont icon-baogao"></i>报告
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>刘铁民啦啦</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.upload"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.upload"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.grade"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.grade"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.teacher"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.teacher"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.oneself"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.oneself"></i>
+								</td>
+								<td>
+									<i class="iconfont icon-duihao"  ng-if="evaluateProgress.parent"></i>
+									<i class="iconfont icon-xuankuang" ng-if="!evaluateProgress.parent"></i>
+								</td>
+								<td class="clearfix">
+									<span class="fl" ng-if="!evaluateProgress.operate">
+										<i class="iconfont icon-chakan"></i>查看评价
+									</span>
+									<span class="fl" ng-if="evaluateProgress.operate">
+										<i class="iconfont icon-pingjia"></i>评价
+									</span>
+									<span class="fr">
+										<i class="iconfont icon-baogao"></i>报告
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--评价统计-->
+				<div class="zyx_Statistics zyx_highcharts " ng-switch-when="1">
+					<div id="chart-list" class="tabcon">						
+						<div class="chart-column-line-global" style="padding-top: 20px;background: #fff;">
+							<div class="chart1 charts-btb" style="height:380px;"></div>
+							<div class="chart-column-legend">
+						        <div class="can-choosed">评价等级：</div>
+						        <span data-level="1" class="level-a"><i></i>A（优秀）</span>
+						        <span data-level="2" class="level-b"><i></i>B（良好）</span>
+						        <span data-level="3" class="level-c"><i></i>C（合格）</span>
+						        <span data-level="4" class="level-d"><i></i>D（有待改进）</span>
+						    </div>
+						</div>
+						<script type="text/javascript">
+							var zyx_Data1={"title":"年级优良率堆积柱状图","categories":["思想品德和公民素养", "学业水平和习惯素养", "身体和心里健康水平", "社会实践和动手能力"],"ytitle":"\u5360\u6bd4","totalName":"\u603b\u4eba\u6570","units":"\u4eba","data":[{"name":"\u4f18\u79c0","color":"#32ba54","level":1,"data":[{"y":0,"num":0,"count":49,"class_id":52},{"y":15.38,"num":8,"count":52,"class_id":53},{"y":31.37,"num":16,"count":51,"class_id":54},{"y":7.84,"num":4,"count":51,"class_id":55}]},{"name":"\u826f\u597d","color":"#3598db","level":2,"data":[{"y":14.29,"num":7,"count":49,"class_id":52},{"y":13.46,"num":7,"count":52,"class_id":53},{"y":25.49,"num":13,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55}]},{"name":"\u53ca\u683c","color":"#fdbc2a","level":3,"data":[{"y":67.35,"num":33,"count":49,"class_id":52},{"y":30.77,"num":16,"count":52,"class_id":53},{"y":23.53,"num":12,"count":51,"class_id":54},{"y":33.33,"num":17,"count":51,"class_id":55}]},{"name":"\u4e0d\u53ca\u683c","color":"#fb5252","level":4,"data":[{"y":18.37,"num":9,"count":49,"class_id":52},{"y":40.38,"num":21,"count":52,"class_id":53},{"y":19.61,"num":10,"count":51,"class_id":54},{"y":29.41,"num":15,"count":51,"class_id":55}]}]};
+				            chart_column_stack('.chart1', zyx_Data1.title, zyx_Data1.categories, zyx_Data1.ytitle, zyx_Data1.data, zyx_Data1.totalName, zyx_Data1.units, false);
+				
+				            initSingleColumnChart($('.chart1'), zyx_Data1.data);
+				
+				            $('.chart-column-legend > span').on("click",function(){
+				                legendUpdate($(this), $('.chart1'), zyx_Data1.data, true);
+				            });
+						</script>
+					</div>
+					<div class="zyx_Table">
+						<h3>年级优良率统计</h3>
+						<table class="zyx_border">
+							<thead>
+								<tr>
+		    						<th rowspan="2" style="width: 20%;">评价维度</th>
+		                            <th colspan="2" style="width: 20%;">A（优秀）</th>
+		                            <th colspan="2" style="width: 20%;">B（良好）</th>
+		                            <th colspan="2" style="width: 20%;">C（合格）</th>
+		                            <th colspan="2" style="width: 20%;">D（有待改进）</th>
+		                        </tr>
+								<tr>
+		                        	<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                    		<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                    		<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                    		<th style="width: 10%;">人数</th>
+		    						<th style="width: 10%;">占比(%)</th>
+		                        </tr>
+					        </thead>
+					        <tbody>
+					        	<tr>
+					        		<td>思想品德和公民素养</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        	</tr>
+					        	<tr>
+					        		<td>学业水平和习惯素养</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        	</tr>
+					        	<tr>
+					        		<td>身体和心里健康水平</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        	</tr>
+					        	<tr>
+					        		<td>社会实践和动手能力</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        		<td>10人</td>
+					        		<td>34%</td>
+					        	</tr>
+					        </tbody>
+						</table>
+					</div>
+					<div class="zyx_StudentStatistics">
+						<h3>学生评价统计</h3>
+						<table class="zyx_TableOther">
+							<thead>
+								<tr>
+									<th>学生</th>
+									<th>思想品德和公民素养 </th>
+									<th>学业水平和习惯素养 </th>
+									<th>身体和心理健康水平</th>
+									<th>兴趣特长及审美素养</th>
+									<th>社会实践和动手能力</th>
+									<th>等级分</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>刘铁民啦啦</td>
+									<td class="color_a">A</td>
+									<td class="color_a">A</td>
+									<td class="color_a">A</td>
+									<td class="color_a">A</td>
+									<td class="color_a">A</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>刘铁民啦啦</td>
+									<td class="color_b">B</td>
+									<td class="color_b">B</td>
+									<td class="color_b">B</td>
+									<td class="color_b">B</td>
+									<td class="color_b">B</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>刘铁民啦啦</td>
+									<td class="color_c">C</td>
+									<td class="color_c">C</td>
+									<td class="color_c">C</td>
+									<td class="color_c">C</td>
+									<td class="color_c">C</td>
+									<td>100</td>
+								</tr>
+								<tr>
+									<td>刘铁民啦啦</td>
+									<td class="color_d">D</td>
+									<td class="color_d">D</td>
+									<td class="color_d">D</td>
+									<td class="color_d">D</td>
+									<td class="color_d">D</td>
+									<td>100</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

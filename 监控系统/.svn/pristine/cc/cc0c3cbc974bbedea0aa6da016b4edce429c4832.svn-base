@@ -1,0 +1,93 @@
+{
+  "id": "1434463",
+  "name": "监控管理（地图）",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "657312",
+      "name": "分期－警告－1",
+      "font_class": "jinggao1",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "672036",
+      "name": "下拉",
+      "font_class": "xiala",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "778542",
+      "name": "x",
+      "font_class": "yooxi",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "1239935",
+      "name": "对号2",
+      "font_class": "duihao2",
+      "unicode": "e69e",
+      "unicode_decimal": 59038
+    },
+    {
+      "icon_id": "2119104",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "3531227",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "5809153",
+      "name": "错误1",
+      "font_class": "cuowu",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "6890354",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "7461688",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "7724884",
+      "name": "用户名",
+      "font_class": "yonghuming",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    },
+    {
+      "icon_id": "8314112",
+      "name": "进入",
+      "font_class": "jinru",
+      "unicode": "e654",
+      "unicode_decimal": 58964
+    },
+    {
+      "icon_id": "8353346",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    }
+  ]
+}

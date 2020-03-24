@@ -1,0 +1,63 @@
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div>
+	<!--<div class="zyx-headnav">
+		<div class="clearfix">
+			<img  src="./img/jetsen_logo2.png"/>
+			<div class="fr">
+				<i class="iconfont icon-shouye"></i>
+				<span>我的空间</span>
+				<b>李</b>
+				<img src="./img/default-head.png" alt="" />
+				<em>李丹</em>
+			</div>
+		</div>
+	</div>-->
+	<div class="zyx-personal-homepage">
+		<div class="zyx_outbox">
+			<div class="zyx_hasData">
+				<div class="zyx-head">
+					<img src="{{userFace}}" alt="" onerror='this.src="./img/default-head.png"'/>
+					<p>{{userName}}的主页<span class="teacher" ng-if='person.role'>教师</span> <span ng-if='!person.role' class="student">学生</span> <b>{{officeName}}</b> </p>
+				</div>
+				<!--有数据-->
+				<div class="zyx_content zyx_state"  ng-if='person.dataState'>
+					<div class="zyx-list clearfix" ng-repeat='one in listdata'>
+						<img class="fl headsmall" src="{{userFace}}" onerror='this.src="./img/default-head.png"' alt="" />
+						<div class="detail fl">
+							<b ng-bind='one.commentUserName'></b>
+							<h6 ng-bind='one.commentCreateDate'></h6>
+							<p ng-bind='one.content'></p>
+							<div class="pic">
+								<img ng-src="{{two.url}}" ng-repeat='two in one.resourceList'/>
+							</div>
+						</div>
+						<div class="laud" ng-click='laudClick($index,one.id)'>
+							<i class="iconfont icon-dianzan" ng-class= "{'active':one.whetherDianZan}"></i>
+							<span ng-bind='one.dianZanCount'></span>
+						</div>
+					</div>
+				</div>
+				
+				<!--没数据-->
+				<div class="zyx-wu" ng-if='!person.dataState'>
+					他还暂时未发表任何状态。
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	<!--提示-->
+	<div class="gy_del_down zyx_hint" ng-if='homePage.hintState'>
+		<div class="gy_hide"></div>
+	    <div class="gy_con">
+	    	<i class="iconfont icon-chenggong" ng-if='homePage.issuesuccess'></i>
+	    	<i class="iconfont icon-shangchuanshibai" ng-if='!homePage.issuesuccess'></i>
+	    	<p class="zyx_text" ng-bind='homePage.layerText'></p>
+		</div>
+	</div>
+	
+	<z-footer></z-footer>
+</div>

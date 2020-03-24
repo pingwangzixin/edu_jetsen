@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>体质健康-学生查看</title>
+		<link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<link rel="stylesheet" type="text/css"  href="../css/index.css"/>	
+		<script src="../js/jquery-1.11.2.min.js"></script>
+		<script src="../js/highcharts.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/highcharts-functions.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body> 
+		<div class="per_header"></div>
+		<div class="per_subHeader">
+			<div class="subHeadMain clearfix">
+				<span class="subTile">2015-2016学年孔超体质健康情况</span>
+				<span class="subTerm">
+					学期 : 
+					<div name="" class="per_selection" onselectstart="return false">
+						<p>上学期</p>
+						<ul>
+							<li class="active">上学期</li>
+							<li>下学期</li>
+						</ul>
+					</div>
+					
+				</span>
+				<span class="subBack">
+					<a href="health-handle.html">返回</a>
+				</span>
+				<span class="subBack historyBack">
+					<a href="braceletDataPerson.html">个人历史数据</a>
+				</span>
+			<!--	<span class="subExport">
+					导出
+				</span>-->
+			</div>
+		</div>
+		<div class="per_main clearfix">
+			<div class="main_left">
+				<h4>姓名: <span>梁新乐</span>性别: <span>女</span>学校: <span>李欣实验小学</span>班级: <span>四年级（3）版</span>学号: <span>G54654321343354321</span></h4>
+				<div class="main_content">
+					<div class="people_sex people_basic" style="margin-right: 35px;">
+						<h5>身高</h5>
+						<div class="people_flex headlthxinlv flexMargin">
+							<p><img src="../img/personGirl.png"/><span style="margin:10px auto;color: #ff9e9e; font-size: 16px;">140cm</span><span style="font-size: 12px;">个人身高</span></p>
+							<p><span class="people_average"></span><span style="margin:10px auto;color: #bb81ff; font-size: 16px;">138cm</span><span style="font-size: 12px;">女生平均身高</span></p>
+						</div>
+					</div>
+					<div class="people_sex people_basic" style="margin-right: 0;">
+						<h5>体重</h5>
+						<div class="people_flex headlthxinlv flexMargin">
+							<p><img src="../img/weightgirl.png"/><span style="margin:10px auto;color: #ff9e9e; font-size: 16px;">44KG</span><span style="font-size: 12px;">个人体重</span></p>
+							<p class="highWrap"><img style="margin-bottom: 0;margin-top: -10px;" src="../img/peo_weightG.png"/><span style="color: #ff9e9e;margin-top: -19px;">60公斤</span><span style="margin-top:10px ;">女生平均体重</span></p>
+						</div>
+					</div>
+				</div>
+				<div class="main_content">
+					<div class="people_sex" style="width: 100%; [;width: 91%;]">
+						<h5>实时心率 <img src="../img/wranlamp.png" style="float: right;margin-top: -13px; width: 55px;height: 55px;"/></h5>
+						<div class="people_flex xinlv headlthxinlv flexMargin2">
+							<div class="left">
+								<img src="../img/peo_heat.png"/>
+								<div class="xinlvDetail ">
+									<p style="margin-right: 20px;">心率过缓(<40)</p>
+									<p>心率速(>160)</p>
+								</div>
+							</div>
+							<div class="right">
+								<p><span>164 <i>(次每分钟)</i></span><span>第1次</span></p>
+								<p><span>164 <i>(次每分钟)</i></span><span>第2次</span></p>
+								<p><span>164 <i>(次每分钟)</i></span><span>第3次</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="main_content">
+					<div class="people_sex people_headlthData">
+						<h5>健康数据</h5>
+						<div class="headlth_detail">
+							<div class="detail_list col1">
+								<p></p>
+								<span class="title">BMI</span>
+								<span class="tit_bot"><i>45</i><i class="stateTop">↑</i></span>
+							</div>
+							<div class="detail_list col2">
+								<p></p>
+								<span class="title">脂肪率</span>
+								<span class="tit_bot"><i>45</i><i class="stateBot">↓</i></span>
+							</div>
+							<div class="detail_list col3">
+								<p></p>
+								<span class="title">水分</span>
+								<span class="tit_bot"><i>45</i></span>
+							</div>
+							<div class="detail_list col4">
+								<p></p>
+								<span class="title">肌肉量</span>
+								<span class="tit_bot"><i>45</i></span>
+							</div>
+							<div class="detail_list col5">
+								<p></p>
+								<span class="title">骨量</span>
+								<span class="tit_bot"><i>45</i></span>
+							</div>
+							<div class="detail_list col6">
+								<p></p>
+								<span class="title">蛋白质</span>
+								<span class="tit_bot"><i>45</i></span>
+							</div>
+							<div class="detail_list col7">
+								<p></p>
+								<span class="title">基础代谢</span>
+								<span class="tit_bot"><i>45</i></span>
+							</div>
+							<div class="detail_list col8">
+								<p></p>
+								<span class="title">内脏脂肪等级</span>
+								<span class="tit_bot"><i>45</i></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="main_content">
+					<div class="people_sex people_bushu" style="width: 91%; ">
+						<h5>步数<span class="fr bushu_cycle"><i class="active">周</i> / <i>月</i> / <i>年</i></span></h5>
+						<div class="people_flex headlthxinlv">
+							<img src="../img/peo_foot.png"/>
+							<div class="steps">
+								<p>
+									<span class="stepsColor">10959步</span>
+									<span>平均步数</span>
+								</p>
+							</div>
+							<div id="selfstep_highcharts" class="steps_highcharts" style="flex:1;-webkit-box-flex:1;margin-top: 10px;height: 220px;">
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				var chart = new Highcharts.Chart('selfstep_highcharts', {
+				    title: {
+				        text: '',
+//				        x: -20
+				    },
+				    subtitle: {
+			            text: '● 步数（单位：步）',
+			            align: 'right',
+			            x: -10
+			        },
+				    xAxis: {
+				    	tickPosition: 'inside',
+				        categories: ['05/29','05/29','05/29','05/29'],
+				        tickmarkPlacement: 'on'
+				    },
+				    yAxis: {
+				        title: {
+				            text: '',
+				        },
+				        gridLineColor:'white',
+				        lineColor: '#ccc',
+       					lineWidth: 1,
+       					tickAmount: 5,
+				    },
+				    tooltip: {
+				        valueSuffix: '°C'
+				    },
+				    legend: {
+				    	enabled:false
+				        /*layout: 'vertical',
+				        align: 'right',
+				        verticalAlign: 'middle',
+				        borderWidth: 0*/
+				    },
+				    series: [{
+				        name: '东京',
+				        data: [7.0, 6.9, 9.5, 14.5],
+				        type: 'areaspline',
+				        zones: [{
+			                fillColor:"#eff6fc"
+			            } ]
+				    }]
+				});
+			</script>
+			<div class="mainRight" style="width: 268px;">
+				<h2><span>学生列表</span><i> ( 总人数65人 ) </i></h2>
+				<div class="changeClass">
+					选择班级:
+					<div name="" class="per_selection" onselectstart="return false">
+						<p>初三(1)班</p>
+						<ul>
+							<li class="active">初三(1)班</li>
+							<li>初三(2)班</li>
+							<li>初三(3)班</li>
+							<li>初三(4)班</li>
+							<li>初三(5)班</li>
+						</ul>
+					</div>
+				</div>
+				<!--加载图片-->
+				<div class="loadGif"></div>
+				<ul class="personDetail self_detail" onselectstart="return false">
+					<li><span class="activeB">主</span><b></b><i>竹影</i></li>
+					<li><span class="activeG">吴</span><b></b><i>吴子阳</i></li>
+					<li><span class="activeG">张</span><b></b><i>张云泽</i></li>
+					<li><span class="activeB">主</span><b></b><i>竹影</i></li>
+					<li><span class="activeG">吴</span><b></b><i>吴子阳</i></li>
+					<li><span class="activeG">张</span><b></b><i>张云泽</i></li>
+					<li><span class="activeB">主</span><b></b><i>竹影</i></li>
+					<li><span class="activeG">吴</span><b></b><i>吴子阳</i></li>
+					<li><span class="activeG">张</span><b></b><i>张云泽</i></li>
+					<li><span class="activeB">主</span><b></b><i>竹影</i></li>
+					<li><span class="activeG">吴</span><b></b><i>吴子阳</i></li>
+					<li><span class="activeG">张</span><b></b><i>张云泽</i></li>
+					<li><span class="activeB">主</span><b></b><i>竹影</i></li>
+					<li><span class="activeG">吴</span><b></b><i>吴子阳</i></li>
+					<li><span class="activeG">张</span><b></b><i>张云泽</i></li>
+					<li><span class="activeB">主</span><b></b><i>竹影</i></li>
+					<li><span class="activeG">吴</span><b></b><i>吴子阳</i></li>
+					<li><span class="activeG">张</span><b></b><i>张云泽</i></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		$('.per_header').load('../head.html');
+		$('.personDetail li').on('click',function() {
+			$(this).find('b').toggle();
+		});
+		//模拟select
+		$('.per_selection').on('click',function(e) {
+			$(this).find('ul').toggle();
+			var _this = this;
+			$('.per_selection').each(function(index,obj) {
+				if(_this!=obj){
+					$(obj).find('ul').hide();
+				}
+			})
+		});
+		$('.per_selection li').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active')
+			$(this).parent().prev('p').text($(this).text())
+		});
+		$(document).on('click',function(e) {
+			if(e.target.parentNode.className != 'per_selection' && $('.per_selection ul').css('display')=='block'||e.target.parentNode.className != 'per_selection' && $('.mainRight .per_selection ul').css('display')=='block'){
+				$('.per_selection ul').hide();
+			}
+		});
+		$('.basic_charts').on('click','span',function(){
+			$(this).addClass('active').siblings().removeClass('active');
+			if($(this).attr('data-active')==1){
+				$('#selfheight_highcharts').show();
+				$('#selfweight_highcharts').hide();
+			}else if($(this).attr('data-active')==2){
+				console.log(123)
+				$('#selfweight_highcharts').show();
+				$('#selfheight_highcharts').hide();
+			}
+		});
+		//步数周年月切换
+		$('.bushu_cycle i').on('click',function(){
+			$(this).addClass('active').siblings().removeClass('active')
+		});
+	</script>
+</html>

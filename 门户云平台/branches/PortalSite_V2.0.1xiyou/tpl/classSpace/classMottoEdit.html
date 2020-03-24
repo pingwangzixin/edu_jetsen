@@ -1,0 +1,31 @@
+<div>
+	<div class="zyx_greenbox zyx_classmottoEdit">
+		<div class="zyx_whitebox">
+			<div class="zyx_title">
+				<span>班训</span>
+			</div>
+			<div class="zyx_classSpace_editfile">
+				<div class="zyx_file clearfix">
+					<span class="fl">上传图片</span>
+					<div class="zyx_echo_img fl"> 
+						<img  ng-hide="variable.defaultImage" id='FileImg' src="./img/register_teacher.png" />
+						<img  ng-hide="!variable.defaultImage" id='FileImg' ng-src="{{imagePath}}" />
+					</div>
+					<div class="zyx_fileInput fl">
+						<input  id='FileInputs' type="file"  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="angular.element(this).scope().filePhoto(this)"/>
+						<img src="./img/upload_school_logo.png" />
+						<!--<img width="100" height="100"  ng-src="{{imagePath}}" />-->
+					</div>
+				</div>
+				<div class="zyx_edit clearfix">
+					<span>文字内容</span>
+					<textarea ng-model='ueditor'></textarea>
+				</div>
+			</div>
+			<div class="zyx_classSpace_btn">
+				<span ng-click="save(ueditor)">保存</span>
+				<span ng-click="cancel()">取消</span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,450 @@
+<div>
+	<style type="text/css">
+		.zy_view {
+			background: #fff;
+		}
+
+		/* 轮播图 */
+		.swiper-container {
+			height: 665px;
+			position: relative;
+		}
+
+		.bannerImg {
+			width: 100%;
+			height: 665px;
+		}
+
+		.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet {
+			width: 38px;
+			height: 4px;
+			border-radius: 0;
+			background: #fff;
+		}
+
+		.swiper-container-horizontal>.swiper-pagination-bullets {
+			bottom: 60px;
+		}
+
+		.swiper-pagination-bullet-active {
+			background: #1023c8;
+			width: 38px !important;
+		}
+
+		.dowmModule {
+			width: 1200px;
+			margin: 0 auto;
+			height: 665px;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			right: 0;
+			z-index: 100;
+		}
+
+		.dowmModule .code {
+			width: 360px;
+			height: 300px;
+			position: absolute;
+			left: 413px;
+			top: 131px;
+		}
+
+		.dowmModule .code div {
+			float: left;
+			width: 175px;
+			margin-top: 24px;
+		}
+
+		.phoneImg {
+			height: 447px;
+			width: 380px;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+		}
+
+		.loginJesLogo {
+			position: absolute;
+			top: 14px;
+			left: 0;
+			z-index: 100;
+		}
+
+		.downPhoneCode {
+			width: 220px;
+			height: 300px;
+			background: #fff;
+			position: absolute;
+			left: 84px;
+			top: 308px;
+			z-index: 100;
+		}
+
+		.downPhoneCode img {
+			width: 204px;
+			height: 204px;
+			margin-bottom: 25px;
+
+		}
+
+		.downPhoneCode p {
+			font-size: 15px;
+			line-height: 31px;
+			text-align: center;
+			color: #000;
+		}
+
+		.banner1AD {
+			position: absolute;
+			left: 120px;
+			top: 124px;
+			color: #fff;
+			z-index: 100;
+			text-shadow: -2px -4px 4px #000;
+		}
+
+		.banner1AD h1 {
+			font-size: 62px;
+
+		}
+
+		.banner1AD p {
+			font-size: 45px;
+		}
+
+		.banner2AD {
+			position: absolute;
+			left: 134px;
+			top: 148px;
+			color: #fff;
+			z-index: 100;
+			text-shadow: -2px -4px 4px #000;
+		}
+
+		.banner2AD h1 {
+			font-size: 33px;
+		}
+
+		.banner2AD p {
+			font-size: 66px;
+		}
+
+		.banner2AD p span {
+			color: #fee277;
+		}
+
+		/* 登录框 */
+		.zk_loginForm {
+
+			width: 347px;
+			height: 325px;
+			border: 1px solid #dddbdb;
+			position: absolute;
+			right: 0;
+			top: 133px;
+			z-index: 100;
+			background: #fff;
+		}
+
+		.loginWrapper {
+			width: 1200px;
+			margin: 0 auto;
+			height: 665px;
+			overflow: hidden;
+			position: absolute;
+			left: 0;
+			right: 0;
+
+		}
+		.loginWrapper .errorTip{
+			position: absolute;
+			left: 30px;
+   			top: 57px;
+			color: red;
+		}
+		.cursor {
+			cursor: pointer;
+		}
+
+		.loginFormTop {
+			height: 48px;
+			line-height: 48px;
+			text-align: center;
+			height: 50px;
+			margin-bottom: 10px;
+		}
+
+		.loginFormTop p:nth-of-type(1) {
+			background: #f0f3fd;
+			width: 167px;
+			border-right: 1px solid #dddbdb;
+			cursor: pointer;
+			height: 50px;
+		}
+
+		.loginFormTop p:nth-of-type(2) {
+			background: #f0f3fd;
+			cursor: pointer;
+			width: 179px;
+			height: 50px;
+		}
+
+		.loginWrapper .loginFormTop .active {
+			background: #fff;
+			color: #399fdf;
+		}
+
+		.zk_loginForm .inputDiv {
+			height: 40px;
+			width: 303px;
+			margin-left: 26px;
+			padding-top: 29px;
+			border-bottom: 1px solid #88b5ea;
+		}
+
+		.zk_loginForm .inputDiv input {
+			height: 36px;
+			line-height: 36px;
+			outline: none;
+			width: 275px;
+			text-indent: 10px;
+			border: none;
+		}
+
+		.loginBn {
+			width: 303px;
+			height: 41px;
+			margin-left: 21px;
+			text-align: center;
+			line-height: 41px;
+			background: blue;
+			margin-top: 39px;
+			cursor: pointer;
+			border-radius: 20px;
+			color: #fff;
+		}
+
+		.loginCont_title p {
+			font-size: 35px;
+			font-weight: 600;
+			line-height: 1;
+			margin-bottom: 30px;
+			text-align: center;
+			color: #6b6c71;
+		}
+
+		.loginCont_title div {
+			height: 4px;
+			width: 79px;
+			background: #f97046;
+			margin: 0 auto;
+		}
+
+		.loginIcon {
+			font-size: 17px;
+			color: #70a7e7;
+		}
+
+		/* 主体部分 */
+		.contentWrapper {
+			width: 1300px;
+			overflow: hidden;
+			margin-top: 60px;
+		}
+
+
+
+		.contentWrapper .contentDiv .contImg {
+			width: 382px;
+			height: 262px;
+		}
+
+		.contentWrapper .contentDiv .decP {
+			font-size: 19px;
+			line-height: 36px;
+			text-indent: 5px;
+		}
+
+		.contentWrapper .contentDiv .decSpan {
+			font-size: 15px;
+			color: #929292;
+			margin-left: 5px;
+		}
+
+		.contentWrapper .contentDiv {
+			width: 382px;
+			height: 352px;
+			margin-right: 24px;
+			border: 1px solid #cdccca;
+			margin-bottom: 26px;
+			position: relative;
+			cursor: pointer;
+			perspective: 800;
+			-webkit-perspective: 800;
+
+		}
+
+		.bgContent {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			transform: rotateY(-180deg);
+			backface-visibility: hidden;
+			transition: 1s;
+		}
+
+		.front {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			backface-visibility: hidden;
+			transition: 1s;
+		}
+
+		.contentDiv:hover .front {
+			transform: rotateY(180deg);
+		}
+
+		.contentDiv:hover .bgContent {
+			transform: rotateY(0deg);
+		}
+
+		.bgContent .bgImg {
+			position: absolute;
+		}
+
+		.bgDec {
+			position: absolute;
+			z-index: 100;
+			width: 384px;
+			color: #fff;
+		}
+
+		.bgDec h1 {
+			font-size: 23px;
+			margin: 14px 0 33px 15px;
+		}
+
+		.bgDec p {
+			width: 360px;
+			text-indent: 22px;
+			line-height: 28px;
+			margin-left: 16px;
+		}
+	</style>
+	<template-set class="toggle" ng-if="showAdmin"></template-set>
+	<!--<div class="template-set"></div>-->
+	<!--<system></system>-->
+	<div class="">
+		<!-- 轮播图 -->
+		<div>
+			<div class="swiper-container">
+				<!-- 登录框 -->
+				<div class=" loginWrapper">
+					<img src="img/jes_logo.png" alt="" class="loginJesLogo">
+					<div class="zk_loginForm">
+					<p ng-if="userLoggedMsg.showTips"   class="errorTip">{{userLoggedMsg.errorTip}}</p>
+
+						<div class="loginFormTop">
+							<p class="fl" ng-class="{'active':userInfo.isUser}" ng-click="userChange()">用户登录</p>
+							<p class="fl" ng-class="{'active':!userInfo.isUser}" ng-click="manageChange()">管理员登录</p>
+						</div>
+						<div class="inputDiv">
+							<i class="iconfont icon-daohanglan-05  loginIcon"></i>
+							<input type="text" placeholder="姓名/身份证号/手机号/邮箱" ng-model="userInfo.username">
+						</div>
+						<div class="inputDiv">
+							<i class="iconfont icon-unlock loginIcon"></i>
+							<input type="password" placeholder="请输入密码" ng-model="userInfo.password">
+						</div>
+						<div class="loginBn" ng-click="login()">
+							登 录
+						</div>
+					</div>
+				</div>
+				<!-- 轮播图 -->
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class=" loginWrapper">
+							<div class="banner1AD ">
+								<h1>互联网+教育</h1>
+								<p>教育信息化2.0大平台</p>
+							</div>
+						</div>
+						<img src="img/zk_banner1.png" alt="" class="bannerImg">
+					</div>
+					<div class="swiper-slide">
+						<div class=" loginWrapper">
+							<div class="banner2AD ">
+								<h1>捷成教育云平台</h1>
+								<p>业务系统<span>全面升级</span></p>
+							</div>
+						</div>
+						<img src="img/zk_banner2.png" alt="" class="bannerImg">
+					</div>
+					<div class="swiper-slide">
+						<div class=" loginWrapper">
+							<div class="dowmModule">
+								<img src="img/phoneLogin.png" alt="" class="phoneImg">
+								<div class="code">
+									<img src="img/JetSenCenter.png" alt="">
+									<div ng-repeat=" item in loginData.codeData">
+										<img ng-src="{{item.img}}" alt="" class="cursor"
+											ng-click="imgChange(item.index)">
+									</div>
+								</div>
+							</div>
+							<div class="downPhoneCode">
+								<img ng-src="{{loginData.downInfo.imgSrc}}" alt="">
+								<p>扫描二维码</p>
+								<p>{{loginData.downInfo.text}}</p>
+							</div>
+						</div>
+						<img src="img/zk_banner3.png" alt="" class="bannerImg">
+					</div>
+				</div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+
+		<!-- 主体部分 -->
+		<div class="zy_central_content ">
+			<div class="loginCont_title">
+				<p>
+					智慧校园服务
+				</p>
+				<div></div>
+				<div>
+				</div>
+			</div>
+			<div class="contentWrapper">
+				<div ng-repeat=" data in loginData.contentData" class="contentDiv fl">
+					<div class="front">
+						<img ng-src="{{data.img}}" alt="" class="contImg">
+						<p class="decP">{{data.title}}</p>
+						<span class="decSpan">{{data.dec}}</span>
+					</div>
+					<div class="bgContent">
+						<img ng-src="{{data.bgImg}}" alt="" class="bgImg">
+						<div class="bgDec">
+							<h1>{{data.title}}</h1>
+							<p ng-repeat=" bgMsg in data.bgDec">{{bgMsg}}</p>
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+	<z-footer></z-footer>
+</div>

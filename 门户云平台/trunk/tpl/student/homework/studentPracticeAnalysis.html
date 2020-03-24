@@ -1,0 +1,26 @@
+<div class="main_width">
+	<div class="zy_analysis_main zy_student_analysis_main">
+		<div class="zy_analysis_con">
+			<p class="zy_analysis_tit">本次作业共有 <span ng-bind="variablePacket.questionCount"><!--26--></span> 道试题，答对题数 <b ng-bind="variablePacket.correctCount"><!--21--></b> 道</p>
+			<div class="zy_analysis_table">
+				<table border="" cellspacing="" cellpadding="">
+					<tr><th>题号</th><th>题型</th><th>正确答案</th><th colspan="2">你的答案</th></tr>
+					<tr ng-repeat="i in variablePacket.correctRateTable">
+						<td><span ng-bind="i.titNum"></span><b ng-bind="i.littleTitNum"></b></td>
+						<td ng-bind="i.type"></td>
+						<td ng-bind-html="i.rightAnswer | trustHtml"></td>
+						<td ng-bind-html="i.yourAnswer | trustHtml" width="120px"></td>
+						<td>
+							<span ng-repeat='z in i.yourAnswerIcon track by $index'>
+								<span ng-bind='"("+($index+1)+")"' ng-if='i.type=="填空题" ||i.type=="完形填空" ||i.type=="阅读理解"'></span>
+								<i class="icon iconfont icon-dui" ng-if="z=='correct'"></i>
+								<i class="icon iconfont icon-cuo" ng-if="z=='error'"></i>
+								<i class="icon iconfont icon-bandui" ng-if="z=='half'"></i>
+							</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

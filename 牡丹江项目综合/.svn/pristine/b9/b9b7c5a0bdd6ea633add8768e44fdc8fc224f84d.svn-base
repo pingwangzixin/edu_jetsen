@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班牌首页</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/banpai.css">
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/banpai.js"></script>
+</head>
+<body onload="showLeftTime()">
+    <div class="header">
+        <div class="logo">
+            <img src="./images/logo.png" alt="">
+           
+            <div class="classbtn dw1" onclick="andJump()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>云空间</span>
+            </div>
+            <div class="classbtn dw2" onclick="andJump2()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>教育网</span>
+            </div>
+        </div>
+        <div class="weather">
+           <iframe class="tianqi" src="http://www.seniverse.com/weather/weather.aspx?uid=UEC970B676&cid=CHBJ000000&l=&p=SMART&a=0&u=C&s=1&m=0&x=1&d=0&fc=FFFFFF&bgc=&bc=&ti=0&in=0&li=" frameborder="0" scrolling="no" width="200" height="90" allowTransparency="true"></iframe>
+           
+           <p class="tqzhezhao"></p>
+           
+            <label id="show"></label>
+            <div class="selctclass">
+                <div class="classbtn dw3">
+                    <span>四年级(3)班</span><img src="./images/classbtnxiala.png" alt="">
+                </div>
+                <div class="strlist" style="display:none">
+                    <ul>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="leftmenu">
+            <ul>
+                <a href="./index.html"><li><img src="./images/bjactive1.png" alt=""></li></a>
+                <a href="./xuexiao.html"><li><img src="./images/xuexiao.png" alt=""></li></a>
+                <a href="./shetuan.html"><li><img src="./images/shetuan.png" alt=""></li></a>
+                <a href="./wode.html?name=孔甜诺"><li><img src="./images/wode.png" alt=""></li></a>
+            </ul>
+        </div>
+        <div class="rightcon">
+           <div class="banwugongshi">
+               <img src="./images/bwgsbg1.png" class="qianbishu">
+               <img src="./images/bwqianbi.png" class="bwqianbi">
+               <div class="bwgscon">
+                   <div class="seache">
+                       <input type="text" class="bwgsinput" placeholder="搜索课程"><button class="kecbsou">课程表</button>
+                       <div class="kcullist">
+                           <ul>
+                               <li>
+                                  <img src="./images/hoticon.png" class="hoticon">
+                                   <img src="./images/bwgskcimg.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>立即报名</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                  <img src="./images/hoticon.png" class="hoticon">
+                                   <img src="./images/bwgskcimg1.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>音乐会</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                  <img src="./images/hoticon.png" class="hoticon">
+                                   <img src="./images/bwgskcimg2.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>社团活动</span><br>
+                                       <span>2017-06-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                  <img src="./images/hoticon.png" class="hoticon">
+                                   <img src="./images/bwgskcimg3.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>运动员</span><br>
+                                       <span>2017-07-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                   <img src="./images/bwgskcimg4.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>爱国活动</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                   <img src="./images/bwgskcimg5.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>组织春游</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                   <img src="./images/bwgskcimg6.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>歌唱比赛</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                   <img src="./images/bwgskcimg7.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>传统舞蹈</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                               <li>
+                                   <img src="./images/bwgskcimg8.jpg" class="fl verti">
+                                   <p class="detail"><a href="./banwugongshixiangqing.html">查看详情>></a></p>
+                                   <div class="fl jianjie">
+                                       <span>参观考察</span><br>
+                                       <span>2017-09-01</span><br>
+                                       <span>11:21</span>
+                                   </div>
+                               </li>
+                           </ul>
+                       </div>
+                   </div>
+                   <div class="bwkcb" style="display:none;">
+                      <p class="guanbibtn">✘关闭</p>
+                       <div class="kcbtit">课程表</div>
+                       <div class="kcbul">
+                           <div class="shangwu fl">
+                               <ul>
+                                   <li>上午</li>
+                                   <li>第一节：语文</li>
+                                   <li>第二节：数学</li>
+                                   <li>第三节：英语</li>
+                                   <li>第四节：美术</li>
+                               </ul>
+                           </div>
+                           <div class="shuxian fl"></div>
+                           <div class="xiawu fl">
+                               <ul>
+                                   <li>下午</li>
+                                   <li>第一节：音乐</li>
+                                   <li>第二节：体育</li>
+                                   <li>第三节：自然</li>
+                                   <li>第四节：历史</li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+    <div class="footer">
+        <ul>
+            <li><a href="./banfeng.html"><img src="./images/banfeng.png"></a></li>
+            <li><a href="./banwugongshi.html"><img src="./images/banwugongshi.png"  class="ftbtnactive"></a></li>
+            <li><a href="./banzhurenjieshao.html"><img src="./images/banzhurenjieshao.png" alt=""></a></li>
+            <li><a href="./banjijieshao.html"><img src="./images/banjijieshao.png" alt=""></a></li>
+            <li><a href="./mingxingxuesheng.html"><img src="./images/mingxingxuesheng.png" alt=""></a></li>
+            <li><a href="./tesehuodong.html"><img src="./images/tesehuodong.png" alt=""></a></li>
+            <li><a href="./banjifengcai.html"><img src="./images/banjifengcai.png" alt=""></a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    $(function(){
+        $(".dw3").on("click",function(){
+            $(".strlist").toggle(300)
+        })
+        
+        $(".strlist ul li span").on("click",function(){
+            $(this).addClass("nameactive").parent().siblings().children("span").removeClass("nameactive")
+        })
+        
+        $(".kecbsou").on("click",function(){
+            $(".bwkcb").show()
+        })
+        
+        $(".guanbibtn").on("click",function(){
+            $(".bwkcb").hide()
+        })
+        
+    })
+    
+    function andJump(){
+        window.android.AndJump();
+    }
+
+    function andJump2(){
+        window.android.AndJump2();
+    }
+</script>
+
+
+</html>

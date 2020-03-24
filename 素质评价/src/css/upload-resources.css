@@ -1,0 +1,21 @@
+
+/*上传成功页面*/
+.success img{
+	display: block;
+	margin: 66px auto 30px;
+}
+.success h3{color:#222;font-size: 18px;text-align: center;}
+.success p{color:#666;font-size: 14px;text-align: center;margin: 20px 0;}
+.success span{
+	display: block;
+	margin: 0 auto;
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color:#fff;
+	font-size: 14px;
+	background-color: #d03d31;
+	margin-bottom: 18px;
+	cursor:pointer;
+}

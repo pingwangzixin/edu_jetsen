@@ -1,0 +1,151 @@
+<div class="">
+	<div class="zy_bg zy_application_main_pic">
+		
+	</div>
+	
+	<!--应用中心-->
+	<div class="zy_bg zy_application_center_bg">
+		<div class="zy_central_content zy_application_center clearfix">
+			<div class="zy_application_nav fl">
+				<div class="zy_linear">
+					<div class="zy_linear_simulation">
+						<dl>
+							<dt><i class="iconfont icon-yingyong bg_radius"></i><span>应用中心</span></dt>
+							<dd class="zy_all_application" ng-class="{'active':applicaionState.all}" ng-click="applicaionSwitch('all')">
+								<i class="iconfont icon-yingyongchuangjianshenhe"></i>
+								<span>全部应用</span>
+							</dd>
+							<dd class="zy_website" ng-class="{'active':applicaionState.website}" ng-click="applicaionSwitch('website')">
+								<i class="iconfont icon-wangzhan"></i>
+								<span>网站</span>
+							</dd>
+							<dd class="zy_tools" ng-class="{'active':applicaionState.tool}" ng-click="applicaionSwitch('tool')">
+								<i class="iconfont icon-gongju"></i>
+								<span>工具</span>
+							</dd>
+							<dd class="zy_little_game" ng-class="{'active':applicaionState.game}" ng-click="applicaionSwitch('game')">
+								<i class="iconfont icon-youxi"></i>
+								<span>小游戏</span>
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="zy_application_switch fr" >
+				<div class="zy_linear zy_you_like" ng-if="applicaionState.all">
+					<div class="zy_linear_simulation">
+						<div class="zy_con_tit"><span>猜你喜欢</span></div>
+						<ul class="zy_modular_list clearfix">
+							<li class="clearfix" ng-repeat="i in application">
+								<img ng-src="{{i.appIcon}}" class="fl" />
+								<div class="zy_appli_synopsis fl">
+									<h4 ng-bind="i.appName"></h4>
+									<div class="zy_utilization_rate">
+										<ul class="clearfix">
+											<li ng-repeat="star in i.star"><img src="./img/star_yellow.png"/></li>
+										</ul>
+										<span><i ng-bind="i.appUse"></i>人使用</span>
+									</div>
+									<div class="zy_more_operation">
+										<span ng-bind="i.appPay|payFilter" ng-class="{zy_pay:i.appPay=='1',zy_free:i.appPay=='0'}"></span>
+										<!--<b>添加</b>-->
+										<b ng-click="appU(i)">进入</b>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<!--<div class="zy_linear zy_you_like zy_type_website"  ng-switch-when="0 | 1" ng-switch-when-separator="|">-->
+				<div class="zy_linear zy_you_like zy_type_website" ng-if="applicaionState.all || applicaionState.website">
+					<div class="zy_linear_simulation">
+						<div class="zy_con_tit clearfix">
+							<i class="fl iconfont icon-wangzhan bg_radius"></i><span class="fl">网站</span>
+						</div>
+						<ul class="zy_modular_list clearfix">
+							<li class="clearfix" ng-repeat="i in applicationWeb">
+								<img ng-src="{{i.appIcon}}" class="fl" />
+								<div class="zy_appli_synopsis fl">
+									<h4 ng-bind="i.appName"></h4>
+									<div class="zy_utilization_rate">
+										<ul class="clearfix">
+											<li ng-repeat="star in i.star"><img src="./img/star_yellow.png"/></li>
+										</ul>
+										<span><i ng-bind="i.appUse"></i>人使用</span>
+									</div>
+									<div class="zy_more_operation">
+										<span ng-bind="i.appPay|payFilter" ng-class="{zy_pay:i.appPay=='1',zy_free:i.appPay=='0'}"></span>
+										<!--<b>添加</b>-->
+										<b ng-click="appU(i)">进入</b>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="zy_linear zy_you_like zy_type_tool" ng-if="applicaionState.all || applicaionState.tool">
+					<div class="zy_linear_simulation">
+						<div class="zy_con_tit clearfix">
+							<i class="fl iconfont icon-gongju bg_radius"></i><span class="fl">工具</span>
+						</div>
+						<ul class="zy_modular_list clearfix">
+							<li class="clearfix" ng-repeat="i in applicationTool">
+								<img ng-src="{{i.appIcon}}" class="fl" />
+								<div class="zy_appli_synopsis fl">
+									<h4 ng-bind="i.appName"></h4>
+									<div class="zy_utilization_rate">
+										<ul class="clearfix">
+											<li ng-repeat="star in i.star"><img src="./img/star_yellow.png"/></li>
+										</ul>
+										<span><i ng-bind="i.appUse"></i>人使用</span>
+									</div>
+									<div class="zy_more_operation">
+										<span ng-bind="i.appPay|payFilter" ng-class="{zy_pay:i.appPay=='1',zy_free:i.appPay=='0'}"></span>
+										<!--<b>添加</b>-->
+										<b ng-click="appU(i)">进入</b>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="zy_linear zy_you_like zy_type_game" ng-if="applicaionState.all || applicaionState.game">
+					<div class="zy_linear_simulation">
+						<div class="zy_con_tit clearfix">
+							<i class="fl iconfont icon-youxi bg_radius"></i><span class="fl">小游戏</span>
+						</div>
+						<ul class="zy_modular_list clearfix">
+							<li class="clearfix" ng-repeat="i in applicationGame">
+								<img ng-src="{{i.appIcon}}" class="fl" />
+								<div class="zy_appli_synopsis fl">
+									<h4 ng-bind="i.appName"></h4>
+									<div class="zy_utilization_rate">
+										<ul class="clearfix">
+											<li ng-repeat="star in i.star"><img src="./img/star_yellow.png"/></li>
+										</ul>
+										<span><i ng-bind="i.appUse"></i>人使用</span>
+									</div>
+									<div class="zy_more_operation">
+										<span ng-bind="i.appPay|payFilter" ng-class="{zy_pay:i.appPay=='1',zy_free:i.appPay=='0'}"></span>
+										<!--<b>添加</b>-->
+										<b ng-click="appU(i)">进入</b>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			
+				
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
+
+
+<z-footer></z-footer>

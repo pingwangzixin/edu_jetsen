@@ -1,0 +1,229 @@
+<div class="zyx_banner zk_shoolBanner">
+	<img src="{{backGroundImagePath}}" />
+	 <div class="zk_class_uploadBg" ng-if="bgFile">
+		<img src="./img/zk_class_uploadBg.png" alt="">
+		<input type="file" name="" id="FileInput" value="" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+			onchange="angular.element(this).scope().uploadBg(this)">
+	</div>
+</div>
+
+<div class="zy_class_space_index zk_class_spaceIndex zk_shoolBanner">
+	<!-- <div class="zy_carousel_wrap">
+		<i class="iconfont icon-zuojiantoubeijing"></i>
+		<ul class="clearfix">
+			<li ng-repeat="img in imgBox track by $index" carousel>
+				<img ng-src="./img/{{img.src}}.jpg" />
+			</li>
+		</ul>
+		<i class="iconfont icon-youjiantoubeijing"></i>
+		<div class="zk_class_uploadBg" ng-if="bgFile">
+			<img src="./img/zk_class_uploadBg.png" alt="">
+			<input type="file" name="" id="FileInput" value=""
+				accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+				onchange="angular.element(this).scope().uploadBg(this)">
+		</div>
+	</div> -->
+
+
+
+	
+	<div class="zy_space_content ">
+		<div class="zy_space_show_wrap clearfix">
+			<div class="zy_class_abstract fl">
+
+				<div class="zk_goodSpace">
+					<div class="zk_goodSpaceTop">
+						<div class="fl">
+							<div class="fl zk_goodSpaceTop_logo">
+								<img src="./img/zk_class_goodSpace.png" alt="">
+								<span>优秀空间</span>
+							</div>
+
+							<div class="zk_spaceChangeWrap fl">
+								<p ng-repeat="(index,item) in variable.goodSpaceState"
+									ng-click="goodSpaceStateChange(index)"
+									ng-class="{'zk_activeSpace':variable.goodSpaceIndex == index}">{{item}}</p>
+							</div>
+						</div>
+						<div class="fr zk_goodSpaceMore">
+							//更多>>
+						</div>
+					</div>
+
+					<div class="zk_goodSpaceBtm">
+						<div ng-click="showMoreSpace(0)" class="zk_schoolPrevPage" ng-show="prevFlag">
+							<< </div> </ul> <ul class="fl" ng-show="variable.goodSpaceIndex == 0">
+								<a ng-repeat="item in goodSpaceShowList" target="_blank"
+									ui-sref="wrap.space.teacherSpace.teaNews({id:item.teaInfo.id,type:item.teaInfo.userType})">
+									<li >
+										<div ng-if="item.teaInfo.userFace">
+											<img ng-src="{{spaceEaIp + '/resource/user/face/' + item.teaInfo.userFace}}" alt="">
+										</div>
+										<div ng-if="!item.teaInfo.userFace" class="headImgDiv" ng-class="{'woManHead':item.teaInfo.sex =='女'}">
+											{{item.teaInfo.realname.slice(0,1)}}
+										</div>
+										<p>{{item.teaInfo.realname}}</p>
+										<p>{{item.teaInfo.subjectName}}</p>
+									</li>
+
+								</a>
+
+								</ul>
+								<ul class="fl" ng-show="variable.goodSpaceIndex == 1">
+									<a ng-repeat="item in goodSpaceShowList" target="_blank"
+										ui-sref="wrap.space.studentSpace.stuNews({id:item.id,type:2 })">
+										<li >
+											<div ng-if="item.userFace">
+												<img ng-src="{{spaceEaIp + '/resource/user/face/' + item.userFace}}" alt="">
+											</div>
+											<div ng-if="!item.userFace" class="headImgDiv" ng-class="{'woManHead':item.sex =='女'}">
+												{{item.realname.slice(0,1)}}
+											</div>
+											<p>{{item.realname}}</p>
+										</li>
+									</a>
+								</ul>
+								<div ng-click="showMoreSpace(1)" class="zk_schoolNextPage" ng-show="nextFlag">
+									>>
+								</div>
+						</div>
+					</div>
+
+
+					<div class="zy_about_introduce zk_about_introduce zy_class_introduce">
+						<div class="zk_goodSpaceTop">
+							<div class="fl zk_goodSpaceTop_logo">
+								<img src="./img/zk_class_classIntroduce.png" alt="">
+								<span>班级介绍</span>
+							</div>
+							<div class="fr zk_goodSpaceMore"
+								ui-sref="wrap.classSpace.classIntroduce.classIntroduceShow">
+								更多>>
+							</div>
+						</div>
+						<div class="zk_introduce_cont">
+							<div class="zk_class_photoShow fl" ng-show="classimagePath">
+								<img ng-src="{{classimagePath}}" alt="">
+							</div>
+							<div ng-class="{'zk_class_noPhoto':!classimagePath}" class="zk_class_introdeuceCont">
+
+							</div>
+						</div>
+					</div>
+
+
+					<div class="zy_about_introduce zk_about_introduce zy_class_introduce">
+						<div class="zk_goodSpaceTop">
+							<div class="fl zk_goodSpaceTop_logo">
+								<img src="./img/zk_class_teaIntroduce.png" alt="">
+								<span>班主任介绍</span>
+							</div>
+							<div class="fr zk_goodSpaceMore"
+								ui-sref="wrap.classSpace.classHeadTeacher.classHeadTeacherShow">
+								更多>>
+							</div>
+						</div>
+						<div class="zk_introduce_cont">
+							<div class="zk_class_photoShow fl" ng-show="teacherImagePath">
+								<img ng-src="{{teacherImagePath}}" alt="">
+							</div>
+							<div ng-class="{'zk_class_noPhoto':!teacherImagePath}" class="zk_class_teaintrodeuceCont">
+
+							</div>
+						</div>
+					</div>
+
+					<div class="zk_class_startStu">
+						<div class="zk_class_startStuLogo">
+							<img src="./img/student_star.png" />
+							<p>明星学生</p>
+						</div>
+						<ul>
+							<li ng-repeat='i in starStudentList'
+								ui-sref="wrap.classSpace.classStarStudent.classStarStudentList">
+								<img ng-src="{{i.imagePath}}" alt="">
+								<p>{{i.content}}</p>
+								<p>{{i.title}}</p>
+							</li>
+
+						</ul>
+					</div>
+
+
+
+				</div>
+				<div class="zy_class_notice fr">
+					<div class="  zk_class_spaceActive">
+						<div class="zk_goodSpaceTop">
+							<div class="fl zk_goodSpaceTop_logo">
+								<img src="./img/zk_class_spaceActive.png" alt="">
+								<span>空间动态</span>
+							</div>
+						</div>
+						<div class="swiper-container zk_class_spaceActiveCont">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide zk_class_spaceActiveWrap"
+									ng-repeat="item in variable.spaceActiveInfo">
+									<li>
+										<div class="zk_class_spaceAcTop">
+											<div class="zk_class_spaceAcTopLeft">
+												<div class="fl" ng-if="item.userFace">
+													<img ng-src="{{spaceEaIp + '/resource/user/face/' + item.userFace}}" alt="">
+												</div>
+												<div class="fl userHead" ng-if="!item.userFace"  ng-class="{'woManHead':item.sex =='女'}">
+													{{item.commentUserName.slice(0,1)}}
+												</div>
+												<p class="fl zk_class_spaceAcTopP">{{item.commentUserName}}</p>
+											</div>
+											<div class="fr">
+												{{item.commentCreateDate}}
+											</div>
+										</div>
+										<p>{{item.content}}</p>
+									</li>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="  zk_class_classNotice">
+						<div class="zk_goodSpaceTop">
+							<div class="fl zk_goodSpaceTop_logo">
+								<img src="./img/zk_class_notice.png" alt="">
+								<span>班级公告</span>
+							</div>
+							<div class="fr zk_goodSpaceMore" ui-sref="wrap.classSpace.classNotice.classNoticeList">
+								更多>>
+							</div>
+						</div>
+						<ul>
+							<li ng-repeat='i in classNoticeList'>
+								<p class="fl" ui-sref="wrap.classSpace.classNotice.classNoticeDetails({noticeId:i.id})">
+									{{i.title}}</p>
+								<p class="fr" ng-bind="i.createDate|createDateFilter"></p>
+							</li>
+						</ul>
+					</div>
+
+
+					<div class="  zk_class_jigou">
+						<div class="zk_goodSpaceTop">
+							<div class="fl zk_goodSpaceTop_logo">
+								<img src="./img/zk_class_jigou.png" alt="">
+								<span>机构空间</span>
+							</div>
+						</div>
+						<div class="zk_class_jigouCont">
+							<img src="./img/zk_class_jigou1.png" alt="">
+							<img src="./img/zk_class_jigou2.png" alt="">
+							<img src="./img/zk_class_jigou3.png" alt="">
+							<img src="./img/zk_class_jigou4.png" alt="">
+							<img src="./img/zk_class_jigou5.png" alt="">
+							<img src="./img/zk_class_jigou6.png" alt="">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>

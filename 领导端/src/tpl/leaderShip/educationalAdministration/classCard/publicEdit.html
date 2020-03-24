@@ -1,0 +1,132 @@
+<div class="mlh_right mlh_publicDetails">
+	<!--创建班务公示 start-->
+	<div class="title pointer" ng-if="variablePacket.name=='establish' && variablePacket.state=='classNotice'" ui-sref="secondNav.leftTree.classCardWrap.classCardSecondNav.classNotice({range:'class',nav:'class',type:'class'})">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span>创建班务公示</span>
+	</div>
+	<!--创建班务公示 end-->
+	<!--创建特色活动 start-->
+	<div class="title pointer" ng-if="variablePacket.name=='establish' && variablePacket.state=='classActivity'" ui-sref="secondNav.leftTree.classCardWrap.classCardSecondNav.classActivity({range:'class',nav:'class',type:'class'})">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span>创建特色活动</span>
+	</div>
+	<!--创建特色活动 end-->
+	<!--创建学校活动 start-->
+	<div class="title pointer" ng-if="variablePacket.name=='establish' && variablePacket.state=='schoolActivity'" ui-sref="secondNav.leftTree.classCardWrap.classCardSecondNav.classActivity({range:'school',nav:'school',type:'school'})">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span>创建学校活动</span>
+	</div>
+	<!--创建学校活动 end-->
+	<!--编辑班务公示 start-->
+	<div class="title pointer" ng-if="variablePacket.name=='edit' && variablePacket.state=='classNotice'" ui-sref="secondNav.leftTree.classCardWrap.classCardSecondNav.classNotice({range:'class',nav:'class',type:'class'})">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span>编辑班务公示</span>
+	</div>
+	<!--编辑班务公示 end-->
+	<!--编辑特色活动 start-->
+	<div class="title pointer" ng-if="variablePacket.name=='edit' && variablePacket.state=='classActivity'" ui-sref="secondNav.leftTree.classCardWrap.classCardSecondNav.classActivity({range:'class',nav:'class',type:'class'})">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span>编辑特色活动</span>
+	</div>
+	<!--编辑特色活动 end-->
+	<!--编辑学校活动 start-->
+	<div class="title pointer" ng-if="variablePacket.name=='edit' && variablePacket.state=='schoolActivity'" ui-sref="secondNav.leftTree.classCardWrap.classCardSecondNav.classActivity({range:'school',nav:'school',type:'school'})">
+		<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+		<span>编辑学校活动</span>
+	</div>
+	<!--编辑学校活动 end-->
+	<!--表单显示 start-->
+	<div class="list details">
+		<form name="myForm" novalidate >
+			<ul class="zyx_case mlh_case zyx_guide_case">
+				<li>
+					<em ng-if="variablePacket.state=='classNotice'">公示名称<i class="star">*</i></em>
+					<em ng-if="!(variablePacket.state=='classNotice')">活动名称<i class="star">*</i></em>
+					<input ng-if="variablePacket.state=='classNotice'" type="text" class="editName" name="taskName" placeholder="请输入公示名称" ng-keyup='mlh_taskName()'  ng-model="variablePacket.taskName" required />
+					<input ng-if="variablePacket.state=='classActivity' || variablePacket.state=='schoolActivity'" type="text" class="editName" name="taskName" placeholder="请输入活动名称" ng-keyup='mlh_taskName()'  ng-model="variablePacket.taskName" required />
+					<b ng-if="(myForm.taskName.$error.required && myForm.taskName.$touched  ) || variablePacket.ProvingTaskname">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请输入活动名称</span>
+					</b>				
+				</li>
+				<li class="mlh_height">
+					<em ng-if="variablePacket.state=='classNotice'">选择时间<i class="star">*</i></em> 
+					<em ng-if="!(variablePacket.state=='classNotice')">活动时间<i class="star">*</i></em> 
+					<em ng-if="'">活动时间<i class="star">*</i></em> 
+					<input type="text" name="selectDate" value="" placeholder="请选择活动时间" id="time" ng-focus="ChangeDate()" class="timer wx_datapinkrange"  ng-model="variablePacket.selectDate" required/>
+					<b ng-if="(myForm.selectDate.$error.required&&myForm.selectDate.$touched) || variablePacket.ProvingDate">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请选择活动时间</span>
+					</b>	
+				</li>
+				<li class="clearfix">
+					<em class="fl" ng-if="variablePacket.state=='classNotice'">公示内容<i class="star">*</i></em>
+					<em class="fl" ng-if="variablePacket.state=='classActivity'">活动内容<i class="star">*</i></em>
+					<em class="fl" ng-if="variablePacket.state=='schoolActivity'">活动要求<i class="star">*</i></em>
+					<textarea name='taskCont' class="task_cont" ng-model="variablePacket.taskCont" ng-keyup='mlh_taskCont()' required></textarea>
+				    <b ng-if="(myForm.taskCont.$error.required&& myForm.taskCont.$touched) || variablePacket.ProvingTaskcont">
+						<i class="iconfont icon-gantanhao"></i>
+						<span>请填写内容</span>
+					</b>
+				</li>
+			</ul>
+		</form>
+		<!-- 上传附件 start -->
+		<div class="zyx_guide_case mlh_upload" ng-if='variablePacket.UploadFile_show'>
+			<ul class="clearfix">
+				<li ng-repeat="i in variablePacket.uploadFile">
+					<img src="./img/resources_word.png" ng-if='i.ResourceSrc==0'/>
+					<img src="./img/resources_ppt.png" ng-if='i.ResourceSrc==1'/>
+					<img src="./img/resources_pic.png" ng-if='i.ResourceSrc==2'/>
+					<img src="./img/resources_mp4.png" ng-if='i.ResourceSrc==3'/>
+					<img src="./img/resources_ear.png" ng-if='i.ResourceSrc==4'/> 
+					<span ng-bind='i.name' ng-if='i.ResourceSrc==0'
+						  ui-sref="secondNav.taskResourcesDetails({'state':'word'})"></span>
+					<span ng-bind='i.name' ng-if='i.ResourceSrc==1'
+						  ui-sref="secondNav.taskResourcesDetails({'state':'ppt'})"></span>
+					<span ng-bind='i.name' ng-if='i.ResourceSrc==2'
+						  ui-sref="secondNav.taskResourcesDetails({'state':'picture'})"></span>
+					<span ng-bind='i.name' ng-if='i.ResourceSrc==3'
+						  ui-sref="secondNav.taskResourcesDetails({'state':'video'})"></span>
+					<span ng-bind='i.name' ng-if='i.ResourceSrc==4'
+						  ui-sref="secondNav.taskResourcesDetails({'state':'audio'})"></span>
+					<em ng-click='uploadFile(i.ResourceNum,$index,i.name)'>删除</em>					
+				</li>
+			</ul>					
+		</div>
+		<div class="edit_addFile">
+			<strong class="mlh_add" ng-class={"active":variablePacket.UploadFile_show}><i class="iconfont icon-lianjielianlu"></i> 添加附件<input type="file"> </strong>
+		</div>
+		<!--上传附件 end-->
+		<button class="edit_button" ng-click="Verification(myForm.$valid)">保存</button>
+	</div>
+	<!--表单显示 end-->
+</div>
+<!--确认框及提示框-->
+<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk" mask-zindex='variablePacket.maskZindex'></prompt-box>
+<!-- 双日历代码 start -->
+<script>
+	$(function() {
+		$('.timer').daterangepicker({
+			"linkedCalendars": false,
+			"autoUpdateInput": false,
+			"showCustomRangeLabel": false,
+			"startDate": "09/01/2017",
+			"endDate": "07/01/2018",
+			"minDate": "09/01/2017",
+			"maxDate": "07/01/2018",
+			"locale": {
+				'fromLabel': '从',
+				'toLabel': '至',
+				'weekLabel': 'W',
+				'customRangeLabel': 'Custom Range',
+				'daysOfWeek': ["日", "一", "二", "三", "四", "五", "六"],
+				'monthNames': ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+			}
+		}, function(start, end, label) {
+			$('.timer').val(start.format('YYYY年MM月DD') + '-' + end.format('YYYY年MM月DD'));
+			$('.timer').focus();
+		});
+	})
+</script>
+<!-- 双日历代码 end -->

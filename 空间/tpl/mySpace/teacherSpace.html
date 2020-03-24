@@ -1,0 +1,85 @@
+<div>
+	<style>
+		
+	</style>
+	<div class="zy_bg zk_bg">
+		<div class="zy_central_content zy_space_new clearfix">
+			<div class="wd_left fl" >
+				<div class="user">
+					<div class="shang">
+						<div class="headPortrait" >
+							<span ng-if="faceHave">{{userLoggedMsg.realname.charAt(0)}}</span>
+							<p ng-click="upload1()" ng-if="visiter!=1">修改</br>头像</p>
+							<input type="file" name="" id="file1" value=""  onchange="angular.element(this).scope().uploadTeaImage(this)"/>
+							<img ng-src="{{userImage}}" ng-if="!faceHave"/>
+						</div>
+						<!-- <div class="modify"><i class="iconfont icon-bianji2"></i><span>修改</span></div> -->
+						<div class="username">
+							<i ng-if="userLoggedMsg.sex == '男'" class="iconfont icon-nan"></i>
+							<i ng-if="userLoggedMsg.sex == '女'" class="iconfont icon-nv"></i>
+							<span ng-bind="userLoggedMsg.realname">唐海燕</span>
+						</div>
+					</div>
+					<div class="xia clearfix">
+						<ul class="fl left">
+							<li ng-repeat="w in roles" ><p class="fr">{{w}}组：</p></li>
+							<!--<li ><p class="fr">德育组：</p></li>
+							<li ><p class="fr">班主任组：</p></li>
+							<li ><p class="fr">任课教师组：</p></li>-->
+						</ul>
+						<ul class="fr right">
+							<li ng-repeat="w in rules"  ><p class="fl">{{w}}</p></li>
+							<!--<li ><p class="fl">校级领导组</p></li>
+							<li ><p class="fl">考试教务管理员</p></li>
+							<li ><p class="fl">初一年级（1）班</p></li>
+							<li ><p class="fl">语文  初一（1）班</p></li>
+							<li ><p class="fl">数学  初一（1）班</p></li>-->
+						</ul>
+						
+					</div>
+				</div>
+				<div class="application" ng-if="visiter!=1">
+					<div class="header">教学应用</div>
+					<div class="main">
+						<ul>
+							<li ng-repeat="w in entrance.application">
+								<h3>
+									<i ng-if="w.name == '家校互动'" class="iconfont icon-hudong"></i>
+									<i ng-if="w.name == '课程中心'" class="iconfont icon-kecheng"></i>
+									<i ng-if="w.name == '考试中心'" class="iconfont icon-kaoshi"></i>
+									<i ng-if="w.name == '综合发展'" class="iconfont icon-fazhanlicheng"></i>
+									<span>{{w.name}}</span>
+								</h3>
+								<div class="clearfix">
+									<p class="fl" ng-repeat="i in w.data"><span  ng-click="jump(i.url)">{{i.name}}</span></p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--<div class="teacherOA">
+					<div class="header">教师OA</div>
+					<div class="main">
+						<ul class="clearfix">
+							<li class="fl" ng-repeat="w in entrance.teacherOA" ng-click="jump(i.url)">{{w.name}}</li>
+						</ul>
+					</div>
+				</div>
+				<div class="teacherOA management">
+					<div class="header">教学管理</div>
+					<div class="main">
+						<ul class="clearfix">
+							<li class="fl" ng-repeat="w in entrance.management" ng-click="jump(i.url)">{{w.name}}</li>
+						</ul>
+					</div>
+				</div>-->
+			</div>
+			<div class="wd_right fr">
+				<ul class="wd_nav clearfix">
+					<li ng-repeat="i in Navigation" class="fl" ng-class="{active:i.state}" ng-click="navigationJump(i)">{{i.name}}</li>
+				</ul>
+				<div ui-view class="" ></div>
+			</div>
+		</div>
+	</div>
+</div>

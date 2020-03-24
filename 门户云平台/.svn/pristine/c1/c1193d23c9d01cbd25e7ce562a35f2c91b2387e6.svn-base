@@ -1,0 +1,130 @@
+<link rel="stylesheet" type="text/css" href="common/zTree/css/zTreeStyle/zTreeStyle.css"/>
+<script src="common/zTree/js/jquery.ztree.core.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+	body{background: #f1f2f3;}
+</style>
+<div class="mlh_content" ng-cloak>
+	<div class="guide">
+		<!--科目选择  start-->
+		<!--<div class="guide-left">
+			<div class="subjects"><span ng-bind="variablePacket.subjectName"></span><i class="iconfont icon-arrow-up"></i></div>
+			<div class="subject-list">
+				<div class="sanjiao"><i></i></div>
+				<ul class="guide-list">
+					<li ng-repeat="userinfo in variablePacket.userCourse" ng-class={'active':$index==variablePacket.subjectIndex} ng-bind="userinfo.subjectName" ng-click="getName($index,userinfo)"></li>
+				</ul>
+			</div>
+		</div>-->
+		<!--科目选择  end-->
+		<!--布置导学  start-->
+		<div class="guide-left">导学列表</div>
+		<div class="guide-right" ng-click="guideFn()">
+			布置导学
+		</div>
+		<!--布置导学  end-->
+	</div>
+</div>
+<div class="mlh_content clearfix" ng-cloak>
+	<div class="zy_question_tree fl">
+		<!--选择教材版本-->
+		<choice-version tree-show-situation="variablePacket.leftTreeShow"></choice-version>
+		<!--树结构-->
+		<choice-tree tree-show-situation="variablePacket.leftTreeShow"></choice-tree>
+	</div>
+	<!--班级选择 start-->
+	<div class="zy_question_library mlh_noborder fr">
+		<div class="title class">
+			<span>班级：</span>
+			<ul>
+				<li ng-repeat="class in variablePacket.classaName" 
+					ng-bind="class.name"
+					ng-click="selectClassTab($index,class.classId,class.name)"
+					ng-class="{'active':variablePacket.classIndex==$index}"></li>
+			</ul>
+		</div>
+		<div class="title class classify">
+			<span>类型：</span>
+			<ul>
+				<li ng-repeat="v in variablePacket.classify" 
+					ng-bind="v.name"
+					ng-click="selectClassifyTab($index)"
+					ng-class="{'active':variablePacket.classifyIndex==$index}"></li>
+			</ul>
+		</div>
+	</div>
+	<!--班级选择 end-->
+	<!--内容列表部分 start-->
+	<div class="zy_question_library mlh_noborder fr mlh_top">
+		<!--每个列表项 start-->
+		<div class="guide-item clearfix" ng-repeat="value in classSummary.sevenClassOne">
+			<img src="./img/mlh_guide.png" alt="" />
+			<div class="left">
+				<div class="item-1 " ng-if="variablePacket.classifyIndex==0"
+					 ui-sref="secondNav.guideDel({'resourceReturn':'{{value.guidanceLearn.backType==1?true:false}}','guidanceId':'{{value.guidanceLearn.id}}','classId':'{{classSummary.classId}}','className':'{{classSummary.className}}',state:'echo','stage':'noInclass'})">
+					<span class="zyx_fontShow" ng-bind="value.guidanceLearn.name"></span>
+					<em  ng-if="value.guidanceLearn.backType==1?true:false">回传</em>
+				</div>
+				<div class="item-1 " ng-if="variablePacket.classifyIndex==1"
+					 ui-sref="secondNav.inClassDel.inClassDetails({'type':'guidance','stage':'inclass','packjectId':'{{value.guidanceLearn.id}}','classId':'{{classSummary.classId}}','className':'{{classSummary.className}}'})">
+					<span class="zyx_fontShow" ng-bind="value.guidanceLearn.name"></span>
+					<em  ng-if="value.guidanceLearn.backType==1?true:false">回传</em>
+				</div>
+				<div class="item-2">
+					发布时间:<span ng-bind="value.guidanceLearn.createDate.substr(0, 10)" class="time"></span>
+					发布对象：<span ng-repeat="i in value.guidanceLearn.publishDetils" ng-bind="i.className" style="margin-right: 10px;"></span>
+				</div>
+				<!--<div class="item-3 clearfix" ng-repeat="publishObjects in value.guidanceLearn.publishDetils" ng-if="publishObjects.classId==classSummary.classId">
+					<span>完成进度:</span>
+					<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="60"
+							 aria-valuemin="0" aria-valuemax="100" ng-style="{width:{{publishObjects.stuStadyCount}}/{{publishObjects.classStuTotal}}*100+'%'}">
+						</div>
+					</div>
+					<span><em ng-bind="publishObjects.stuStadyCount"></em>/<em ng-bind="publishObjects.classStuTotal"></em></span>
+				</div>-->
+			</div>
+			<div class="right">
+				<div class="copy" ng-if="variablePacket.classifyIndex==0" ui-sref="secondNav.guideDel.guideContent({state:'edit','guidanceId':'{{value.guidanceLearn.id}}'})"><i class="iconfont icon-fuzhi"></i>复制</div>
+				<div class="copy" ng-if="variablePacket.classifyIndex==1" ui-sref="secondNav.inClassRelease({state:'edit',type:'guidance','guidanceId':'{{value.guidanceLearn.id}}'})"><i class="iconfont icon-fuzhi"></i>复制</div>
+				<div class="del" ng-click="deleteData($index,'sevenClassOne',value.guidanceLearn.name,value.guidanceLearn.id)"><i class="iconfont icon-shanchu"></i>删除</div>
+			</div>
+		</div>
+		<!--每个列表项 end-->
+		<!--确认框及提示框-->
+		<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+		<!--加载更多-->
+		<!--<div class="loading" ng-if="variablePacket.jiazai" ng-click="jiazai(variablePacket.pageSize)"><i class="iconfont icon-jiazai"></i>加载更多...</div>-->
+		<!--分页-->
+		<div class="zmj_resource_page" ng-if="!variablePacket.guidamceListNotExist">
+            <zjy-pagination conf="contentpageConfig" onSelectStart="return false"></zjy-pagination>
+        </div>
+        <!--布置导学弹框-->
+		<div class="gy_del_down mlh_resource_box" ng-if="variablePacket.guideBox">
+		    <div class="gy_hide"></div>
+		    <div class="gy_con mlh_con">
+		    	<div class="zy_resource_box_tit">
+		    		<b>请选择导学类型</b>
+		    		<i class="iconfont icon-guanbi1 fr" ng-click="variablePacket.guideBox=false"></i>
+		    	</div>
+		    	<div class="zy_resource_box_main">
+		    		<ul>
+		    			<li>
+		    				<span>课前导学</span>
+		    				<p>适用于PC端查看及批阅导学内容，移动端不可查看，不支持创建试题，支持回传</p>
+		    				<button ui-sref="secondNav.guideDel.guideContent({state:'new'})">选择</button>
+		    			</li>
+		    			<li>
+		    				<span>课中导学</span>
+		    				<p>适用于全平台（移动端/PC端）查看及批阅导学内容，支持题型包括单选题、判断题、简答题，不支持回传</p>
+		    				<button ui-sref="secondNav.inClassRelease({state:'new',type:'guidance'})">选择</button>
+		    			</li>
+		    		</ul>
+		    	</div>
+			</div>
+		</div>
+		<div class="zyx_empty"  ng-if='variablePacket.guidamceListNotExist'>
+			<img src="./img/empty.png"/>
+		</div>
+	</div>
+	<!--内容列表部分 end-->
+</div>

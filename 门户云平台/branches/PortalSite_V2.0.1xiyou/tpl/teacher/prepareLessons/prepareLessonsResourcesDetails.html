@@ -1,0 +1,19 @@
+<div ng-cloak>
+	<div class="main_width">
+		<ul class="zmj_resource_testList zmj_resources_details">
+			<li class="clearfix" ng-repeat="i in filetypedetails">
+				<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="secondNav.prepareLessonsList"></i>
+				<h4 ng-bind="i.name"></h4>
+				<p><img ng-src="{{i.src}}"/><span class="uploadName" ng-bind="i.uploader"></span><i class="iconfont icon-lishi"></i><span ng-bind="i.time"></span><i class="iconfont icon-daxiao "></i><span ng-bind="i.size"></span></p>
+				<div class="zmj_resource_operating details">
+					<span class="delete" ng-click="Del()"><i class="iconfont icon-shanchu"></i>删除</span>
+				</div>
+			</li>
+		</ul>
+		<div class="zmj_resource_viewdetails">
+			<img src="img/classmottoImg.jpg " />
+		</div>
+	</div>
+    <!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>

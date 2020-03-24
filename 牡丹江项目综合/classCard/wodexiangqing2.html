@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>班牌首页</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/banpai.css">
+    <script src="./js/jquery-1.11.2.min.js"></script>
+    <script src="./js/swiper.min.js"></script>
+    <script src="./js/banpai.js"></script>
+</head>
+<body onload="showLeftTime()">
+    <div class="header">
+        <div class="logo">
+            <img src="./images/logo.png" alt="">
+            <div class="classbtn dw1" onclick="andJump()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>云空间</span>
+            </div>
+            <div class="classbtn dw2" onclick="andJump2()">
+                <img src="./images/homeicon.png" style="width:26px" alt=""><span>教育网</span>
+            </div>
+        </div>
+        <div class="weather">
+            
+            <iframe class="tianqi" src="http://www.seniverse.com/weather/weather.aspx?uid=UEC970B676&cid=CHBJ000000&l=&p=SMART&a=0&u=C&s=1&m=0&x=1&d=0&fc=FFFFFF&bgc=&bc=&ti=0&in=0&li=" frameborder="0" scrolling="no" width="200" height="90" allowTransparency="true"></iframe>
+            
+            <p class="tqzhezhao"></p>
+            
+            <label id="show"></label>
+            <div class="selctclass">
+                <div class="classbtn dw3">
+                    <span>四年级(3)班</span><img src="./images/classbtnxiala.png" alt="">
+                </div>
+                <div class="strlist" style="display:none">
+                    <ul>
+<!--
+                        <li><span class="nameactive"><a href="./wodexiangqing.html">孔甜诺</a></span></li>
+                        <li><span><a href="./wodexiangqing2.html">殷越</a></span></li>
+                        <li><span><a href="./wodexiangqing3.html">王楚宁</a></span></li>
+-->
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="leftmenu">
+            <ul>
+                <a href="./index.html"><li><img src="./images/banji.png" alt=""></li></a>
+                <a href="./xuexiao.html"><li><img src="./images/xuexiao.png" alt=""></li></a>
+                <a href="./shetuan.html"><li><img src="./images/shetuan.png" alt=""></li></a>
+                <a href="./wode.html?name=孔甜诺"><li><img src="./images/wodeactive.png" alt=""></li></a>
+            </ul>
+        </div>
+        <div class="rightcon">
+           <div class="wodejieshao">
+               <img src="./images/wodeqiqiu.png">
+               <img src="./images/wodegezi.png"  style="position:absolute;left:0;top:120px;">
+               <img src="./images/wodegezi2.png" >
+               <img src="./images/wodeqiqiu2.png"  style="position:absolute;right:0;top:0;">
+               <div class="gerenziliao">
+                   <div class="ziliaotitle">殷越个人资料</div>
+                   <div class="ziliaoxiangqing">
+                       <p>
+                           四年三班   殷越，男，11岁。  
+                       </p>
+                       <p>
+                           性格开朗、乐观向上，喜爱文体活动、热爱自然科学。擅长乒乓球、羽毛球、轮滑、跑步。
+                       </p>
+                       <p>
+                           有较强的组织能力，有较强的语言表达能力，有较强的团队精神.在同学中有良好的人际关系；在同学中有较高的威信,善于协同作战。
+                       </p>
+                   </div>
+               </div>
+           </div>
+           <a href="./wode1.html?name=殷越"><div class="fanhuianniu"><img src="./images/fanhuijian.png" alt="">返回</div></a>
+        </div>
+    </div>
+    <div class="footer"></div>
+</body>
+
+<!-- Swiper 初始化-->
+<script>
+    var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    paginationClickable: true,
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay:2000,
+    autoplayDisableOnInteraction: false
+});
+</script>
+
+<script>
+    $(function(){
+        $(".dw3").on("click",function(){
+            $(".strlist").toggle(300)
+        })
+        
+        $(".strlist ul li span").on("click",function(){
+            $(this).addClass("nameactive").parent().siblings().children("span").removeClass("nameactive")
+        })
+    })
+    
+    function andJump(){
+        window.android.AndJump();
+    }
+
+    function andJump2(){
+        window.android.AndJump2();
+    }
+</script>
+
+</html>

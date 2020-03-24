@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="src/common/angular/angular.js"></script>
+		<script src="src/common/js/jquery-1.11.2.min.js"></script>
+	</head>
+	<body ng-app="app">
+		<div ng-controller="con">
+			<table>
+			    <thead>
+			        <tr>
+			            <th>teacher</th>
+			            <th>student</th>
+			            <th>project</th>
+			        </tr>
+			    </thead>
+			    <tbody ng-repeat="teacher in teachers">
+			        <tr ng-repeat="student in teacher.student track by $index">
+			            <!--<td>{{teacher.teacher}}</td>-->
+			            <td ng-if="$index ==0" rowspan={{teacher.student.length}}>{{teacher.teacher}}</td>
+			            <td>
+			                <span ng-bind="student.name"></span>
+			            </td>
+			            <td><span ng-bind="student.project"></span>
+			            </td>
+			        </tr>
+			    </tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		angular.module('app',[]).controller('con',['$scope',function($scope){
+			$scope.teachers = [
+				{"teacher":"Tom","student":[{"name":"stuA","project":"projectA"},{"name":"stuB","project":"projectB"}]},
+				{"teacher":"Jerry","student":[{"name":"stuC","project":"projectC"},{"name":"stuD","project":"projectD"},{"name":"stuE","project":"projectE"}]},
+				{"teacher":"Lee","student":[{"name":"stuF","project":"projectF"}]}
+			];
+			
+		}]);
+	</script>
+</html>

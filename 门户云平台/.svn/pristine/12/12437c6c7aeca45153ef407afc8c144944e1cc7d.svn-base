@@ -1,0 +1,246 @@
+<div class="wx_right_cont fl">
+	<!--右侧内容部分切换-->
+	<wx-nav></wx-nav>
+	<!--面包屑导航-->
+	<div class="wx_bread_nav">
+		<img src="./img/wx_bread_nav.png" class="wx_bread_icon">
+		<span ng-click="breadNav(0,'china',1)">全国</span>
+		<span ng-if="variablePacket.provincenav" ng-click="breadNav(0,'china',variablePacket.provinceId)" ng-bind="variablePacket.provincename"></span>
+		<span ng-if="variablePacket.citynav"     ng-click="breadNav(1,'province',variablePacket.cityId)" ng-bind="variablePacket.cityname"></span>
+		<span ng-if="variablePacket.countynav"   ng-click="breadNav(2,'city',variablePacket.countyId)" ng-bind="variablePacket.countyname"></span>
+		<span ng-if="variablePacket.schoolnav"   ng-click="breadNav(3,'county',variablePacket.schoolId)" ng-bind="variablePacket.schoolname"></span>
+		<span ng-if="variablePacket.userdatanav"   ng-click="breadNav(4,'school',variablePacket.userdataId)" ng-bind="variablePacket.userdataname"></span>
+	</div>
+	<!--资源量统计图-->
+	<div class="wx_user_timer">
+		<div class="wx_echart_tit">
+			<span class="fl">资源量统计图</span>
+			<div class="fr">
+				<select name="" ng-change="selectChange(year.startTime,year.endTime)" class="wx_studyyear" ng-model="year"  ng-options="year.name for year in variablePacket.schoolYear">
+				</select>
+				<!--<input type="text" ng-model="variablePacket.studyYear" class="timer wx_datapinkrange" />-->
+			</div>
+		</div>
+		<div class="wx_type_btn">
+			<button class="wx_btn_hui wx_active" ng-click="changestate(0,variablePacket.changAreaId)" ng-class="{'wx_active':variablePacket.state==0}">资源</button>
+			<button class="wx_btn_hui" ng-click="changestate(1,variablePacket.changAreaId)" ng-class="{'wx_active':variablePacket.state==1}">习题</button>
+			<button class="wx_btn_hui" ng-click="changestate(2,variablePacket.changAreaId)" ng-class="{'wx_active':variablePacket.state==2}">试卷</button>
+		</div>
+		<!--资源饼状图-->
+		<div ng-show="variablePacket.state==0" class="clearfix">
+			<div class="wx_xueduan_ul">
+				学段：
+				<ul>
+					<li ng-class="{active:variablePacket.xueduanelect}" ng-click="xueduanall(0,variablePacket.changAreaId)">全部</li>
+					<li ng-class="{active:variablePacket.xueduantype==r.id}" ng-repeat="r in variablePacket.xueduanrange" ng-click="changexueduan($index,variablePacket.changAreaId,0)">{{r.name}}</li>
+				</ul>
+			</div>
+			<div class="wx_pai fl">
+				<div class="wx_bing_threewidth chart_pie_ziyuan"></div>
+			</div>
+			<div class="wx_hover_tb wx_teacher_hover_analy fl">
+				<table>
+					<thead>
+						<tr>
+							<th>学科</th>
+							<th>数量</th>
+							<th>比例</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.resanaly">
+							<td><i style="background:{{i.color}}"></i>{{i.subjectName}}</td>
+							<td>{{i.counter}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--习题饼状图-->
+		<div ng-show="variablePacket.state==1" class="clearfix">
+			<div class="wx_xueduan_ul">
+				学段：
+				<ul>
+					<li ng-class="{active:variablePacket.xueduanelect}" ng-click="xueduanall(1,variablePacket.changAreaId)">全部</li>
+					<li ng-class="{active:variablePacket.xueduantype==r.id}" ng-repeat="r in variablePacket.xueduanrange" ng-click="changexueduan($index,variablePacket.changAreaId,1)">{{r.name}}</li>
+				</ul>
+			</div>
+			<div class="wx_pai fl">
+				<div class="wx_bing_threewidth chart_pie_xiti"></div>
+			</div>
+			<div class="wx_hover_tb wx_teacher_hover_analy fl">
+				<table>
+					<thead>
+						<tr>
+							<th>学科</th>
+							<th>数量</th>
+							<th>比例</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.quzxititanaly">
+							<td><i style="background:{{i.color}}"></i>{{i.subjectName}}</td>
+							<td>{{i.quz}}</td>
+							<td>{{i.bili}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!--试卷饼状图-->
+		<div ng-show="variablePacket.state==2"  class="clearfix">
+			<div class="wx_xueduan_ul">
+				学段：
+				<ul>
+					<li ng-class="{active:variablePacket.xueduanelect}" ng-click="xueduanall(2,variablePacket.changAreaId)">全部</li>
+					<li ng-class="{active:variablePacket.xueduantype==r.id}" ng-repeat="r in variablePacket.xueduanrange" ng-click="changexueduan($index,variablePacket.changAreaId,2)">{{r.name}}</li>
+				</ul>
+			</div>
+			<div class="wx_pai fl">
+				<div class="chart_pie_shijuan wx_bing_threewidth"></div>
+			</div>
+			<div class="wx_hover_tb wx_teacher_hover_analy fl">
+				<table>
+					<thead>
+						<tr>
+							<th>学科</th>
+							<th>数量</th>
+							<th>比例</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="i in variablePacket.tabledata.extemanaly">
+							<td><i style="background:{{i.color}}"></i>{{i.name}}</td>
+							<td>{{i.totlenum}}</td>
+							<td>{{ (i.bili) | number:0 }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--资源量统计表-->
+	<div class="wx_user_timer_table" ng-if="variablePacket.restableshow">
+		<p class="wx_echart_tit">资源量统计表</p>
+		<div class="wx_resouce_type">
+			<button class="wx_btn_hui" ng-click="changeResstate(0,variablePacket.changAreaId,variablePacket.btnName)" ng-class="{'wx_active':variablePacket.res_state==0}">{{variablePacket.btnName}}</button>
+			<button class="wx_btn_hui" ng-click="changeResstate(1,variablePacket.changAreaId,variablePacket.btnName)" ng-class="{'wx_active':variablePacket.res_state==1}">按角色</button>
+		</div>
+		<div class="wx_xueduan_ul" ng-if="wx_school_res">
+			用户：
+			<ul>
+				<li ng-class="{active:usertype==r.id}" ng-repeat="r in userrange" ng-model="liname" ng-click="changeuser($index)">{{r.name}}</li>
+			</ul>
+		</div>
+		<div class="wx_table_longtime" ng-show="variablePacket.res_state==0">
+			<table class="wx_table_longdetai">
+				<thead>
+					<tr>
+						<th class="wx_tdtwowidth">{{variablePacket.tablearea}}</th>
+						<th>资源</th>
+						<th>习题</th>
+						<th>试卷</th>
+						<th>总数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td ng-bind="variablePacket.resourceTotal"></td>
+						<td ng-bind="variablePacket.quzTotal"></td>
+						<td ng-bind="variablePacket.examTotal"></td>
+						<td ng-bind="variablePacket.finallyTotal"></td>
+					</tr>
+					<!--<pre>{{variablePacket.tabledata.quyu}}</pre>-->
+					<tr ng-repeat="i in variablePacket.tabledata.quyu">
+						<td class="wx_lanzi wx_cursor" ng-click="findCityCount(i.areaId,i.type,i.areaname)">{{i.areaname}}</td>
+						<td>{{i.resource}}</td>
+						<td>{{i.quz}}</td>
+						<td>{{i.exam}}</td>
+						<td>{{i.totle}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="wx_table_longtime" ng-show="variablePacket.res_state==1">
+			<table class="wx_table_longdetai">
+				<thead>
+					<tr>
+						<th>{{variablePacket.tablearea}}</th>
+						<th>资源</th>
+						<th>习题</th>
+						<th>试卷</th>
+						<th>总数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td ng-bind="variablePacket.roleResourceTotal"></td>
+						<td ng-bind="variablePacket.roleQuzTotal"></td>
+						<td ng-bind="variablePacket.roleExamTotal"></td>
+						<td ng-bind="variablePacket.roleFinallyTotal"></td>
+					</tr>
+					<!--<pre>{{variablePacket.roleData}}</pre>-->
+					<tr ng-repeat="i in variablePacket.roleData">
+						<td>{{i.rolename}}</td>
+						<td>{{i.resource}}</td>
+						<td>{{i.quz}}</td>
+						<td>{{i.exam}}</td>
+						<td>{{i.totle}}</td>
+					</tr>
+					<!--<tr>
+						<td>学生/家长</td>
+						<td>24.4</td>
+						<td>53</td>
+						<td>63</td>
+						<td>63</td>
+					</tr>-->
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<!--资源量统计表-->
+	<div class="wx_user_timer_table wx_register_user"  ng-if="!variablePacket.restableshow">
+		<p class="wx_echart_tit">资源量统计表</p>
+		<div class="wx_resouce_type">
+			<span>用户:</span>
+			<button class="wx_btn_hui" ng-click="changeUser(variablePacket.changAreaId,0)" ng-class="{'wx_active':variablePacket.userstate==0}">教师</button>
+			<button class="wx_btn_hui" ng-click="changeUser(variablePacket.changAreaId,1)" ng-class="{'wx_active':variablePacket.userstate==1}">学生/家长</button>
+		</div>
+		<div class="wx_userstatics_table">
+			<table class="wx_table_userstic">
+				<thead>
+					<tr>
+						<th class="wx_tdtwowidth">{{variablePacket.tablearea}}</th>
+						<th>资源</th>
+						<th>习题</th>
+						<th>试卷</th>
+						<th>总数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>总计</td>
+						<td ng-bind="variablePacket.userResourceTotal"></td>
+						<td ng-bind="variablePacket.userQuzTotal"></td>
+						<td ng-bind="variablePacket.userExamTotal"></td>
+						<td ng-bind="variablePacket.userFinallyTotal"></td>
+					</tr>
+					<!--<pre>{{variablePacket.userData}}</pre>-->
+					<tr ng-repeat="i in variablePacket.userData ">
+						<td>{{i.username}}</td>
+						<td>{{i.resource}}</td>
+						<td>{{i.quz}}</td>
+						<td>{{i.exam}}</td>
+						<td>{{i.totle}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+</div>
+<div class="wx_clear"></div>

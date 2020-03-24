@@ -1,0 +1,8 @@
+<div>
+	<div class="mainLeft">
+		<ul tree-one id="treeOne" class="ztree" ng-model="selectNode" ng-if="treeShow.treeOne"></ul>
+		<h3 class="zyxName" ng-if="treeShow.treeKnowledgePoint">知识点</h3>
+		<ul tree-two id="treeTwo" class="ztree" ng-model="selectNode" ng-if="treeShow.treeKnowledgePoint"></ul>
+		<h3 class="zyxName" ng-if="treeShow.other" ng-click="others()">其他</h3>
+	</div>
+</div>

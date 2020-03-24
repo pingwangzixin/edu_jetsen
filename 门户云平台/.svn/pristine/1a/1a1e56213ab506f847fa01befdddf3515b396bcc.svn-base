@@ -1,0 +1,163 @@
+<style type="text/css">
+	.wx_fullscreen {
+		float: right;
+		margin-right: 30px;
+		margin-top: 12px;
+		cursor: pointer;
+	}
+	
+	.wx_backscreen {
+		position: fixed;
+		right: 30px;
+		top: 30px;
+		z-index: 101;
+		cursor: pointer;
+	}
+</style>
+<div>
+	<div class="zy_bg">
+		<img src="./img/suoxiao.png" alt="" class="wx_backscreen" style="display: none;" />
+		<div class="zy_central_content zy_resources_detail">
+			<div class="zy_catalog zy_resourse_catalog">
+				<ul class="clearfix">
+					<li ng-repeat="subName in subjectNameList" ng-bind="subName">资源</li>
+				</ul>
+			</div>
+			<div class="zy_resources_detail_coat clearfix">
+				<div class="zy_resources_detail_left fl">
+					<div class="zy_resources_tit_box">
+						<div class="zy_resources_tit">
+							<div class="zy_resources_h4">
+								<img ng-src="{{res.objId|imgFilter}}" alt="" />
+								<h4 ng-bind="res.title"></h4>
+							</div>
+						</div>
+						<div class="zy_resources_operation clearfix">
+							<ul class="fl">
+								<li class="zy_icon_see" ng-bind="res.statistic.browse"></li>
+								<li class="zy_icon_down" ng-bind="res.statistic.download"></li>
+								<li class="zy_icon_good" ng-bind="res.statistic.dianzan"></li>
+								<li class="zy_icon_time" ng-bind="res.createDate"></li>
+								<li class="zy_icon_size" ng-bind="res.mr3"></li>
+								<li class="zy_icon_collection" ng-bind="res|collectFilter" ng-click="colres(res)" style="cursor: pointer;"></li>
+							</ul>
+							<!--<span class="zy_resources_share fr">分享</span>-->
+						</div>
+					</div>
+					<div class="zy_resources_detail_box">
+						<div class="zy_resources_detail_head">
+							<img src="./img/quanping.png" alt="" class="wx_fullscreen" ng-show="showTip.fullscreenShow"/>
+						</div>
+						<div class="zy_resources_detail_cont" style="background: #fff;" id="FilePackage">
+						</div>
+						<div class="play">
+							<div class="bofangqi" id="showplayer">
+								<div class="loadFlashWrap">
+									<img src="../img/loadFlash.png" />
+									<p>您的浏览器还没有安装Flash插件</p>
+									<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="zy_resources_tips_box">
+						<div class="zy_resources_tips_word">
+							<img ng-show="showTip.sh" src="./img/tips_lamp.png" />
+							<p ng-show="showTip.sh">预览已结束，查看全部内容需要登录哦~</p>
+						</div>
+						<span class="zy_resources_download" onclick="down()">立即下载</span>
+					</div>
+				</div>
+
+				<div class="zy_resources_detail_right fr">
+					<div class="zy_fixed_box" style="margin-top:40px;">
+						<span class="zy_resources_download" onclick="down()">立即下载</span>
+						<div class="zy_resources_relevant_box">
+							<p>相关资源推荐</p>
+							<ul>
+								<li ng-repeat="xgres in xgresource">
+									<span><img ng-src="{{xgres.objId|imgFilter}}"/></span>
+									<p ng-click="toResourcesDetails(xgres)" ng-bind="xgres.title"></p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--收藏提示-->
+	<div class="gy_del_down zy_collect_box" ng-if="scData.div">
+		<div class="gy_hide"></div>
+		<div class="gy_con">
+			<i class="iconfont icon-gouhao" ng-if="scData.success"></i>
+			<i class="iconfont icon-gantanhao" ng-if="scData.error"></i>
+			<span ng-bind="scData.msg">已收藏已收藏已收藏已收藏收藏</span>
+		</div>
+	</div>
+</div>
+<div class="commSourDetailWrap">
+	<input type="hidden" id="resName" value="">
+	<input type="hidden" id="titi" value="">
+	<input type="hidden" id="resId" value="">
+	<input type="hidden" id="userId" value="">
+	<input type="hidden" id="tzyresdata" value="">
+</div>
+
+<script>
+	$(function() {
+		$(window).scroll(function() {
+			var daynav = $(".zy_resources_relevant_box")
+			var main = $(".zy_resources_detail_box");
+			var maintop = main.offset().top;
+			var winTop = $(window).height()
+			var scrollTop = $(window).scrollTop()
+
+			if(scrollTop >= maintop) {
+				daynav.css({
+					"position": "fixed",
+					"top": "0",
+					"margin-top": "0"
+				})
+			} else {
+				daynav.css({
+					"position": "relative",
+					"margin-top": "20px"
+				})
+			}
+
+		})
+
+		$(".wx_fullscreen").on("click", function() {
+			$(".zy_resources_detail_cont").css({
+				"position": "fixed",
+				"top": "0",
+				"left": "0",
+				"right": "0",
+				"bottom": "0",
+				"z-index": "100",
+				"overflow-y": "auto"
+			});
+			$(".wx_backscreen").show();
+		})
+
+		$(".wx_backscreen").on("click", function() {
+			$(".zy_resources_detail_cont").css({
+				"position": "relative"
+			});
+			$(".wx_backscreen").hide();
+		})
+
+		$(window).keydown(function() {
+			var e = event || window.event
+			if(e.keyCode == 27) {
+				$(".zy_resources_detail_cont").css({
+					"position": "relative"
+				});
+				$(".wx_backscreen").hide();
+			}
+		})
+
+	})
+</script>

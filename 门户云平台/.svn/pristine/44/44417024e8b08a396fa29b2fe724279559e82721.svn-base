@@ -1,0 +1,13 @@
+<div class="main_width zy_completionStatus">
+	<div class="zy_no_need_pass_main">
+		<div class="zy_no_need_pass_tit">
+			<span ng-class="{'active':variablePacket.studyState==1}" ng-click="studyStateFn(1)">已提交</span>
+			<span ng-class="{'active':variablePacket.studyState==0}" ng-click="studyStateFn(0)">未提交</span>
+		</div>
+		<div class="zy_no_need_pass_wrap">
+			<ul class="clearfix">
+				<li ng-repeat="x in variablePacket.defultStudyList track by $index" ng-bind='x'></li>						
+			</ul>
+		</div>
+	</div>
+</div>

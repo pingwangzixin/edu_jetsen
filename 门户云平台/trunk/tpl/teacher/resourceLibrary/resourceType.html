@@ -1,0 +1,11 @@
+<div>
+	<div class="main_width">
+		<div class="zmj_resource_head clearfix" ng-cloak>
+			<span ui-sref="secondNav.resourceType.myResource" ui-sref-active="active">我的资源</span>
+			<span ui-sref="secondNav.resourceType.schoolBasedResource" ui-sref-active="active">校本资源</span>
+			<span ui-sref="secondNav.resourceType.publicResource" ui-sref-active="active">公共资源</span>
+			<button ui-sref="secondNav.uploadResource({id:'upload'})" class="uploadingBtn fr">上传资源</button>
+		</div>
+		<div ui-view></div>
+	</div>
+</div>

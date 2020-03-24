@@ -1,0 +1,369 @@
+<div class="main_width">
+	<div class="">
+		<div class="zy_guide_tit">
+			<div class="clearfix">
+				<p class="main_tit fl">
+					<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59" ui-sref="{{variablePacket.backUrl}}"></i>
+					<span ng-bind="variablePacket.name"></span>
+					<b class="subject" ng-bind="variablePacket.subjectName"></b>
+				</p>
+				<p ng-if="variablePacket.finishState"><button class="zmj_button" ng-click="finishAll()">完成</button></p>
+			</div>
+			<div class="zy_test_brief zmj_test_brief">
+				<p><span>章&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;节</span>:<b ng-bind="variablePacket.chapterNames"></b></p>
+				<p><span>发布时间</span>:<b ng-bind="variablePacket.createDate"></b></p>
+			</div>
+		</div>
+		
+		<!--<div class="zy_guide_bar" ng-if="variablePacket.barArrShow">
+			<ul class="clearfix">
+				<li class="fl" ng-repeat="i in variablePacket.barArr" ng-bind="i.name" ui-sref="{{i.href}}" ui-sref-active="active"></li>
+			</ul>
+		</div>
+		-->
+		<!--资源展示-->
+		<div class="zyx_echo_res clearfix">
+			<!--左侧-->
+			<div class="fl zyx_AddResources_left zmj_AddResources_left">
+				<!--资源展示-->
+				<div ng-if='variablePacket.ResourcesTypeShow_pic' class="zmj_resourceShow">
+					<p  class="zyx_testPaperTit">
+					    <span class="fl">资源名称:</span>
+						<span class="fl" ng-bind="variablePacket.resourceName">
+						</span>
+					</p>
+					<div class="zyx_ResourcesTypeShow zmj_ResourcesTypeShow"  repeat-finish="renderFinish()">
+						<div ng-show="variablePacket.convertState == '2'" >
+							<div class="bofangqi" >
+								<div class="loadFlashWrap">
+									<p>资源转码失败</p>
+								</div>
+							</div>
+						</div>
+						<div ng-show="variablePacket.convertState == '0'" >
+							<div class="bofangqi" >
+								<div class="loadFlashWrap">
+									<p>该资源正在转码中</p>
+								</div>
+							</div>
+						</div>
+						<div  ng-show="variablePacket.convertState == '1'">
+							<div class="zyx_ResLinePic" id="tupian" >
+								<img ng-src='{{variablePacket.imagePath}}'/><!--ng-src='{{variablePacket.imagePath}}-->
+							</div>
+							<div class="zyx_ResLineVideo bofangqi" id="showplayer">
+								<div id="flashTest" class="loadFlashWrap">
+									<p>您的浏览器还没有安装Flash插件</p>
+									<a href="http://get.adobe.com/cn/flashplayer" target="_black">现在安装</a>
+								</div>
+							</div>
+							<div class="zyx_ResLinePDF" id="pdfPlay" >
+								<iframe width="790" height="590" src="{{variablePacket.pdfPath}}"></iframe>
+								<!--<iframe width="790" height="590" src="common/generic/web/viewer.html?file=http://192.168.9.113:81/Preview/20180824/0474e238af434fc8938d45806dd01e29.pdf"></iframe>-->
+								<!--<embed width="790" height="590" src="http://192.168.9.113:81/Preview/20180824/0474e238af434fc8938d45806dd01e29.pdf" />-->
+							</div>
+						</div>
+						<img class="zyx_empty" src="./img/empty.png" ng-if='variablePacket.fileNotExist'/>
+				    </div>
+				</div>
+				
+	
+				<!--卷库展示-->
+				<div class="zyx_testpaperBox" ng-if='variablePacket.testpaperBox_pic'>
+					<div class="zmj_testpaper">
+						<!--试卷标题-->
+						<div class="zyx_testPaperTit clearfix">
+							<span class="fl">试卷名称:</span>
+							<span class="fl" ng-bind="variablePacket.titleName">
+							</span>
+							<span class="fr zyx_Marking" ng-if="variablePacket.stuState==0" ng-click="submitTest()">
+								提交
+							</span>
+						</div>
+						
+						 <!--题型展示-->
+						<div class="zyx_AddQuestion">
+							<!--单选-->
+							<div class="zyx_Single" ng-if="echoQuestion.single.length>0">
+								<p class="zyx_topicHead">一、单选题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.single' >
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>单选题</h5>
+												   <!--当页面是导学页面并且状态是非未提交时展示收藏或取消收藏状态-->
+												<div class="fr" ng-if="variablePacket.stuState==2">
+													 <span ng-if="!i.collect" ng-click="collectTab(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</span>
+													 <span ng-if="i.collect"  ng-click="collectTab(i)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</span>
+												</div>
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+											<!--未批阅及已批阅-->
+											<div class="fl zyx_myAnswer zyx_learn zmj_myAnswer clearfix" ng-if="variablePacket.stuState!=0">
+												<div class="zmj_answer">
+													<em>学生答案:</em>
+													<span class="zyx_SingleBg" ng-bind-html='i.myAnswer | trustHtml'></span>
+													<i class="iconfont icon-dui" ng-if='i.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-if='i.icon=="error"'></i>
+												</div>
+												<div class="linesRight zmj_linesRight" ng-if="variablePacket.stuState==2" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+												             查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+										        </div>
+										        <ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+													<li class="Answer">
+															<strong>答案</strong>
+															<div ng-bind-html='i.Answer | trustHtml'></div>
+													</li>
+													<li class="Analysis">
+															<strong>解析</strong>
+															<div ng-bind-html='i.Analysis | trustHtml'></div>
+													</li>	
+										        </ul>
+											</div>
+											<!--未提交-->
+											<div class="fl zyx_myAnswer zyx_notLearn" ng-if="variablePacket.stuState==0">
+												<em>答案<i class="star">*</i></em>
+												<ul class="zyx_option clearfix">
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'a'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="A" />
+														<label ng-attr-for="{{'a'+i.Id+i.Type}}">A</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="B" />
+														<label ng-attr-for="{{'b'+i.Id+i.Type}}">B</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'c'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="C" />
+														<label ng-attr-for="{{'c'+i.Id+i.Type}}">C</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index+i.Type}}" ng-attr-id="{{'d'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="D" />
+														<label ng-attr-for="{{'d'+i.Id+i.Type}}">D</label>
+													</li>
+												</ul>
+											</div>
+										    
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--判断题-->
+							<div class="zyx_Judge" ng-if="echoQuestion.judge.length>0">
+								<p class="zyx_topicHead">二、判断题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.judge'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>判断题</h5>
+												<div class="fr" ng-if="variablePacket.stuState==2">
+													 <span ng-if="!i.collect" ng-click="collectTab(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</span>
+													 <span ng-if="i.collect"  ng-click="collectTab(i)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</span>
+												</div>
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+											<!--未批阅和已批阅-->
+											<div class="fl zyx_myAnswer zmj_myAnswer" ng-if="variablePacket.stuState!=0">
+												<div class="zmj_answer">
+													<em>学生答案:</em>
+													<span class="zyx_JudgeBg" ng-bind-html='i.myAnswer | trustHtml'></span>
+													<i class="iconfont icon-dui" ng-if='i.icon=="correct"'></i>
+													<i class="iconfont icon-cuo" ng-if='i.icon=="error"'></i>
+												</div>
+												<div class="linesRight zmj_linesRight" ng-if="variablePacket.stuState==2" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+												             查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+										        </div>
+										        <ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+													<li class="Answer">
+															<strong>答案</strong>
+															<div ng-bind-html='i.Answer | trustHtml'></div>
+													</li>
+													<li class="Analysis">
+															<strong>解析</strong>
+															<div ng-bind-html='i.Analysis | trustHtml'></div>
+													</li>	
+										        </ul>
+											</div>
+											<!--未提交-->
+											<div class="fl zyx_myAnswer zyx_notLearn" ng-if="variablePacket.stuState==0">
+												<em>答案<i class="star">*</i></em>
+												<ul class="zyx_option JudgeBg  clearfix">
+													<li>
+														<input type="radio" ng-attr-name="{{$index}}" ng-attr-id="{{'a'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="T" />
+														<label ng-attr-for="{{'a'+i.Id+i.Type}}">对</label>
+													</li>
+													<li>
+														<input type="radio" ng-attr-name="{{$index}}" ng-attr-id="{{'b'+i.Id+i.Type}}" ng-model='i.notLearnAnswer' value="F" />
+														<label ng-attr-for="{{'b'+i.Id+i.Type}}">错</label>
+													</li>
+												</ul>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--简答题-->
+							<div class="zyx_BriefAnswer" ng-if="echoQuestion.briefAnswer.length>0">
+								<p class="zyx_topicHead">三、简单题</p>
+								<div class="zyx_topic" ng-repeat='i in echoQuestion.briefAnswer'>
+									<!--展示-->
+									<div class="zyx_LookShow toggle">
+										<div class="zyx_Top clearfix">
+											<div class="tit clearfix">
+												<h5 class="fl"><b ng-bind='$index+1'>1</b>简答题</h5>
+												<div class="fr" ng-if="variablePacket.stuState==2">
+													 <span ng-if="!i.collect" ng-click="collectTab(i)"><i class="iconfont icon-shoucangxingxing"></i>收藏</span>
+													 <span ng-if="i.collect"  ng-click="collectTab(i)"><i class="iconfont icon-quxiaoshoucang"></i>取消收藏</span>
+												</div>
+											</div>
+											<div class="queTit" ng-bind-html='i.queTit | trustHtml'></div>
+											<!--未批阅和已批阅-->
+											<div class="fl zyx_myAnswer zmj_myAnswer" ng-if="variablePacket.stuState!=0">
+												<div class="zmj_answer">
+													<em>学生答案:</em>
+													<div class="zyx_OtherLine">
+														<span class="zyx_OtherBg" ng-if="i.myAnswer!=''" ng-bind-html='i.myAnswer | trustHtml'></span>
+														<b  ng-if="variablePacket.stuState==2">
+															<i class="iconfont icon-dui" ng-if='z.icon=="correct"'></i>
+													        <i class="iconfont icon-cuo" ng-if='z.icon=="error"'></i>
+														</b>
+												    </div>
+													<!--<div class="zyx_OtherLine" ng-repeat='z in i.myAnswer'>
+														<i class="fl num" ng-bind='"("+($index+1)+")"'></i>
+														<span class="zyx_OtherBg" ng-bind='z.daan'></span>
+														<b  ng-if="variablePacket.state=='haveRead'">
+															<i class="iconfont icon-dui" ng-if='z.icon=="correct"'></i>
+													        <i class="iconfont icon-cuo" ng-if='z.icon=="error"'></i>
+														</b>
+												    </div>-->
+												    <div class="zmj_fileimgShow" ng-if="i.img.length">
+											    	    <span  ng-repeat="j in i.img" >
+											    	    	    <img ng-src="{{j}}" alt=""/>
+											    	    </span>
+												    </div>
+												    <div class="zmj_postil"  ng-if="variablePacket.stuState==2">
+													       <span>批注:</span><span ng-bind-html="i.comment | trustHtml"></span>
+												    </div>
+												</div>
+												<div class="linesRight zmj_linesRight" ng-if="variablePacket.stuState==2" ng-click='lookAnswer(i.Type,$index,i.AnswerShow)' ng-class='{"active":i.AnswerShow}'>
+												             查看答案及解析  <i class="iconfont icon-arrow_you"></i>
+										        </div>
+										        <ul class="zyx_Bottom scale-fade" ng-if='i.AnswerShow'>
+													<li class="Answer">
+															<strong>答案</strong>
+															<div ng-bind-html='i.Answer | trustHtml'></div>
+													</li>
+													<li class="Analysis">
+															<strong>解析</strong>
+															<div ng-bind-html='i.Analysis | trustHtml'></div>
+													</li>	
+										        </ul>
+											</div>
+											<!--未提交-->
+											<div class="fl zyx_myAnswer zyx_notLearn"style="margin-left: 20px;" ng-if="variablePacket.stuState==0">
+												<em>答案<i class="star">*</i></em>
+												<div class="zyx_setHeight">
+													<div class="ueditor" ng-model='i.notLearnAnswer'></div>
+												</div>
+												<div class="zmj_file">
+														<ul class="zmj_uploadImg clearfix" >
+														    <li ng-repeat="j in i.img">
+														    	<img ng-src="{{variablePacket.previewUrl+j}}" alt=""  i/>
+														    	<b class="delete" ng-click="deleteImg(i,$index)"><i class="iconfont icon-shanchu"></i>删除</b>
+														    </li>
+														</ul>
+														
+														<div class="zmj_fileInput" ng-click="filePhotoParent(i)" ng-show="i.img.length<3">
+															<!--<input type="file" class='FileInput'  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="angular.element(this).scope().filePhoto()" />-->
+															<input ng-click="resourceUploadFn($index)" class='FileInput'  accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" />
+															<span><i class="iconfont icon-xiangji"></i>上传图片</span>
+														</div>
+				                                </div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+	               </div>
+	                 <!--练习总评-->
+	                <div class="zmj_comment" ng-if="variablePacket.stuState==2">
+	                    	<p>练习总评</p>
+	                    	<div ng-bind="echoQuestion.comment"></div>
+	                 </div>
+				</div>
+			</div>
+	
+			<!--右侧-->
+			<div class="fr zyx_AddResources_right zmj_AddResources_right">
+				<!--资源/试卷-->
+				<div ng-if='variablePacket.ResourcesTypeShow_line'>
+					<h3 class="zyx_ResLineTitle">资源</h3>
+					<div class="zyx_resBoxWrap">
+						<div class="zyx_ResLine zmj_ResLine clearfix" ng-repeat='i in insertData'>
+							<img src="./img/resources_word.png" ng-if='i.resourceType==6'/>
+							<img src="./img/resources_ppt.png" ng-if='i.resourceType==5'/>
+							<img src="./img/resources_pic.png" ng-if='i.resourceType==3'/>
+							<img src="./img/resources_excal.png" ng-if='i.resourceType==7'/>
+							<img src="./img/resources_ear.png" ng-if='i.resourceType==2'/> 
+							<img src="./img/resources_video.png" ng-if='i.resourceType==1 || i.resourceType==8 || i.resourceType==9 '/>
+							<span ng-click='ResLineTab($index,i.resourceType,i.ossFileName)' ng-class="{ 'active':variablePacket.ResLineIndex==$index}" ng-bind='i.resourceName'></span>
+						</div>
+					</div>
+				</div>
+	
+				<div ng-if='variablePacket.testpaperBox_line'>
+					<h3 class="zyx_ResLineTitle">试卷</h3>
+					<div class="zyx_contentLine">
+						<div class="zyx_test zmj_test  clearfix">
+							<div ng-repeat='i in insertTest'>
+								<img src="./img/zyx_testpic.png" />
+								<span ng-bind='i.ResourceTit' ng-click='TestTab($index,i.id, i.stuState)' ng-class="{ 'active':variablePacket.TestIndex==$index}" ng-attr-title="{{i.ResourceTit}}"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--上传资源弹框-->
+		<div ng-cloak>
+			<div class="gy_del_down zy_resource_upload_box"  ng-show="variablePacket.resourceUpload"  style="display: none;">
+			<div class="gy_hide"></div>
+		    <div class="gy_con">
+		    	<div class="zy_resource_box_tit">
+		    		<b>上传答案</b>
+		    		<i class="iconfont icon-guanbi1 fr" ng-click="variablePacket.resourceUpload=false"></i>
+		    	</div>
+		    	<div class="zy_resource_type_main">
+		    		<!--<div class="zy_upload_step">
+		    			<i class="iconfont icon-jiahao"></i>
+		    			<p>浏览文件或把文件拖拽到这里</p>
+		    		</div>-->
+		    		<div class="zmj_upload_file">
+						<p>文件上传</p>
+						<div class="uploadBox">           
+						    <div class="uploadFile">             
+								 <i class="iconfont icon-jiahao"  id="picker"></i>
+		                         <p id = "wenjian"><span>游览文件</span>或把文件拖拽到这里</p>
+								<ul id="theList" class="fileType">
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+						<p>提示：上传错题所支持的格式要求<span>（图片）</span>上传资源即表示您同意捷成世纪上传服务条款，请勿上传色情、反动等违法违规的内容。</p>
+			    	</div>
+			    	<div class="zy_btn_group zy_btn_group_center">
+						<button class="zy_student_task_submit" ng-click="submitFn()">提交</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--确认框及提示框-->
+	    <prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk" mask-zindex='variablePacket.maskZindex'></prompt-box>
+	</div>
+	
+</div>

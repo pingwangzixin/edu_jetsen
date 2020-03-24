@@ -1,0 +1,98 @@
+<div>
+	<div class="zy_leader_top_bar zy_leader_details_top_bar">
+		<p ui-sref="secondNav.leftTree.evaluateManage.evaluateManageList" href="#/secondNav/leftTree/evaluateManage/evaluateManageList">
+			<i class="iconfont icon-gongxiangtubiaozhuangtaileicaozuolei59"></i>
+			<span class="ng-binding">添加标准</span>
+		</p>
+	</div>
+	
+	<div class="zy_leader_right">
+
+		<div class="zy_evaluation_management_box zy_criterion_box">
+    	<div class="zy_resource_box_main">
+				<div>
+					<b>年级</b><i class="star">*</i>
+					<select name="" ng-model="variablePacket.standard.defaultGrade" ng-options="i.id as i.name for i in variablePacket.standard.arrGrade" ng-change="changeStandardGrade('standard','Grade')">
+						<option value="">请选择年级</option>
+						<!--<option value="" selected hidden></option>-->
+					</select>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.standard.verifyGrade">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择年级
+						</span>
+					</p>
+				</div>
+				
+				<div>
+					<b>学科</b><i class="star">*</i>
+					<select name="" ng-model="variablePacket.standard.defaultSubject" ng-if='variablePacket.standard.defaultGrade=="校本课程"' ng-options="i.family.familyName as i.family.familyName for i in variablePacket.standard.arrSubject" ng-change="changeStandardSubject('standard','Subject')">
+						<option value="">请选择学科</option>
+					</select>
+					<select name="" ng-model="variablePacket.standard.defaultSubject" ng-if='variablePacket.standard.defaultSubject!="校本课程"'ng-options="i.subjectCourseName as i.subjectCourseName for i in variablePacket.standard.arrSubject" ng-change="changeStandardSubject('standard','Subject')">
+						<option value="">请选择学科</option>
+					</select>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.standard.verifySubject">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择学科
+						</span>
+					</p>
+				</div>
+				
+				<div>
+					<b>学期</b><i class="star">*</i>
+					<select name="" ng-model="variablePacket.standard.defaultTerm" ng-options="i.id as i.name for i in variablePacket.standard.arrStandardTerm" ng-change="changeStandardTerm('standard','Term')">
+						<option value="">请选择学期</option>
+					</select>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.standard.verifyTerm">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择学期
+						</span>
+					</p>
+				</div>
+				
+				<div>
+					<b>评价标准</b><i class="star">*</i>
+					<select name="" ng-model="variablePacket.standard.defaultStandard" ng-options="i.id as i.name for i in variablePacket.standard.arrStandard" ng-change="changeStandard('standard','Standard')">
+						<option value="">请选择评价标准</option>
+					</select>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.standard.verifyStandard">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择评价标准
+						</span>
+					</p>
+				</div>
+				<div class="zy_import_excel">
+					<p class="zy_import_excel_btn">
+						<span>导入Excel</span>
+						<input type="file" name="" id="file" value="" onchange='angular.element(this).scope().fileChanged(this)' />
+						<a href="javascript:void(0)">下载模板:</a>
+						<a href="http://localhost:8080/MdjEval/EvaluationManagerContr/download.do?fileName=templet1.xls" >模板1</a>
+						<a href="http://localhost:8080/MdjEval/EvaluationManagerContr/download.do?fileName=templet2.xls" >、模板2</a>
+						<a href="http://localhost:8080/MdjEval/EvaluationManagerContr/download.do?fileName=templet3.xls" >、模板3</a>
+					</p>
+					<p class="zy_import_excel_list toggle" ng-if="variablePacket.standard.defaultFile">
+						<img src="./img/resources_excal.png">
+						<span ng-bind="variablePacket.standard.defaultFile">你会打死塑料袋健身卡法兰克福将收到了开发</span>
+						<!--<b ng-click="evaluationAppendixFn($index)">删除</b>-->
+					</p>
+					<p class="zy_verification_tip">
+						<span ng-if="variablePacket.standard.verifyFile">
+							<i class="iconfont icon-gantanhao"></i>
+							请选择文件
+						</span>
+					</p>
+				</div>
+	    	</div>
+			<div class="zy_btn_group">
+	    		<button ng-click="addStandardBtn()">添加</button>
+	    	</div>
+		</div>
+		
+	</div>
+	<!--确认框及提示框-->
+	<prompt-box variable-packet="variablePacket" prompt-show="promptShow" wran-show="wranShow" del-ok="delOk"></prompt-box>
+</div>
